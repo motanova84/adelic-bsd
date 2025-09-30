@@ -29,7 +29,25 @@ from .lmfdb_verification import (
     get_lmfdb_curves
 )
 
-__version__ = "0.1.0"
+# Advanced modules
+from .cohomology import (
+    AdvancedSpectralSelmerMap
+)
+
+from .heights import (
+    AdvancedSpectralHeightPairing,
+    verify_height_equality,
+    compute_regulator_comparison
+)
+
+from .verification import (
+    FormalBSDProver,
+    generate_formal_certificate,
+    MassFormalProof,
+    batch_prove_bsd
+)
+
+__version__ = "0.2.0"
 __author__ = "Mota Burruezo"
 
 __all__ = [
@@ -46,5 +64,14 @@ __all__ = [
     "batch_verify_height_compatibility",
     "large_scale_verification",
     "generate_verification_report",
-    "get_lmfdb_curves"
+    "get_lmfdb_curves",
+    # Advanced modules
+    "AdvancedSpectralSelmerMap",
+    "AdvancedSpectralHeightPairing",
+    "verify_height_equality",
+    "compute_regulator_comparison",
+    "FormalBSDProver",
+    "generate_formal_certificate",
+    "MassFormalProof",
+    "batch_prove_bsd"
 ]
