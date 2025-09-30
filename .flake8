@@ -1,0 +1,13 @@
+[flake8]
+max-line-length = 127
+exclude =
+    .git,
+    __pycache__,
+    build,
+    dist,
+    .eggs,
+    *.egg-info
+per-file-ignores =
+    # E402: module level import not at top of file (needed for sys.path modification)
+    examples/quick_demo.py:E402
+    tests/test_finiteness.py:E402
