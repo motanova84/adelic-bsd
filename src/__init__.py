@@ -14,6 +14,6 @@ __author__ = "Mota Burruezo"
 
 __all__ = [
     "SpectralFinitenessProver",
-    "prove_finiteness_for_curve", 
+    "prove_finiteness_for_curve",
     "batch_prove_finiteness"
 ]
