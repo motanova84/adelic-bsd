@@ -6,7 +6,7 @@ For the main package implementation, see src/spectral_finiteness.py
 """
 
 import sage.all
-from sage.all import EllipticCurve, matrix, QQ, prime_divisors, latex
+from sage.all import EllipticCurve, matrix, QQ, prime_divisors, latex, prod
 from sage.databases.cremona import cremona_letter
 from sage.schemes.elliptic_curves.ell_rational_field import EllipticCurve_rational_field
 import math
