@@ -14,7 +14,6 @@ These tests verify the mathematical correctness of the spectral construction.
 import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-
 from sage.all import EllipticCurve
 from src.spectral_finiteness import SpectralFinitenessProver
 
