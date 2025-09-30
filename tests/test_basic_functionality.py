@@ -21,8 +21,9 @@ class TestBasicFramework(unittest.TestCase):
         """Test que las importaciones básicas funcionan"""
         try:
             # Importaciones que deberían funcionar sin Sage
-            import src
-            print("✅ Importación de src: OK")
+            # Importar componentes específicos de src que no dependen de SageMath
+            from src import module1, module2  # Reemplazar con los módulos/clases reales
+            print("✅ Importación de componentes de src: OK")
         except ImportError as e:
             if 'sage' in str(e).lower():
                 self.skipTest(f"SageMath no disponible: {e}")
