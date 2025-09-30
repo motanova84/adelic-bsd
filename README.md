@@ -248,6 +248,55 @@ sage -python examples/spectral_to_points_demo.py all
 
 ---
 
+## 🧪 Testing
+
+The repository includes comprehensive test suites for both CI and local development:
+
+### CI-Safe Tests (No SageMath Required)
+
+These tests run automatically in GitHub Actions and work without SageMath:
+
+```bash
+# Run all CI-safe tests
+python tests/test_finiteness_basic.py
+python tests/test_basic_functionality.py
+python tests/test_ci_safe.py
+
+# Or with pytest
+pytest tests/test_finiteness_basic.py tests/test_basic_functionality.py -v
+```
+
+**Coverage:**
+- ✅ Package structure validation
+- ✅ Documentation presence checks
+- ✅ Import structure verification
+- ✅ Basic numerical computations
+- ✅ Mock-based unit tests
+
+### Full Tests (Require SageMath)
+
+For complete mathematical validation:
+
+```bash
+# Run with SageMath
+sage -python -m pytest tests/ -v
+
+# Run specific test suites
+sage -python tests/test_finiteness.py
+sage -python tests/test_spectral_cycles.py
+```
+
+**Coverage:**
+- ✅ Spectral finiteness proofs
+- ✅ Certificate generation
+- ✅ LMFDB cross-validation
+- ✅ Advanced BSD modules
+- ✅ Height pairing verification
+
+See [`tests/README.md`](tests/README.md) for detailed testing documentation.
+
+---
+
 ## 📄 Example Output
 
 ```
@@ -284,8 +333,12 @@ algoritmo/
 │   ├── test_finiteness.py            # Core finiteness tests
 │   ├── test_certificate_generation.py # Certificate validation tests
 │   ├── test_lmfdb_crosscheck.py      # LMFDB comparison tests
-│   ├── test_finiteness_basic.py      # Basic structural tests
-│   └── test_spectral_cycles.py       # Spectral cycles tests (NEW)
+│   ├── test_finiteness_basic.py      # Basic structural tests (CI-safe)
+│   ├── test_basic_functionality.py   # Unit tests with mocks (CI-safe, NEW)
+│   ├── test_ci_safe.py               # Mathematical tests without Sage (CI-safe, NEW)
+│   ├── test_spectral_cycles.py       # Spectral cycles tests (NEW)
+│   ├── test_advanced_modules.py      # Advanced BSD modules tests
+│   └── README.md                     # Testing guide
 ├── examples/                         # Example scripts & notebooks
 │   ├── quick_demo.py                 # Quick demonstration script
 │   ├── demo_notebook.ipynb           # Interactive Jupyter notebook
@@ -296,10 +349,13 @@ algoritmo/
 │   ├── MANUAL.md                     # Technical usage guide
 │   └── BSD_FRAMEWORK.md              # Theoretical foundations & paper refs
 ├── .github/workflows/                # CI/CD
-│   └── python-package-conda.yml      # GitHub Actions workflow
+│   ├── python-package-conda.yml      # GitHub Actions workflow (with SageMath)
+│   └── python-tests.yml              # CI-safe tests workflow (NEW)
 ├── spectral_finiteness.py            # Standalone comprehensive demo
+├── setup_environment.py              # Environment setup script (NEW)
 ├── environment.yml                   # Conda environment specification
 ├── requirements.txt                  # Python dependencies
+├── requirements_ci.txt               # CI dependencies (without SageMath, NEW)
 ├── setup.py                          # Package setup
 ├── README.md                         # This file
 ├── USAGE.md                          # Usage guide

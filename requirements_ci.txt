@@ -1,0 +1,8 @@
+# Dependencias básicas para CI (sin SageMath)
+# Basic dependencies for CI (without SageMath)
+numpy>=1.21.0
+scipy>=1.7.0
+matplotlib>=3.5.0
+sympy>=1.9.0
+pytest>=6.0.0
+pytest-cov>=3.0.0
