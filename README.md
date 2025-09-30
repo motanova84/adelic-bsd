@@ -196,6 +196,45 @@ This will:
 - Verify with LMFDB known $\Sha$
 - Generate LaTeX finiteness certificates (e.g. `certificado_finitud_11a1.tex`)
 
+### 3. Spectral→Cycles→Points Algorithm (NEW)
+
+The repository now includes the complete algorithmic pipeline for connecting spectral vectors to rational points:
+
+```python
+from sage.all import EllipticCurve
+from src.spectral_cycles import demonstrate_spectral_to_points
+from src.height_pairing import verify_height_compatibility
+from src.lmfdb_verification import large_scale_verification
+
+# Demo 1: Convert spectral kernel to rational points
+result = demonstrate_spectral_to_points('11a1')
+
+# Demo 2: Verify height pairing compatibility
+E = EllipticCurve('11a1')
+compat = verify_height_compatibility(E)
+
+# Demo 3: Large-scale LMFDB verification
+verification = large_scale_verification(
+    conductor_range=(11, 50),
+    rank_range=[0, 1, 2],
+    limit=20
+)
+```
+
+**Run the complete demonstration:**
+
+```bash
+sage -python examples/spectral_to_points_demo.py all
+```
+
+**Key Features:**
+
+- **Algorithm 1**: Spectral vectors → Modular symbols (via Manin-Merel theorem)
+- **Algorithm 2**: Modular symbols → Cycles in Jacobian (via Hecke operators)
+- **Algorithm 3**: Cycles → Rational points on E (via modular parametrization)
+- **Height Pairing**: Verification of ⟨·,·⟩_spec = ⟨·,·⟩_NT compatibility
+- **LMFDB Validation**: Large-scale testing across curve databases
+
 ---
 
 ## 📄 Example Output
@@ -226,15 +265,20 @@ Conductor: N = 11
 algoritmo/
 ├── src/                              # Core package
 │   ├── __init__.py
-│   └── spectral_finiteness.py        # Main algorithm implementation
+│   ├── spectral_finiteness.py        # Main algorithm implementation
+│   ├── spectral_cycles.py            # Spectral→Cycles→Points algorithms (NEW)
+│   ├── height_pairing.py             # Height pairing verification (NEW)
+│   └── lmfdb_verification.py         # Large-scale LMFDB validation (NEW)
 ├── tests/                            # Test suite
 │   ├── test_finiteness.py            # Core finiteness tests
 │   ├── test_certificate_generation.py # Certificate validation tests
 │   ├── test_lmfdb_crosscheck.py      # LMFDB comparison tests
-│   └── test_finiteness_basic.py      # Basic structural tests
+│   ├── test_finiteness_basic.py      # Basic structural tests
+│   └── test_spectral_cycles.py       # Spectral cycles tests (NEW)
 ├── examples/                         # Example scripts & notebooks
 │   ├── quick_demo.py                 # Quick demonstration script
-│   └── demo_notebook.ipynb           # Interactive Jupyter notebook
+│   ├── demo_notebook.ipynb           # Interactive Jupyter notebook
+│   └── spectral_to_points_demo.py    # Spectral→Points demo (NEW)
 ├── scripts/                          # Utility scripts
 │   └── generate_all_certificates.py  # Batch certificate generation
 ├── docs/                             # Documentation
