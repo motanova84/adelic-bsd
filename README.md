@@ -52,7 +52,8 @@ Ensures local factors don't cause degeneration at $s=1$.
 
 **[Theorem 8.3]** *Arithmetic Identification*  
 Under compatibilities (dR) and (PT):
-$$c(1) = \frac{\#\text{Ш}(E/\mathbb{Q}) \cdot \prod_p c_p \cdot \Omega_E}{L^*(E,1)}$$
+
+$$c(1) = \frac{\#\text{Ш}(E/\mathbb{Q}) \cdot \prod_p c_p \cdot \Omega_E \cdot \text{Reg}_E}{(\#E(\mathbb{Q})_{\text{tors}})^2}$$
 
 This reduces BSD to identifying $c(1)$ arithmetically.
 
