@@ -83,6 +83,17 @@ Tested on hundreds of curves with conductor ≤ 1000:
 
 **Cross-check tests**: [`tests/test_lmfdb_crosscheck.py`](tests/test_lmfdb_crosscheck.py)
 
+### Certificate Dataset
+
+Generated certificates for verified curves are available:
+- 📁 **Local generation**: Use `scripts/generate_all_certificates.py` to generate certificates
+- 📊 **Zenodo dataset**: *(Coming soon - DOI will be added when dataset is published)*
+
+To generate certificates locally:
+```bash
+sage -python scripts/generate_all_certificates.py --conductor 100
+```
+
 ---
 
 ## 🔍 Outstanding Hypotheses
