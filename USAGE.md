@@ -251,9 +251,92 @@ pip install -r requirements.txt
 # Examples: 11a1, 37a1, 389a1
 ```
 
+---
+
+## NEW: Spectral→Cycles→Points Algorithm
+
+### Quick Start with New Features
+
+```python
+from sage.all import EllipticCurve
+from src.spectral_cycles import demonstrate_spectral_to_points
+from src.height_pairing import verify_height_compatibility
+
+# Demo 1: Complete spectral→points pipeline
+result = demonstrate_spectral_to_points('11a1')
+
+# Demo 2: Verify height pairing compatibility
+E = EllipticCurve('37a1')
+compat = verify_height_compatibility(E)
+print(f"Height compatibility: {compat['compatible']}")
+```
+
+### Using the Demo Script
+
+```bash
+# Run all demonstrations
+sage -python examples/spectral_to_points_demo.py all
+
+# Run specific demos
+sage -python examples/spectral_to_points_demo.py single 11a1
+sage -python examples/spectral_to_points_demo.py height 37a1
+sage -python examples/spectral_to_points_demo.py multiple
+sage -python examples/spectral_to_points_demo.py lmfdb
+sage -python examples/spectral_to_points_demo.py steps
+```
+
+### Large-Scale LMFDB Verification
+
+```python
+from src.lmfdb_verification import large_scale_verification, generate_verification_report
+
+# Run verification on many curves
+results = large_scale_verification(
+    conductor_range=(11, 100),
+    rank_range=[0, 1, 2],
+    limit=50,
+    verbose=True
+)
+
+# Generate detailed report
+report = generate_verification_report(results, 'verification_report.txt')
+```
+
+### Advanced: Step-by-Step Algorithm
+
+```python
+from sage.all import EllipticCurve
+from src.spectral_cycles import compute_kernel_basis, spectral_kernel_to_rational_points
+from src.height_pairing import (
+    compute_spectral_height_matrix,
+    compute_nt_height_matrix
+)
+
+E = EllipticCurve('11a1')
+
+# Step 1: Compute spectral kernel
+kernel_basis = compute_kernel_basis(E)
+print(f"Kernel dimension: {len(kernel_basis)}")
+
+# Step 2: Convert to rational points
+points = spectral_kernel_to_rational_points(kernel_basis, E)
+print(f"Points generated: {len(points)}")
+
+# Step 3: Compute height matrices
+H_spec = compute_spectral_height_matrix(kernel_basis, E)
+H_nt = compute_nt_height_matrix(points)
+
+# Step 4: Compare
+print(f"Spectral height:\n{H_spec}")
+print(f"NT height:\n{H_nt}")
+```
+
+---
+
 ## Further Reading
 
 - **Algorithm Details**: See comments in `src/spectral_finiteness.py`
+- **Spectral Cycles Guide**: See `docs/SPECTRAL_CYCLES_GUIDE.md` for complete reference
 - **Mathematical Background**: Mota Burruezo Spectral BSD Framework
-- **Examples**: Check `examples/quick_demo.py` and root `spectral_finiteness.py`
-- **Tests**: See `tests/test_finiteness.py` for more usage examples
+- **Examples**: Check `examples/quick_demo.py`, `examples/spectral_to_points_demo.py`
+- **Tests**: See `tests/test_finiteness.py` and `tests/test_spectral_cycles.py` for usage examples
