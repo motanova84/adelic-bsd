@@ -67,7 +67,7 @@ class BSDCertificateGenerator:
         # Add curve equation
         try:
             certificate['curve']['equation'] = E.short_weierstrass_model().ainvs()
-        except:
+        except (AttributeError, ValueError):
             certificate['curve']['equation'] = E.ainvs()
         
         # Add L-function data
