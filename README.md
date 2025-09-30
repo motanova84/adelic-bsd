@@ -61,8 +61,11 @@ print(f"Global bound: {result['global_bound']}")
 # Quick demo with sample curves
 python examples/quick_demo.py
 
-# Or use the command-line tool
+# Or use the command-line tool (after installation)
 spectral-demo
+
+# Run the comprehensive standalone demo
+python spectral_finiteness.py
 ```
 
 ## 📁 Repository Structure
@@ -78,12 +81,18 @@ algoritmo/
 ├── tests/                      # Test suite
 │   ├── test_finiteness.py      # Unit tests
 │   └── __init__.py
-├── spectral_finiteness.py      # Standalone version with extended examples
+├── spectral_finiteness.py      # Standalone comprehensive demo script
 ├── requirements.txt            # Python dependencies
 ├── environment.yml             # Conda environment specification
 ├── setup.py                    # Package installation script
 └── README.md                   # This file
 ```
+
+**Note**: The repository contains two versions of the spectral finiteness implementation:
+- **`src/spectral_finiteness.py`**: The main package implementation, clean and modular
+- **`spectral_finiteness.py`** (root): A standalone demonstration script with extended examples and comprehensive testing
+
+For normal usage, import from the `src` package. The root script can be run directly for extensive curve analysis.
 
 ## 🧪 Testing
 
