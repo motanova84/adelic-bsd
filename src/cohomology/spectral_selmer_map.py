@@ -45,10 +45,16 @@ class SpectralSelmerMap:
         elif self.E.has_multiplicative_reduction(self.p):
             self.reduction_type = "multiplicative"
             # For multiplicative reduction, ap = 1 (split) or -1 (non-split)
-            if self.E.is_split_multiplicative(self.p):
-                self.ap = 1
+            if hasattr(self.E, "is_split_multiplicative"):
+                if self.E.is_split_multiplicative(self.p):
+                    self.ap = 1
+                else:
+                    self.ap = -1
             else:
-                self.ap = -1
+                # Method not available; cannot determine split/non-split
+                self.ap = None
+                import warnings
+                warnings.warn("EllipticCurve object does not have 'is_split_multiplicative' method; 'ap' set to None.")
         else:
             self.reduction_type = "additive"
             self.ap = 0
