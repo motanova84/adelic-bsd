@@ -2,6 +2,90 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.2.0] - 2025-01 (Pending)
+
+### Added
+
+#### Enhanced Documentation Structure
+- **docs/MANUAL.md**: Complete technical manual with installation, usage, examples, and troubleshooting (316 lines)
+- **docs/BSD_FRAMEWORK.md**: Theoretical foundations with explicit paper references (295 lines)
+  - Direct mapping from manuscript theorems to code implementation
+  - Detailed explanation of (dR) and (PT) compatibilities
+  - Comparison with other BSD approaches
+
+#### Comprehensive Testing Suite
+- **tests/test_certificate_generation.py**: Validates certificate generation and format (128 lines)
+  - Tests for text certificate structure
+  - Validates curve data inclusion
+  - Multi-curve certificate generation
+- **tests/test_lmfdb_crosscheck.py**: Cross-validation with LMFDB database (192 lines)
+  - Compares spectral bounds with known Ш values
+  - Tests consistency across multiple curves
+  - Validates against conductor ranges
+
+#### Interactive Examples
+- **examples/demo_notebook.ipynb**: Jupyter notebook with comprehensive examples (320 lines)
+  - Single curve analysis with 11a1
+  - LMFDB data comparison
+  - Batch processing demonstration
+  - Detailed spectral data inspection
+  - Higher rank curve testing
+
+#### Utility Scripts
+- **scripts/generate_all_certificates.py**: Batch certificate generation tool (163 lines)
+  - Generate certificates for conductor ranges
+  - Process specific curve lists
+  - Summary statistics and error reporting
+
+#### Infrastructure Improvements
+- **certificates/**: Directory for generated certificates with .gitkeep
+- **scripts/__init__.py**: Package marker for scripts directory
+- Enhanced **.gitignore**: Excludes generated certificates while preserving directory structure
+- CI/CD badges in README.md for visibility
+
+### Improved
+
+#### README.md Restructuring
+- Added "Theoretical Foundations" section with theorem references (4.3, 6.1, 8.3)
+- Added "Computational Validation" section with reproducible LMFDB examples
+- Added "Outstanding Hypotheses" section detailing (dR) and (PT) status
+- Enhanced repository structure diagram reflecting new organization
+- Added comprehensive disclaimer about proof status
+- Added Zenodo dataset placeholder for future certificate publication
+
+#### CONTRIBUTING.md Enhancements
+- Added "Community Verification" section with verification checklist
+- Added LMFDB cross-validation guidelines for test contributors
+- Added section on theoretical contributions
+- Expanded testing guidelines with validation examples
+
+### Repository Structure
+
+```
+algoritmo/
+├── src/                              # Core package
+├── tests/                            # Comprehensive test suite (4 test files)
+├── examples/                         # Interactive demos & notebooks
+├── scripts/                          # Utility scripts
+├── docs/                             # Detailed documentation (NEW)
+├── certificates/                     # Generated certificates directory (NEW)
+├── .github/workflows/                # CI/CD configuration
+└── [config and setup files]
+```
+
+### Context
+
+This release significantly enhances the repository's rigor and reproducibility:
+- **Theoretical rigor**: Direct paper-to-code traceability
+- **Computational validation**: LMFDB cross-checking infrastructure
+- **Community engagement**: Clear verification guidelines
+- **Documentation**: Complete technical and theoretical guides
+
+The structure now fully supports the spectral BSD framework as described in the manuscript
+"A Complete Spectral Reduction of the Birch and Swinnerton–Dyer Conjecture" (2025).
+
+---
+
 ## [0.1.0] - 2024
 
 ### Added

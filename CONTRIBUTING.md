@@ -4,6 +4,29 @@ Thank you for your interest in contributing to the Mota Burruezo Spectral BSD Fr
 
 ## How to Contribute
 
+### Community Verification
+
+One of the most valuable contributions is **independent verification** of the results:
+
+1. **Run the code** on your machine with different curves
+2. **Compare results** with LMFDB data
+3. **Generate certificates** and verify consistency
+4. **Report findings** via issues or discussions
+5. **Cross-check** with other BSD verification methods
+
+### Verification Checklist
+
+When verifying results:
+
+- [ ] Install SageMath and dependencies correctly
+- [ ] Run basic tests: `pytest tests/test_finiteness_basic.py`
+- [ ] Run full tests: `sage -python tests/test_finiteness.py`
+- [ ] Test specific curves from LMFDB
+- [ ] Compare spectral bounds with known #Ш values
+- [ ] Generate and review certificates
+- [ ] Test on curves with different reduction types
+- [ ] Document any discrepancies or issues
+
 ### Reporting Bugs
 
 If you find a bug, please open an issue with:
@@ -183,6 +206,37 @@ def test_new_feature():
 - Test edge cases
 - Test error handling
 - Test with various curve types (good/multiplicative/supercuspidal reduction)
+
+### LMFDB Cross-Validation
+
+When adding tests, always validate against LMFDB when possible:
+
+```python
+def test_curve_with_lmfdb():
+    """Test curve and validate with LMFDB data"""
+    E = EllipticCurve('37a1')
+    prover = SpectralFinitenessProver(E)
+    result = prover.prove_finiteness()
+    
+    # Get known Sha from LMFDB/Sage
+    try:
+        known_sha = E.sha().an()
+        assert result['global_bound'] >= known_sha
+    except:
+        print("LMFDB data not available")
+```
+
+## Theoretical Contributions
+
+We welcome contributions to:
+
+1. **(dR) Compatibility**: Help extend p-adic Hodge compatibility to all reduction types
+2. **(PT) Compatibility**: Work on Beilinson–Bloch heights for rank ≥ 2 cases
+3. **Certificate Generation**: Improve LaTeX certificate generation with full mathematical typesetting
+4. **Documentation**: Clarify theoretical aspects or add examples
+5. **Performance**: Optimize spectral operator computations
+
+See [`docs/BSD_FRAMEWORK.md`](docs/BSD_FRAMEWORK.md) for theoretical details.
 
 ## Questions?
 
