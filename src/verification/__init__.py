@@ -11,10 +11,14 @@ from .mass_formal_proof import (
     MassFormalProof,
     batch_prove_bsd
 )
+from .mass_verification import MassBSDVerifier
+from .certificate_generator import BSDCertificateGenerator
 
 __all__ = [
     'FormalBSDProver',
     'generate_formal_certificate',
     'MassFormalProof',
-    'batch_prove_bsd'
+    'batch_prove_bsd',
+    'MassBSDVerifier',
+    'BSDCertificateGenerator'
 ]

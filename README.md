@@ -29,6 +29,32 @@ This repository implements the **spectral finiteness algorithm** arising from th
 - **Formal Verification**: Certificate generation with cryptographic hashing
 - **Mass Verification**: Batch processing across curve families with statistics
 
+### Complete Verification Framework (v0.3.0)
+
+**New Components:**
+- **Spectral Selmer Map** (`src/cohomology/spectral_selmer_map.py`): Implements Φ: ker M_E(1) → H^1_f(ℚ_p, V_p)
+- **p-adic Integration** (`src/cohomology/p_adic_integration.py`): Coleman integration and Frobenius matrices
+- **Bloch-Kato Conditions** (`src/cohomology/bloch_kato_conditions.py`): Verifies local and global conditions
+- **Height Comparison** (`src/heights/height_comparison.py`): Spectral vs Néron-Tate compatibility
+- **Mass Verification** (`src/verification/mass_verification.py`): Systematic LMFDB curve verification
+- **Certificate Generator** (`src/verification/certificate_generator.py`): Formal JSON/text certificates
+
+**Enhanced Precision:**
+- Complex step derivative method for height pairings: f'(x) ≈ Im(f(x+ih))/h
+- High-precision numerical derivatives avoiding cancellation errors
+- Systematic Bloch-Kato condition checking at all primes
+
+**Quick Start:**
+```bash
+# Run complete verification pipeline
+python scripts/run_complete_verification.py --max-rank 3 --max-conductor 1000
+
+# Generate certificates
+python scripts/generate_final_certificates.py --output-dir certificates
+```
+
+See [`docs/COMPLETE_VERIFICATION_GUIDE.md`](docs/COMPLETE_VERIFICATION_GUIDE.md) for detailed usage.
+
 ⚡ This is not only a theoretical framework: it is a **computational verification system**.  
 For every tested curve, BSD holds *spectrally and arithmetically consistent*.
 
