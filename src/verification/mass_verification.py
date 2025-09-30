@@ -225,7 +225,7 @@ class MassBSDVerifier:
                         regulator = gens[0].height()
                     else:
                         # For rank > 1, compute height pairing matrix
-                        from src.height_pairing import compute_nt_height_matrix
+                        from src.heights.height_comparison import compute_nt_height_matrix
                         H = compute_nt_height_matrix(gens[:rank])
                         regulator = abs(H.determinant())
                     
