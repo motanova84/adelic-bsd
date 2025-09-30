@@ -8,6 +8,7 @@ import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
+from sage.all import EllipticCurve
 from src.spectral_finiteness import SpectralFinitenessProver, batch_prove_finiteness
 
 def main():

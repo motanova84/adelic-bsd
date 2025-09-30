@@ -3,6 +3,8 @@ Spectral finiteness proof for Tate–Shafarevich groups
 Main algorithm implementation - Mota Burruezo Framework
 """
 
+from sage.all import EllipticCurve
+
 class SpectralFinitenessProver:
     """
     Main class for proving finiteness of Ш using spectral methods
@@ -120,7 +122,7 @@ Curve: {proof_data['curve_label']}
 Conductor: {proof_data['spectral_data']['conductor']}
 Rank: {proof_data['spectral_data']['rank']}
 
-FINITNESS PROOF:
+FINITENESS PROOF:
 ----------------
 • Global bound: {proof_data['global_bound']}
 • Finiteness: PROVED ✓
