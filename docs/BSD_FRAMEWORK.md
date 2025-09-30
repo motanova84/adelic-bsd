@@ -51,7 +51,7 @@ This ensures that local contributions do not cause degeneration at $s=1$.
 
 **Statement**: Under two compatibility conditions (dR) and (PT):
 
-$$c(1) = \frac{\#\text{Ш}(E/\mathbb{Q}) \cdot \prod_p c_p \cdot \Omega_E}{L^*(E,1)}$$
+$$c(1) = \frac{\#\text{Ш}(E/\mathbb{Q}) \cdot \prod_p c_p \cdot \Omega_E \cdot \text{Reg}_E}{(\#E(\mathbb{Q})_{\text{tors}})^2}$$
 
 where BSD predicts the right-hand side equals a product of standard invariants.
 
@@ -187,7 +187,7 @@ $$L^*(E, 1) = \frac{\#\text{Ш}(E/\mathbb{Q}) \cdot \Omega_E \cdot \prod_p c_p}{
 
 We prove:
 
-$$c(1) = \frac{\#\text{Ш} \cdot \prod_p c_p \cdot \Omega_E}{L^*(E,1)}$$
+$$c(1) = \frac{\#\text{Ш} \cdot \prod_p c_p \cdot \Omega_E \cdot \text{Reg}_E}{(\#E(\mathbb{Q})_{\text{tors}})^2}$$
 
 Under (dR) and (PT), $c(1) = 1$, which implies classical BSD.
 
