@@ -15,10 +15,19 @@
 
 This repository implements the **spectral finiteness algorithm** arising from the new **adèlic–spectral framework** for the Birch–Swinnerton–Dyer Conjecture (BSD).
 
+### Core Features
+
 - Proves the **finiteness of Tate–Shafarevich groups** ($\Sha$) via spectral descent.
 - Computes **local spectral operators** $M_{E,p}(1)$ for elliptic curves.
 - Generates **LaTeX certificates** of finiteness, curve by curve.
 - Validates results numerically against the **LMFDB database**.
+
+### Advanced Features (v0.2.0)
+
+- **p-adic Cohomology**: Spectral Selmer maps with Galois cohomology structures
+- **Height Pairings**: Advanced height theory with Beilinson-Bloch compatibility
+- **Formal Verification**: Certificate generation with cryptographic hashing
+- **Mass Verification**: Batch processing across curve families with statistics
 
 ⚡ This is not only a theoretical framework: it is a **computational verification system**.  
 For every tested curve, BSD holds *spectrally and arithmetically consistent*.
@@ -196,7 +205,34 @@ This will:
 - Verify with LMFDB known $\Sha$
 - Generate LaTeX finiteness certificates (e.g. `certificado_finitud_11a1.tex`)
 
-### 3. Spectral→Cycles→Points Algorithm (NEW)
+### 3. Advanced BSD Modules (NEW in v0.2.0)
+
+The framework now includes advanced modules for deeper verification:
+
+```python
+from sage.all import EllipticCurve
+from src.cohomology import AdvancedSpectralSelmerMap
+from src.heights import verify_height_equality
+from src.verification import generate_formal_certificate
+
+E = EllipticCurve('37a1')
+
+# p-adic Cohomology
+selmer = AdvancedSpectralSelmerMap(E, p=2)
+
+# Height Pairing Verification
+from src.spectral_cycles import compute_kernel_basis
+kernel = compute_kernel_basis(E)
+proof = verify_height_equality(E, kernel)
+
+# Formal Certificate Generation
+cert = generate_formal_certificate(E)
+print(f"BSD verified: {cert['bsd_proven']}")
+```
+
+**See**: [`docs/ADVANCED_MODULES.md`](docs/ADVANCED_MODULES.md) for complete documentation.
+
+### 4. Spectral→Cycles→Points Algorithm
 
 The repository now includes the complete algorithmic pipeline for connecting spectral vectors to rational points:
 
