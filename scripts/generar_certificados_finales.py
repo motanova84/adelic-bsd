@@ -13,6 +13,8 @@ import argparse
 
 from sage.all import EllipticCurve
 from src.verification import generate_formal_certificate
+from src.verification.certificate_generator import CertificateGenerator
+from src.verification.mass_verification import batch_verify_bsd
 
 
 def generate_individual_certificates(curve_labels, output_dir='certificates'):
