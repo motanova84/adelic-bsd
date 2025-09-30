@@ -133,32 +133,6 @@ The spectral/analytic framework is **complete and unconditional**. The arithmeti
 
 ---
 
-## 📊 Current Status (Score 9.8/10)
-
-- **Analytic/Spectral Side** → ✅ Complete, unconditional, rigorous.  
-- **Arithmetic Side** → Reduced to two explicit compatibilities:
-  - (dR) Local $p$-adic Hodge landing  
-    - ✔ Verified: good, Steinberg, supercuspidal $f_p = 2$  
-    - ❌ Pending: full semistable/additive cases (Fontaine–Perrin-Riou + corestriction)
-  - (PT) Spectral vs. Poitou–Tate pairing  
-    - ✔ Verified: analytic rank $1$ (Gross–Zagier)  
-    - ❌ Pending: rank $r \geq 2$ (Beilinson–Bloch heights: Nekovář, Yuan–Zhang–Zhang)
-
-- **Computational Verification** → ✅ Implemented here, tested on dozens of LMFDB curves.
-- **Independent Verification** → ❌ Pending community review.
-
-### 🎯 Evaluation
-- Originality: **10/10** (paradigm shift)  
-- Rigor: **9/10** (impeccable in proved parts)  
-- Generality: **8/10** (missing dR/PT in full generality)  
-- Verification: **9/10** (code + certificates, waiting for replication)  
-- Impact: **10/10** (redefines BSD approach)  
-
-➡ Result: **9.8/10** → *Revolutionary framework pending final compatibility checks.*  
-Comparable to **Perelman's Poincaré proof** before refereed verification.
-
----
-
 ## ❗ Proof Validity Status
 
 - **Analytic/Spectral side:** Complete, unconditional (Fredholm identity, local operators, determinant mechanism).
