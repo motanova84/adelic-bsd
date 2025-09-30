@@ -9,6 +9,7 @@ This directory contains tests for the Spectral Finiteness Framework.
 - **`test_finiteness_basic.py`**: Basic structural tests that don't require SageMath
 - **`test_basic_functionality.py`**: Unit tests with mock objects for CI environments
 - **`test_ci_safe.py`**: Mathematical tests that work without SageMath
+- **`test_readme_latex.py`**: LaTeX formula validation in README.md
 
 ### Full Tests (Require SageMath)
 
@@ -29,18 +30,20 @@ These tests verify package structure, documentation, configuration, and basic ma
 python tests/test_finiteness_basic.py
 python tests/test_basic_functionality.py
 python tests/test_ci_safe.py
+python tests/test_readme_latex.py
 ```
 
 Or with pytest:
 ```bash
 pytest tests/test_finiteness_basic.py -v
 pytest tests/test_basic_functionality.py -v
+pytest tests/test_readme_latex.py -v
 # Note: test_ci_safe.py uses its own test runner
 ```
 
 Run all CI-safe tests at once:
 ```bash
-pytest tests/test_finiteness_basic.py tests/test_basic_functionality.py -v
+pytest tests/test_finiteness_basic.py tests/test_basic_functionality.py tests/test_readme_latex.py -v
 ```
 
 ### Full Tests (Requires SageMath)

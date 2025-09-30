@@ -37,10 +37,15 @@ jobs:
       run: |
         python tests/test_ci_safe.py
     
+    - name: Verify README LaTeX syntax
+      run: |
+        python tests/test_readme_latex.py
+    
     - name: Run pytest on basic tests
       run: |
         pytest tests/test_finiteness_basic.py -v
         pytest tests/test_basic_functionality.py -v
+        pytest tests/test_readme_latex.py -v
     
     - name: Test imports
       run: |
