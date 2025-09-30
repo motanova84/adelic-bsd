@@ -44,7 +44,11 @@ class SpectralSelmerMap:
             self.ap = self.E.ap(self.p)
         elif self.E.has_multiplicative_reduction(self.p):
             self.reduction_type = "multiplicative"
-            self.ap = self.E.ap(self.p) if self.p < self.N else 0
+            # For multiplicative reduction, ap = 1 (split) or -1 (non-split)
+            if self.E.is_split_multiplicative(self.p):
+                self.ap = 1
+            else:
+                self.ap = -1
         else:
             self.reduction_type = "additive"
             self.ap = 0
