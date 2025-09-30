@@ -29,13 +29,22 @@ from .lmfdb_verification import (
     get_lmfdb_curves
 )
 
+# Core modules
+from .adelic_operator import AdelicOperator
+from .local_factors import LocalFactors
+from .spectral_bsd import SpectralBSD
+
 # Advanced modules
 from .cohomology import (
-    AdvancedSpectralSelmerMap
+    AdvancedSpectralSelmerMap,
+    SpectralSelmerMap,
+    PAdicIntegration,
+    BlochKatoConditions
 )
 
 from .heights import (
     AdvancedSpectralHeightPairing,
+    HeightComparison,
     verify_height_equality,
     compute_regulator_comparison
 )
@@ -44,8 +53,11 @@ from .verification import (
     FormalBSDProver,
     generate_formal_certificate,
     MassFormalProof,
-    batch_prove_bsd
+    MassVerification,
+    batch_prove_bsd,
+    CertificateGenerator
 )
+
 
 __version__ = "0.2.0"
 __author__ = "Mota Burruezo"
@@ -65,13 +77,23 @@ __all__ = [
     "large_scale_verification",
     "generate_verification_report",
     "get_lmfdb_curves",
+    # Core modules
+    "AdelicOperator",
+    "LocalFactors",
+    "SpectralBSD",
     # Advanced modules
     "AdvancedSpectralSelmerMap",
+    "SpectralSelmerMap",
+    "PAdicIntegration",
+    "BlochKatoConditions",
     "AdvancedSpectralHeightPairing",
+    "HeightComparison",
     "verify_height_equality",
     "compute_regulator_comparison",
     "FormalBSDProver",
     "generate_formal_certificate",
     "MassFormalProof",
-    "batch_prove_bsd"
+    "MassVerification",
+    "batch_prove_bsd",
+    "CertificateGenerator"
 ]

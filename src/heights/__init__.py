@@ -9,8 +9,17 @@ from .advanced_spectral_heights import (
     compute_regulator_comparison
 )
 
+from .height_comparison import (
+    HeightComparison,
+    compare_heights,
+    verify_regulator_compatibility
+)
+
 __all__ = [
     'AdvancedSpectralHeightPairing',
     'verify_height_equality',
-    'compute_regulator_comparison'
+    'compute_regulator_comparison',
+    'HeightComparison',
+    'compare_heights',
+    'verify_regulator_compatibility'
 ]
