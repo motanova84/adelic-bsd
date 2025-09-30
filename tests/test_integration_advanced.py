@@ -5,8 +5,12 @@ Tests that all modules work together correctly
 
 import sys
 import os
+import pytest
+
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
+# Conditionally import sage - these tests will be skipped if sage is not available
+pytest.importorskip("sage.all")
 from sage.all import EllipticCurve
 
 

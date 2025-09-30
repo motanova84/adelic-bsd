@@ -6,8 +6,11 @@ Tests the kernel dimensions and bounds across multiple curves
 import pytest
 import sys
 import os
+
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
+# Conditionally import sage - these tests will be skipped if sage is not available
+pytest.importorskip("sage.all")
 from sage.all import EllipticCurve
 from src.spectral_finiteness import SpectralFinitenessProver
 
