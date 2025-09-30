@@ -22,7 +22,11 @@ class TestBasicFramework(unittest.TestCase):
         try:
             # Importaciones que deberían funcionar sin Sage
             # Importar componentes específicos de src que no dependen de SageMath
-            from src import module1, module2  # Reemplazar con los módulos/clases reales
+            # Solo intentamos importar el módulo src, no sus componentes que requieren Sage
+            import src
+            # Verificar que el paquete tiene los atributos esperados
+            self.assertTrue(hasattr(src, '__version__'))
+            self.assertTrue(hasattr(src, '__author__'))
             print("✅ Importación de componentes de src: OK")
         except ImportError as e:
             if 'sage' in str(e).lower():
