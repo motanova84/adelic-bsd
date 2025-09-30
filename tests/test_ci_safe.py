@@ -7,12 +7,12 @@ import sys
 import os
 import math
 import numpy as np
-
+import unittest
 # Agregar src al path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 
 
-class TestCISafe:
+class TestCISafe(unittest.TestCase):
     """Tests que definitivamente pasan en CI"""
     
     def test_mathematical_constants(self):
