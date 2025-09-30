@@ -278,11 +278,37 @@ class MassBSDVerifier:
         
         return self.results
     
+    def _make_json_serializable(self, obj):
+        """
+        Recursively convert Sage objects and other non-serializable types to JSON-serializable types.
+        """
+        # Handle basic types
+        if isinstance(obj, (str, int, float, bool)) or obj is None:
+            return obj
+        # Handle dicts
+        if isinstance(obj, dict):
+            return {self._make_json_serializable(k): self._make_json_serializable(v) for k, v in obj.items()}
+        # Handle lists/tuples/sets
+        if isinstance(obj, (list, tuple, set)):
+            return [self._make_json_serializable(x) for x in obj]
+        # Handle Sage objects: try to convert to string
+        try:
+            # For Sage Integer, RealNumber, etc., convert to int/float if possible
+            if hasattr(obj, 'is_integer') and obj.is_integer():
+                return int(obj)
+            if hasattr(obj, 'is_real') and obj.is_real():
+                return float(obj)
+            # For EllipticCurve, etc., use string representation
+            return str(obj)
+        except Exception:
+            return str(obj)
+
     def _save_results(self):
         """Save verification results to JSON file"""
         try:
+            serializable_results = self._make_json_serializable(self.results)
             with open(self.results_file, 'w') as f:
-                json.dump(self.results, f, indent=2)
+                json.dump(serializable_results, f, indent=2)
             print(f"\n💾 Results saved to {self.results_file}")
         except Exception as e:
             print(f"⚠️  Could not save results: {e}")
