@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "Please cite this repository if you use it."
+title: "bsd-spectral-reduction: computational verification for the spectral BSD framework"
+authors:
+  - family-names: "Mota Burruezo"
+    given-names: "José Manuel"
+  - name: "Instituto Conciencia Cuántica"
+version: "0.1.0"
+date-released: "2025-09-29"
+url: "https://github.com/motanova84/algoritmo"

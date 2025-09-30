@@ -46,30 +46,16 @@ jobs:
         echo "✓ Package structure verified"
 
   sage-tests:
-    name: Full Tests (With SageMath)
     runs-on: ubuntu-latest
-    # Only run on main branch or when explicitly requested
-    if: github.ref == 'refs/heads/main' || contains(github.event.head_commit.message, '[full-test]')
-    
+    container: sagemath/sagemath:latest
     steps:
-    - uses: actions/checkout@v4
-    
-    - name: Set up Conda
-      uses: conda-incubator/setup-miniconda@v2
-      with:
-        auto-update-conda: true
-        python-version: '3.10'
-        channels: conda-forge,defaults
-    
-    - name: Install dependencies
-      shell: bash -l {0}
-      run: |
-        conda env update --file environment.yml --name base
-        conda list
-    
-    - name: Run full tests with SageMath
-      shell: bash -l {0}
-      run: |
-        sage -python tests/test_finiteness.py || echo "Sage tests skipped - environment not fully configured"
+      - uses: actions/checkout@v4
+      - name: Install python deps
+        run: |
+          pip install -r requirements.txt
+          pip install pytest
+      - name: Run tests
+        run: |
+          sage -python -m pytest -q
 
 
