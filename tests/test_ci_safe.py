@@ -17,10 +17,8 @@ class TestCISafe(unittest.TestCase):
     
     def test_mathematical_constants(self):
         """Test de constantes matemáticas básicas"""
-        assert math.pi > 3.14
-        assert math.pi < 3.15
-        assert math.e > 2.71
-        assert math.e < 2.72
+        assert math.isclose(math.pi, 3.141592653589793, rel_tol=1e-9)
+        assert math.isclose(math.e, 2.718281828459045, rel_tol=1e-9)
         print("✅ Constantes matemáticas: OK")
     
     def test_linear_algebra(self):
