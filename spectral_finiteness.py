@@ -80,7 +80,7 @@ class SpectralFinitenessProver:
     
     def compute_kernel_basis(self, p):
         """
-        Calcula base del kernel de M_E,p(1)
+        Compute kernel basis for K_{E,p}(1)
         """
         M_p = self.compute_spectral_operator(p)
         return M_p.kernel().basis()
