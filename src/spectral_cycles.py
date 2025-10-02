@@ -2,7 +2,7 @@
 Spectral Cycles Module - Connection from Spectral Vectors to Rational Points
 Implements the algorithmic strategy for Spectral→Cycles connection
 
-Based on the algorithmic framework for connecting ker M_E(1) to E(ℚ)
+Based on the algorithmic framework for connecting ker K_E(1) to E(ℚ)
 """
 
 from sage.all import (
@@ -31,7 +31,7 @@ class SpectralCycleConstructor:
         """
         Algorithm 1: Construction of modular symbols from spectral vector
         
-        Given v ∈ ker M_E(1) ⊂ S₂(Γ₀(N_E)), compute its modular symbol
+        Given v ∈ ker K_E(1) ⊂ S₂(Γ₀(N_E)), compute its modular symbol
         
         Args:
             v: Spectral vector (form modular or q-expansion)
@@ -152,11 +152,11 @@ def spectral_kernel_to_rational_points(ME_kernel_basis, E):
     """
     Main Algorithm: Connection Spectral→Rational Points
     
-    Input: Base {v₁,...,v_r} of ker M_E(1)
+    Input: Base {v₁,...,v_r} of ker K_E(1)
     Output: Points {P₁,...,P_r} in E(ℚ) (conjecturally generators)
     
     Args:
-        ME_kernel_basis: Basis vectors for ker M_E(1)
+        ME_kernel_basis: Basis vectors for ker K_E(1)
         E: EllipticCurve object
         
     Returns:
@@ -203,7 +203,7 @@ def spectral_kernel_to_rational_points(ME_kernel_basis, E):
 
 def compute_kernel_basis(E):
     """
-    Compute a basis for ker M_E(1)
+    Compute a basis for ker K_E(1)
     
     This is a helper function to extract kernel vectors from the spectral operator
     
@@ -252,8 +252,8 @@ def demonstrate_spectral_to_points(curve_label):
     print(f"SPECTRAL→POINTS ALGORITHM FOR {curve_label}")
     print(f"{'='*60}")
     
-    # Step 1: Compute kernel of M_E(1)
-    print("\n1. Computing kernel of M_E(1)...")
+    # Step 1: Compute kernel of K_E(1)
+    print("\n1. Computing kernel of K_E(1)...")
     kernel_basis = compute_kernel_basis(E)
     print(f"   Kernel dimension: {len(kernel_basis)}")
     

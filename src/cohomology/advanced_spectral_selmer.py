@@ -3,7 +3,7 @@ Advanced Spectral Selmer Map
 Implements p-adic cohomology and Selmer structures for BSD framework
 
 This module provides a computational framework for the spectral Selmer map
-Φ: ker M_E(1) → H^1_f(Q, V_p) using p-adic Hodge theory.
+Φ: ker K_E(1) → H^1_f(Q, V_p) using p-adic Hodge theory.
 """
 
 from sage.all import (
@@ -16,7 +16,7 @@ class AdvancedSpectralSelmerMap:
     """
     Advanced Spectral Selmer Map with p-adic cohomology
     
-    Implements the map Φ: ker M_E(1) → H^1_f(Q, V_p) that connects
+    Implements the map Φ: ker K_E(1) → H^1_f(Q, V_p) that connects
     spectral vectors to p-adic Galois cohomology.
     
     This is a simplified computational implementation of the theoretical
@@ -64,13 +64,13 @@ class AdvancedSpectralSelmerMap:
     
     def phi_global(self, v):
         """
-        Global spectral Selmer map: Φ: ker M_E(1) → H^1_f(Q, V_p)
+        Global spectral Selmer map: Φ: ker K_E(1) → H^1_f(Q, V_p)
         
         Maps a spectral kernel vector to p-adic Galois cohomology.
         This is a computational approximation of the theoretical map.
         
         Args:
-            v: Spectral vector from ker M_E(1)
+            v: Spectral vector from ker K_E(1)
             
         Returns:
             dict: Cohomology class data with verification status
@@ -240,11 +240,11 @@ def verify_spectral_to_selmer_compatibility(E, kernel_basis, primes=None):
     """
     Verify that spectral kernel maps compatibly to Selmer groups
     
-    This is a computational check of the map Φ: ker M_E(1) → H^1_f(Q, V_p)
+    This is a computational check of the map Φ: ker K_E(1) → H^1_f(Q, V_p)
     
     Args:
         E: EllipticCurve object
-        kernel_basis: Basis of ker M_E(1) 
+        kernel_basis: Basis of ker K_E(1) 
         primes: List of primes to check
         
     Returns:
