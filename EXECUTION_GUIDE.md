@@ -79,7 +79,7 @@ python -m pytest tests/ -v
 ### Core Modules
 
 #### `src/adelic_operator.py`
-Adelic operator M_E(s) construction and kernel computation.
+Adelic operator K_E(s) construction and kernel computation.
 
 ```python
 from src.adelic_operator import AdelicOperator
@@ -111,7 +111,7 @@ verification = spectral.verify_bsd_formula()
 ### Cohomology Module
 
 #### `src/cohomology/spectral_selmer_map.py`
-Spectral Selmer map Φ: ker M_E(1) → H^1_f(Q, V_p).
+Spectral Selmer map Φ: ker K_E(1) → H^1_f(Q, V_p).
 
 ```python
 from src.cohomology import compute_selmer_map

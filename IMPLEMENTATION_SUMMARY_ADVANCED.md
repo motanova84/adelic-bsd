@@ -14,7 +14,7 @@ This document summarizes the implementation of advanced modules for the Birch-Sw
 
 **Key Features:**
 - `AdvancedSpectralSelmerMap` class for p-adic Galois cohomology
-- Maps spectral vectors to H^1_f(Q, V_p) via Φ: ker M_E(1) → H^1_f
+- Maps spectral vectors to H^1_f(Q, V_p) via Φ: ker K_E(1) → H^1_f
 - Handles good, multiplicative, and additive reduction types
 - Verifies Bloch-Kato conditions at all primes
 - Distinguishes ordinary and supersingular cases
