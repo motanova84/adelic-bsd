@@ -22,6 +22,12 @@ from .certificate_generator import (
     generate_certificate,
     save_certificate
 )
+from .selmer_verification import (
+    SelmerVerification,
+    verify_selmer_maps,
+    batch_verify_selmer_maps,
+    generate_selmer_verification_report
+)
 
 __all__ = [
     'FormalBSDProver',
@@ -34,5 +40,9 @@ __all__ = [
     'generate_verification_report',
     'CertificateGenerator',
     'generate_certificate',
-    'save_certificate'
+    'save_certificate',
+    'SelmerVerification',
+    'verify_selmer_maps',
+    'batch_verify_selmer_maps',
+    'generate_selmer_verification_report'
 ]

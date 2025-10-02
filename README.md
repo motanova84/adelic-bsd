@@ -237,7 +237,41 @@ print(f"BSD verified: {cert['bsd_proven']}")
 
 **See**: [`docs/ADVANCED_MODULES.md`](docs/ADVANCED_MODULES.md) for complete documentation.
 
-### 4. Spectral→Cycles→Points Algorithm
+### 4. Selmer Map Verification (NEW in v0.2.1)
+
+The framework now includes dedicated Selmer map verification with formal certificates:
+
+```python
+from sage.all import EllipticCurve
+from src.verification import verify_selmer_maps, batch_verify_selmer_maps
+
+# Single curve verification
+E = EllipticCurve('11a1')
+certificate = verify_selmer_maps(E, primes=[2, 3], precision=20)
+print(f"Verification passed: {certificate['verification_passed']}")
+
+# Batch verification
+curves = ['11a1', '37a1', '389a1']
+results = batch_verify_selmer_maps(curves, primes=[2])
+print(f"Success rate: {results['success_rate']}")
+```
+
+**Run the Selmer verification demo:**
+
+```bash
+sage -python examples/selmer_verification_demo.py
+```
+
+**Key Features:**
+
+- **Complete Verification**: Map initialization, Bloch-Kato conditions, spectral compatibility
+- **Certificate Generation**: Formal certificates with cryptographic hashing
+- **Batch Processing**: Verify multiple curves efficiently
+- **Integration**: Seamlessly integrates with FormalBSDProver
+
+**See**: [`docs/SELMER_VERIFICATION.md`](docs/SELMER_VERIFICATION.md) for detailed documentation.
+
+### 5. Spectral→Cycles→Points Algorithm
 
 The repository now includes the complete algorithmic pipeline for connecting spectral vectors to rational points:
 
