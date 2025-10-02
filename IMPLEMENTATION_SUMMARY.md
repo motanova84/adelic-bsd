@@ -29,7 +29,7 @@ We have implemented the complete three-step algorithm:
 
 **Main Pipeline**
 - Function: `spectral_kernel_to_rational_points(ME_kernel_basis, E)`
-- Input: Basis {v₁,...,v_r} of ker M_E(1)
+- Input: Basis {v₁,...,v_r} of ker K_E(1)
 - Output: Points {P₁,...,P_r} in E(ℚ)
 
 ### 2. Height Pairing Module
@@ -38,7 +38,7 @@ File: `src/height_pairing.py`
 
 **Spectral Height Pairing**
 - Function: `compute_spectral_height_matrix(ME_kernel_basis, E)`
-- Computes: ⟨v_i, v_j⟩_spec = Res_{s=1} Tr(v_i* M_E'(s) v_j)
+- Computes: ⟨v_i, v_j⟩_spec = Res_{s=1} Tr(v_i* K_E'(s) v_j)
 
 **Néron-Tate Height Pairing**
 - Function: `compute_nt_height_matrix(points)`
@@ -158,7 +158,7 @@ All implementations use standard SageMath/Python libraries:
 ```
 Input: Elliptic Curve E
   ↓
-Compute ker M_E(1)
+Compute ker K_E(1)
   ↓
 For each v in kernel:
   ├─ Step 1: v → Modular Symbol MS

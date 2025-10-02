@@ -15,10 +15,10 @@ def compute_spectral_height_matrix(ME_kernel_basis, E):
     """
     Compute spectral height pairing matrix
     
-    Calculates ⟨v_i, v_j⟩_spec = Res_{s=1} Tr(v_i* M_E'(s) v_j)
+    Calculates ⟨v_i, v_j⟩_spec = Res_{s=1} Tr(v_i* K_E'(s) v_j)
     
     Args:
-        ME_kernel_basis: Basis of ker M_E(1)
+        ME_kernel_basis: Basis of ker K_E(1)
         E: EllipticCurve object
         
     Returns:
@@ -200,7 +200,7 @@ def verify_height_compatibility(E):
     print(f"\nVERIFYING HEIGHT COMPATIBILITY FOR {E.cremona_label()}")
     print("="*60)
     
-    # Step 1: Compute kernel of M_E(1)
+    # Step 1: Compute kernel of K_E(1)
     print("\n1. Computing spectral kernel...")
     kernel_basis = compute_kernel_basis(E)
     print(f"   Kernel dimension: {len(kernel_basis)}")

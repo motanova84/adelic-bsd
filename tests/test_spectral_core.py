@@ -34,7 +34,7 @@ def test_kernel_and_bound(label):
 
 
 def test_rank1_identity():
-    """Sanity check: a rank-1 curve should yield dim ker M_E(1) >= 1"""
+    """Sanity check: a rank-1 curve should yield dim ker K_E(1) >= 1"""
     E = EllipticCurve("37a1")
     prover = SpectralFinitenessProver(E)
     info = prover.prove_finiteness()

@@ -131,7 +131,7 @@ Curves tested: 20
 ### Algorithm Pipeline
 
 ```
-Spectral Vector (ker M_E(1))
+Spectral Vector (ker K_E(1))
          ↓
 Modular Symbol (Manin-Merel)
          ↓

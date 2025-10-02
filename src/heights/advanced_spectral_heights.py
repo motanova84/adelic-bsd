@@ -75,7 +75,7 @@ class AdvancedSpectralHeightPairing:
         the height pairing between two spectral vectors.
         
         Args:
-            v1, v2: Spectral vectors from ker M_E(1)
+            v1, v2: Spectral vectors from ker K_E(1)
             
         Returns:
             float: Spectral height pairing value
@@ -98,7 +98,7 @@ class AdvancedSpectralHeightPairing:
         """
         Compute regularized derivative of spectral operator
         
-        This approximates the derivative of M_E(s) at s=1 in the
+        This approximates the derivative of K_E(s) at s=1 in the
         direction defined by v1 and v2.
         """
         # Extract numerical components
@@ -152,7 +152,7 @@ class AdvancedSpectralHeightPairing:
         agree, providing computational evidence for BSD.
         
         Args:
-            kernel_basis: Basis of ker M_E(1)
+            kernel_basis: Basis of ker K_E(1)
             
         Returns:
             dict: Proof steps and verification results
@@ -308,7 +308,7 @@ def verify_height_equality(E, kernel_basis):
     
     Args:
         E: EllipticCurve object
-        kernel_basis: Basis of ker M_E(1)
+        kernel_basis: Basis of ker K_E(1)
         
     Returns:
         dict: Verification results
@@ -326,7 +326,7 @@ def compute_regulator_comparison(E, kernel_basis):
     
     Args:
         E: EllipticCurve object
-        kernel_basis: Basis of ker M_E(1)
+        kernel_basis: Basis of ker K_E(1)
         
     Returns:
         dict: Regulator comparison data
