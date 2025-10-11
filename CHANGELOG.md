@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+### Added
+- **Complete Spectral Finiteness Algorithm**: Added missing `_latex_certificate` method to `src/spectral_finiteness.py`
+  - Generates comprehensive LaTeX certificates with mathematical details
+  - Includes local spectral data for each prime
+  - Documents (dR) and (PT) compatibility conditions
+  - Presents Spectral Descent Theorem and finiteness conclusion
+  - Completes the certificate generation API (text and LaTeX formats)
+
 ## [0.2.0] - 2025-01 (Pending)
 
 ### Added

@@ -167,6 +167,70 @@ Prime {p}:
         cert += f"\n\nCONCLUSION: Ш(E/ℚ) is finite with #Ш ≤ {proof_data['global_bound']}"
         return cert
 
+    def _latex_certificate(self, proof_data):
+        """Generate LaTeX certificate"""
+        from sage.all import latex
+        
+        cert = f"""\\documentclass[12pt]{{article}}
+\\usepackage{{amsmath, amssymb}}
+\\title{{Spectral Finiteness Certificate for {proof_data['curve_label']}}}
+\\author{{Adelic BSD Framework}}
+\\date{{\\today}}
+
+\\begin{{document}}
+\\maketitle
+
+\\section*{{Spectral Finiteness Theorem}}
+
+\\textbf{{Curve}}: ${proof_data['curve_label']}$ \\\\
+\\textbf{{Conductor}}: $N = {proof_data['spectral_data']['conductor']}$ \\\\
+\\textbf{{Rank}}: $r = {proof_data['spectral_data']['rank']}$
+
+\\subsection*{{Main Result}}
+
+Under the (dR) and (PT) compatibilities, the spectral framework establishes:
+$$\\text{{\\#}}\\Sha(E/\\mathbb{{Q}}) \\leq {proof_data['global_bound']}$$
+
+In particular, $\\Sha(E/\\mathbb{{Q}})$ is \\textbf{{finite}}.
+
+\\subsection*{{Local Spectral Data}}
+
+The finiteness follows from the construction of trace-class operators $K_{{E,p}}(s)$ 
+at bad primes, establishing:
+$$\\det(I - K_E(s)) = c(s) \\cdot \\Lambda(E,s)$$
+where $c(s)$ is holomorphic and non-vanishing near $s=1$.
+
+"""
+
+        for p, data in proof_data['spectral_data']['local_data'].items():
+            operator_latex = latex(data['operator'])
+            cert += f"""\\subsubsection*{{Prime $p = {p}$}}
+\\begin{{itemize}}
+    \\item Reduction type: {data['reduction_type']}
+    \\item Local operator $K_{{E,{p}}}(1)$: ${operator_latex}$
+    \\item Kernel dimension: ${data['kernel_dim']}$
+    \\item Local torsion bound: ${data['torsion_bound']}$
+\\end{{itemize}}
+
+"""
+
+        cert += f"""\\subsection*{{Conclusion}}
+
+Global effective bound: $B = {proof_data['global_bound']}$
+
+By the Spectral Descent Theorem:
+\\begin{{enumerate}}
+    \\item The spectral Selmer lattice $\\Lambda_{{\\text{{spec}}}}$ is discrete and cocompact
+    \\item $\\Sha_{{\\text{{spec}}}} = \\text{{Sel}}_{{\\text{{spec}}}}/\\Lambda_{{\\text{{spec}}}}$ is finite
+    \\item Under (dR) and (PT) compatibilities: $\\Sha(E/\\mathbb{{Q}}) \\cong \\Sha_{{\\text{{spec}}}}$
+\\end{{enumerate}}
+
+Therefore: $\\boxed{{\\text{{\\#}}\\Sha(E/\\mathbb{{Q}}) \\leq {proof_data['global_bound']}}}$
+
+\\end{{document}}"""
+
+        return cert
+
 
 # Función de conveniencia para uso rápido
 def prove_finiteness_for_curve(curve_label):
