@@ -17,7 +17,7 @@ E_vac(R_Ψ) = α/R_Ψ⁴ + β·ζ'(1/2)/R_Ψ² + γ·Λ²·R_Ψ² + δ·sin²(lo
 | **UV Cutoff** | α/R_Ψ⁴ | Quantum vacuum fluctuations at short distances | Dominates for small R_Ψ |
 | **Number Theory** | β·ζ'(1/2)/R_Ψ² | Distribution of primes via Riemann zeta derivative | Intermediate scale |
 | **IR Scale** | γ·Λ²·R_Ψ² | Cosmological constant contribution | Dominates for large R_Ψ |
-| **Fractal** | δ·sin²(log R_Ψ/log π) | Discrete log-π symmetry (Bloch-type) | Oscillates at all scales |
+| **Fractal** | δ·sin²(log(R_Ψ)/log(π)) | Discrete log-π symmetry (Bloch-type) | Oscillates at all scales |
 
 ### Parameters
 
@@ -293,7 +293,7 @@ The vacuum remembers through geometric resonance. Each stable configuration is a
 
 - **Manuscript Section 6.2**: "Derivación No-Circular del Factor R_Ψ" (Acto II: Corrección Adélica Fractal)
 - **Documentation**: [`docs/BSD_FRAMEWORK.md`](../docs/BSD_FRAMEWORK.md) Section 6.2
-- **Implementation**: [`src/vacuum_energy.py`](vacuum_energy.py)
+- **Implementation**: [`src/vacuum_energy.py`](../src/vacuum_energy.py)
 - **Examples**: [`examples/vacuum_energy_demo.py`](../examples/vacuum_energy_demo.py)
 - **Tests**: [`tests/test_vacuum_energy.py`](../tests/test_vacuum_energy.py)
 
