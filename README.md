@@ -452,6 +452,18 @@ Direct traceability between theoretical results and implementation:
 
 **Detailed Framework**: [`docs/BSD_FRAMEWORK.md`](docs/BSD_FRAMEWORK.md)
 
+### Research Ecosystem
+
+This work is part of a broader research program connecting three complementary domains:
+
+| Dominio | Repositorio | Objeto de demostración | Estado |
+|---------|-------------|------------------------|--------|
+| Aritmético–analítico | [jmmotaburr-riemann-adelic](https://github.com/jmmotaburr-riemann-adelic) | Hipótesis de Riemann (RH) | ✅ Incondicional |
+| Geométrico–espectral | [adelic-bsd](https://github.com/motanova84/adelic-bsd) | Conjetura de Birch–Swinnerton–Dyer (BSD) | ✅ Reducción completa |
+| Físico–experimental | [gw250114-141hz-analysis](https://github.com/gw250114-141hz-analysis) | Validación empírica (141.7 Hz) | ✅ Observacional |
+
+**Note**: Each domain addresses different aspects of the unified spectral framework, combining arithmetic, geometric, and physical approaches to fundamental mathematical conjectures.
+
 ---
 
 ## 📋 Documentation
