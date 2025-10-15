@@ -42,25 +42,28 @@ class TestREADMELatex(unittest.TestCase):
     
     def test_theorem_8_3_formula_correct(self):
         """Specifically verify the Theorem 8.3 formula uses escaped \\#"""
-        # Find Theorem 8.3 section
-        theorem_pattern = r'\*\*\[Theorem 8\.3\]\*\*.*?\$\$(.*?)\$\$'
+        # Find Theorem 8.3 section - need to capture BOTH formulas
+        # First formula: order of vanishing formula
+        # Second formula: BSD leading term formula (the one with \# characters)
+        theorem_pattern = r'\*\*\[Theorem 8\.3\]\*\*.*?\$\$(.*?)\$\$.*?\$\$(.*?)\$\$'
         match = re.search(theorem_pattern, self.content, re.DOTALL)
         
-        self.assertIsNotNone(match, "Theorem 8.3 formula not found in README")
+        self.assertIsNotNone(match, "Theorem 8.3 formulas not found in README")
         
-        formula = match.group(1)
+        # The BSD formula is the second one (group 2)
+        formula = match.group(2)
         
         # Verify escaped # is present
         escaped_hashes = re.findall(r'\\#', formula)
         self.assertGreater(len(escaped_hashes), 0, 
-                          "Theorem 8.3 formula should contain escaped \\# characters")
+                          "Theorem 8.3 BSD formula should contain escaped \\# characters")
         
         # Verify no unescaped # is present
         unescaped_hashes = re.findall(r'(?<!\\)#', formula)
         self.assertEqual(len(unescaped_hashes), 0,
-                        f"Theorem 8.3 formula contains {len(unescaped_hashes)} unescaped # character(s)")
+                        f"Theorem 8.3 BSD formula contains {len(unescaped_hashes)} unescaped # character(s)")
         
-        print(f"✅ Theorem 8.3 formula correctly uses {len(escaped_hashes)} escaped \\# character(s)")
+        print(f"✅ Theorem 8.3 BSD formula correctly uses {len(escaped_hashes)} escaped \\# character(s)")
     
     def test_readme_markdown_parseable(self):
         """Verify README.md is parseable as markdown"""
