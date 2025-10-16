@@ -29,6 +29,14 @@ This repository implements the **spectral finiteness algorithm** arising from th
 - **Formal Verification**: Certificate generation with cryptographic hashing
 - **Mass Verification**: Batch processing across curve families with statistics
 
+### New in v0.2.1 (Acto II)
+
+- **Vacuum Energy Equation**: Fractal toroidal compactification with log-π symmetry
+  - Non-circular derivation of fundamental scales from geometric principles
+  - Discrete resonance spectrum at R_Ψ = π^n
+  - Connection to adelic phase space structure
+  - Implementation of E_vac(R_Ψ) with ζ'(1/2) and fractal sin² term
+
 ⚡ This is not only a theoretical framework: it is a **computational verification system**.  
 For every tested curve, BSD holds *spectrally and arithmetically consistent*.
 
@@ -271,7 +279,49 @@ sage -python examples/selmer_verification_demo.py
 
 **See**: [`docs/SELMER_VERIFICATION.md`](docs/SELMER_VERIFICATION.md) for detailed documentation.
 
-### 5. Spectral→Cycles→Points Algorithm
+### 5. Vacuum Energy Equation (NEW in v0.2.1 - Acto II)
+
+The framework now includes the vacuum energy equation with fractal toroidal compactification:
+
+```python
+from src.vacuum_energy import (
+    compute_vacuum_energy,
+    find_minima,
+    compute_adelic_phase_structure,
+    generate_resonance_spectrum
+)
+
+# Compute vacuum energy at R_Ψ = π
+R_psi = 3.141593
+energy = compute_vacuum_energy(R_psi)
+
+# Find energy minima at R_Ψ = π^n
+minima = find_minima(n_range=(0, 5))
+
+# Generate resonance spectrum
+spectrum = generate_resonance_spectrum(n_max=10)
+
+# Compute adelic phase structure
+adelic = compute_adelic_phase_structure(R_psi, primes=[2, 3, 5, 7])
+```
+
+**Run the vacuum energy demonstration:**
+
+```bash
+python examples/vacuum_energy_demo.py
+```
+
+**Key Features:**
+
+- **Vacuum Energy Equation**: E_vac(R_Ψ) = α/R_Ψ⁴ + β·ζ'(1/2)/R_Ψ² + γ·Λ²·R_Ψ² + δ·sin²(log(R_Ψ)/log(π))
+- **Fractal Log-π Symmetry**: Natural minima at R_Ψ = π^n from discrete logarithmic structure
+- **Non-Circular Derivation**: Derives fundamental frequency f₀ without using it as input
+- **Adelic Connection**: Links compact geometry to adelic phase space
+- **Resonance Spectrum**: Discrete tower of vacuum resonances
+
+**See**: [`docs/BSD_FRAMEWORK.md`](docs/BSD_FRAMEWORK.md) (Section 6.2) for theoretical details.
+
+### 6. Spectral→Cycles→Points Algorithm
 
 The repository now includes the complete algorithmic pipeline for connecting spectral vectors to rational points:
 
