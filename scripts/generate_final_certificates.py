@@ -16,6 +16,9 @@ from src.verification import generate_formal_certificate
 from src.verification.certificate_generator import CertificateGenerator
 from src.verification.mass_verification import batch_verify_bsd
 
+# Alias for compatibility
+BSDCertificateGenerator = CertificateGenerator
+
 
 def generate_individual_certificates(curve_labels, output_dir='certificates'):
     """
@@ -210,6 +213,92 @@ def generate_framework_validation_certificate(output_dir='certificates'):
             print(f"    - {component}: {data}")
     
     return validation
+
+
+def generate_certificates_from_results(results, output_dir='certificates'):
+    """
+    Generate certificates from batch verification results
+    
+    Args:
+        results: Dict of verification results (label -> verification_data)
+        output_dir: Output directory for certificates
+        
+    Returns:
+        dict: Statistics about generated certificates
+    """
+    generator = BSDCertificateGenerator(output_dir=output_dir)
+    
+    stats = {
+        'total': len(results),
+        'verified': 0,
+        'certificates_generated': 0,
+        'certificates_failed': 0
+    }
+    
+    print(f"\n🎫 Generating certificates for {stats['total']} curves...")
+    print("="*60)
+    
+    for label, verification_data in results.items():
+        try:
+            # Load the curve
+            E = EllipticCurve(label)
+            
+            # Track verification status
+            if verification_data.get('bsd_verified', False) or verification_data.get('bsd_proven', False):
+                stats['verified'] += 1
+            
+            # Generate certificate
+            print(f"\n📄 Generating certificate for {label}...")
+            certificate = generator.generate_certificate(E, verification_data)
+            
+            # Save JSON certificate
+            json_file = generator.save_certificate(certificate, format='json')
+            
+            # Save text certificate
+            text_file = generator.save_text_certificate(certificate)
+            
+            if json_file and text_file:
+                stats['certificates_generated'] += 1
+                print(f"✓ Saved to {json_file}")
+            else:
+                stats['certificates_failed'] += 1
+                
+        except Exception as e:
+            print(f"⚠️  Error generating certificate for {label}: {e}")
+            stats['certificates_failed'] += 1
+    
+    return stats
+
+
+def print_final_summary(stats):
+    """
+    Print summary of certificate generation
+    
+    Args:
+        stats: Statistics dict
+    """
+    print("\n" + "="*60)
+    print("📊 CERTIFICATE GENERATION SUMMARY")
+    print("="*60)
+    print(f"Total curves processed: {stats['total']}")
+    print(f"Curves with BSD verified: {stats['verified']}")
+    print(f"Certificates generated: {stats['certificates_generated']}")
+    
+    if stats['certificates_failed'] > 0:
+        print(f"Failed to generate: {stats['certificates_failed']}")
+    
+    success_rate = (stats['certificates_generated'] / stats['total'] * 100 
+                   if stats['total'] > 0 else 0)
+    print(f"\nGeneration success rate: {success_rate:.1f}%")
+    
+    if success_rate == 100:
+        print("\n✅ All certificates generated successfully!")
+    elif success_rate >= 80:
+        print(f"\n⚠️  Most certificates generated ({success_rate:.1f}%)")
+    else:
+        print(f"\n❌ Many certificates failed ({100-success_rate:.1f}% failure rate)")
+    
+    print("="*60)
 
 
 def main():

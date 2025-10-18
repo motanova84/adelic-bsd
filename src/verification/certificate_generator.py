@@ -197,6 +197,19 @@ class CertificateGenerator:
         
         return stored_hash == computed_hash
     
+    def save_text_certificate(self, certificate, filename=None):
+        """
+        Save certificate in text format (convenience method)
+        
+        Args:
+            certificate: Certificate dict
+            filename: Output filename (auto-generated if None)
+            
+        Returns:
+            str: Path to saved certificate
+        """
+        return self.save_certificate(certificate, filename=filename, format='text')
+    
     def generate_batch_summary(self, certificates):
         """
         Generate summary certificate for batch verification
