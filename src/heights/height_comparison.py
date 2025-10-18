@@ -257,7 +257,7 @@ def verify_height_equality(E, kernel_basis=None, points=None):
         
         # Create synthetic kernel basis if not provided
         if kernel_basis is None:
-            kernel_basis = [{'vector': [1.0] * i} for i in range(1, rank + 1)]
+            kernel_basis = [{'vector': [1.0 if j == i else 0.0 for j in range(rank)]} for i in range(rank)]
     
     return comparator.verify_height_compatibility(kernel_basis, points)
 
