@@ -124,8 +124,106 @@ def run_all_tests():
     test_multiple_curve_certificates()
     test_certificate_global_bound()
     
+    # New tests for BSD verification framework
+    test_bsd_certificate_generator_alias()
+    test_save_text_certificate_method()
+    test_print_final_summary()
+    test_generate_certificates_from_results_signature()
+    
     print("=" * 60)
     print("🎉 ALL CERTIFICATE TESTS PASSED!")
+
+
+def test_bsd_certificate_generator_alias():
+    """Test that BSDCertificateGenerator alias exists"""
+    from scripts.generate_final_certificates import BSDCertificateGenerator
+    from src.verification.certificate_generator import CertificateGenerator
+    
+    # Check that the alias points to the correct class
+    assert BSDCertificateGenerator is CertificateGenerator
+    
+    print("✓ BSDCertificateGenerator alias is correctly defined")
+
+
+def test_save_text_certificate_method():
+    """Test that save_text_certificate method exists and works"""
+    from src.verification.certificate_generator import CertificateGenerator
+    import tempfile
+    import os
+    
+    # Create a temporary directory for testing
+    with tempfile.TemporaryDirectory() as tmpdir:
+        generator = CertificateGenerator(output_dir=tmpdir)
+        
+        # Create a mock certificate
+        E = EllipticCurve('11a1')
+        mock_certificate = {
+            'curve_data': {'label': '11a1', 'conductor': 11},
+            'verification': {'bsd_proven': True},
+            'certificate_hash': 'test_hash'
+        }
+        
+        # Test that the method exists and returns a path
+        filepath = generator.save_text_certificate(mock_certificate)
+        
+        assert filepath is not None
+        assert os.path.exists(filepath)
+        assert filepath.endswith('.text')
+        
+        print("✓ save_text_certificate method works correctly")
+
+
+def test_print_final_summary():
+    """Test that print_final_summary function works"""
+    from scripts.generate_final_certificates import print_final_summary
+    import io
+    import sys
+    
+    # Capture output
+    old_stdout = sys.stdout
+    sys.stdout = io.StringIO()
+    
+    try:
+        # Test with mock statistics
+        stats = {
+            'total': 10,
+            'verified': 8,
+            'certificates_generated': 8,
+            'certificates_failed': 2
+        }
+        
+        print_final_summary(stats)
+        
+        output = sys.stdout.getvalue()
+        
+        # Check that output contains expected elements
+        assert 'CERTIFICATE GENERATION SUMMARY' in output
+        assert 'Total curves processed: 10' in output
+        assert 'Certificates generated: 8' in output
+        assert 'success rate: 80' in output.lower()
+        
+        print("✓ print_final_summary produces correct output", file=old_stdout)
+        
+    finally:
+        sys.stdout = old_stdout
+
+
+def test_generate_certificates_from_results_signature():
+    """Test that generate_certificates_from_results function exists with correct signature"""
+    from scripts.generate_final_certificates import generate_certificates_from_results
+    import inspect
+    
+    # Check function signature
+    sig = inspect.signature(generate_certificates_from_results)
+    params = list(sig.parameters.keys())
+    
+    assert 'results' in params
+    assert 'output_dir' in params
+    
+    # Check default value for output_dir
+    assert sig.parameters['output_dir'].default == 'certificates'
+    
+    print("✓ generate_certificates_from_results has correct signature")
 
 
 if __name__ == "__main__":
