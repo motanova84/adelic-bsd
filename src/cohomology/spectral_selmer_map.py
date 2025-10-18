@@ -54,7 +54,12 @@ class SpectralSelmerMap:
                 # Method not available; cannot determine split/non-split
                 self.ap = None
                 import warnings
-                warnings.warn("EllipticCurve object does not have 'is_split_multiplicative' method; 'ap' set to None.")
+                warnings.warn(
+                    "EllipticCurve object does not have 'is_split_multiplicative' method; 'ap' set to None. "
+                    "This may affect computations involving the local Galois representation at p. "
+                    "Consider updating SageMath, consulting documentation, or manually determining whether the reduction is split or non-split multiplicative.",
+                    RuntimeWarning
+                )
         else:
             self.reduction_type = "additive"
             self.ap = 0
