@@ -11,6 +11,7 @@ This script validates:
 
 import re
 import sys
+import yaml
 from pathlib import Path
 
 
@@ -36,8 +37,6 @@ def validate_requirements_file(filepath):
 
 def validate_workflow_file(filepath):
     """Validate that a workflow file uses pinned actions and OS."""
-    import yaml
-    
     errors = []
     
     with open(filepath) as f:
@@ -69,14 +68,29 @@ def validate_workflow_file(filepath):
         for step_idx, step in enumerate(steps):
             if 'uses' in step:
                 action = step['uses']
-                if '@' in action:
-                    ref = action.split('@')[1].split('#')[0].strip()
-                    # Check if it's a SHA (40 hex chars) or a tag
-                    if not re.match(r'^[0-9a-f]{40}$', ref):
-                        errors.append(
-                            f"Job '{job_name}', step {step_idx + 1}: "
-                            f"Action not pinned to SHA: {action}"
-                        )
+                if '@' not in action:
+                    errors.append(
+                        f"Job '{job_name}', step {step_idx + 1}: "
+                        f"Action missing version: {action}"
+                    )
+                    continue
+                
+                # Split action and ref, handle malformed strings
+                parts = action.split('@', 1)
+                if len(parts) != 2 or not parts[1]:
+                    errors.append(
+                        f"Job '{job_name}', step {step_idx + 1}: "
+                        f"Malformed action reference: {action}"
+                    )
+                    continue
+                
+                ref = parts[1].split('#')[0].strip()
+                # Check if it's a SHA (40 hex chars) or a tag
+                if not re.match(r'^[0-9a-f]{40}$', ref):
+                    errors.append(
+                        f"Job '{job_name}', step {step_idx + 1}: "
+                        f"Action not pinned to SHA: {action}"
+                    )
     
     return errors
 
@@ -160,5 +174,9 @@ if __name__ == '__main__':
     try:
         sys.exit(main())
     except Exception as e:
-        print(f"❌ Validation script error: {e}", file=sys.stderr)
+        print("❌ Validation script error occurred", file=sys.stderr)
+        import traceback
+        if sys.stderr.isatty():
+            # Only print full traceback in interactive mode
+            traceback.print_exc()
         sys.exit(2)
