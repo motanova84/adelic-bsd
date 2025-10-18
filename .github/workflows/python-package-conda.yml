@@ -10,6 +10,8 @@ jobs:
   basic-tests:
     name: Basic Tests (No SageMath)
     runs-on: ubuntu-22.04  # Pin OS version for reproducibility
+    permissions:
+      contents: read  # Only needs to read repository contents
     strategy:
       matrix:
         python-version: ['3.9', '3.10', '3.11']  # Unified with python-tests workflow
@@ -64,6 +66,8 @@ jobs:
 
   sage-tests:
     runs-on: ubuntu-22.04  # Pin OS version for reproducibility
+    permissions:
+      contents: read  # Only needs to read repository contents
     container: 
       image: sagemath/sagemath:9.8  # Pin SageMath version for reproducibility
     steps:

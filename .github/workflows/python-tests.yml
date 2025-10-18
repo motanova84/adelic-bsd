@@ -9,6 +9,8 @@ on:
 jobs:
   test:
     runs-on: ubuntu-22.04  # Pin OS version for reproducibility
+    permissions:
+      contents: read  # Only needs to read repository contents
     strategy:
       matrix:
         python-version: ['3.9', '3.10', '3.11']  # Unified with conda workflow
@@ -95,6 +97,8 @@ jobs:
 
   documentation:
     runs-on: ubuntu-22.04  # Pin OS version for reproducibility
+    permissions:
+      contents: read  # Only needs to read repository contents
     steps:
     - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744  # v3.6.0
     
