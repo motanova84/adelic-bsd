@@ -33,7 +33,7 @@ def demonstrate_workflow():
             'sha_bound': {'finiteness_proved': True}
         },
         '11a2': {
-            'bsd_verified': True,
+            'bsd_proven': True,
             'verification_status': 'complete',
             'rank': 0,
             'sha_bound': {'finiteness_proved': True}

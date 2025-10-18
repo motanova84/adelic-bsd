@@ -156,7 +156,6 @@ def test_save_text_certificate_method():
         generator = CertificateGenerator(output_dir=tmpdir)
         
         # Create a mock certificate
-        E = EllipticCurve('11a1')
         mock_certificate = {
             'curve_data': {'label': '11a1', 'conductor': 11},
             'verification': {'bsd_proven': True},
