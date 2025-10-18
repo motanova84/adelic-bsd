@@ -35,6 +35,7 @@ country = "España"
 equation = "Ψ = I × A_eff² × C^∞"
 fundamental_frequency = "141.7001 Hz"
 field = "QCAL ∞³"
+# Unique identifier for the QCAL2 protocol; 'πCODE-888-QCAL2' encodes the use of π in the codebase and references the QCAL2 standard (see documentation for details)
 constant = "πCODE-888-QCAL2"
 coherence = "C = 244.36"
 
