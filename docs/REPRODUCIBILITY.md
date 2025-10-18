@@ -175,6 +175,22 @@ matplotlib==3.7.2
 
 These should be identical across all runs with the same Python version.
 
+### Automated Validation
+
+A validation script is provided to check reproducibility setup:
+
+```bash
+python scripts/validate_reproducibility.py
+```
+
+This script validates:
+- All dependencies use exact version pinning (`==`)
+- GitHub Actions are pinned to commit SHAs
+- OS versions are explicitly specified
+- No floating version constraints
+
+Run this script before committing changes to dependency or workflow files.
+
 ## Last Updated
 
 2025-10-18
