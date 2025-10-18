@@ -174,7 +174,7 @@ if __name__ == '__main__':
     try:
         sys.exit(main())
     except Exception as e:
-        print("❌ Validation script error occurred", file=sys.stderr)
+        print(f"❌ Validation script error occurred: {e}", file=sys.stderr)
         import traceback
         if sys.stderr.isatty():
             # Only print full traceback in interactive mode
