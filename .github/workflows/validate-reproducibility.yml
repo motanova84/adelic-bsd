@@ -42,7 +42,7 @@ jobs:
       run: |
         echo "Checking for unpinned dependencies..."
         # Check for floating version specifiers (>=, <=, ~=, >, <) but not ==
-        if grep -E '^[^#]*[><=~]{1,2}' requirements*.txt | grep -v '==' | grep -v '^#'; then
+        if grep -E '^[^#]*[><=~]{1,2}' requirements*.txt | grep -v '=='; then
           echo "❌ Found unpinned dependencies!"
           exit 1
         fi
