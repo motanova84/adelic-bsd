@@ -4,6 +4,20 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Changed
+- **CI/CD Reproducibility Improvements** (2025-10-18)
+  - Pinned all Python dependencies to exact versions in requirements files
+  - Pinned GitHub Actions to specific commit SHAs for security and stability
+  - Added dependency caching to workflows for faster builds
+  - Standardized Python version matrix (3.9, 3.10, 3.11) across all workflows
+  - Pinned OS version (ubuntu-22.04) and SageMath container version (9.8)
+  - Added pip freeze logging in CI for audit trail
+  - Created requirements-dev.txt for development dependencies
+  - Added comprehensive reproducibility documentation (docs/REPRODUCIBILITY.md)
+  - Added automated reproducibility validation script
+  - Added validate-reproducibility.yml workflow to automatically check setup
+  - Updated CONTRIBUTING.md and README.md with reproducibility guidelines
+
 ## [0.2.1] - 2025-10-15 (Acto II: Vacuum Energy Extension)
 
 ### Added
