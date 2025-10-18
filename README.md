@@ -189,13 +189,32 @@ $$\dim \mathrm{Sel}(E/\mathbb{Q}) = \mathrm{rank}\, E(\mathbb{Q}) = \mathrm{ord}
 
 This project uses **SageMath + Python 3**.
 
+### Quick Start
+
 ```bash
 git clone https://github.com/motanova84/algoritmo.git
 cd algoritmo
+
+# Option 1: Using conda (recommended for reproducibility)
+conda env create -f environment.yml
+conda activate algoritmo-spectral
+
+# Option 2: Using pip
 pip install -r requirements.txt
 ```
 
 Ensure you have SageMath ≥ 9.8 available in your environment.
+
+### Reproducibility
+
+All dependencies are pinned to specific versions to ensure reproducible builds:
+
+- **requirements.txt** - Production dependencies with exact versions
+- **requirements_ci.txt** - CI-specific dependencies  
+- **requirements-dev.txt** - Development dependencies
+- **environment.yml** - Conda environment specification
+
+For more details, see [`docs/REPRODUCIBILITY.md`](docs/REPRODUCIBILITY.md).
 
 ---
 
