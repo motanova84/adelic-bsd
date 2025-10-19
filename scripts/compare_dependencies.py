@@ -9,31 +9,87 @@ import subprocess
 from pathlib import Path
 
 
+def parse_package_line(line):
+    """Parse a single line from pip freeze output.
+    
+    Handles formats:
+    - package==version
+    - package @ file:///path
+    - package @ git+https://...
+    - -e package
+    
+    Returns (name, version) or None if line cannot be parsed.
+    """
+    line = line.strip()
+    
+    # Skip empty lines, comments, and editable installs
+    if not line or line.startswith('#') or line.startswith('-e '):
+        return None
+    
+    # Handle standard package==version format
+    if '==' in line:
+        parts = line.split('==', 1)
+        if len(parts) == 2:
+            return (parts[0].lower(), parts[1])
+    
+    # Handle @ format (e.g., package @ git+https://...)
+    if ' @ ' in line:
+        parts = line.split(' @ ', 1)
+        if len(parts) == 2:
+            # Extract version from URL if possible
+            return (parts[0].lower(), parts[1][:50] + '...')  # Truncate long URLs
+    
+    return None
+
+
 def get_local_packages():
     """Get locally installed packages."""
-    result = subprocess.run(
-        ['pip', 'freeze'],
-        capture_output=True,
-        text=True,
-        check=True
-    )
+    try:
+        result = subprocess.run(
+            ['pip', 'freeze'],
+            capture_output=True,
+            text=True,
+            check=True
+        )
+    except subprocess.CalledProcessError as e:
+        raise RuntimeError(
+            f"Failed to run 'pip freeze'. Make sure pip is installed and working.\n"
+            f"Error: {e}"
+        ) from e
+    except FileNotFoundError:
+        raise RuntimeError(
+            "pip command not found. Make sure Python and pip are installed and in PATH."
+        )
+    
     packages = {}
     for line in result.stdout.strip().split('\n'):
-        if '==' in line:
-            name, version = line.split('==', 1)
-            packages[name.lower()] = version
+        parsed = parse_package_line(line)
+        if parsed:
+            name, version = parsed
+            packages[name] = version
     return packages
 
 
 def parse_frozen_file(filepath):
     """Parse frozen packages file."""
     packages = {}
-    with open(filepath, 'r') as f:
-        for line in f:
-            line = line.strip()
-            if line and '==' in line:
-                name, version = line.split('==', 1)
-                packages[name.lower()] = version
+    try:
+        with open(filepath, 'r', encoding='utf-8') as f:
+            for line in f:
+                parsed = parse_package_line(line)
+                if parsed:
+                    name, version = parsed
+                    packages[name] = version
+    except UnicodeDecodeError as e:
+        raise RuntimeError(
+            f"File {filepath} has encoding issues. Expected UTF-8.\n"
+            f"Error: {e}"
+        ) from e
+    except IOError as e:
+        raise RuntimeError(
+            f"Failed to read file {filepath}.\n"
+            f"Error: {e}"
+        ) from e
     return packages
 
 
@@ -109,8 +165,12 @@ def print_report(differences):
         print("="*70)
         print("\n💡 RECOMMENDATIONS:")
         if differences['version_mismatch']:
-            print("  - Update local packages to match CI versions")
-            print("  - Run: pip install -r requirements_ci.txt --force-reinstall")
+            print("  - Update local packages to match CI versions:")
+            print("    Option 1 (Safest): Create a new virtual environment")
+            print("      python -m venv .venv-ci && source .venv-ci/bin/activate")
+            print("      pip install -r requirements_ci.txt")
+            print("    Option 2: Upgrade packages in current environment")
+            print("      pip install -r requirements_ci.txt --upgrade")
         if differences['only_local']:
             print("  - Consider if these packages should be in requirements files")
             print("  - Or use a clean virtual environment for testing")
@@ -170,11 +230,13 @@ def main():
         if any(differences.values()):
             sys.exit(1)
         
-    except subprocess.CalledProcessError as e:
-        print(f"❌ Error running pip freeze: {e}")
+    except RuntimeError as e:
+        print(f"❌ {e}")
         sys.exit(1)
     except Exception as e:
-        print(f"❌ Error: {e}")
+        print(f"❌ Unexpected error: {e}")
+        import traceback
+        traceback.print_exc()
         sys.exit(1)
 
 
