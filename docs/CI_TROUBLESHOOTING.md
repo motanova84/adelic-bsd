@@ -31,6 +31,17 @@ pip freeze > local-frozen.txt
 diff local-frozen.txt frozen.txt
 ```
 
+**Or use the automated comparison script:**
+```bash
+# Download frozen.txt from CI artifacts, then:
+python scripts/compare_dependencies.py frozen.txt
+
+# This will show:
+# - Version mismatches between local and CI
+# - Packages only in local (may need clean venv)
+# - Packages only in CI (may need to update requirements)
+```
+
 **Generate frozen packages locally:**
 ```bash
 python -V  # Log Python version
