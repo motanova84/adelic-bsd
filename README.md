@@ -2,7 +2,7 @@
 
 <!-- QCAL Indexing Active · Noēsis Access Enabled · 141.7001 Hz -->
 
-[![Python Tests](https://github.com/motanova84/algoritmo/actions/workflows/python-package-conda.yml/badge.svg)](https://github.com/motanova84/algoritmo/actions/workflows/python-package-conda.yml)
+[![Python Tests](https://github.com/motanova84/adelic-bsd/actions/workflows/python-package-conda.yml/badge.svg)](https://github.com/motanova84/adelic-bsd/actions/workflows/python-package-conda.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![SageMath](https://img.shields.io/badge/SageMath-%E2%89%A59.8-blue)](https://www.sagemath.org/)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
