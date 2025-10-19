@@ -1,0 +1,59 @@
+name: Validate Reproducibility
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'requirements*.txt'
+      - 'environment.yml'
+      - '.github/workflows/*.yml'
+  pull_request:
+    branches: [ main, develop ]
+    paths:
+      - 'requirements*.txt'
+      - 'environment.yml'
+      - '.github/workflows/*.yml'
+
+jobs:
+  validate:
+    name: Validate Reproducibility Setup
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: read  # Only needs to read repository contents
+    
+    steps:
+    - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744  # v3.6.0
+    
+    - name: Set up Python
+      uses: actions/setup-python@61a6322f88396a6271a6ee3565807d608ecaddd1  # v4.7.0
+      with:
+        python-version: '3.10'
+    
+    - name: Install PyYAML
+      run: |
+        python -m pip install --upgrade pip==23.1.2
+        pip install PyYAML==6.0
+    
+    - name: Run reproducibility validation
+      run: |
+        python scripts/validate_reproducibility.py
+    
+    - name: Check for unpinned dependencies
+      run: |
+        echo "Checking for unpinned dependencies..."
+        # Check for floating version specifiers (>=, <=, ~=, >, <) but not ==
+        if grep -E '^[^#]*[><=~]{1,2}' requirements*.txt | grep -v '=='; then
+          echo "❌ Found unpinned dependencies!"
+          exit 1
+        fi
+        echo "✅ All dependencies are pinned"
+    
+    - name: Verify requirements files exist
+      run: |
+        for file in requirements.txt requirements_ci.txt requirements-dev.txt; do
+          if [ ! -f "$file" ]; then
+            echo "❌ Missing required file: $file"
+            exit 1
+          fi
+          echo "✅ Found: $file"
+        done
