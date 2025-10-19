@@ -6,17 +6,24 @@ Usage: python scripts/compare_dependencies.py [frozen.txt]
 
 import sys
 import subprocess
+import traceback
 from pathlib import Path
+
+# Configuration constants
+MAX_URL_DISPLAY_LENGTH = 50  # Maximum length for displaying package URLs
 
 
 def parse_package_line(line):
     """Parse a single line from pip freeze output.
     
     Handles formats:
-    - package==version
-    - package @ file:///path
-    - package @ git+https://...
-    - -e package
+    - package==version (standard format)
+    - package @ file:///path (local file URL)
+    - package @ git+https://... (git URL)
+    
+    Note: Editable installs (-e) are currently skipped as they
+    typically represent development dependencies that may differ
+    between environments.
     
     Returns (name, version) or None if line cannot be parsed.
     """
@@ -36,8 +43,11 @@ def parse_package_line(line):
     if ' @ ' in line:
         parts = line.split(' @ ', 1)
         if len(parts) == 2:
-            # Extract version from URL if possible
-            return (parts[0].lower(), parts[1][:50] + '...')  # Truncate long URLs
+            # Extract version/URL, truncating long URLs for display
+            url = parts[1]
+            if len(url) > MAX_URL_DISPLAY_LENGTH:
+                url = url[:MAX_URL_DISPLAY_LENGTH] + '...'
+            return (parts[0].lower(), url)
     
     return None
 
@@ -235,7 +245,6 @@ def main():
         sys.exit(1)
     except Exception as e:
         print(f"❌ Unexpected error: {e}")
-        import traceback
         traceback.print_exc()
         sys.exit(1)
 
