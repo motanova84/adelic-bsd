@@ -428,6 +428,14 @@ sage -python tests/test_spectral_cycles.py
 
 See [`tests/README.md`](tests/README.md) for detailed testing documentation.
 
+### Troubleshooting CI Failures
+
+If tests pass locally but fail in CI (or vice versa), see [`docs/CI_TROUBLESHOOTING.md`](docs/CI_TROUBLESHOOTING.md) for:
+- Comparing Python versions and dependencies between CI and local
+- Reproducing the CI environment locally (venv, Docker, or act)
+- Common issues: missing env vars, network timeouts, flaky tests
+- Debugging specific test failures with full tracebacks
+
 ---
 
 ## 📄 Example Output

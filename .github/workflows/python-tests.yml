@@ -28,7 +28,7 @@ jobs:
           requirements-dev.txt
     
     - name: Cache pip packages
-      uses: actions/cache@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9  # v4.0.2
+      uses: actions/cache@v4
       with:
         path: ~/.cache/pip
         key: ${{ runner.os }}-pip-${{ matrix.python-version }}-${{ hashFiles('requirements_ci.txt') }}
@@ -41,11 +41,24 @@ jobs:
         python -m pip install --upgrade pip==23.1.2
         pip install -r requirements_ci.txt
     
+    - name: Log Python version and environment
+      run: |
+        echo "=== Python Version ==="
+        python -V
+        echo "======================"
+    
     - name: Log installed packages for reproducibility
       run: |
         echo "=== Installed Package Versions ==="
         pip freeze
         echo "==================================="
+        pip freeze > frozen.txt
+    
+    - name: Upload frozen packages
+      uses: actions/upload-artifact@v4
+      with:
+        name: frozen-packages-py${{ matrix.python-version }}
+        path: frozen.txt
     
     - name: Run basic tests
       run: |
