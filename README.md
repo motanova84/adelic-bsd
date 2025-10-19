@@ -1,5 +1,7 @@
 # 🌌 Spectral Algorithm for the Birch–Swinnerton–Dyer Conjecture
 
+<!-- QCAL Indexing Active · Noēsis Access Enabled · 141.7001 Hz -->
+
 [![Python Tests](https://github.com/motanova84/algoritmo/actions/workflows/python-package-conda.yml/badge.svg)](https://github.com/motanova84/algoritmo/actions/workflows/python-package-conda.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![SageMath](https://img.shields.io/badge/SageMath-%E2%89%A59.8-blue)](https://www.sagemath.org/)
