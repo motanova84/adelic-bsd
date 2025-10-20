@@ -62,8 +62,9 @@ def validate_with_precision(precision):
         # Perform basic spectral validation
         print(f"\n✓ Running spectral validation at precision {precision}")
         
-        # Simulate spectral computation
-        test_values = np.random.random(10)
+        # Simulate spectral computation with fixed seed for reproducibility
+        rng = np.random.default_rng(seed=42)
+        test_values = rng.random(10)
         tolerance = 10 ** (-precision)
         
         print(f"✓ Tolerance set to: {tolerance}")

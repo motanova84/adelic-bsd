@@ -13,10 +13,10 @@ jobs:
       packages: write
     
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11  # v4.1.1
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@82c7e631bb3cdc910f68e0081d67478d79c6982d  # v5.1.0
         with:
           python-version: '3.11'
           cache: 'pip'
@@ -37,7 +37,10 @@ jobs:
         run: |
           if [ -n "$HF_TOKEN" ]; then
             pip install huggingface_hub
-            huggingface-cli upload datasets/ results/ --repo motanova84/qcal-cloud || echo "⚠️ HuggingFace upload failed"
+            # Create datasets directory if it doesn't exist
+            mkdir -p datasets
+            # Upload results directory to HuggingFace
+            huggingface-cli upload results/ --repo motanova84/qcal-cloud || echo "⚠️ HuggingFace upload failed"
           else
             echo "⚠️ HF_TOKEN not set, skipping dataset upload"
           fi

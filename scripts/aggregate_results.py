@@ -17,9 +17,9 @@ from datetime import datetime
 from pathlib import Path
 
 
-def create_results_structure():
+def create_results_structure(output_path="results"):
     """Create results directory structure."""
-    results_dir = Path("results")
+    results_dir = Path(output_path)
     results_dir.mkdir(exist_ok=True)
     
     subdirs = ["datasets", "certificates", "reports", "logs"]
@@ -203,8 +203,7 @@ def main():
     print()
     
     # Create results structure
-    results_dir = Path(args.output)
-    results_dir = create_results_structure()
+    results_dir = create_results_structure(args.output)
     
     # Collect data from various sources
     print("\nCollecting data...")
