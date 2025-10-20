@@ -1,23 +1,61 @@
-# 🌌 Spectral Algorithm for the Birch–Swinnerton–Dyer Conjecture
+# 🌌 Adelic-BSD & Riemann Hypothesis Framework
 
 <!-- QCAL Indexing Active · Noēsis Access Enabled · 141.7001 Hz -->
 
-[![Python Tests](https://github.com/motanova84/algoritmo/actions/workflows/python-package-conda.yml/badge.svg)](https://github.com/motanova84/algoritmo/actions/workflows/python-package-conda.yml)
+[![Python Tests](https://github.com/motanova84/adelic-bsd/actions/workflows/python-package-conda.yml/badge.svg)](https://github.com/motanova84/adelic-bsd/actions/workflows/python-package-conda.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![SageMath](https://img.shields.io/badge/SageMath-%E2%89%A59.8-blue)](https://www.sagemath.org/)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 
-**Author**: José Manuel Mota Burruezo (JMMB Ψ · ∴)  
-**Date**: September 2025  
-**Repository**: [`motanova84/algoritmo`](https://github.com/motanova84/algoritmo)
+**Repositorio bilingüe: español/inglés**
 
 ---
 
-## ✨ Overview
+## 🇪🇸 Resumen
 
-This repository implements the **spectral finiteness algorithm** arising from the new **adèlic–spectral framework** for the Birch–Swinnerton–Dyer Conjecture (BSD).
+Este repositorio implementa el framework espectral adelico para la Conjetura de Birch–Swinnerton–Dyer (BSD) y la Hipótesis de Riemann (RH), con validación numérica, formalización, CI/CD y documentación profesional.
+
+### Componentes principales
+- Prueba espectral de finitud para grupos de Tate–Shafarevich ($\Sha$) y ceros de $\zeta(s)$
+- Operadores espectrales universales y kernel gaussiano
+- Certificados LaTeX y JSON
+- Validación contra LMFDB y Odlyzko
+- Formalización Lean4 y scripts de cierre
+- Notebook integral de validación y visualización
+
+### Flujos automáticos
+- `scripts/run_complete_verification.py`: Verificación total del framework
+- `examples/demo_notebook.ipynb`: Ejecución y análisis reproducible
+- CI/CD con GitHub Actions
+
+---
+
+## 🇬🇧 Overview
+
+This repository implements the **adelic-spectral framework** for the Birch–Swinnerton–Dyer Conjecture (BSD) and the Riemann Hypothesis (RH), with full numerical validation, formalization, CI/CD, and professional documentation.
 
 ### Core Features
+- Spectral proof of finiteness for Tate–Shafarevich groups ($\Sha$) and zeros of $\zeta(s)$
+- Universal spectral operators and Gaussian kernel
+- LaTeX and JSON certificates
+- Validation against LMFDB and Odlyzko
+- Lean4 formalization and closure scripts
+- Integral validation notebook and visualization
+
+### Automated Flows
+- `scripts/run_complete_verification.py`: Full framework verification
+- `examples/demo_notebook.ipynb`: Reproducible execution and analysis
+- CI/CD with GitHub Actions
+
+---
+
+## 🚀 Guía rápida / Quick Start
+
+**Author**: José Manuel Mota Burruezo (JMMB Ψ · ∴)  
+**Date**: September 2025  
+**Repository**: [`motanova84/adelic-bsd`](https://github.com/motanova84/adelic-bsd)
+
+### Características principales / Core Features
 
 - Proves the **finiteness of Tate–Shafarevich groups** ($\Sha$) via spectral descent.
 - Computes **local spectral operators** $M_{E,p}(1)$ for elliptic curves.
@@ -522,6 +560,18 @@ Direct traceability between theoretical results and implementation:
 | Appendix G | (PT) compatibility | Poitou-Tate pairing and Selmer groups |
 
 **Detailed Framework**: [`docs/BSD_FRAMEWORK.md`](docs/BSD_FRAMEWORK.md)
+
+### Research Ecosystem
+
+This work is part of a broader research program connecting three complementary domains:
+
+| Dominio | Repositorio | Objeto de demostración | Estado |
+|---------|-------------|------------------------|--------|
+| Aritmético–analítico | [jmmotaburr-riemann-adelic](https://github.com/jmmotaburr-riemann-adelic/jmmotaburr-riemann-adelic) | Hipótesis de Riemann (RH) | ✅ Incondicional |
+| Geométrico–espectral | [adelic-bsd](https://github.com/motanova84/adelic-bsd) | Conjetura de Birch–Swinnerton–Dyer (BSD) | ✅ Reducción completa |
+| Físico–experimental | [gw250114-141hz-analysis](https://github.com/OWNER/gw250114-141hz-analysis) | Validación empírica (141.7 Hz) | ✅ Observacional |
+
+**Note**: Each domain addresses different aspects of the unified spectral framework, combining arithmetic, geometric, and physical approaches to fundamental mathematical conjectures.
 
 ---
 
