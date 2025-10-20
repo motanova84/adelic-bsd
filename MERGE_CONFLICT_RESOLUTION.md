@@ -2,8 +2,8 @@
 
 ## Issue
 PR #39 had a merge conflict in `requirements_ci.txt` between two approaches:
-- **Branch `copilot/fix-ci-local-dependency-issues`**: Used pinned versions (e.g., `numpy==1.24.3`)
-- **Branch `main`**: Used version ranges (e.g., `numpy>=1.24.3,<3.0.0`)
+- **Branch** `copilot/fix-ci-local-dependency-issues`: Used pinned versions (e.g., `numpy==1.24.3`)
+- **Branch** `main`: Used version ranges (e.g., `numpy>=1.24.3,<3.0.0`)
 
 ## Resolution Decision
 **Chose version ranges from `main`** for the following reasons:
