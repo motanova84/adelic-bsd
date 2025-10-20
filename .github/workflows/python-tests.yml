@@ -13,7 +13,7 @@ jobs:
       contents: read  # Only needs to read repository contents
     strategy:
       matrix:
-        python-version: ['3.9', '3.10', '3.11']  # Unified with conda workflow
+        python-version: ['3.9', '3.10', '3.11', '3.12']  # Extended support for newer Python versions
     
     steps:
     - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744  # v3.6.0
@@ -28,7 +28,7 @@ jobs:
           requirements-dev.txt
     
     - name: Cache pip packages
-      uses: actions/cache@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9  # v4.0.2
+      uses: actions/cache@v4
       with:
         path: ~/.cache/pip
         key: ${{ runner.os }}-pip-${{ matrix.python-version }}-${{ hashFiles('requirements_ci.txt') }}
@@ -38,7 +38,7 @@ jobs:
     
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip==23.1.2
+        python -m pip install --upgrade pip
         pip install -r requirements_ci.txt
     
     - name: Log installed packages for reproducibility
