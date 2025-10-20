@@ -13,10 +13,10 @@ from sage.all import EllipticCurve
 class SpectralFinitenessProver:
     """
     Main class for proving finiteness of Ш using spectral methods
-    
+
     Based on the adèlic-spectral framework with trace-class operators.
     Constructs K_E(s) via local operators at bad primes (S-finite approximation).
-    
+
     Under (dR) and (PT) compatibilities:
     - det(I - K_E(s)) = c(s) * Λ(E,s) with Λ the completed L-function
     - c(s) holomorphic and non-vanishing near s=1
@@ -32,7 +32,7 @@ class SpectralFinitenessProver:
     def prove_finiteness(self):
         """
         Main theorem: Prove finiteness of Ш(E/ℚ)
-        
+
         Under (dR) and (PT) compatibilities, the spectral framework
         establishes finiteness. The construction is unconditional on the
         spectral side; arithmetic identification requires the compatibilities.
@@ -53,7 +53,7 @@ class SpectralFinitenessProver:
     def _compute_spectral_data(self):
         """
         Compute all spectral data needed for the finiteness proof
-        
+
         Computes local operators K_{E,p}(1) at primes p|N. These are
         finite-dimensional approximations to the trace-class operator.
         In the limit, sum_p ||K_{E,p}||_{S_1} < infinity (Schatten control).
@@ -75,7 +75,7 @@ class SpectralFinitenessProver:
     def _compute_local_data(self, p):
         """
         Compute spectral data for a single prime
-        
+
         Local operator K_{E,p}(1) contributes to the Fredholm determinant.
         Local non-vanishing (Theorem 6.1): c_p(s) is holomorphic and
         non-vanishing in a neighborhood of s=1 for all primes p.
@@ -170,7 +170,7 @@ Prime {p}:
     def _latex_certificate(self, proof_data):
         """Generate LaTeX certificate"""
         from sage.all import latex
-        
+
         cert = f"""\\documentclass[12pt]{{article}}
 \\usepackage{{amsmath, amssymb}}
 \\title{{Spectral Finiteness Certificate for {proof_data['curve_label']}}}
@@ -195,7 +195,7 @@ In particular, $\\Sha(E/\\mathbb{{Q}})$ is \\textbf{{finite}}.
 
 \\subsection*{{Local Spectral Data}}
 
-The finiteness follows from the construction of trace-class operators $K_{{E,p}}(s)$ 
+The finiteness follows from the construction of trace-class operators $K_{{E,p}}(s)$
 at bad primes, establishing:
 $$\\det(I - K_E(s)) = c(s) \\cdot \\Lambda(E,s)$$
 where $c(s)$ is holomorphic and non-vanishing near $s=1$.

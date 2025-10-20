@@ -16,18 +16,18 @@ SpectralSelmerMap = AdvancedSpectralSelmerMap
 def compute_selmer_map(E, p, vector=None, precision=20):
     """
     Compute Selmer map for elliptic curve E at prime p
-    
+
     Args:
         E: EllipticCurve object
         p: Prime number
         vector: Optional spectral vector to map (default: None)
         precision: p-adic precision (default: 20)
-        
+
     Returns:
         dict: Selmer map computation results
     """
     selmer = SpectralSelmerMap(E, p, precision=precision)
-    
+
     if vector is None:
         # Return map structure
         return {
@@ -45,17 +45,17 @@ def compute_selmer_map(E, p, vector=None, precision=20):
 def verify_selmer_compatibility(E, p, precision=20):
     """
     Verify Selmer map is well-defined and compatible with cohomology
-    
+
     Args:
         E: EllipticCurve object
         p: Prime number
         precision: p-adic precision (default: 20)
-        
+
     Returns:
         dict: Verification results
     """
     selmer = SpectralSelmerMap(E, p, precision=precision)
-    
+
     # Verify basic properties
     verification = {
         'map_well_defined': True,
@@ -63,7 +63,7 @@ def verify_selmer_compatibility(E, p, precision=20):
         'prime': p,
         'precision': precision
     }
-    
+
     # Additional verification checks
     try:
         if hasattr(selmer, 'verify_spectral_to_selmer'):
@@ -71,19 +71,19 @@ def verify_selmer_compatibility(E, p, precision=20):
             verification['spectral_compatibility'] = compat_check
     except:
         verification['spectral_compatibility'] = None
-    
+
     return verification
 
 
 def construct_global_selmer_group(E, primes=None, precision=20):
     """
     Construct global Selmer group from local Selmer groups
-    
+
     Args:
         E: EllipticCurve object
         primes: List of primes (default: bad primes)
         precision: p-adic precision (default: 20)
-        
+
     Returns:
         dict: Global Selmer group structure
     """
@@ -92,9 +92,9 @@ def construct_global_selmer_group(E, primes=None, precision=20):
         primes = list(N.prime_factors())
         if not primes:
             primes = [2, 3, 5]
-    
+
     local_selmer_maps = {}
-    
+
     for p in primes:
         try:
             selmer = SpectralSelmerMap(E, p, precision=precision)
@@ -109,7 +109,7 @@ def construct_global_selmer_group(E, primes=None, precision=20):
                 'error': str(e),
                 'prime': p
             }
-    
+
     return {
         'local_maps': local_selmer_maps,
         'primes': primes,

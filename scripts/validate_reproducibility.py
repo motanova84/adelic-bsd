@@ -21,39 +21,39 @@ def validate_requirements_file(filepath):
     with open(filepath) as f:
         for line_num, line in enumerate(f, 1):
             line = line.strip()
-            
+
             # Skip comments, empty lines, and -r includes
             if not line or line.startswith('#') or line.startswith('-r'):
                 continue
-            
+
             # Check for exact version pinning
             if '==' not in line:
                 errors.append(f"Line {line_num}: No exact version pin: {line}")
             elif '>=' in line or '<=' in line or '~=' in line:
                 errors.append(f"Line {line_num}: Uses floating version: {line}")
-    
+
     return errors
 
 
 def validate_workflow_file(filepath):
     """Validate that a workflow file uses pinned actions and OS."""
     errors = []
-    
+
     with open(filepath) as f:
         try:
             data = yaml.safe_load(f)
         except yaml.YAMLError as e:
             errors.append(f"YAML parse error: {e}")
             return errors
-    
+
     jobs = data.get('jobs', {})
-    
+
     for job_name, job_data in jobs.items():
         # Check for OS pinning
         runs_on = job_data.get('runs-on', '')
         if runs_on == 'ubuntu-latest' or runs_on == 'windows-latest' or runs_on == 'macos-latest':
             errors.append(f"Job '{job_name}': Uses floating OS version '{runs_on}'")
-        
+
         # Check container image pinning
         container = job_data.get('container', {})
         if isinstance(container, dict):
@@ -62,7 +62,7 @@ def validate_workflow_file(filepath):
                 errors.append(f"Job '{job_name}': Container uses ':latest' tag")
         elif isinstance(container, str) and ':latest' in container:
             errors.append(f"Job '{job_name}': Container uses ':latest' tag")
-        
+
         # Check action pinning
         steps = job_data.get('steps', [])
         for step_idx, step in enumerate(steps):
@@ -74,7 +74,7 @@ def validate_workflow_file(filepath):
                         f"Action missing version: {action}"
                     )
                     continue
-                
+
                 # Split action and ref, handle malformed strings
                 parts = action.split('@', 1)
                 if len(parts) != 2 or not parts[1]:
@@ -83,7 +83,7 @@ def validate_workflow_file(filepath):
                         f"Malformed action reference: {action}"
                     )
                     continue
-                
+
                 ref = parts[1].split('#')[0].strip()
                 # Check if it's a SHA (40 hex chars) or a tag
                 if not re.match(r'^[0-9a-f]{40}$', ref):
@@ -91,67 +91,67 @@ def validate_workflow_file(filepath):
                         f"Job '{job_name}', step {step_idx + 1}: "
                         f"Action not pinned to SHA: {action}"
                     )
-    
+
     return errors
 
 
 def main():
     """Main validation function."""
     repo_root = Path(__file__).parent.parent
-    
+
     print("=" * 70)
     print("CI/CD Reproducibility Validation")
     print("=" * 70)
     print()
-    
+
     all_errors = []
-    
+
     # Validate requirements files
     requirements_files = [
         'requirements.txt',
         'requirements_ci.txt',
         'requirements-dev.txt',
     ]
-    
+
     print("Checking requirements files...")
     for req_file in requirements_files:
         filepath = repo_root / req_file
         if not filepath.exists():
             print(f"  ⚠️  {req_file}: Not found (optional)")
             continue
-        
+
         errors = validate_requirements_file(filepath)
         if errors:
             print(f"  ❌ {req_file}: {len(errors)} error(s)")
             all_errors.extend([f"{req_file}: {e}" for e in errors])
         else:
             print(f"  ✅ {req_file}: OK")
-    
+
     print()
-    
+
     # Validate workflow files
     workflow_files = [
         '.github/workflows/python-tests.yml',
         '.github/workflows/python-package-conda.yml',
     ]
-    
+
     print("Checking workflow files...")
     for workflow_file in workflow_files:
         filepath = repo_root / workflow_file
         if not filepath.exists():
             print(f"  ⚠️  {workflow_file}: Not found")
             continue
-        
+
         errors = validate_workflow_file(filepath)
         if errors:
             print(f"  ❌ {workflow_file}: {len(errors)} error(s)")
             all_errors.extend([f"{workflow_file}: {e}" for e in errors])
         else:
             print(f"  ✅ {workflow_file}: OK")
-    
+
     print()
     print("=" * 70)
-    
+
     if all_errors:
         print(f"❌ Validation failed with {len(all_errors)} error(s):")
         print()
