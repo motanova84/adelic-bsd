@@ -140,3 +140,10 @@ certificates/*.pdf
 # OS
 .DS_Store
 Thumbs.db
+
+# Dependency comparison files
+frozen.txt
+frozen-*.txt
+*-frozen.txt
+local-frozen.txt
+ci-frozen.txt
