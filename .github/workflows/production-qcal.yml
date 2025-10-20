@@ -1,0 +1,59 @@
+name: QCAL Production Cycle
+
+on:
+  schedule:
+    - cron: "0 */4 * * *"       # cada 4 h
+  workflow_dispatch:
+
+jobs:
+  build-validate-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      - name: Validate core
+        run: python3 validate_v5_coronacion.py --precision 30
+
+      - name: Aggregate results
+        run: python3 scripts/aggregate_results.py
+
+      - name: Publish dataset
+        if: github.event_name == 'schedule'
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          if [ -n "$HF_TOKEN" ]; then
+            pip install huggingface_hub
+            huggingface-cli upload datasets/ results/ --repo motanova84/qcal-cloud || echo "⚠️ HuggingFace upload failed"
+          else
+            echo "⚠️ HF_TOKEN not set, skipping dataset upload"
+          fi
+
+      - name: Build Docker image
+        run: docker build -t qcal/production:${{ github.run_number }} .
+
+      - name: Push image to registry
+        if: github.event_name == 'schedule'
+        env:
+          DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+        run: |
+          if [ -n "$DOCKERHUB_TOKEN" ] && [ -n "$DOCKERHUB_USERNAME" ]; then
+            echo "$DOCKERHUB_TOKEN" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+            docker push qcal/production:${{ github.run_number }} || echo "⚠️ Docker push failed"
+          else
+            echo "⚠️ Docker credentials not set, skipping image push"
+          fi
