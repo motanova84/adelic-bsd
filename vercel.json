@@ -1,0 +1,62 @@
+{
+    "version": 2,
+    "name": "adelic-bsd",
+    "builds": [
+        {
+            "src": "README.md",
+            "use": "@vercel/static"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/validate",
+            "dest": "scripts/validate_structure.py"
+        },
+        {
+            "src": "/certificate",
+            "dest": "scripts/generate_all_certificates.py"
+        },
+        {
+            "src": "/demo",
+            "dest": "examples/quick_demo.py"
+        }
+    ],
+    "headers": [
+        {
+            "source": "/(.*)",
+            "headers": [
+                {
+                    "key": "X-Project",
+                    "value": "BSD Spectral"
+                },
+                {
+                    "key": "X-Frequency",
+                    "value": "141.7001 Hz"
+                },
+                {
+                    "key": "X-Coherence",
+                    "value": "Verified"
+                },
+                {
+                    "key": "X-Mathematical-Signature",
+                    "value": "Ψ = I × A_eff²"
+                }
+            ]
+        }
+    ],
+    "crons": [
+        {
+            "path": "/validate",
+            "schedule": "0 2 * * 0"
+        },
+        {
+            "path": "/certificate",
+            "schedule": "30 3 * * 0"
+        }
+    ],
+    "regions": [
+        "fra1",
+        "iad1",
+        "gru1"
+    ]
+}
