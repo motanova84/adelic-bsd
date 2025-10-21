@@ -140,3 +140,7 @@ certificates/*.pdf
 # OS
 .DS_Store
 Thumbs.db
+
+# Results and output
+results/
+datasets/
