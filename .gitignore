@@ -141,6 +141,10 @@ certificates/*.pdf
 .DS_Store
 Thumbs.db
 
+# Results and output
+results/
+datasets/
+
 # Dependency comparison files
 frozen.txt
 frozen-*.txt
