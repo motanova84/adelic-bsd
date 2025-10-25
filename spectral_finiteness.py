@@ -17,6 +17,7 @@ from sage.all import EllipticCurve, matrix, QQ, prime_divisors, latex, prod
 from sage.databases.cremona import cremona_letter
 from sage.schemes.elliptic_curves.ell_rational_field import EllipticCurve_rational_field
 import math
+import os
 
 class SpectralFinitenessProver:
     """
@@ -359,9 +360,13 @@ if __name__ == "__main__":
             # Generar certificado para curvas importantes
             if E.conductor() <= 20:
                 cert = generate_finiteness_certificate(E, proof_result)
-                with open(f"certificado_finitud_{curve_label}.tex", "w") as f:
+                # Use safe directory for file writing
+                safe_dir = os.environ.get('GITHUB_WORKSPACE', os.getcwd())
+                cert_filename = f"certificado_finitud_{curve_label}.tex"
+                cert_path = os.path.join(safe_dir, cert_filename)
+                with open(cert_path, "w") as f:
                     f.write(cert)
-                print(f"   📄 Certificado LaTeX generado: certificado_finitud_{curve_label}.tex")
+                print(f"   📄 Certificado LaTeX generado: {cert_path}")
                 
         except Exception as e:
             print(f"   ❌ ERROR: {e}")

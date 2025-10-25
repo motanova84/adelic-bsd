@@ -31,10 +31,16 @@ class CertificateGenerator:
         Args:
             output_dir: Directory to save certificates (default: 'certificates')
         """
-        self.output_dir = output_dir
+        # Use safe base directory
+        safe_base = os.environ.get('GITHUB_WORKSPACE', os.getcwd())
+        # If output_dir is absolute, use it as-is; otherwise make it relative to safe_base
+        if os.path.isabs(output_dir):
+            self.output_dir = output_dir
+        else:
+            self.output_dir = os.path.join(safe_base, output_dir)
 
         # Create directory if it doesn't exist
-        os.makedirs(output_dir, exist_ok=True)
+        os.makedirs(self.output_dir, exist_ok=True)
 
     def generate_certificate(self, E, verification_data, format='json'):
         """

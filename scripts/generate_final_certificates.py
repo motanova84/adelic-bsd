@@ -303,7 +303,9 @@ def print_final_summary(stats):
 
 def main():
     """Main entry point"""
-    output_dir = 'certificates'
+    # Use safe base directory
+    safe_base = os.environ.get('GITHUB_WORKSPACE', os.getcwd())
+    output_dir = os.path.join(safe_base, 'certificates')
     os.makedirs(output_dir, exist_ok=True)
 
     print("\n" + "="*70)
