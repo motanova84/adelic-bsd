@@ -11,6 +11,7 @@ import json
 import os
 from datetime import datetime
 import hashlib
+from ..utils import get_safe_output_path
 
 
 class CertificateGenerator:
@@ -31,10 +32,8 @@ class CertificateGenerator:
         Args:
             output_dir: Directory to save certificates (default: 'certificates')
         """
-        self.output_dir = output_dir
-
-        # Create directory if it doesn't exist
-        os.makedirs(output_dir, exist_ok=True)
+        # Use safe directory for file writing
+        self.output_dir = get_safe_output_path(output_dir, is_dir=True)
 
     def generate_certificate(self, E, verification_data, format='json'):
         """

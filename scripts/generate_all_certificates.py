@@ -9,6 +9,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 from sage.all import EllipticCurve, cremona_curves
 from src.spectral_finiteness import SpectralFinitenessProver
+from src.utils import get_safe_output_path
 
 
 def generate_certificates_for_conductor_range(max_conductor=100, output_dir='certificates'):
@@ -19,11 +20,11 @@ def generate_certificates_for_conductor_range(max_conductor=100, output_dir='cer
         max_conductor: Maximum conductor to process
         output_dir: Directory to save certificates
     """
-    # Create output directory
-    os.makedirs(output_dir, exist_ok=True)
+    # Use safe directory for file writing
+    full_output_dir = get_safe_output_path(output_dir, is_dir=True)
 
     print(f"🚀 Generating certificates for curves with conductor ≤ {max_conductor}")
-    print(f"📁 Output directory: {output_dir}/")
+    print(f"📁 Output directory: {full_output_dir}/")
     print("=" * 70)
 
     total = 0
@@ -46,7 +47,7 @@ def generate_certificates_for_conductor_range(max_conductor=100, output_dir='cer
                 cert = prover.generate_certificate('text')
 
                 # Save to file
-                filename = f"{output_dir}/certificate_{label}.txt"
+                filename = os.path.join(full_output_dir, f"certificate_{label}.txt")
                 with open(filename, 'w') as f:
                     f.write(cert)
 
@@ -68,7 +69,7 @@ def generate_certificates_for_conductor_range(max_conductor=100, output_dir='cer
     print(f"   Successful: {successful}")
     print(f"   Failed: {failed}")
     print(f"   Success rate: {100*successful/total if total > 0 else 0:.1f}%")
-    print(f"\n📁 Certificates saved in: {output_dir}/")
+    print(f"\n📁 Certificates saved in: {full_output_dir}/")
 
     return successful, failed
 
@@ -81,10 +82,11 @@ def generate_certificates_for_specific_curves(curve_labels, output_dir='certific
         curve_labels: List of curve labels (e.g., ['11a1', '37a1'])
         output_dir: Directory to save certificates
     """
-    os.makedirs(output_dir, exist_ok=True)
+    # Use safe directory for file writing
+    full_output_dir = get_safe_output_path(output_dir, is_dir=True)
 
     print(f"🚀 Generating certificates for {len(curve_labels)} specific curves")
-    print(f"📁 Output directory: {output_dir}/")
+    print(f"📁 Output directory: {full_output_dir}/")
     print("=" * 70)
 
     successful = 0
@@ -102,7 +104,7 @@ def generate_certificates_for_specific_curves(curve_labels, output_dir='certific
             cert = prover.generate_certificate('text')
 
             # Save to file
-            filename = f"{output_dir}/certificate_{label}.txt"
+            filename = os.path.join(full_output_dir, f"certificate_{label}.txt")
             with open(filename, 'w') as f:
                 f.write(cert)
 
@@ -118,7 +120,7 @@ def generate_certificates_for_specific_curves(curve_labels, output_dir='certific
     print("📊 SUMMARY:")
     print(f"   Successful: {successful}/{len(curve_labels)}")
     print(f"   Failed: {failed}/{len(curve_labels)}")
-    print(f"\n📁 Certificates saved in: {output_dir}/")
+    print(f"\n📁 Certificates saved in: {full_output_dir}/")
 
     return successful, failed
 

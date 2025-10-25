@@ -5,8 +5,10 @@ Implements algorithms for large-scale verification against LMFDB data
 Tests the spectral→cycles→points algorithm on extensive curve databases
 """
 
+import os
 from sage.all import EllipticCurve, cremona_curves
 from src.height_pairing import verify_height_compatibility
+from src.utils import get_safe_output_path
 
 
 def get_lmfdb_curves(conductor_range=None, rank_range=None, limit=None):
@@ -283,9 +285,11 @@ def generate_verification_report(verification_data, output_file=None):
 
     # Save to file if specified
     if output_file:
-        with open(output_file, 'w') as f:
+        # Use safe directory for file writing
+        filepath = get_safe_output_path(output_file)
+        with open(filepath, 'w') as f:
             f.write(report_text)
-        print(f"\nReport saved to: {output_file}")
+        print(f"\nReport saved to: {filepath}")
 
     return report_text
 

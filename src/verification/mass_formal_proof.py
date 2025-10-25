@@ -9,7 +9,9 @@ across families of elliptic curves from LMFDB.
 from sage.all import EllipticCurve
 from .formal_bsd_prover import FormalBSDProver
 import json
+import os
 from datetime import datetime
+from ..utils import get_safe_output_path
 
 
 class MassFormalProof:
@@ -195,11 +197,14 @@ class MassFormalProof:
             'individual_results': self.results
         }
 
-        with open(filename, 'w') as f:
+        # Use safe directory for file writing
+        filepath = get_safe_output_path(filename)
+        
+        with open(filepath, 'w') as f:
             json.dump(output, f, indent=2, default=str)
 
-        print(f"\nResults saved to {filename}")
-        return filename
+        print(f"\nResults saved to {filepath}")
+        return filepath
 
     def get_statistics(self):
         """Get detailed statistics about the verification"""
