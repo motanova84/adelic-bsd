@@ -32,8 +32,12 @@ except ImportError:
     def get_safe_output_path(filename_or_dir, is_dir=False):
         safe_base = os.environ.get('GITHUB_WORKSPACE', os.getcwd())
         if os.path.isabs(filename_or_dir):
-            return filename_or_dir
-        return os.path.join(safe_base, filename_or_dir)
+            safe_path = filename_or_dir
+        else:
+            safe_path = os.path.join(safe_base, filename_or_dir)
+        if is_dir:
+            os.makedirs(safe_path, exist_ok=True)
+        return safe_path
 
 class SpectralFinitenessProver:
     """
