@@ -18,6 +18,22 @@ from sage.databases.cremona import cremona_letter
 from sage.schemes.elliptic_curves.ell_rational_field import EllipticCurve_rational_field
 import math
 import os
+import sys
+
+# Add src to path if not already there
+src_path = os.path.join(os.path.dirname(__file__), 'src')
+if src_path not in sys.path and os.path.exists(src_path):
+    sys.path.insert(0, src_path)
+
+try:
+    from utils import get_safe_output_path
+except ImportError:
+    # Fallback if utils module is not available
+    def get_safe_output_path(filename_or_dir, is_dir=False):
+        safe_base = os.environ.get('GITHUB_WORKSPACE', os.getcwd())
+        if os.path.isabs(filename_or_dir):
+            return filename_or_dir
+        return os.path.join(safe_base, filename_or_dir)
 
 class SpectralFinitenessProver:
     """
@@ -361,9 +377,8 @@ if __name__ == "__main__":
             if E.conductor() <= 20:
                 cert = generate_finiteness_certificate(E, proof_result)
                 # Use safe directory for file writing
-                safe_dir = os.environ.get('GITHUB_WORKSPACE', os.getcwd())
                 cert_filename = f"certificado_finitud_{curve_label}.tex"
-                cert_path = os.path.join(safe_dir, cert_filename)
+                cert_path = get_safe_output_path(cert_filename)
                 with open(cert_path, "w") as f:
                     f.write(cert)
                 print(f"   📄 Certificado LaTeX generado: {cert_path}")

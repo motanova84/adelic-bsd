@@ -15,6 +15,7 @@ from sage.all import EllipticCurve, cremona_curves
 from src.verification import generate_formal_certificate
 from src.verification.certificate_generator import CertificateGenerator
 from src.verification.mass_verification import batch_verify_bsd
+from src.utils import get_safe_output_path
 
 # Alias for compatibility
 BSDCertificateGenerator = CertificateGenerator
@@ -303,10 +304,8 @@ def print_final_summary(stats):
 
 def main():
     """Main entry point"""
-    # Use safe base directory
-    safe_base = os.environ.get('GITHUB_WORKSPACE', os.getcwd())
-    output_dir = os.path.join(safe_base, 'certificates')
-    os.makedirs(output_dir, exist_ok=True)
+    # Use safe directory for file writing
+    output_dir = get_safe_output_path('certificates', is_dir=True)
 
     print("\n" + "="*70)
     print("FINAL CERTIFICATE GENERATION SYSTEM")

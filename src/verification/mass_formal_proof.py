@@ -11,6 +11,7 @@ from .formal_bsd_prover import FormalBSDProver
 import json
 import os
 from datetime import datetime
+from ..utils import get_safe_output_path
 
 
 class MassFormalProof:
@@ -197,8 +198,7 @@ class MassFormalProof:
         }
 
         # Use safe directory for file writing
-        safe_dir = os.environ.get('GITHUB_WORKSPACE', os.getcwd())
-        filepath = os.path.join(safe_dir, filename)
+        filepath = get_safe_output_path(filename)
         
         with open(filepath, 'w') as f:
             json.dump(output, f, indent=2, default=str)

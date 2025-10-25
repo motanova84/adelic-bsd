@@ -9,6 +9,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 from sage.all import EllipticCurve, cremona_curves
 from src.spectral_finiteness import SpectralFinitenessProver
+from src.utils import get_safe_output_path
 
 
 def generate_certificates_for_conductor_range(max_conductor=100, output_dir='certificates'):
@@ -19,16 +20,8 @@ def generate_certificates_for_conductor_range(max_conductor=100, output_dir='cer
         max_conductor: Maximum conductor to process
         output_dir: Directory to save certificates
     """
-    # Use safe base directory
-    safe_base = os.environ.get('GITHUB_WORKSPACE', os.getcwd())
-    # If output_dir is absolute, use it as-is; otherwise make it relative to safe_base
-    if os.path.isabs(output_dir):
-        full_output_dir = output_dir
-    else:
-        full_output_dir = os.path.join(safe_base, output_dir)
-    
-    # Create output directory
-    os.makedirs(full_output_dir, exist_ok=True)
+    # Use safe directory for file writing
+    full_output_dir = get_safe_output_path(output_dir, is_dir=True)
 
     print(f"🚀 Generating certificates for curves with conductor ≤ {max_conductor}")
     print(f"📁 Output directory: {full_output_dir}/")
@@ -89,15 +82,8 @@ def generate_certificates_for_specific_curves(curve_labels, output_dir='certific
         curve_labels: List of curve labels (e.g., ['11a1', '37a1'])
         output_dir: Directory to save certificates
     """
-    # Use safe base directory
-    safe_base = os.environ.get('GITHUB_WORKSPACE', os.getcwd())
-    # If output_dir is absolute, use it as-is; otherwise make it relative to safe_base
-    if os.path.isabs(output_dir):
-        full_output_dir = output_dir
-    else:
-        full_output_dir = os.path.join(safe_base, output_dir)
-    
-    os.makedirs(full_output_dir, exist_ok=True)
+    # Use safe directory for file writing
+    full_output_dir = get_safe_output_path(output_dir, is_dir=True)
 
     print(f"🚀 Generating certificates for {len(curve_labels)} specific curves")
     print(f"📁 Output directory: {full_output_dir}/")

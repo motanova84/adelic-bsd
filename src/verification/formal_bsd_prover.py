@@ -11,6 +11,7 @@ import json
 import hashlib
 import os
 from datetime import datetime
+from ..utils import get_safe_output_path
 
 
 class FormalBSDProver:
@@ -304,8 +305,7 @@ print(f"Certificate Hash: {{result['certificate_hash']}}")
             filename = f"bsd_certificate_{curve_label}.json"
 
         # Use safe directory for file writing
-        safe_dir = os.environ.get('GITHUB_WORKSPACE', os.getcwd())
-        filepath = os.path.join(safe_dir, filename)
+        filepath = get_safe_output_path(filename)
         
         with open(filepath, 'w') as f:
             json.dump(self.certificate, f, indent=2, default=str)
