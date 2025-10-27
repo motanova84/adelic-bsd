@@ -4,9 +4,12 @@ Implements computation of local factors in the BSD conjecture
 
 This module computes Tamagawa numbers, local L-factors, and other
 local invariants appearing in the BSD formula.
+
+Also includes Hardy-Littlewood singular series computation for analytic
+number theory applications.
 """
 
-from sage.all import EllipticCurve, ZZ, QQ, RealField, log, prod
+from sage.all import EllipticCurve, ZZ, QQ, RealField, log, prod, prime_range
 
 
 class LocalFactors:
@@ -252,3 +255,77 @@ class LocalFactors:
                 'vanishing_order_compatible': None,
                 'bsd_components': self.bsd_product()
             }
+
+
+def hardy_littlewood_singular_series(n, max_prime=1000, precision=50):
+    """
+    Compute Hardy-Littlewood singular series S(n) - Equation (4)
+    
+    Implements the corrected Hardy-Littlewood singular series:
+    
+        S(n) = ∏_{p>2} (1 - 1/(p-1)²) · ∏_{p|n, p>2} (p-1)/(p-2)
+    
+    The local factor for p=2 is omitted, as in Hardy--Littlewood (1923).
+    
+    Args:
+        n: Positive integer for which to compute S(n)
+        max_prime: Maximum prime to include in the infinite product (default: 1000)
+        precision: Decimal precision for computation (default: 50)
+    
+    Returns:
+        float: Value of S(n)
+    
+    Examples:
+        >>> S_1 = hardy_littlewood_singular_series(1)  # n=1: only first product
+        >>> S_6 = hardy_littlewood_singular_series(6)  # n=6=2·3: includes factor for p=3
+        >>> S_15 = hardy_littlewood_singular_series(15)  # n=15=3·5: factors for p=3,5
+    
+    Reference:
+        Hardy, G. H., & Littlewood, J. E. (1923). Some problems of 'Partitio numerorum';
+        III: On the expression of a number as a sum of primes. Acta Mathematica, 44, 1-70.
+    """
+    from sage.all import RealField, prime_divisors, is_prime
+    
+    if not isinstance(n, int) or n <= 0:
+        raise ValueError("n must be a positive integer")
+    
+    RF = RealField(precision)
+    result = RF(1.0)
+    
+    # First product: ∏_{p>2} (1 - 1/(p-1)²)
+    # This is an infinite product, truncated at max_prime
+    for p in prime_range(3, max_prime + 1):
+        factor = 1 - RF(1) / RF((p - 1) ** 2)
+        result *= factor
+    
+    # Second product: ∏_{p|n, p>2} (p-1)/(p-2)
+    # Product over prime divisors of n, excluding p=2
+    prime_divs = prime_divisors(n)
+    for p in prime_divs:
+        if p > 2:
+            # Local correction factor for primes dividing n
+            correction = RF(p - 1) / RF(p - 2)
+            result *= correction
+    
+    return float(result)
+
+
+def hardy_littlewood_constant(max_prime=1000, precision=50):
+    """
+    Compute the Hardy-Littlewood constant for twin primes conjecture
+    
+    This is S(1), the infinite product:
+        C₂ = ∏_{p>2} (1 - 1/(p-1)²)
+    
+    Args:
+        max_prime: Maximum prime to include in the product (default: 1000)
+        precision: Decimal precision for computation (default: 50)
+    
+    Returns:
+        float: Approximation of the Hardy-Littlewood constant
+    
+    Note:
+        The exact value is approximately 0.6601618158...
+        Known as the twin prime constant or Hardy-Littlewood constant C₂
+    """
+    return hardy_littlewood_singular_series(1, max_prime=max_prime, precision=precision)

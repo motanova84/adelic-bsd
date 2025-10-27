@@ -4,6 +4,48 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+
+#### Hardy-Littlewood Singular Series (Equation 4) - 2025-10-25
+- **src/local_factors.py**: Implementation of corrected Hardy-Littlewood singular series
+  - Function: `hardy_littlewood_singular_series(n, max_prime=1000, precision=50)`
+  - Function: `hardy_littlewood_constant(max_prime=1000, precision=50)`
+  - Equation (4): S(n) = ∏_{p>2} (1 - 1/(p-1)²) · ∏_{p|n, p>2} (p-1)/(p-2)
+  - Local factor for p=2 omitted, following Hardy & Littlewood (1923)
+  - Convergent infinite product with configurable truncation
+  - High-precision computation using SageMath RealField
+  
+#### Testing and Verification
+- **tests/test_hardy_littlewood.py**: Comprehensive test suite (240+ lines)
+  - Tests for Hardy-Littlewood constant C₂ ≈ 0.6601618158
+  - Verification that p=2 factor is correctly omitted
+  - Tests for correction factors (p-1)/(p-2)
+  - Multiple prime factors and convergence tests
+  - Error handling and edge cases
+- **verify_hardy_littlewood.py**: Pure Python verification script
+  - Mathematical correctness verification without SageMath
+  - Code structure validation
+  - All verifications pass
+
+#### Documentation
+- **docs/HARDY_LITTLEWOOD.md**: Complete documentation (400+ lines)
+  - Mathematical definition and properties
+  - Implementation details and algorithm
+  - Usage examples and API reference
+  - Historical context and references to Hardy-Littlewood (1923)
+  - Integration with adelic-BSD framework
+- **README.md**: Added Section 6 "Hardy-Littlewood Singular Series"
+  - Quick start examples
+  - Formula display with LaTeX
+  - Key features and references
+
+#### Examples
+- **examples/hardy_littlewood_demo.py**: Demonstration script (200+ lines)
+  - Hardy-Littlewood constant computation
+  - Examples for various values of n
+  - Verification of p=2 omission
+  - Correction factors visualization
+
 ### Changed
 - **CI/CD Reproducibility Improvements** (2025-10-18)
   - Pinned all Python dependencies to exact versions in requirements files
