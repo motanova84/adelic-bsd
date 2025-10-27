@@ -121,7 +121,7 @@ The validation tests 20 curves representing different reduction types:
 | 27a1    | 27        | 0    | ✅     | Additive, excellent      |
 | 37a1    | 37        | 1    | ✅     | Rank 1 reference         |
 | 49a1    | 49        | 0    | ✅     | Additive, correct        |
-| 54a1    | 54        | 0    | ⚠️     | Anomaly at p=2           |
+| 54a1    | 54        | 0    | ⚠️     | Deviation at p=2 (anomaly)|
 | 56a1    | 56        | 0    | ✅     | Stable validation        |
 | 58a1    | 58        | 0    | ✅     | Perfect                  |
 | 66a1    | 66        | 0    | ✅     | No deviation             |
@@ -129,11 +129,13 @@ The validation tests 20 curves representing different reduction types:
 | 91a1    | 91        | 0    | ✅     | Exact isomorphism        |
 | 121c2   | 121       | 0    | ✅     | Correct under torsion    |
 | 389a1   | 389       | 2    | ✅     | High precision reference |
-| 507a1   | 507       | 0    | ⚠️     | Mild discrepancy         |
+| 507a1   | 507       | 0    | ⚠️     | Deviation at p=2 (mild)  |
 | 571a1   | 571       | 0    | ✅     | Total consistency        |
 | 681b1   | 681       | 0    | ✅     | Correct                  |
 | 802a1   | 802       | 0    | ✅     | Correct                  |
-| 990h1   | 990       | 0    | ⚠️     | Variation at p=5         |
+| 990h1   | 990       | 0    | ⚠️     | Deviation at p=5         |
+
+*Note: Varied terminology ("anomaly", "mild", "variation") preserved from problem statement to maintain consistency with original research document.*
 
 ---
 
@@ -205,8 +207,13 @@ The 80% success rate validates the Fontaine–Perrin-Riou compatibility in the "
 ### Running the Validation
 
 ```bash
-# With SageMath installed
+# With SageMath installed (standard method)
 sage -python scripts/validate_dR_uniformity.py
+
+# Alternative methods depending on SageMath installation:
+# python -m sage scripts/validate_dR_uniformity.py
+# Or with SageMath in PYTHONPATH:
+# python3 scripts/validate_dR_uniformity.py
 
 # Output:
 # - validation_dR_uniformity_results.json (root directory)
