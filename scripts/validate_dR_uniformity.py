@@ -6,20 +6,19 @@ Autor: José Manuel Mota Burruezo (ICQ)
 Versión: 1.0 – Octubre 2025
 """
 
-from sage.all import EllipticCurve, QQ
+from sage.all import EllipticCurve
 import json
-import math
 import datetime
 
 
 def validate_curve(label, p_list=[2, 3, 5]):
     """
     Validate dR compatibility for a single elliptic curve.
-    
+
     Args:
         label: LMFDB label for the elliptic curve
         p_list: List of primes to validate
-        
+
     Returns:
         Dictionary with validation results
     """
