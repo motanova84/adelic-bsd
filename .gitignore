@@ -147,3 +147,6 @@ frozen-*.txt
 *-frozen.txt
 local-frozen.txt
 ci-frozen.txt
+
+# Validation results
+validation_dR_uniformity_results.json

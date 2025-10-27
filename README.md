@@ -211,6 +211,31 @@ $$\dim \mathrm{Sel}(E/\mathbb{Q}) = \mathrm{rank}\, E(\mathbb{Q}) = \mathrm{ord}
 
 ---
 
+## 🔍 Validación Fontaine–Perrin-Riou (dR)
+
+**Última ejecución**: Automática vía GitHub Actions  
+**Curvas analizadas**: 20  
+**Script**: [`scripts/validate_dR_uniformity.py`](scripts/validate_dR_uniformity.py)  
+**Archivo de resultados**: [`validation_dR_uniformity_results.json`](validation_dR_uniformity_results.json)
+
+Este script valida la compatibilidad (dR) de Fontaine–Perrin-Riou en 20 curvas elípticas seleccionadas, comparando dimensiones de cohomología de Galois $H^1_f(\mathbb{Q}_p, V_p)$ con dimensiones de de Rham para primos $p \in \{2, 3, 5\}$.
+
+### Ejecutar localmente
+
+Si tienes SageMath instalado (≥ 9.8):
+
+```bash
+sage -python scripts/validate_dR_uniformity.py
+```
+
+Esto genera el archivo `validation_dR_uniformity_results.json` con el resumen de validación.
+
+### Ejecución automática
+
+El workflow de GitHub Actions [`.github/workflows/dR_validation.yml`](.github/workflows/dR_validation.yml) ejecuta la validación automáticamente en cada push a `main` y puede ejecutarse manualmente desde la pestaña Actions.
+
+---
+
 ## ❗ Proof Validity Status
 
 - **Analytic/Spectral side:** Complete, unconditional
