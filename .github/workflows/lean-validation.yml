@@ -1,6 +1,6 @@
 name: Lean Validation
 
-on:
+"on":
   push:
     branches: [ main ]
   pull_request:
