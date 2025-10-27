@@ -1,0 +1,81 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bsd-spectral"
+version = "0.3.0"
+description = "BSD Spectral Framework: Computational verification of the Birch-Swinnerton-Dyer conjecture"
+readme = "README.md"
+authors = [
+    {name = "Mota Burruezo"}
+]
+license = {text = "MIT"}
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Mathematics",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+keywords = ["elliptic-curves", "bsd-conjecture", "number-theory", "sagemath", "spectral-methods"]
+requires-python = ">=3.9"
+
+dependencies = [
+    "numpy>=1.24.3,<3.0.0",
+    "scipy>=1.10.1,<2.0.0",
+    "sympy>=1.12,<2.0.0",
+    "pandas>=2.0.3,<3.0.0",
+    "matplotlib>=3.7.2,<4.0.0",
+]
+
+[project.optional-dependencies]
+sage = [
+    "sage-all>=9.8,<10.0; python_version < '3.12'",
+]
+dev = [
+    "pytest>=7.4.0,<9.0.0",
+    "pytest-cov>=4.1.0,<7.0.0",
+    "flake8>=6.0.0",
+    "black>=23.0.0",
+]
+docs = [
+    "sphinx>=7.0.1,<8.0.0",
+    "sphinx-rtd-theme>=1.2.2,<2.0.0",
+    "sphinx-autodoc-typehints>=1.24.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/motanova84/adelic-bsd"
+Documentation = "https://github.com/motanova84/adelic-bsd/blob/main/README.md"
+Repository = "https://github.com/motanova84/adelic-bsd"
+Issues = "https://github.com/motanova84/adelic-bsd/issues"
+
+[project.scripts]
+bsd-spectral-demo = "bsd_spectral:main"
+
+[tool.setuptools]
+packages = ["bsd_spectral"]
+
+[tool.setuptools.package-data]
+bsd_spectral = ["data/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_classes = "Test*"
+python_functions = "test_*"
+addopts = "-v --tb=short"
+
+[tool.black]
+line-length = 100
+target-version = ['py39', 'py310', 'py311', 'py312']
+include = '\.pyi?$'
+
+[tool.flake8]
+max-line-length = 100
+exclude = [".git", "__pycache__", "build", "dist", ".eggs"]
