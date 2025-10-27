@@ -26,9 +26,9 @@ def validate_curve(label, p_list=[2, 3, 5]):
     results = {"curve": label, "validations": []}
     for p in p_list:
         try:
-            Vp = E.galois_representation(p)
             H1f_dim = E.selmer_rank(p)
-            dR_dim = E.tamagawa_number(p)  # proxy de Fil⁰ comparación
+            # Tamagawa number as proxy for Fil⁰ de Rham comparison
+            dR_dim = E.tamagawa_number(p)
             ok = abs(H1f_dim - dR_dim) <= 1
             results["validations"].append({
                 "p": p,
@@ -61,7 +61,7 @@ def main():
         print(f"✅ {c} → {'OK' if res['passed'] else 'FALLO'}")
 
     summary = {
-        "timestamp": datetime.datetime.utcnow().isoformat(),
+        "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
         "total": len(all_results),
         "passed": sum(1 for r in all_results if r["passed"]),
         "success_rate": round(
