@@ -1,0 +1,35 @@
+{
+  "label": "389a1",
+  "conductor": 389,
+  "rank": 2,
+  "prime_results": {
+    "p2": {
+      "prime": 2,
+      "h1f_dim": 1,
+      "dR_dim": 1,
+      "compatible": true,
+      "deviation": 0.0,
+      "reduction_type": "good"
+    },
+    "p3": {
+      "prime": 3,
+      "h1f_dim": 1,
+      "dR_dim": 1,
+      "compatible": true,
+      "deviation": 0.0,
+      "reduction_type": "good"
+    },
+    "p5": {
+      "prime": 5,
+      "h1f_dim": 1,
+      "dR_dim": 1,
+      "compatible": true,
+      "deviation": 0.0,
+      "reduction_type": "good"
+    }
+  },
+  "all_compatible": true,
+  "status": "✅",
+  "result": "✅",
+  "notes": "Referencia alta precisión"
+}

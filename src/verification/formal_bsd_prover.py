@@ -9,7 +9,9 @@ of the BSD conjecture computationally and generates verification certificates.
 from sage.all import EllipticCurve, ZZ
 import json
 import hashlib
+import os
 from datetime import datetime
+from ..utils import get_safe_output_path
 
 
 class FormalBSDProver:
@@ -302,11 +304,14 @@ print(f"Certificate Hash: {{result['certificate_hash']}}")
             curve_label = self.E.cremona_label() if hasattr(self.E, 'cremona_label') else 'curve'
             filename = f"bsd_certificate_{curve_label}.json"
 
-        with open(filename, 'w') as f:
+        # Use safe directory for file writing
+        filepath = get_safe_output_path(filename)
+        
+        with open(filepath, 'w') as f:
             json.dump(self.certificate, f, indent=2, default=str)
 
-        print(f"Certificate saved to {filename}")
-        return filename
+        print(f"Certificate saved to {filepath}")
+        return filepath
 
 
 def generate_formal_certificate(E, save_to_file=False):
