@@ -77,6 +77,14 @@ This repository implements the **adelic-spectral framework** for the Birch–Swi
   - Connection to adelic phase space structure
   - Implementation of E_vac(R_Ψ) with ζ'(1/2) and fractal sin² term
 
+### New in v0.2.2
+
+- **Hardy-Littlewood Singular Series** (Equation 4): Corrected formula with p=2 omitted
+  - Implementation of S(n) = ∏_{p>2} (1 - 1/(p-1)²) · ∏_{p|n, p>2} (p-1)/(p-2)
+  - Hardy-Littlewood constant C₂ for twin prime conjecture
+  - Follows Hardy & Littlewood (1923) convention
+  - Full test suite and demonstration examples
+
 ⚡ This is not only a theoretical framework: it is a **computational verification system**.  
 For every tested curve, BSD holds *spectrally and arithmetically consistent*.
 
@@ -380,7 +388,48 @@ python examples/vacuum_energy_demo.py
 
 **See**: [`docs/BSD_FRAMEWORK.md`](docs/BSD_FRAMEWORK.md) (Section 6.2) for theoretical details.
 
-### 6. Spectral→Cycles→Points Algorithm
+### 6. Hardy-Littlewood Singular Series (NEW in v0.2.2 - Equation 4)
+
+The framework now includes the corrected Hardy-Littlewood singular series with p=2 omitted:
+
+```python
+from src.local_factors import (
+    hardy_littlewood_singular_series,
+    hardy_littlewood_constant
+)
+
+# Compute Hardy-Littlewood constant C₂ (twin prime constant)
+C2 = hardy_littlewood_constant(max_prime=1000)
+print(f"C₂ ≈ {C2:.10f}")  # ≈ 0.6601618158
+
+# Compute S(n) for various n
+S_1 = hardy_littlewood_singular_series(1)   # Base constant
+S_3 = hardy_littlewood_singular_series(3)   # Factor: (3-1)/(3-2) = 2
+S_15 = hardy_littlewood_singular_series(15) # Factors for 3 and 5
+S_6 = hardy_littlewood_singular_series(6)   # 6=2×3, p=2 omitted
+```
+
+**Run the Hardy-Littlewood demonstration:**
+
+```bash
+sage -python examples/hardy_littlewood_demo.py
+```
+
+**Equation (4) - Corrected Formula:**
+
+$$\mathfrak{S}(n) = \prod_{p>2} \left(1 - \frac{1}{(p-1)^2}\right) \prod_{\substack{p \mid n \\ p > 2}} \frac{p-1}{p-2}$$
+
+**Key Features:**
+
+- **Corrected Formula**: Local factor for p=2 omitted, as in Hardy--Littlewood (1923)
+- **Twin Prime Constant**: Computes C₂ ≈ 0.6601618158...
+- **Convergent Product**: Infinite product properly truncated and computed
+- **Prime Correction Factors**: (p-1)/(p-2) for each prime divisor p > 2
+- **Full Test Suite**: Comprehensive tests verify correctness
+
+**Reference**: Hardy, G. H., & Littlewood, J. E. (1923). Some problems of 'Partitio numerorum'; III: On the expression of a number as a sum of primes. *Acta Mathematica*, 44, 1-70.
+
+### 7. Spectral→Cycles→Points Algorithm
 
 The repository now includes the complete algorithmic pipeline for connecting spectral vectors to rational points:
 

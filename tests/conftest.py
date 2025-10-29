@@ -46,14 +46,14 @@ def pytest_collection_modifyitems(config, items):
         'test_spectral_cycles',
         'test_spectral_selmer_map',
     ]
-    
+
     skip_sage = pytest.mark.skip(reason="SageMath not available")
     mark_sage_required = pytest.mark.sage_required
-    
+
     for item in items:
         # Get the module name from the test's nodeid
         module_name = item.nodeid.split("::")[0].replace("tests/", "").replace(".py", "")
-        
+
         # Check if this test is in a sage-required module
         if module_name in sage_required_modules:
             item.add_marker(mark_sage_required)

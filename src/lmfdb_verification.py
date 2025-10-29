@@ -5,33 +5,35 @@ Implements algorithms for large-scale verification against LMFDB data
 Tests the spectral→cycles→points algorithm on extensive curve databases
 """
 
+import os
 from sage.all import EllipticCurve, cremona_curves
 from src.height_pairing import verify_height_compatibility
+from src.utils import get_safe_output_path
 
 
 def get_lmfdb_curves(conductor_range=None, rank_range=None, limit=None):
     """
     Get elliptic curves from LMFDB-like database
-    
+
     Args:
         conductor_range: tuple (min_N, max_N) for conductor bounds
         rank_range: list of ranks to include [0,1,2,3]
         limit: maximum number of curves to return
-        
+
     Returns:
         List of curve labels
     """
     curves = []
-    
+
     # Define default parameters
     if conductor_range is None:
         conductor_range = (11, 100)  # Start with small conductors
-    
+
     if rank_range is None:
         rank_range = [0, 1, 2, 3]
-    
+
     min_N, max_N = conductor_range
-    
+
     # Collect curves from Cremona database
     try:
         for N in range(min_N, max_N + 1):
@@ -42,11 +44,11 @@ def get_lmfdb_curves(conductor_range=None, rank_range=None, limit=None):
                     try:
                         E = EllipticCurve(label)
                         r = E.rank()
-                        
+
                         # Filter by rank if specified
                         if r in rank_range:
                             curves.append(label)
-                            
+
                         # Check limit
                         if limit is not None and len(curves) >= limit:
                             return curves
@@ -76,7 +78,7 @@ def get_lmfdb_curves(conductor_range=None, rank_range=None, limit=None):
             "37a1",
             "38a1", "38a2", "38a3", "38b1", "38b2",
         ]
-        
+
         # Filter by rank if needed
         if rank_range is not None:
             filtered = []
@@ -90,27 +92,27 @@ def get_lmfdb_curves(conductor_range=None, rank_range=None, limit=None):
                 except:
                     continue
             curves = filtered
-    
+
     # Apply limit
     if limit is not None:
         curves = curves[:limit]
-    
+
     return curves
 
 
-def large_scale_verification(conductor_range=(11, 50), rank_range=None, 
-                            limit=20, verbose=True):
+def large_scale_verification(conductor_range=(11, 50), rank_range=None,
+                             limit=20, verbose=True):
     """
     Large-scale verification of the spectral→cycles→points algorithm
-    
+
     Implements the massive LMFDB verification described in the problem statement
-    
+
     Args:
         conductor_range: tuple (min_N, max_N) for conductor range
         rank_range: list of ranks to test (None = all ranks)
         limit: maximum number of curves to test
         verbose: whether to print detailed progress
-        
+
     Returns:
         dict with verification results and statistics
     """
@@ -122,29 +124,29 @@ def large_scale_verification(conductor_range=(11, 50), rank_range=None,
         print(f"Rank filter: {rank_range if rank_range else 'all ranks'}")
         print(f"Limit: {limit if limit else 'no limit'}")
         print("="*70)
-    
+
     # Get curves to test
     curves = get_lmfdb_curves(conductor_range, rank_range, limit)
-    
+
     if verbose:
         print(f"\nCurves to test: {len(curves)}")
         print("\nStarting verification...\n")
-    
+
     results = []
     success_count = 0
     error_count = 0
-    
+
     for i, label in enumerate(curves):
         if verbose:
             print(f"\n[{i+1}/{len(curves)}] Testing {label}...")
             print("-" * 50)
-        
+
         try:
             E = EllipticCurve(label)
-            
+
             # Verify height compatibility
             result = verify_height_compatibility(E)
-            
+
             # Record result
             results.append({
                 'label': label,
@@ -155,7 +157,7 @@ def large_scale_verification(conductor_range=(11, 50), rank_range=None,
                 'kernel_dim': result['kernel_dimension'],
                 'max_diff': result.get('max_difference', float('inf'))
             })
-            
+
             if result['compatible']:
                 success_count += 1
                 if verbose:
@@ -163,7 +165,7 @@ def large_scale_verification(conductor_range=(11, 50), rank_range=None,
             else:
                 if verbose:
                     print(f"⚠ {label}: Pending (max_diff={result.get('max_difference', 'N/A')})")
-            
+
         except Exception as e:
             error_count += 1
             results.append({
@@ -174,11 +176,11 @@ def large_scale_verification(conductor_range=(11, 50), rank_range=None,
             })
             if verbose:
                 print(f"✗ {label}: ERROR - {str(e)[:50]}")
-    
+
     # Calculate statistics
     total = len(results)
     success_rate = (success_count / total * 100) if total > 0 else 0
-    
+
     if verbose:
         print("\n" + "="*70)
         print("VERIFICATION SUMMARY")
@@ -189,12 +191,12 @@ def large_scale_verification(conductor_range=(11, 50), rank_range=None,
         print(f"Errors: {error_count}")
         print(f"Success rate: {success_rate:.1f}%")
         print("="*70)
-    
+
     # Analyze by rank
     rank_stats = {}
     for r in (rank_range if rank_range else [0, 1, 2, 3]):
-        rank_results = [res for res in results 
-                       if res.get('rank') == r and res['status'] != 'error']
+        rank_results = [res for res in results
+                        if res.get('rank') == r and res['status'] != 'error']
         if rank_results:
             rank_compatible = sum(1 for res in rank_results if res['compatible'])
             rank_stats[r] = {
@@ -202,14 +204,14 @@ def large_scale_verification(conductor_range=(11, 50), rank_range=None,
                 'compatible': rank_compatible,
                 'rate': rank_compatible / len(rank_results) * 100
             }
-    
+
     if verbose and rank_stats:
         print("\nBREAKDOWN BY RANK:")
         print("-" * 70)
         for r, stats in sorted(rank_stats.items()):
             print(f"Rank {r}: {stats['compatible']}/{stats['total']} "
                   f"({stats['rate']:.1f}% compatible)")
-    
+
     return {
         'results': results,
         'total': total,
@@ -224,11 +226,11 @@ def large_scale_verification(conductor_range=(11, 50), rank_range=None,
 def generate_verification_report(verification_data, output_file=None):
     """
     Generate a detailed report of verification results
-    
+
     Args:
         verification_data: Output from large_scale_verification
         output_file: Optional file path to save report
-        
+
     Returns:
         String containing the report
     """
@@ -237,7 +239,7 @@ def generate_verification_report(verification_data, output_file=None):
     report.append("SPECTRAL→CYCLES→POINTS VERIFICATION REPORT")
     report.append("="*70)
     report.append("")
-    
+
     # Overall statistics
     report.append("OVERALL STATISTICS:")
     report.append(f"  Total curves tested: {verification_data['total']}")
@@ -245,7 +247,7 @@ def generate_verification_report(verification_data, output_file=None):
     report.append(f"  Errors: {verification_data['error_count']}")
     report.append(f"  Success rate: {verification_data['success_rate']:.2f}%")
     report.append("")
-    
+
     # Rank breakdown
     if verification_data['rank_statistics']:
         report.append("BREAKDOWN BY RANK:")
@@ -255,15 +257,15 @@ def generate_verification_report(verification_data, output_file=None):
             report.append(f"    - Compatible: {stats['compatible']}")
             report.append(f"    - Rate: {stats['rate']:.1f}%")
         report.append("")
-    
+
     # Detailed results
     report.append("DETAILED RESULTS:")
     report.append("")
-    
+
     for result in verification_data['results']:
         label = result['label']
         status = result['status']
-        
+
         if status == 'success':
             rank = result.get('rank', '?')
             kernel_dim = result.get('kernel_dim', '?')
@@ -273,20 +275,22 @@ def generate_verification_report(verification_data, output_file=None):
         else:
             error = result.get('error', 'Unknown error')
             report.append(f"  ✗ {label}: Error - {error[:50]}")
-    
+
     report.append("")
     report.append("="*70)
     report.append("END OF REPORT")
     report.append("="*70)
-    
+
     report_text = "\n".join(report)
-    
+
     # Save to file if specified
     if output_file:
-        with open(output_file, 'w') as f:
+        # Use safe directory for file writing
+        filepath = get_safe_output_path(output_file)
+        with open(filepath, 'w') as f:
             f.write(report_text)
-        print(f"\nReport saved to: {output_file}")
-    
+        print(f"\nReport saved to: {filepath}")
+
     return report_text
 
 
@@ -297,15 +301,15 @@ def quick_verification_demo():
     print("\n" + "="*70)
     print("QUICK VERIFICATION DEMO")
     print("="*70)
-    
+
     # Test a few representative curves
     test_curves = ["11a1", "14a1", "37a1"]
-    
+
     results = large_scale_verification(
         conductor_range=(11, 50),
         rank_range=[0, 1],
         limit=len(test_curves),
         verbose=True
     )
-    
+
     return results
