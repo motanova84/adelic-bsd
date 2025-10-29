@@ -1,0 +1,174 @@
+name: Lean Validation
+
+"on":
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  lean:
+    name: Build and Validate Lean Project
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Lean
+        run: |
+          curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y
+          echo "$HOME/.elan/bin" >> $GITHUB_PATH
+
+      - name: Verify Lean installation
+        run: |
+          source $HOME/.elan/env
+          lean --version
+
+      - name: Build Lean project
+        id: build
+        run: |
+          source $HOME/.elan/env
+          START_TIME=$(date +%s)
+          
+          # Check if there's a Lean project in the repository
+          if [ -f "lean-toolchain" ] || [ -f "lakefile.lean" ] || [ -f "leanpkg.toml" ]; then
+            echo "Found Lean project configuration"
+            
+            # Try to build with lake if lakefile exists
+            if [ -f "lakefile.lean" ]; then
+              lake build 2>&1 | tee build.log
+              BUILD_STATUS=$?
+            elif [ -f "leanpkg.toml" ]; then
+              leanpkg build 2>&1 | tee build.log
+              BUILD_STATUS=$?
+            else
+              echo "Lean toolchain found but no build file"
+              BUILD_STATUS=0
+            fi
+          else
+            echo "No Lean project found in repository"
+            BUILD_STATUS=0
+          fi
+          
+          END_TIME=$(date +%s)
+          BUILD_TIME=$((END_TIME - START_TIME))
+          
+          # Parse build log for warnings and errors
+          WARNINGS=$(grep -c "warning:" build.log 2>/dev/null || echo "0")
+          ERRORS=$(grep -c "error:" build.log 2>/dev/null || echo "0")
+          
+          # Determine status
+          if [ $BUILD_STATUS -eq 0 ] && [ $ERRORS -eq 0 ]; then
+            STATUS="success"
+          elif [ $ERRORS -gt 0 ]; then
+            STATUS="failed"
+          else
+            STATUS="warning"
+          fi
+          
+          # Get Lean version
+          LEAN_VERSION=$(lean --version | head -1 || echo "unknown")
+          
+          # Generate validation report
+          cat > validation_report.json << EOF
+          {
+            "validation": {
+              "status": "$STATUS",
+              "build_time_seconds": $BUILD_TIME,
+              "warnings": $WARNINGS,
+              "errors": $ERRORS,
+              "lean_version": "$LEAN_VERSION",
+              "timestamp_utc": "$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
+            }
+          }
+          EOF
+          
+          echo "Build completed with status: $STATUS"
+          echo "Build time: ${BUILD_TIME}s"
+          echo "Warnings: $WARNINGS"
+          echo "Errors: $ERRORS"
+          
+          # Set output for next steps
+          echo "status=$STATUS" >> $GITHUB_OUTPUT
+          
+          # Exit with error if build failed
+          if [ "$STATUS" = "failed" ]; then
+            exit 1
+          fi
+
+      - name: Upload Validation Report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lean-validation-report
+          path: validation_report.json
+          retention-days: 30
+
+      - name: Update README with validation summary
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: |
+          if [ -f validation_report.json ]; then
+            echo "📊 Validation report generated successfully"
+            cat validation_report.json
+          fi
+
+      - name: Commit & push updated README
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Update validation summary (automatic CI)"
+          branch: main
+
+  update-badge:
+    name: Update Validation Badge
+    runs-on: ubuntu-latest
+    needs: lean
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download Validation Report
+        uses: actions/download-artifact@v4
+        with:
+          name: lean-validation-report
+          path: ./
+
+      - name: Update README with validation results
+        run: |
+          if [ -f validation_report.json ]; then
+            echo "📊 Updating README with validation results..."
+            STATUS=$(jq -r '.validation.status' validation_report.json)
+            BUILD_TIME=$(jq -r '.validation.build_time_seconds' validation_report.json)
+            WARNINGS=$(jq -r '.validation.warnings' validation_report.json)
+            ERRORS=$(jq -r '.validation.errors' validation_report.json)
+            LEAN_VERSION=$(jq -r '.validation.lean_version' validation_report.json)
+            TIMESTAMP=$(jq -r '.validation.timestamp_utc' validation_report.json)
+
+            echo "Status: $STATUS"
+            echo "Build Time: $BUILD_TIME"
+            echo "Warnings: $WARNINGS"
+            echo "Errors: $ERRORS"
+            echo "Lean Version: $LEAN_VERSION"
+            echo "Timestamp: $TIMESTAMP"
+
+            python3 .github/scripts/update_lean_validation_table.py
+          else
+            echo "⚠️  validation_report.json not found"
+          fi
+
+      - name: Commit updated README
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add README.md
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: update Lean validation results [skip ci]"
+            git push
+          fi
