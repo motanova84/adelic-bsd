@@ -1,0 +1,26 @@
+freq_hz,width_hz,reason,source
+60,2,mains harmonic,site
+120,2,mains harmonic,site
+180,2,mains harmonic,site
+240,2,mains harmonic,site
+300,2,mains harmonic,site
+360,2,mains harmonic,site
+420,2,mains harmonic,site
+480,2,mains harmonic,site
+540,2,mains harmonic,site
+600,2,mains harmonic,site
+660,2,mains harmonic,site
+720,2,mains harmonic,site
+780,2,mains harmonic,site
+840,2,mains harmonic,site
+900,2,mains harmonic,site
+960,2,mains harmonic,site
+1020,2,mains harmonic,site
+16.0,1.0,ADC sampling,electronics
+32.0,1.0,ADC sampling,electronics
+64.0,1.0,ADC sampling,electronics
+128.0,1.0,ADC sampling,electronics
+256.0,1.0,ADC sampling,electronics
+512.0,1.0,ADC sampling,electronics
+393.1,0.5,violin mode,mechanical
+787.4,0.5,violin mode harmonic,mechanical

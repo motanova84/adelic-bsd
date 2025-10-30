@@ -1,0 +1,13 @@
+name: lean-ci
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y
+      - run: ~/.elan/bin/lake build
+      - name: No extra axioms
+        run: |
+          ~/.elan/bin/lake exe print-axioms RiemannAdelic | tee axioms.txt
+          ! grep -E ".+" axioms.txt || (echo "Found axioms"; cat axioms.txt; exit 1)
