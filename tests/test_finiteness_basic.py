@@ -50,12 +50,30 @@ def test_documentation():
     for doc in docs:
         assert os.path.isfile(doc), f"{doc} should exist"
 
+    # Check docs directory files
+    docs_dir_files = [
+        'docs/README.md',
+        'docs/MANUAL.md',
+        'docs/BSD_FRAMEWORK.md',
+        'docs/HPC_SOLVER.md'
+    ]
+    for doc in docs_dir_files:
+        assert os.path.isfile(doc), f"{doc} should exist"
+
     # Check README content
     with open('README.md', 'r') as f:
         content = f.read()
         assert 'Algoritmo' in content or 'algoritmo' in content
         assert 'Installation' in content
         assert 'Usage' in content
+        assert 'HPC_SOLVER.md' in content, "README should reference HPC_SOLVER.md"
+
+    # Check HPC_SOLVER.md content
+    with open('docs/HPC_SOLVER.md', 'r') as f:
+        content = f.read()
+        assert 'HPC' in content or 'Cuántico' in content, "HPC_SOLVER should contain HPC or Cuántico"
+        assert 'CUDA' in content, "HPC_SOLVER should mention CUDA"
+        assert 'GPU' in content, "HPC_SOLVER should mention GPU"
 
     print("✓ Documentation files present and valid")
 

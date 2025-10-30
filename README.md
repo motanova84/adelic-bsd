@@ -626,20 +626,31 @@ This work is part of a broader research program connecting three complementary d
 
 ## 📋 Documentation
 
+### Core Documentation
 - **[MANUAL.md](docs/MANUAL.md)** - Complete technical guide with installation, usage, examples, and troubleshooting
 - **[BSD_FRAMEWORK.md](docs/BSD_FRAMEWORK.md)** - Theoretical foundations with explicit paper references
 - **[USAGE.md](USAGE.md)** - Quick start guide
 - **[CONTRIBUTING.md](CONTRIBUTING.md)** - How to contribute
 - **[demo_notebook.ipynb](examples/demo_notebook.ipynb)** - Interactive examples
 
+### Advanced Topics
+- **[HPC_SOLVER.md](docs/HPC_SOLVER.md)** - High-Performance Computing framework for quantum many-body physics simulations
+
 ---
 
 ## 🔮 Future Work
 
+### Theoretical Extensions
 1. Extend (dR) uniformly using Fontaine–Perrin-Riou comparison.
 2. Establish (PT) in higher rank via Beilinson–Bloch cycle heights.
 3. Community verification of certificates and replication on larger LMFDB sets.
 4. Packaging as a SageMath module for BSD testing at scale.
+
+### Computational Extensions
+5. **HPC Integration**: High-performance computing framework for quantum many-body physics
+   - GPU-accelerated Exact Diagonalization methods
+   - CUDA/cuBLAS/cuSOLVER integration for large-scale computations
+   - See [HPC_SOLVER.md](docs/HPC_SOLVER.md) for conceptual framework
 
 ---
 
