@@ -51,8 +51,6 @@ jobs:
       run: |
         python tests/test_finiteness_basic.py
         pytest tests/test_finiteness_basic.py -v -o cache_dir=${{ github.workspace }}/.pytest_cache
-      env:
-        PYTEST_CACHE_DIR: ${{ github.workspace }}/.pytest_cache
     
     - name: Check package structure
       run: |
@@ -86,7 +84,5 @@ jobs:
       - name: Run tests
         run: |
           sage -python -m pytest -q -o cache_dir=${{ github.workspace }}/.pytest_cache
-        env:
-          PYTEST_CACHE_DIR: ${{ github.workspace }}/.pytest_cache
 
 

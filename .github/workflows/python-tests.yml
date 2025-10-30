@@ -44,20 +44,14 @@ jobs:
     - name: Run basic tests
       run: |
         python tests/test_basic_functionality.py
-      env:
-        PYTEST_CACHE_DIR: ${{ github.workspace }}/.pytest_cache
     
     - name: Run CI-safe tests
       run: |
         python tests/test_ci_safe.py
-      env:
-        PYTEST_CACHE_DIR: ${{ github.workspace }}/.pytest_cache
     
     - name: Verify README LaTeX syntax
       run: |
         python tests/test_readme_latex.py
-      env:
-        PYTEST_CACHE_DIR: ${{ github.workspace }}/.pytest_cache
     
     - name: Run pytest on basic tests
       run: |
