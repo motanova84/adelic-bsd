@@ -144,3 +144,10 @@ Thumbs.db
 # Results and output
 results/
 datasets/
+
+# Dependency comparison files
+frozen.txt
+frozen-*.txt
+*-frozen.txt
+local-frozen.txt
+ci-frozen.txt
