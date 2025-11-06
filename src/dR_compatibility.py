@@ -183,7 +183,7 @@ def _get_reduction_type(E, p):
             return "multiplicative"
         else:
             return "additive"
-    except:
+    except Exception:
         return "unknown"
 
 
