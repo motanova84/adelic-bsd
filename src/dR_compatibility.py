@@ -13,7 +13,7 @@ para múltiples curvas y primos, validando la compatibilidad (dR)
 necesaria para el marco espectral BSD.
 
 Autor: José Manuel Mota Burruezo (JMMB Ψ·∴)
-Fecha: Enero 2025
+Fecha: Noviembre 2025
 Referencia: Fontaine-Perrin-Riou (1995)
 """
 
