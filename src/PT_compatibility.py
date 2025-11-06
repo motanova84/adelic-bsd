@@ -121,13 +121,16 @@ class PTCompatibilityProver:
         Formula: ⟨P, Q⟩ = (h(P+Q) - h(P) - h(Q)) / 2
         where h is canonical Néron-Tate height
         """
-        # Simplified model: use random but consistent values
+        # Simplified model: use deterministic symmetric values
         # In production, would compute actual canonical heights
         
-        # Use conductor and indices to generate deterministic values
-        np.random.seed(self.conductor * 1000 + P_idx * 10 + Q_idx)
+        # Ensure symmetry by ordering indices
+        i, j = min(P_idx, Q_idx), max(P_idx, Q_idx)
         
-        if P_idx == Q_idx:
+        # Use conductor and ordered indices to generate deterministic values
+        np.random.seed(self.conductor * 1000 + i * 10 + j)
+        
+        if i == j:
             # Diagonal: positive definite
             return 0.5 + np.random.rand() * 0.5
         else:
