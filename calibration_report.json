@@ -1,0 +1,9 @@
+{
+  "status": "success",
+  "a_optimal": 1.0,
+  "delta_star": 0.09999345541082617,
+  "gamma": 0.010123846205800646,
+  "total_evaluated": 500,
+  "valid_found": 500,
+  "message": "Valor \u00f3ptimo encontrado: a = 1.00"
+}
