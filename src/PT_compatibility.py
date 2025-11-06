@@ -15,7 +15,7 @@ Componentes:
 - Beilinson-Bloch: Marco de alturas
 
 Autor: José Manuel Mota Burruezo (JMMB Ψ·∴)
-Fecha: Enero 2025
+Fecha: Noviembre 2025
 """
 
 import sys
