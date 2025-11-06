@@ -42,12 +42,13 @@ def compute_zeta_prime_half(precision: int = 50) -> Tuple[str, str]:
     try:
         from mpmath import mp, zeta
         
-        # Set precision (bits = digits * log2(10) ≈ digits * 3.32)
-        mp.dps = precision + 10  # Extra precision for derivatives
+        # Set decimal precision (mp.dps expects decimal digits, not bits)
+        # Extra precision added to account for rounding in derivatives
+        mp.dps = precision + 10
         
         # Compute ζ'(1/2) using numerical differentiation
-        # We use a small step for the derivative
-        h = mp.mpf(10) ** (-precision // 2)
+        # Step size: smaller for higher precision to ensure accuracy
+        h = mp.mpf(10) ** (-(precision * 2) // 3)
         s = mp.mpf(0.5)
         
         # Numerical derivative: ζ'(s) ≈ (ζ(s+h) - ζ(s-h)) / (2h)
@@ -65,9 +66,15 @@ def compute_zeta_prime_half(precision: int = 50) -> Tuple[str, str]:
     except ImportError:
         warnings.warn("mpmath not available, using known value")
         # Known value from literature (OEIS A059750)
+        # Return sufficient precision, but not more than requested
         known_value = "-3.92264396712893547380763467916"
         known_abs = "3.92264396712893547380763467916"
-        return known_value[:precision+2], known_abs[:precision+2]
+        
+        # Format to requested precision (ensuring we have enough digits)
+        if precision + 2 <= len(known_value):
+            return known_value[:precision+2], known_abs[:precision+1]
+        else:
+            return known_value, known_abs
 
 
 def verify_bounds(abs_value: str, lower: float, upper: float) -> bool:

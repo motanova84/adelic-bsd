@@ -12,7 +12,11 @@ from unittest.mock import patch
 import warnings
 
 # Add scripts directory to path
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'scripts'))
+# Note: This approach is used for testing. In production, proper package structure
+# should be used or PYTHONPATH should be set in the test runner.
+scripts_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'scripts'))
+if scripts_dir not in sys.path:
+    sys.path.insert(0, scripts_dir)
 
 try:
     from verify_zeta_prime import (
