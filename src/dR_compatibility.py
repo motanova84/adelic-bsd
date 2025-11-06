@@ -45,7 +45,7 @@ class dRCompatibilityProver:
     2. Explicitación del mapa exponencial de Bloch-Kato
     3. Cálculo directo de cohomología de Galois
 
-    Estado: CONVIERTE CONJETURA → TEOREMA
+    Estado: CONVIERTE CONJETURA -> TEOREMA
     """
 
     def __init__(self, E, p, precision=20):
@@ -103,7 +103,7 @@ class dRCompatibilityProver:
 
     def _compute_galois_representation(self):
         """
-        Calcula representación de Galois p-ádica V_p = T_p(E) ⊗ ℚ_p
+        Calcula representación de Galois p-ádica V_p = T_p(E) ⊗ Q_p
 
         Returns:
             dict: Datos de la representación
@@ -203,7 +203,7 @@ class dRCompatibilityProver:
         """
         Calcula mapa exponencial de Bloch-Kato explícitamente
         
-        exp : H¹(ℚ_p, V_p) → D_dR(V_p)/Fil⁰
+        exp : H1(Q_p, V_p) -> D_dR(V_p)/Fil0
         
         Método: Usar fórmula explícita de Perrin-Riou
         """
@@ -220,7 +220,7 @@ class dRCompatibilityProver:
     
     def _compute_galois_representation(self) -> Dict[str, Any]:
         """
-        Calcula V_p = T_p(E) ⊗ ℚ_p (módulo de Tate p-ádico)
+        Calcula V_p = T_p(E) ⊗ Q_p (módulo de Tate p-ádico)
         """
         if self.reduction_type == "good":
             # For good reduction: unramified representation
@@ -257,7 +257,7 @@ class dRCompatibilityProver:
         Returns:
             dict: Representación explícita
         """
-        print("      → Caso crítico: reducción aditiva")
+        print("      -> Caso crítico: reducción aditiva")
 
         # Modelo minimal en p
         E_min = self.E.minimal_model()
@@ -280,9 +280,9 @@ class dRCompatibilityProver:
             else:
                 inertia = "unipotent"
 
-            print(f"      → Conductor: f_p = {f_p}")
-            print(f"      → Kodaira: {kodaira}")
-            print(f"      → Inercia: {inertia}")
+            print(f"      -> Conductor: f_p = {f_p}")
+            print(f"      -> Kodaira: {kodaira}")
+            print(f"      -> Inercia: {inertia}")
 
             return {
                 'dimension': 2,
@@ -303,7 +303,7 @@ class dRCompatibilityProver:
 
     def _compute_de_rham_cohomology(self):
         """
-        Calcula cohomología de de Rham D_dR(V_p) = H¹_dR(E/ℚ_p)
+        Calcula cohomología de de Rham D_dR(V_p) = H1_dR(E/Q_p)
 
         Returns:
             dict: Estructura de D_dR
@@ -318,8 +318,8 @@ class dRCompatibilityProver:
             omega = self.E.invariant_differential()
 
             # Filtración de Hodge
-            # Fil⁰ = espacio completo
-            # Fil¹ = espacio de formas diferenciales
+            # Fil0 = espacio completo
+            # Fil1 = espacio de formas diferenciales
 
             return {
                 'dimension': 2,
@@ -342,7 +342,7 @@ class dRCompatibilityProver:
         """
         Calcula logaritmo p-ádico formal de E
 
-        log : E(ℚ_p) → ℚ_p
+        log : E(Q_p) -> Q_p
 
         Returns:
             PowerSeries: Serie formal del logaritmo
@@ -355,7 +355,7 @@ class dRCompatibilityProver:
             R = PowerSeriesRing(K, 'z')
             z = R.gen()
 
-            # Logaritmo formal: log(z) = z - z²/2 + z³/3 - ...
+            # Logaritmo formal: log(z) = z - z**2/2 + z**3/3 - ...
             log_series = sum((-1)**(n+1) * z**n / n
                              for n in range(1, min(self.prec, 20)))
 
@@ -368,7 +368,7 @@ class dRCompatibilityProver:
         """
         Construcción EXPLÍCITA del mapa exponencial de Bloch-Kato
 
-        exp : H¹(ℚ_p, V_p) → D_dR / Fil⁰
+        exp : H1(Q_p, V_p) -> D_dR / Fil0
 
         Usa fórmula de Perrin-Riou (1995)
 
@@ -414,7 +414,7 @@ class dRCompatibilityProver:
     
     def _compute_de_rham_cohomology(self) -> Dict[str, Any]:
         """
-        Calcula D_dR(V_p) = H¹_dR(E/ℚ_p)
+        Calcula D_dR(V_p) = H1_dR(E/Q_p)
         
         De Rham cohomology es 2-dimensional
         Generada por ω (forma diferencial) y η (clase de homología)
@@ -433,7 +433,7 @@ class dRCompatibilityProver:
         """
         Construcción EXPLÍCITA del mapa exponencial
         
-        exp : H¹(ℚ_p, V_p) → D_dR / Fil⁰
+        exp : H1(Q_p, V_p) -> D_dR / Fil0
         
         Usa fórmula de Perrin-Riou (1995)
         """
@@ -450,7 +450,7 @@ class dRCompatibilityProver:
 
         Caso más simple: usar teoría estándar
         """
-        print("      → Caso: reducción buena (estándar)")
+        print("      -> Caso: reducción buena (estándar)")
 
         return {
             'type': 'good_reduction',
@@ -466,7 +466,7 @@ class dRCompatibilityProver:
 
         Usar teoría de Tate
         """
-        print("      → Caso: reducción multiplicativa (Tate)")
+        print("      -> Caso: reducción multiplicativa (Tate)")
 
         return {
             'type': 'multiplicative',
@@ -506,12 +506,12 @@ class dRCompatibilityProver:
         Estrategia (Fontaine-Perrin-Riou):
         1. Usar logaritmo p-ádico formal
         2. Conectar con cohomología de Galois vía reciprocidad
-        3. Verificar aterrizaje en Fil⁰
+        3. Verificar aterrizaje en Fil0
 
         Returns:
             dict: Mapa con verificación explícita
         """
-        print("      → Caso CRÍTICO: reducción aditiva")
+        print("      -> Caso CRÍTICO: reducción aditiva")
 
         # Paso 1: Logaritmo formal
         log_formal = self._compute_formal_log()
@@ -525,7 +525,7 @@ class dRCompatibilityProver:
 
         # Paso 2: Verificar compatibilidad via fórmula explícita
         # Usamos teorema de Fontaine-Perrin-Riou:
-        # El mapa exp está bien definido y aterriza en Fil⁰
+        # El mapa exp está bien definido y aterriza en Fil0
 
         # Para curvas elípticas, esto está garantizado por:
         # - Comparación cristalina (Fontaine)
@@ -535,8 +535,8 @@ class dRCompatibilityProver:
 
         # Verificación: si f_p ≥ 2 (salvaje), necesitamos cuidado extra
         if conductor_exp >= 2:
-            print(f"      → Ramificación salvaje: f_p = {conductor_exp}")
-            print("      → Usando fórmula de Perrin-Riou generalizada")
+            print(f"      -> Ramificación salvaje: f_p = {conductor_exp}")
+            print("      -> Usando fórmula de Perrin-Riou generalizada")
 
             # La fórmula de Perrin-Riou (1995, Théorème 3.2.3)
             # garantiza compatibilidad incluso en caso salvaje
@@ -604,7 +604,7 @@ class dRCompatibilityProver:
             else:
                 print("⚠️ (dR) NECESITA REVISIÓN")
                 print(f"   Compatible: {is_compatible}")
-                print(f"   Aterriza en Fil⁰: {lands_in_Fil0}")
+                print(f"   Aterriza en Fil0: {lands_in_Fil0}")
             print(f"{'='*70}\n")
 
             return certificate
@@ -723,8 +723,8 @@ def prove_dR_all_cases(output_dir='proofs'):
         """
         Calcula logaritmo p-ádico formal de E
         
-        log : E(ℚ_p) → ℚ_p
-        Serie formal: log(z) = z - z²/2 + z³/3 - ...
+        log : E(Q_p) -> Q_p
+        Serie formal: log(z) = z - z**2/2 + z**3/3 - ...
         """
         # Truncated power series for formal log
         # Returns coefficients up to precision
@@ -732,7 +732,7 @@ def prove_dR_all_cases(output_dir='proofs'):
         return coeffs
     
     def _compute_galois_cohomology(self) -> Dict[str, Any]:
-        """Compute H¹(Gal(Q̄_p/Q_p), V_p)"""
+        """Compute H1(Gal(Q̄_p/Q_p), V_p)"""
         return {
             'dimension': 2,
             'basis': ['cocycle_1', 'cocycle_2']
@@ -755,14 +755,14 @@ def prove_dR_all_cases(output_dir='proofs'):
     
     def _verify_compatibility(self, exp_matrix: np.ndarray, D_dR: Dict) -> bool:
         """
-        Verify that exp_matrix lands in Fil⁰ properly
+        Verify that exp_matrix lands in Fil0 properly
         This is the KEY verification for (dR) compatibility
         """
         # Check matrix properties
         # 1. Non-degenerate
         det = np.linalg.det(exp_matrix)
         
-        # 2. Maps to Fil⁰ quotient (dimension check)
+        # 2. Maps to Fil0 quotient (dimension check)
         dim_check = exp_matrix.shape[0] == D_dR['dimension']
         
         return abs(det) > 1e-10 and dim_check
@@ -854,9 +854,9 @@ if __name__ == "__main__":
     print("\nLa compatibilidad (dR) de Hodge p-ádica ha sido probada")
     print("constructivamente mediante:")
     print("  • Construcción explícita del mapa exponencial de Bloch-Kato")
-    print("  • Verificación de aterrizaje en Fil⁰")
+    print("  • Verificación de aterrizaje en Fil0")
     print("  • Fórmulas de Fontaine-Perrin-Riou para todos los casos")
-    print("\n(dR): CONJETURA → TEOREMA ✅")
+    print("\n(dR): CONJETURA -> TEOREMA ✅")
     print(f"{'#'*70}\n")
     from pathlib import Path
     Path('proofs').mkdir(exist_ok=True)
