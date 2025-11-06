@@ -27,7 +27,7 @@ This implementation adds a complete system for proving the Birch-Swinnerton-Dyer
 
 **Output**: `proofs/dR_certificates.json`
 
-### 2. `src/PT_compatibility.py` (365 lines)
+### 2. `src/PT_compatibility.py` (360 lines)
 
 **Purpose**: Implements Poitou-Tate (PT) compatibility via heights
 
