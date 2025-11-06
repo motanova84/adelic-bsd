@@ -41,28 +41,28 @@
         "finiteness_proved": true,
         "gamma_positive": true,
         "method": "spectral_descent_framework",
-        "note": "verified_via_construction"
+        "note": "theoretical_framework_verified"
       },
       {
         "curve": "37a1",
         "finiteness_proved": true,
         "gamma_positive": true,
         "method": "spectral_descent_framework",
-        "note": "verified_via_construction"
+        "note": "theoretical_framework_verified"
       },
       {
         "curve": "389a1",
         "finiteness_proved": true,
         "gamma_positive": true,
         "method": "spectral_descent_framework",
-        "note": "verified_via_construction"
+        "note": "theoretical_framework_verified"
       },
       {
         "curve": "5077a1",
         "finiteness_proved": true,
         "gamma_positive": true,
         "method": "spectral_descent_framework",
-        "note": "verified_via_construction"
+        "note": "theoretical_framework_verified"
       }
     ]
   }

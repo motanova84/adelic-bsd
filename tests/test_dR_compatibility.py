@@ -120,8 +120,13 @@ class TestdRAllCases:
         
         reduction_types = [r['reduction_type'] for r in results]
         
-        # Should have at least multiplicative and additive
-        assert 'multiplicative' in reduction_types or 'additive_general' in reduction_types
+        # Should have both multiplicative and additive (the critical case)
+        # Additive is the most important as it's the CRITICAL case for (dR)
+        has_additive = any('additive' in rt for rt in reduction_types)
+        has_multiplicative = 'multiplicative' in reduction_types
+        
+        assert has_additive, "Must test additive reduction (critical case)"
+        assert has_multiplicative, "Must test multiplicative reduction"
 
 
 class TestdRIntegration:

@@ -270,6 +270,12 @@ class dRCompatibilityProver:
         """
         Construct exponential map matrix explicitly
         Uses Perrin-Riou's formula connecting formal log with Galois cohomology
+        
+        NOTE: This is a simplified placeholder. In production with Sage:
+        1. Compute actual cocycles from Galois representation
+        2. Apply Perrin-Riou's explicit formula (see PR95, Section 3.2)
+        3. Integrate with p-adic L-functions
+        4. Verify compatibility with regulator map
         """
         # 2x2 matrix for 2-dimensional cohomology
         # Identity as simplified model (actual computation would use Perrin-Riou formula)
