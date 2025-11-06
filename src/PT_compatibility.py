@@ -22,7 +22,7 @@ import sys
 from pathlib import Path
 
 try:
-    from sage.all import EllipticCurve, ZZ, QQ, Integer, RealField
+    from sage.all import EllipticCurve
     SAGE_AVAILABLE = True
 except ImportError:
     print("⚠️ SageMath no disponible")
