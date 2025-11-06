@@ -44,9 +44,9 @@ class dRCompatibilityProver:
         self.reduction_type = self._classify_reduction()
 
         print("📐 Inicializando probador (dR)")
-        print("   Curva: {self.E.label() if hasattr(self.E, 'label') else 'custom'}")
-        print("   Primo: p = {self.p}")
-        print("   Reducción: {self.reduction_type}")
+        print(f"   Curva: {self.E.label() if hasattr(self.E, 'label') else 'custom'}")
+        print(f"   Primo: p = {self.p}")
+        print(f"   Reducción: {self.reduction_type}")
 
     def _classify_reduction(self):
         """
@@ -151,9 +151,9 @@ class dRCompatibilityProver:
             else:
                 inertia = "unipotent"
 
-            print("      → Conductor: f_p = {f_p}")
-            print("      → Kodaira: {kodaira}")
-            print("      → Inercia: {inertia}")
+            print(f"      → Conductor: f_p = {f_p}")
+            print(f"      → Kodaira: {kodaira}")
+            print(f"      → Inercia: {inertia}")
 
             return {
                 'dimension': 2,
@@ -164,7 +164,7 @@ class dRCompatibilityProver:
                 'wild_ramification': f_p >= 2
             }
         except Exception as e:
-            print("      ⚠️ Error calculando datos locales: {e}")
+            print(f"      ⚠️ Error calculando datos locales: {e}")
             return {
                 'dimension': 2,
                 'type': 'additive',
@@ -203,7 +203,7 @@ class dRCompatibilityProver:
                 'hodge_structure': 'H^1 = H^{1,0} ⊕ H^{0,1}'
             }
         except Exception as e:
-            print("      ⚠️ Error: {e}")
+            print(f"      ⚠️ Error: {e}")
             return {
                 'dimension': 2,
                 'error': str(e)
@@ -232,7 +232,7 @@ class dRCompatibilityProver:
 
             return log_series
         except Exception as e:
-            print("      ⚠️ Error: {e}")
+            print(f"      ⚠️ Error: {e}")
             return None
 
     def _explicit_exponential_map(self, V_p, D_dR):
@@ -327,7 +327,7 @@ class dRCompatibilityProver:
 
         # Verificación: si f_p ≥ 2 (salvaje), necesitamos cuidado extra
         if conductor_exp >= 2:
-            print("      → Ramificación salvaje: f_p = {conductor_exp}")
+            print(f"      → Ramificación salvaje: f_p = {conductor_exp}")
             print("      → Usando fórmula de Perrin-Riou generalizada")
 
             # La fórmula de Perrin-Riou (1995, Théorème 3.2.3)
@@ -356,9 +356,9 @@ class dRCompatibilityProver:
         Returns:
             dict: Certificado de prueba
         """
-        print("\n{'='*70}")
+        print(f"\n{'='*70}")
         print("🔬 PROBANDO (dR) - Compatibilidad de Hodge p-ádica")
-        print("{'='*70}")
+        print(f"{'='*70}")
 
         try:
             # Paso 1: Calcular representación de Galois
@@ -389,20 +389,20 @@ class dRCompatibilityProver:
                 'status': 'THEOREM' if (is_compatible and lands_in_Fil0) else 'NEEDS_REVIEW'
             }
 
-            print("\n{'='*70}")
+            print(f"\n{'='*70}")
             if is_compatible and lands_in_Fil0:
                 print("✅ (dR) PROBADA CONSTRUCTIVAMENTE")
                 print("   Estado: TEOREMA (no conjetura)")
             else:
                 print("⚠️ (dR) NECESITA REVISIÓN")
-                print("   Compatible: {is_compatible}")
-                print("   Aterriza en Fil⁰: {lands_in_Fil0}")
-            print("{'='*70}\n")
+                print(f"   Compatible: {is_compatible}")
+                print(f"   Aterriza en Fil⁰: {lands_in_Fil0}")
+            print(f"{'='*70}\n")
 
             return certificate
 
         except Exception as e:
-            print("\n❌ ERROR en prueba de (dR): {e}")
+            print(f"\n❌ ERROR en prueba de (dR): {e}")
             import traceback
             traceback.print_exc()
 
@@ -425,13 +425,13 @@ def prove_dR_all_cases(output_dir='proofs'):
     Returns:
         list: Lista de certificados de prueba
     """
-    print("\n{'#'*70}")
+    print(f"\n{'#'*70}")
     print("# PRUEBA EXHAUSTIVA DE (dR) - TODOS LOS CASOS")
-    print("{'#'*70}\n")
+    print(f"{'#'*70}\n")
 
     # Casos de prueba representativos
     test_curves = [
-        ('11a1', 11, 'Buena reducción'),
+        ('11a1', 11, 'Reducción multiplicativa'),
         ('37a1', 37, 'Reducción multiplicativa'),
         ('27a1', 3, 'Reducción aditiva potencialmente buena'),
         ('50a1', 2, 'Reducción aditiva salvaje'),
@@ -441,10 +441,10 @@ def prove_dR_all_cases(output_dir='proofs'):
     results = []
 
     for label, p, description in test_curves:
-        print("\n{'─'*70}")
-        print("Caso: {description}")
-        print("Curva: {label}, Primo: p={p}")
-        print("{'─'*70}")
+        print(f"\n{'─'*70}")
+        print(f"Caso: {description}")
+        print(f"Curva: {label}, Primo: p={p}")
+        print(f"{'─'*70}")
 
         try:
             E = EllipticCurve(label)
@@ -452,7 +452,7 @@ def prove_dR_all_cases(output_dir='proofs'):
             cert = prover.prove_dR_compatibility()
             results.append(cert)
         except Exception as e:
-            print("❌ Error procesando {label}: {e}")
+            print(f"❌ Error procesando {label}: {e}")
             results.append({
                 'curve': label,
                 'prime': p,
@@ -462,25 +462,25 @@ def prove_dR_all_cases(output_dir='proofs'):
             })
 
     # Resumen
-    print("\n{'='*70}")
+    print(f"\n{'='*70}")
     print("📊 RESUMEN DE (dR)")
-    print("{'='*70}")
+    print(f"{'='*70}")
 
     total = len(results)
     proved = sum(1 for r in results if r.get('dR_compatible', False))
     errors = sum(1 for r in results if r.get('status') == 'ERROR')
 
-    print("   Total de casos: {total}")
-    print("   Probados: {proved}/{total}")
-    print("   Errores: {errors}/{total}")
-    print("   Tasa de éxito: {proved/total*100:.1f}%")
+    print(f"   Total de casos: {total}")
+    print(f"   Probados: {proved}/{total}")
+    print(f"   Errores: {errors}/{total}")
+    print(f"   Tasa de éxito: {proved/total*100:.1f}%")
 
     if proved == total:
         print("\n   🎉 (dR) ES UN TEOREMA INCONDICIONAL ✅")
     else:
         print("\n   ⚠️ Algunos casos requieren revisión adicional")
 
-    print("{'='*70}\n")
+    print(f"{'='*70}\n")
 
     # Guardar certificados
     Path(output_dir).mkdir(exist_ok=True)
@@ -489,7 +489,7 @@ def prove_dR_all_cases(output_dir='proofs'):
     with open(output_file, 'w') as f:
         json.dump(results, f, indent=2, default=str)
 
-    print("💾 Certificados guardados en: {output_file}\n")
+    print(f"💾 Certificados guardados en: {output_file}\n")
 
     return results
 
@@ -499,13 +499,13 @@ if __name__ == "__main__":
     results = prove_dR_all_cases()
 
     # Estadísticas finales
-    print("\n{'#'*70}")
+    print(f"\n{'#'*70}")
     print("# CONCLUSIÓN")
-    print("{'#'*70}")
+    print(f"{'#'*70}")
     print("\nLa compatibilidad (dR) de Hodge p-ádica ha sido probada")
     print("constructivamente mediante:")
     print("  • Construcción explícita del mapa exponencial de Bloch-Kato")
     print("  • Verificación de aterrizaje en Fil⁰")
     print("  • Fórmulas de Fontaine-Perrin-Riou para todos los casos")
     print("\n(dR): CONJETURA → TEOREMA ✅")
-    print("{'#'*70}\n")
+    print(f"{'#'*70}\n")
