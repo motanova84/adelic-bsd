@@ -1,5 +1,5 @@
 -- Template para completar: emergence_formula_correct
--- Archivo original: Emergence.lean (línea 43)
+-- Archivo original: emergence_formula_correct_template.lean (línea 11)
 -- 
 -- TODO: Implementar la prueba
 

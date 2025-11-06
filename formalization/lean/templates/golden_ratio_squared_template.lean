@@ -1,5 +1,5 @@
 -- Template para completar: golden_ratio_squared
--- Archivo original: GoldenRatio.lean (línea 30)
+-- Archivo original: golden_ratio_squared_template.lean (línea 11)
 -- 
 -- TODO: Implementar la prueba
 
