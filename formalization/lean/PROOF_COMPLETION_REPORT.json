@@ -1,0 +1,163 @@
+{
+  "total_sorry": 18,
+  "files_affected": 2,
+  "by_file": {
+    "Zeta.lean": {
+      "count": 5,
+      "lines": [
+        12,
+        23,
+        30,
+        41,
+        51
+      ]
+    },
+    "Emergence.lean": {
+      "count": 13,
+      "lines": [
+        12,
+        28,
+        32,
+        33,
+        43,
+        44,
+        45,
+        46,
+        53,
+        54,
+        55,
+        62,
+        63
+      ]
+    }
+  },
+  "prioritized_locations": [
+    {
+      "priority": 1,
+      "file": "formalization/lean/F0Derivation/Zeta.lean",
+      "line": 12,
+      "theorem": null,
+      "context": "Contains `sorry` placeholders that need completion."
+    },
+    {
+      "priority": 2,
+      "file": "formalization/lean/F0Derivation/Zeta.lean",
+      "line": 23,
+      "theorem": null,
+      "context": "sorry  -- TODO: Implement sum over primes"
+    },
+    {
+      "priority": 3,
+      "file": "formalization/lean/F0Derivation/Zeta.lean",
+      "line": 30,
+      "theorem": "prime_series_convergence",
+      "context": "sorry  -- TODO: Complete proof using Weyl equidistribution"
+    },
+    {
+      "priority": 4,
+      "file": "formalization/lean/F0Derivation/Zeta.lean",
+      "line": 41,
+      "theorem": "zeta_prime_half_bounded",
+      "context": "sorry  -- TODO: Complete proof from analytic properties"
+    },
+    {
+      "priority": 5,
+      "file": "formalization/lean/F0Derivation/Zeta.lean",
+      "line": 51,
+      "theorem": "local_L_factor_nonvanishing",
+      "context": "sorry  -- TODO: Complete proof using local class field theory"
+    },
+    {
+      "priority": 6,
+      "file": "formalization/lean/F0Derivation/Emergence.lean",
+      "line": 12,
+      "theorem": null,
+      "context": "Core theorems have `sorry` placeholders requiring completion."
+    },
+    {
+      "priority": 7,
+      "file": "formalization/lean/F0Derivation/Emergence.lean",
+      "line": 28,
+      "theorem": "spectral_lattice_discrete",
+      "context": "x ≠ y → sorry  -- TODO: Define proper metric and separation"
+    },
+    {
+      "priority": 8,
+      "file": "formalization/lean/F0Derivation/Emergence.lean",
+      "line": 32,
+      "theorem": "spectral_lattice_cocompact",
+      "context": "∃ (K : ℝ), K > 0 ∧ sorry := by"
+    },
+    {
+      "priority": 9,
+      "file": "formalization/lean/F0Derivation/Emergence.lean",
+      "line": 33,
+      "theorem": "spectral_lattice_cocompact",
+      "context": "sorry  -- TODO: Complete proof using global class field theory"
+    },
+    {
+      "priority": 10,
+      "file": "formalization/lean/F0Derivation/Emergence.lean",
+      "line": 43,
+      "theorem": "sha_finiteness",
+      "context": "(h_dR : sorry)   -- TODO: Define de Rham compatibility"
+    },
+    {
+      "priority": 11,
+      "file": "formalization/lean/F0Derivation/Emergence.lean",
+      "line": 44,
+      "theorem": "sha_finiteness",
+      "context": "(h_PT : sorry) : -- TODO: Define Poincaré-Tate compatibility"
+    },
+    {
+      "priority": 12,
+      "file": "formalization/lean/F0Derivation/Emergence.lean",
+      "line": 45,
+      "theorem": "sha_finiteness",
+      "context": "sorry := by      -- TODO: State that Sha(E) is finite"
+    },
+    {
+      "priority": 13,
+      "file": "formalization/lean/F0Derivation/Emergence.lean",
+      "line": 46,
+      "theorem": "sha_finiteness",
+      "context": "sorry              -- TODO: Complete proof via spectral descent"
+    },
+    {
+      "priority": 14,
+      "file": "formalization/lean/F0Derivation/Emergence.lean",
+      "line": 53,
+      "theorem": "sha_bound_effective",
+      "context": "(h_conductor : sorry) : -- TODO: Define conductor condition"
+    },
+    {
+      "priority": 15,
+      "file": "formalization/lean/F0Derivation/Emergence.lean",
+      "line": 54,
+      "theorem": "sha_bound_effective",
+      "context": "∃ (B : ℕ), sorry := by  -- TODO: State bound #Sha ≤ B"
+    },
+    {
+      "priority": 16,
+      "file": "formalization/lean/F0Derivation/Emergence.lean",
+      "line": 55,
+      "theorem": "sha_bound_effective",
+      "context": "sorry  -- TODO: Compute explicit bound from local data"
+    },
+    {
+      "priority": 17,
+      "file": "formalization/lean/F0Derivation/Emergence.lean",
+      "line": 62,
+      "theorem": "local_to_global_bound",
+      "context": "sorry := by  -- TODO: State local contribution"
+    },
+    {
+      "priority": 18,
+      "file": "formalization/lean/F0Derivation/Emergence.lean",
+      "line": 63,
+      "theorem": "local_to_global_bound",
+      "context": "sorry        -- TODO: Prove using adelic formalism"
+    }
+  ],
+  "completion_percentage": 0
+}
