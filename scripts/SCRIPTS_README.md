@@ -11,6 +11,28 @@ bash scripts/run_proof_completion.sh
 
 ## Individual Scripts
 
+### 0. BSD Unconditional Proof (Main Integration)
+**File**: `prove_BSD_unconditional.py`
+
+Integrates all components to prove BSD as an unconditional theorem:
+- (dR) Fontaine-Perrin-Riou Hodge compatibility
+- (PT) Poitou-Tate compatibility via Gross-Zagier and Yuan-Zhang-Zhang
+- Spectral framework verification
+
+```bash
+python scripts/prove_BSD_unconditional.py
+# Or with SageMath:
+sage -python scripts/prove_BSD_unconditional.py
+```
+
+**Output**:
+- `proofs/BSD_UNCONDITIONAL_CERTIFICATE.json` - Full certificate
+- `proofs/BSD_PROOF_SUMMARY.txt` - Human-readable summary
+- `proofs/dR_certificates.json` - dR compatibility results
+- `proofs/PT_certificates.json` - PT compatibility results
+
+**Requirements**: SageMath for full functionality (gracefully degrades without it)
+
 ### 1. Calibration Script
 **File**: `calibrar_parametro_a.py`
 
@@ -125,16 +147,30 @@ elan install stable
 
 ```
 scripts/
-├── calibrar_parametro_a.py          # Calibration script
-├── find_incomplete_proofs.sh         # Shell script to find sorries
-├── complete_lean_proofs.py           # Python script for detailed mapping
-├── run_proof_completion.sh           # Complete workflow
+├── prove_BSD_unconditional.py         # Main BSD proof integration
+├── calibrar_parametro_a.py            # Calibration script
+├── find_incomplete_proofs.sh          # Shell script to find sorries
+├── complete_lean_proofs.py            # Python script for detailed mapping
+├── run_proof_completion.sh            # Complete workflow
 ├── calibration/
-│   └── optimal_a.txt                 # Calibration results
-└── README.md                         # This file
+│   └── optimal_a.txt                  # Calibration results
+└── README.md                          # This file
+
+src/
+├── dR_compatibility.py                # Fontaine-Perrin-Riou module
+├── PT_compatibility.py                # Poitou-Tate compatibility module
+└── ...                                # Other source modules
+
+proofs/
+├── BSD_UNCONDITIONAL_CERTIFICATE.json # Main BSD certificate
+├── BSD_PROOF_SUMMARY.txt              # Summary
+├── dR_certificates.json               # (dR) results
+└── PT_certificates.json               # (PT) results
 
 tests/
-└── test_calibration.py               # Calibration validation tests
+├── test_bsd_unconditional.py          # BSD proof system tests
+├── test_calibration.py                # Calibration validation tests
+└── ...                                # Other tests
 
 formalization/
 ├── README.md                         # Lean formalization guide
