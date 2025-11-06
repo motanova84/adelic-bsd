@@ -146,6 +146,14 @@ results/
 datasets/
 calibration/
 
+# Generated proofs and certificates
+proofs/*.json
+proofs/*.txt
+!proofs/.gitkeep
+verification/*.json
+verification/*.txt
+!verification/.gitkeep
+
 # Lean build artifacts
 formalization/lean/.lake/
 formalization/lean/lakefile.olean

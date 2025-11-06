@@ -1,0 +1,22 @@
+======================================================================
+PRUEBA INCONDICIONAL DE LA CONJETURA BSD
+======================================================================
+
+Autor: José Manuel Mota Burruezo (JMMB Ψ·∴)
+Fecha: 2025-11-06 13:15:58
+
+RESULTADO:
+  ⚠️ PRUEBA PARCIAL (requiere trabajo adicional)
+
+COMPONENTES:
+  (dR) Hodge: ⚠️ PARCIAL
+  (PT) Poitou-Tate: ⚠️ PARCIAL
+  Marco espectral: ⚠️ PARCIAL
+
+REFERENCIAS:
+  • Fontaine-Perrin-Riou (1995) - Cohomología p-ádica
+  • Gross-Zagier (1986) - Fórmula de altura (r=1)
+  • Yuan-Zhang-Zhang (2013) - Alturas BB (r≥2)
+  • Main manuscript - Marco espectral adélico
+
+======================================================================
