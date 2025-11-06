@@ -1,13 +1,17 @@
 """
 Prueba Constructiva de (PT) - Compatibilidad Poitou-Tate
 ========================================================
+Constructive Proof of (PT) - Poitou-Tate Compatibility
 
 Convierte (PT) de CONJETURA a TEOREMA mediante cálculo explícito
 de alturas Beilinson-Bloch para TODOS los rangos r≥0.
 
-Autor: José Manuel Mota Burruezo (JMMB Ψ·∴)
-Fecha: Enero 2025
-Referencia: Yuan-Zhang-Zhang (2013), Gross-Zagier (1986)
+Converts (PT) from CONJECTURE to THEOREM through explicit computation
+of Beilinson-Bloch heights for ALL ranks r≥0.
+
+Autor/Author: José Manuel Mota Burruezo (JMMB Ψ·∴)
+Fecha/Date: 2025
+Referencia/Reference: Yuan-Zhang-Zhang (2013), Gross-Zagier (1986)
 """
 
 from sage.all import EllipticCurve, factorial
@@ -18,20 +22,20 @@ from pathlib import Path
 
 class PTCompatibilityProver:
     """
-    Prueba (PT) constructivamente usando:
-    1. Fórmula de Gross-Zagier (r=1)
-    2. Extensión Yuan-Zhang-Zhang (r≥2)
-    3. Cálculo explícito de emparejamientos de altura
+    Prueba (PT) constructivamente usando / Proves (PT) constructively using:
+    1. Fórmula de Gross-Zagier (r=1) / Gross-Zagier formula (r=1)
+    2. Extensión Yuan-Zhang-Zhang (r≥2) / Yuan-Zhang-Zhang extension (r≥2)
+    3. Cálculo explícito de emparejamientos de altura / Explicit height pairing computation
     
-    Estado: CONVIERTE CONJETURA → TEOREMA
+    Estado / Status: CONVIERTE CONJETURA → TEOREMA / CONVERTS CONJECTURE → THEOREM
     """
     
     def __init__(self, E):
         """
-        Inicializa el probador de (PT)
+        Inicializa el probador de (PT) / Initialize the (PT) prover
         
         Args:
-            E: Curva elíptica (Sage EllipticCurve)
+            E: Curva elíptica (Sage EllipticCurve) / Elliptic curve (Sage EllipticCurve)
         """
         self.E = E
         self.rank = E.rank()
@@ -280,15 +284,15 @@ class PTCompatibilityProver:
     
     def prove_PT_compatibility(self):
         """
-        PRUEBA PRINCIPAL: (PT) es un TEOREMA
+        PRUEBA PRINCIPAL: (PT) es un TEOREMA / MAIN PROOF: (PT) is a THEOREM
         
-        Estrategia según rango:
+        Estrategia según rango / Strategy by rank:
         - r=0: Trivial
         - r=1: Gross-Zagier (1986)
-        - r≥2: Yuan-Zhang-Zhang (2013) + cálculo explícito
+        - r≥2: Yuan-Zhang-Zhang (2013) + cálculo explícito / explicit computation
         
         Returns:
-            dict: Certificado de prueba
+            dict: Certificado de prueba / Proof certificate
         """
         print(f"\n{'='*70}")
         print(f"🔬 PROBANDO (PT) - Compatibilidad Poitou-Tate")
@@ -415,13 +419,13 @@ class PTCompatibilityProver:
 
 def prove_PT_all_ranks(output_dir='proofs'):
     """
-    Probar (PT) para rangos r=0,1,2,3
+    Probar (PT) para rangos r=0,1,2,3 / Prove (PT) for ranks r=0,1,2,3
     
     Args:
-        output_dir: Directorio para guardar certificados
+        output_dir: Directorio para guardar certificados / Directory to save certificates
         
     Returns:
-        list: Lista de certificados de prueba
+        list: Lista de certificados de prueba / List of proof certificates
     """
     print(f"\n{'#'*70}")
     print(f"# PRUEBA EXHAUSTIVA DE (PT) - TODOS LOS RANGOS")
