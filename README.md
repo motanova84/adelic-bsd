@@ -468,6 +468,31 @@ sage -python examples/spectral_to_points_demo.py all
 - **Height Pairing**: Verification of ⟨·,·⟩_spec = ⟨·,·⟩_NT compatibility
 - **LMFDB Validation**: Large-scale testing across curve databases
 
+### 8. Lean 4 Formalization (NEW in v0.2.3)
+
+The framework now includes formal verification through Lean 4 proofs:
+
+```bash
+# Verify ζ'(1/2) with high precision
+python scripts/verify_zeta_prime.py --precision 50
+
+# Verify bounds used in Lean formalization
+python scripts/verify_zeta_prime.py --verify-bounds --lower 3.92 --upper 3.93
+
+# Compare with known sources (OEIS, Mathematica, SageMath)
+python scripts/verify_zeta_prime.py --compare-sources
+```
+
+**Key Features:**
+
+- **Lean 4 Formalization**: Complete proofs for numerical bounds on ζ'(1/2)
+- **Verification Script**: High-precision computation with arbitrary precision support
+- **Axiomatic Approach**: Properly justified numerical axioms with references
+- **Test Suite**: 10 comprehensive tests validating verification correctness
+- **Documentation**: Complete guide for formalization patterns
+
+**See**: [`formalization/README.md`](formalization/README.md) and [`LEAN_FORMALIZATION_SUMMARY.md`](LEAN_FORMALIZATION_SUMMARY.md) for detailed documentation.
+
 ---
 
 ## 🧪 Testing
@@ -559,6 +584,7 @@ algoritmo/
 │   ├── test_basic_functionality.py   # Unit tests with mocks (CI-safe, NEW)
 │   ├── test_ci_safe.py               # Mathematical tests without Sage (CI-safe, NEW)
 │   ├── test_spectral_cycles.py       # Spectral cycles tests (NEW)
+│   ├── test_zeta_prime_verification.py # Zeta verification tests (NEW)
 │   ├── test_advanced_modules.py      # Advanced BSD modules tests
 │   └── README.md                     # Testing guide
 ├── examples/                         # Example scripts & notebooks
@@ -566,7 +592,11 @@ algoritmo/
 │   ├── demo_notebook.ipynb           # Interactive Jupyter notebook
 │   └── spectral_to_points_demo.py    # Spectral→Points demo (NEW)
 ├── scripts/                          # Utility scripts
-│   └── generate_all_certificates.py  # Batch certificate generation
+│   ├── generate_all_certificates.py  # Batch certificate generation
+│   └── verify_zeta_prime.py          # ζ'(1/2) verification (NEW)
+├── formalization/                    # Lean 4 formalization (NEW)
+│   ├── lean/F0Derivation/Zeta.lean   # Zeta derivative bounds proof
+│   └── README.md                     # Formalization guide
 ├── docs/                             # Documentation
 │   ├── MANUAL.md                     # Technical usage guide
 │   └── BSD_FRAMEWORK.md              # Theoretical foundations & paper refs
@@ -607,6 +637,7 @@ Direct traceability between theoretical results and implementation:
 | Section 7 | Local data computation | Reduction type analysis |
 | Appendix F | (dR) compatibility | Bloch-Kato exponential and p-adic Hodge theory |
 | Appendix G | (PT) compatibility | Poitou-Tate pairing and Selmer groups |
+| ζ'(1/2) bounds | `formalization/lean/F0Derivation/Zeta.lean` | Lean 4 formal verification of numerical bounds |
 
 **Detailed Framework**: [`docs/BSD_FRAMEWORK.md`](docs/BSD_FRAMEWORK.md)
 
@@ -631,6 +662,8 @@ This work is part of a broader research program connecting three complementary d
 - **[USAGE.md](USAGE.md)** - Quick start guide
 - **[CONTRIBUTING.md](CONTRIBUTING.md)** - How to contribute
 - **[demo_notebook.ipynb](examples/demo_notebook.ipynb)** - Interactive examples
+- **[formalization/README.md](formalization/README.md)** - Lean 4 formalization guide (NEW)
+- **[LEAN_FORMALIZATION_SUMMARY.md](LEAN_FORMALIZATION_SUMMARY.md)** - Formalization implementation summary (NEW)
 
 ---
 
