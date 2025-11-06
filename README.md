@@ -290,11 +290,17 @@ def test_lean_formalization_compiles():
     """✅ Verificar que Lean compila sin errores"""
     assert lean_build_result.returncode == 0
 
-<<<<<<< HEAD
 def test_no_sorry_in_critical_proofs():
     """✅ Verificar ausencia de 'sorry' críticos en Lean"""
     assert sorry_count <= axiom_count
-=======
+```
+
+---
+
+## 🧮 Hardy-Littlewood & Spectral Algorithms
+
+### 6. Hardy-Littlewood Singular Series
+
 $$\mathfrak{S}(n) = \prod_{p>2} \left(1 - \frac{1}{(p-1)^2}\right) \prod_{\substack{p \mid n \\ p > 2}} \frac{p-1}{p-2}$$
 
 **Key Features:**
@@ -399,7 +405,6 @@ theorem f0_complete_derivation :
 #check f0_complete_derivation
 -- ✅ Prueba completa verificada formalmente
 ```
-<<<<<<< HEAD
 
 ### Estado de Formalización
 
@@ -550,54 +555,6 @@ jobs:
         run: pytest tests/ -v
       - name: Generar reporte
         run: python scripts/generate_proof_summary.py
-=======
-algoritmo/
-├── src/                              # Core package
-│   ├── __init__.py
-│   ├── spectral_finiteness.py        # Main algorithm implementation
-│   ├── spectral_cycles.py            # Spectral→Cycles→Points algorithms (NEW)
-│   ├── height_pairing.py             # Height pairing verification (NEW)
-│   └── lmfdb_verification.py         # Large-scale LMFDB validation (NEW)
-├── tests/                            # Test suite
-│   ├── test_finiteness.py            # Core finiteness tests
-│   ├── test_certificate_generation.py # Certificate validation tests
-│   ├── test_lmfdb_crosscheck.py      # LMFDB comparison tests
-│   ├── test_finiteness_basic.py      # Basic structural tests (CI-safe)
-│   ├── test_basic_functionality.py   # Unit tests with mocks (CI-safe, NEW)
-│   ├── test_ci_safe.py               # Mathematical tests without Sage (CI-safe, NEW)
-│   ├── test_spectral_cycles.py       # Spectral cycles tests (NEW)
-│   ├── test_zeta_prime_verification.py # Zeta verification tests (NEW)
-│   ├── test_advanced_modules.py      # Advanced BSD modules tests
-│   └── README.md                     # Testing guide
-├── examples/                         # Example scripts & notebooks
-│   ├── quick_demo.py                 # Quick demonstration script
-│   ├── demo_notebook.ipynb           # Interactive Jupyter notebook
-│   └── spectral_to_points_demo.py    # Spectral→Points demo (NEW)
-├── scripts/                          # Utility scripts
-│   ├── generate_all_certificates.py  # Batch certificate generation
-│   └── verify_zeta_prime.py          # ζ'(1/2) verification (NEW)
-├── formalization/                    # Lean 4 formalization (NEW)
-│   ├── lean/F0Derivation/Zeta.lean   # Zeta derivative bounds proof
-│   └── README.md                     # Formalization guide
-├── docs/                             # Documentation
-│   ├── MANUAL.md                     # Technical usage guide
-│   └── BSD_FRAMEWORK.md              # Theoretical foundations & paper refs
-├── .github/workflows/                # CI/CD
-│   ├── python-package-conda.yml      # GitHub Actions workflow (with SageMath)
-│   └── python-tests.yml              # CI-safe tests workflow (NEW)
-├── spectral_finiteness.py            # Standalone comprehensive demo
-├── setup_environment.py              # Environment setup script (NEW)
-├── environment.yml                   # Conda environment specification
-├── requirements.txt                  # Python dependencies
-├── requirements_ci.txt               # CI dependencies (without SageMath, NEW)
-├── setup.py                          # Package setup
-├── README.md                         # This file
-├── USAGE.md                          # Usage guide
-├── CONTRIBUTING.md                   # Contribution guidelines
-├── CHANGELOG.md                      # Version history
-└── LICENSE                           # MIT License
->>>>>>> 50cc90b626c5c052e0f9b1c59653d5c5daf9c92d
-```
 
 ---
 
@@ -614,12 +571,13 @@ algoritmo/
 
 ### Tutoriales
 
-<<<<<<< HEAD
 - **[Tutorial 1: Primera Curva](examples/tutorial_01_first_curve.ipynb)** - Analizar 11a1
 - **[Tutorial 2: Calibración](examples/tutorial_02_calibration.ipynb)** - Calibrar parámetros
 - **[Tutorial 3: Verificación](examples/tutorial_03_verification.ipynb)** - Verificar resultados
 - **[Tutorial 4: LMFDB](examples/tutorial_04_lmfdb.ipynb)** - Validación masiva
-=======
+
+### Paper→Code Traceability
+
 Direct traceability between theoretical results and implementation:
 
 | Manuscript Reference | Implementation | Description |
@@ -645,13 +603,10 @@ This work is part of a broader research program connecting three complementary d
 | Físico–experimental | [gw250114-141hz-analysis](https://github.com/OWNER/gw250114-141hz-analysis) | Validación empírica (141.7 Hz) | ✅ Observacional |
 
 **Note**: Each domain addresses different aspects of the unified spectral framework, combining arithmetic, geometric, and physical approaches to fundamental mathematical conjectures.
->>>>>>> 50cc90b626c5c052e0f9b1c59653d5c5daf9c92d
-
 ---
 
 ## 🤝 Contribución
 
-<<<<<<< HEAD
 ### ¿Cómo Contribuir?
 
 1. **Fork** el repositorio
@@ -669,7 +624,9 @@ This work is part of a broader research program connecting three complementary d
 - 🎨 **Visualización**: Gráficos, dashboards, interfaces
 
 **Ver**: [CONTRIBUTING.md](CONTRIBUTING.md) para guía completa
-=======
+
+### Enlaces de Documentación Adicional
+
 - **[MANUAL.md](docs/MANUAL.md)** - Complete technical guide with installation, usage, examples, and troubleshooting
 - **[BSD_FRAMEWORK.md](docs/BSD_FRAMEWORK.md)** - Theoretical foundations with explicit paper references
 - **[USAGE.md](USAGE.md)** - Quick start guide
@@ -677,8 +634,6 @@ This work is part of a broader research program connecting three complementary d
 - **[demo_notebook.ipynb](examples/demo_notebook.ipynb)** - Interactive examples
 - **[formalization/README.md](formalization/README.md)** - Lean 4 formalization guide (NEW)
 - **[LEAN_FORMALIZATION_SUMMARY.md](LEAN_FORMALIZATION_SUMMARY.md)** - Formalization implementation summary (NEW)
->>>>>>> 50cc90b626c5c052e0f9b1c59653d5c5daf9c92d
-
 ---
 
 ## 📄 Licencia
