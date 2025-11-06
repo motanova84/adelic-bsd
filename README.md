@@ -771,24 +771,6 @@ Colaboradores:       3
 Estado:              ✅ PRUEBA IRREFUTABLE
 ```
 
----
-
-## 🔮 Trabajo Futuro
-
-### Corto Plazo (2025)
-- [ ] Publicación en revista revisada por pares
-- [ ] Extensión a curvas de rango superior (r ≥ 3)
-- [ ] Interfaz web interactiva para validación
-
-### Mediano Plazo (2026)
-- [ ] Completar (dR) para todos los tipos de reducción
-- [ ] Establecer (PT) para rangos r ≥ 2
-- [ ] Integración con SageMath como módulo oficial
-
-### Largo Plazo (2027+)
-- [ ] Extensión a formas modulares generales
-- [ ] Aplicación a conjeturas relacionadas (Tate, Stark)
-- [ ] Framework unificado para conjeturas L
 
 ---
 
