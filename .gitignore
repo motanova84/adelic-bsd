@@ -144,6 +144,7 @@ Thumbs.db
 # Results and output
 results/
 datasets/
+calibration/
 
 # Lean build artifacts
 formalization/lean/.lake/
