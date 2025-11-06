@@ -9,7 +9,7 @@ import unittest
 import json
 from pathlib import Path
 
-# Configurar path
+# Configure path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 
 # Import the calibrator

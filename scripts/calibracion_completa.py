@@ -13,6 +13,11 @@ from pathlib import Path
 class CompleteCalibratorValidator:
     """Calibra y valida a con 3 métodos independientes"""
     
+    # Constants for optimization parameters
+    GAMMA_TARGET = 0.01  # Target gamma value for global search
+    PENALTY_WEIGHT = 100  # Penalty weight for gamma deviation
+    MONTE_CARLO_SAMPLES = 10000  # Number of Monte Carlo sampling iterations
+    
     def __init__(self):
         self.zeta_prime_half = -1.460354508
         self.methods = {
@@ -92,7 +97,7 @@ class CompleteCalibratorValidator:
                 return 1e10
             
             # Minimizar a + penalizar desviación de γ de target
-            return a + 100 * abs(gamma - 0.01)
+            return a + self.PENALTY_WEIGHT * abs(gamma - self.GAMMA_TARGET)
         
         bounds = [(1, 1000), (0.001, 0.15)]
         
@@ -120,7 +125,7 @@ class CompleteCalibratorValidator:
         valid_configs = []
         
         # Muestreo Monte Carlo
-        for _ in range(10000):
+        for _ in range(self.MONTE_CARLO_SAMPLES):
             a = np.random.uniform(1, 1000)
             delta = np.random.uniform(0.001, 0.15)
             
