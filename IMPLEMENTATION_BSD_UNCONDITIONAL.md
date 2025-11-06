@@ -46,7 +46,7 @@ This implementation adds a complete system for proving the Birch-Swinnerton-Dyer
 
 **Output**: `proofs/PT_certificates.json`
 
-### 3. `scripts/prove_BSD_unconditional.py` (432 lines)
+### 3. `scripts/prove_BSD_unconditional.py` (348 lines)
 
 **Purpose**: Main integration script that proves BSD unconditionally
 
