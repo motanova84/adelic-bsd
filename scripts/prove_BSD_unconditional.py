@@ -59,13 +59,13 @@ def verify_spectral_framework():
         with open('calibration/optimal_a.json') as f:
             calib_data = json.load(f)
             a_calibrated = calib_data['a_calibrated']
-    except:
+    except (FileNotFoundError, json.JSONDecodeError, KeyError):
         # Try root directory
         try:
             with open('calibration_report.json') as f:
                 calib_data = json.load(f)
                 a_calibrated = calib_data.get('a_optimal', 200.0)
-        except:
+        except (FileNotFoundError, json.JSONDecodeError):
             print("⚠️ Calibración no encontrada - usando a=200.0")
             a_calibrated = 200.0
     
