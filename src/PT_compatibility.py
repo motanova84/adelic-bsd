@@ -60,8 +60,6 @@ def compute_gross_zagier_height(E):
         if len(gens) == 0:
             return None
         
-        P = gens[0]
-        
         # Canonical height
         h_P = E.height_pairing_matrix()[0, 0]
         
