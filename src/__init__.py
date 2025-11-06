@@ -90,6 +90,15 @@ except ImportError:
     BlochKatoConditions = None
 
 try:
+    from .dR_compatibility import (
+        dRCompatibilityProver,
+        prove_dR_all_cases
+    )
+except ImportError:
+    dRCompatibilityProver = None
+    prove_dR_all_cases = None
+
+try:
     from .heights import (
         AdvancedSpectralHeightPairing,
         HeightComparison,
@@ -174,6 +183,9 @@ __all__ = [
     "MassVerification",
     "batch_prove_bsd",
     "CertificateGenerator",
+    # dR compatibility module (new)
+    "dRCompatibilityProver",
+    "prove_dR_all_cases"
     # PT Compatibility (new)
     "PTCompatibilityProver",
     "prove_PT_all_ranks"
