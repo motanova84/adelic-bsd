@@ -912,7 +912,7 @@ Para colaboraciones académicas, consultas técnicas o propuestas de investigaci
 
 ---
 
-## 🎉 Declaración Final
+## Declaración Final
 
 ### Estado de la Prueba: **IRREFUTABLE** ✅
 
