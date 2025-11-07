@@ -34,7 +34,15 @@ Fecha/Date: 2025
 Referencia/Reference: Yuan-Zhang-Zhang (2013), Gross-Zagier (1986)
 """
 
+import json
+from typing import Dict, Any
 from sage.rings.real_mpfr import RealField
+
+try:
+    from sage.schemes.elliptic_curves.constructor import EllipticCurve
+except ImportError:
+    # Fallback for environments without Sage
+    EllipticCurve = None
 
 
 class PTCompatibilityProver:

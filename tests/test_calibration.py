@@ -185,7 +185,9 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'scripts'))
 from calibrar_parametro_a import (
     compute_delta_star,
     compute_gamma,
-    validate_parameters
+    validate_parameters,
+    compute_spectral_bound,
+    find_optimal_a
 )
 
 
