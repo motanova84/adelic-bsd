@@ -107,7 +107,7 @@ class PAdicIntegrator:
             # q_p has valuation related to conductor
             q_p = self.p ** (-conductor_exp)
             return q_p
-        except:
+        except Exception:
             return 1
     
     def frobenius_matrix(self):
