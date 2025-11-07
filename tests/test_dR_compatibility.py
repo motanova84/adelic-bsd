@@ -8,9 +8,15 @@ Basic tests for (dR) compatibility.
 """
 
 import pytest
-from sage.schemes.elliptic_curves.constructor import EllipticCurve
+
+try:
+    from sage.schemes.elliptic_curves.constructor import EllipticCurve
+    SAGE_AVAILABLE = True
+except ImportError:
+    SAGE_AVAILABLE = False
 
 
+@pytest.mark.skipif(not SAGE_AVAILABLE, reason="SageMath not available")
 def test_basic_dR():
     """Test basic (dR) verification."""
     try:
@@ -22,6 +28,7 @@ def test_basic_dR():
         pytest.skip("dR_compatibility module not available")
 
 
+@pytest.mark.skipif(not SAGE_AVAILABLE, reason="SageMath not available")
 def test_dimension_computation():
     """Test dimension computation."""
     try:
@@ -33,6 +40,7 @@ def test_dimension_computation():
         pytest.skip("dR_compatibility module not available")
 
 
+@pytest.mark.skipif(not SAGE_AVAILABLE, reason="SageMath not available")
 def test_good_reduction():
     """Test good reduction case."""
     try:

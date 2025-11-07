@@ -7,9 +7,16 @@ Calibration Tests (Simplified)
 Basic tests for calibration without undefined functions.
 """
 
-from sage.schemes.elliptic_curves.constructor import EllipticCurve
+import pytest
+
+try:
+    from sage.schemes.elliptic_curves.constructor import EllipticCurve
+    SAGE_AVAILABLE = True
+except ImportError:
+    SAGE_AVAILABLE = False
 
 
+@pytest.mark.skipif(not SAGE_AVAILABLE, reason="SageMath not available")
 def test_basic_calibration():
     """Test basic calibration."""
     E = EllipticCurve('11a1')
@@ -30,6 +37,7 @@ def test_spectral_parameter_valid():
     assert 100 < a < 300
 
 
+@pytest.mark.skipif(not SAGE_AVAILABLE, reason="SageMath not available")
 def test_multiple_curves():
     """Test consistency across curves."""
     curves = ['11a1', '37a1', '389a1']
