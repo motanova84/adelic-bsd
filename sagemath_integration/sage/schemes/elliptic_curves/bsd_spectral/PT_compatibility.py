@@ -68,7 +68,7 @@ def compute_gross_zagier_height(E):
         H = E.height_pairing_matrix()
         h_P = float(H[0, 0])
         return h_P
-    except:
+    except (ValueError, ArithmeticError, AttributeError, TypeError):
         return None
 
 
@@ -119,7 +119,7 @@ def compute_yzz_height(E):
             regulator = float(E.regulator())
 
         return abs(regulator)
-    except:
+    except (ValueError, ArithmeticError, AttributeError, TypeError):
         return None
 
 
@@ -192,11 +192,16 @@ def verify_PT_compatibility(E):
     if h_algebraic is None:
         h_algebraic = 0.0
         compatible = False
+    # Get curve label safely
+    try:
+        curve_label = E.label() if hasattr(E, 'label') else str(E)
+    except (ValueError, ArithmeticError, AttributeError):
+        curve_label = str(E)
 
     return {
         'PT_compatible': compatible,
         'rank': int(rank),
         'height_algebraic': float(h_algebraic),
         'method': method,
-        'curve': E.label() if hasattr(E, 'label') else str(E)
+        'curve': curve_label
     }
