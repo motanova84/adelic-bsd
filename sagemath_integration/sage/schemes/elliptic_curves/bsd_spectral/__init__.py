@@ -57,11 +57,18 @@ lazy_import('sage.schemes.elliptic_curves.bsd_spectral.dR_compatibility',
             ['verify_dR_compatibility', 'prove_dR_all_cases'])
 lazy_import('sage.schemes.elliptic_curves.bsd_spectral.PT_compatibility',
             ['verify_PT_compatibility', 'prove_PT_all_ranks'])
+lazy_import('sage.schemes.elliptic_curves.bsd_spectral.complete_compatibility_extension',
+            ['CompleteDRCompatibility', 'CompletePTCompatibility',
+             'verify_dR_complete', 'verify_PT_complete'])
 
 __all__ = [
     'SpectralFinitenessProver',
     'verify_dR_compatibility',
     'prove_dR_all_cases',
     'verify_PT_compatibility',
-    'prove_PT_all_ranks'
+    'prove_PT_all_ranks',
+    'CompleteDRCompatibility',
+    'CompletePTCompatibility',
+    'verify_dR_complete',
+    'verify_PT_complete'
 ]

@@ -29,10 +29,21 @@ from sage.schemes.elliptic_curves.bsd_spectral.PT_compatibility import (
     prove_PT_all_ranks
 )
 
+from sage.schemes.elliptic_curves.bsd_spectral.complete_compatibility_extension import (
+    CompleteDRCompatibility,
+    CompletePTCompatibility,
+    verify_dR_complete,
+    verify_PT_complete
+)
+
 __all__ = [
     'SpectralFinitenessProver',
     'verify_dR_compatibility',
     'prove_dR_all_cases',
     'verify_PT_compatibility',
-    'prove_PT_all_ranks'
+    'prove_PT_all_ranks',
+    'CompleteDRCompatibility',
+    'CompletePTCompatibility',
+    'verify_dR_complete',
+    'verify_PT_complete'
 ]
