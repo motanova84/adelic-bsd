@@ -151,3 +151,6 @@ formalization/lean/.lake/
 formalization/lean/lakefile.olean
 formalization/lean/build/
 formalization/lean/lean_packages/
+
+# SageMath integration directory (generated)
+sagemath_integration/
