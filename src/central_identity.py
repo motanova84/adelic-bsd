@@ -18,7 +18,7 @@ Key Components:
 Estado de la Prueba:
 -------------------
 - Caso r=0,1: PRUEBA INCONDICIONAL ✅ (Teorema 5.3)
-- Caso r≥2: Reducción a (dR) + (PT) ✅ (Teorema 5.7)
+- Caso r>=2: Reducción a (dR) + (PT) ✅ (Teorema 5.7)
 
 Referencias:
 -----------
@@ -395,9 +395,9 @@ class CentralIdentity:
                 else:
                     # L(E,1) = 0 cuando rank > 0
                     l_value = 0.0
-                    # Para derivada: L^(r)(E,1) ≠ 0
+                    # Para derivada: L^(r)(E,1) != 0
             else:
-                # Evaluar en s ≠ 1
+                # Evaluar en s != 1
                 l_value = float(self.E.lseries().dokchitser()(self.s))
         except Exception as e:
             l_evaluation_failed = True
@@ -447,7 +447,7 @@ class CentralIdentity:
         
         Propiedades clave:
         - c(s) holomorfo cerca de s=1
-        - c(1) ≠ 0 (NON-VANISHING crítico)
+        - c(1) != 0 (NON-VANISHING crítico)
         """
         # c(s) es producto de factores locales c_p(s)
         c_value = 1.0
@@ -458,11 +458,11 @@ class CentralIdentity:
             c_value *= c_p['value']
             local_c_factors[p] = c_p
         
-        # Verificar c(1) ≠ 0
+        # Verificar c(1) != 0
         non_vanishing = abs(c_value) > 1e-10
         
         print(f"   ✓ c({self.s}) = {c_value:.6f}")
-        print(f"   ✓ c({self.s}) ≠ 0: {non_vanishing}")
+        print(f"   ✓ c({self.s}) != 0: {non_vanishing}")
         
         return {
             'value': c_value,
@@ -567,7 +567,7 @@ class CentralIdentity:
         print(f"   c({self.s}) · L(E, {self.s}) = {rhs_val:.6f}")
         
         print(f"\n✅ Identidad verificada: {result['identity_verified']}")
-        print(f"✅ c({self.s}) ≠ 0: {result['c_factor']['non_vanishing']}")
+        print(f"✅ c({self.s}) != 0: {result['c_factor']['non_vanishing']}")
         
         vo = result['vanishing_order']
         print(f"\n📈 Orden de anulación:")

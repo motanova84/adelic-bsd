@@ -1,10 +1,10 @@
 """
 Beilinson-Bloch Heights Module
-Implements regulatory height pairings for ranks ≥ 2
+Implements regulatory height pairings for ranks >= 2
 
 This module provides height pairings ⟨·,·⟩_BB following the Beilinson-Bloch
 construction for higher Chow cycles, enabling verification of Poitou-Tate
-compatibility (PT) for ranks r ≥ 2.
+compatibility (PT) for ranks r >= 2.
 
 References:
 - Beilinson, A. A. (1985): Higher regulators and values of L-functions
@@ -368,7 +368,7 @@ def batch_verify_beilinson_bloch(curves: List, max_rank: int = 2) -> Dict[str, A
     
     Args:
         curves: List of elliptic curves (labels or objects)
-        max_rank: Maximum rank to test (default 2 for r≥2 verification)
+        max_rank: Maximum rank to test (default 2 for r>=2 verification)
         
     Returns:
         Dictionary with batch verification results
@@ -426,7 +426,7 @@ def batch_verify_beilinson_bloch(curves: List, max_rank: int = 2) -> Dict[str, A
 
 def find_high_rank_curves(conductor_limit: int = 500, target_rank: int = 2) -> List[str]:
     """
-    Find elliptic curves with rank ≥ target_rank.
+    Find elliptic curves with rank >= target_rank.
     
     Args:
         conductor_limit: Maximum conductor to search

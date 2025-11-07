@@ -1,10 +1,10 @@
 # src/PT_compatibility_extended.py
 
 """
-Extensión de (PT) para rangos altos r ≥ 2
+Extensión de (PT) para rangos altos r >= 2
 usando alturas de Beilinson-Bloch generalizadas
 
-Extension of (PT) for high ranks r ≥ 2
+Extension of (PT) for high ranks r >= 2
 using generalized Beilinson-Bloch heights
 """
 
@@ -17,14 +17,14 @@ from pathlib import Path
 
 class ExtendedPTCompatibility(PTCompatibilityProver):
     """
-    Extensión para rangos r ≥ 2 usando:
+    Extensión para rangos r >= 2 usando:
     - Yuan-Zhang-Zhang (r=2,3)
-    - Generalización vía Beilinson-Bloch (r≥4)
+    - Generalización vía Beilinson-Bloch (r>=4)
     """
     
     def compute_height_matrix_large_rank(self):
         """
-        Para r ≥ 2, calcular matriz de Gram completa
+        Para r >= 2, calcular matriz de Gram completa
         con verificación de no-degeneración
         """
         gens = self.E.gens()
@@ -63,7 +63,7 @@ class ExtendedPTCompatibility(PTCompatibilityProver):
     
     def verify_BSD_formula_high_rank(self):
         """
-        Verificar fórmula BSD para r ≥ 2:
+        Verificar fórmula BSD para r >= 2:
         
         L^(r)(E,1) / r! = Reg(E) × #Ш × ∏c_p × Ω / #tors²
         """
@@ -113,7 +113,7 @@ class ExtendedPTCompatibility(PTCompatibilityProver):
     
     def prove_PT_high_ranks(self):
         """
-        PRUEBA EXTENDIDA: (PT) para r ≥ 2
+        PRUEBA EXTENDIDA: (PT) para r >= 2
         """
         if self.rank < 2:
             return self.prove_PT_compatibility()

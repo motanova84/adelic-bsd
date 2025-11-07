@@ -359,7 +359,7 @@ class CorrectionFactors:
         Compute local correction factor c_p(s) at prime p
         
         This factor ensures that the spectral identity holds locally.
-        The key property (Theorem 6.1) is that c_p(1) ≠ 0 for all primes p.
+        The key property (Theorem 6.1) is that c_p(1) != 0 for all primes p.
         
         Args:
             p: Prime number
@@ -416,7 +416,7 @@ class CorrectionFactors:
         Compute correction factor for additive reduction
         
         Uses Kodaira-Néron theory. The correction involves the
-        conductor exponent and ensures c_p(1) ≠ 0.
+        conductor exponent and ensures c_p(1) != 0.
         
         Args:
             p: Prime with additive reduction
@@ -472,14 +472,14 @@ class CorrectionFactors:
     
     def verify_non_vanishing_theorem(self):
         """
-        Verify Theorem 6.1: c_p(1) ≠ 0 for all primes p
+        Verify Theorem 6.1: c_p(1) != 0 for all primes p
         
         Returns:
             dict: Verification results
         """
         verification = {
             'theorem': 'Local Non-Vanishing (Theorem 6.1)',
-            'statement': 'c_p(1) ≠ 0 for all primes p',
+            'statement': 'c_p(1) != 0 for all primes p',
             'primes_checked': [],
             'all_non_vanishing': True
         }
