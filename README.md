@@ -708,7 +708,7 @@ Ver [LICENSE](LICENSE) para detalles completos.
 - 🏛️ Instituto Consciencia Cuántica
 - 📧 institutoconsciencia@proton.me
 - 🐙 GitHub: [@motanova84](https://github.com/motanova84)
-- 🔗 ORCID: [En proceso]
+- 🔗 ORCID:  https://orcid.org/0009-0002-1923-0773
 
 ### Colaboración Académica
 
@@ -718,7 +718,7 @@ Para colaboraciones académicas, consultas técnicas o propuestas de investigaci
 
 ---
 
-## 🎉 Declaración Final
+##  Declaración Final
 
 ### Estado de la Prueba: **IRREFUTABLE** ✅
 
