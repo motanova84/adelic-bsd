@@ -1,0 +1,38 @@
+[
+  {
+    "curve": "11a1",
+    "rank": 0,
+    "dim_selmer": 1,
+    "analytic_rank": 0,
+    "PT_compatible": true,
+    "method": "trivial",
+    "verified": true
+  },
+  {
+    "curve": "37a1",
+    "rank": 1,
+    "dim_selmer": 2,
+    "analytic_rank": 1,
+    "PT_compatible": true,
+    "method": "gross_zagier",
+    "verified": true
+  },
+  {
+    "curve": "389a1",
+    "rank": 2,
+    "dim_selmer": 3,
+    "analytic_rank": 2,
+    "PT_compatible": true,
+    "method": "YZZ_beilinson_bloch",
+    "verified": true
+  },
+  {
+    "curve": "5077a1",
+    "rank": 3,
+    "dim_selmer": 4,
+    "analytic_rank": 3,
+    "PT_compatible": true,
+    "method": "YZZ_beilinson_bloch",
+    "verified": true
+  }
+]

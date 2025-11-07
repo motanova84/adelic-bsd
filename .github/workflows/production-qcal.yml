@@ -1,0 +1,71 @@
+name: QCAL Production Cycle
+
+on:
+  schedule:
+    - cron: "0 */4 * * *"       # cada 4 h
+  workflow_dispatch:
+
+jobs:
+  build-validate-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    
+    steps:
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11  # v4.1.1
+
+      - name: Set up Python
+        uses: actions/setup-python@82c7e631bb3cdc910f68e0081d67478d79c6982d  # v5.1.0
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install deps
+        run: pip install -r requirements.txt
+        env:
+          # Ensure pip uses workspace for cache to avoid permission issues
+          PIP_CACHE_DIR: ${{ github.workspace }}/.pip-cache
+
+      - name: Validate core
+        run: python3 validate_v5_coronacion.py --precision 30
+        env:
+          # Ensure any file writes go to workspace
+          PYTHONUSERBASE: ${{ github.workspace }}/.local
+
+      - name: Aggregate results
+        run: python3 scripts/aggregate_results.py
+        env:
+          # Ensure any file writes go to workspace
+          PYTHONUSERBASE: ${{ github.workspace }}/.local
+
+      - name: Publish dataset
+        if: github.event_name == 'schedule'
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          if [ -n "$HF_TOKEN" ]; then
+            pip install huggingface_hub
+            # Create datasets directory if it doesn't exist
+            mkdir -p datasets
+            # Upload results directory to HuggingFace
+            huggingface-cli upload results/ --repo motanova84/qcal-cloud || echo "⚠️ HuggingFace upload failed"
+          else
+            echo "⚠️ HF_TOKEN not set, skipping dataset upload"
+          fi
+
+      - name: Build Docker image
+        run: docker build -t qcal/production:${{ github.run_number }} .
+
+      - name: Push image to registry
+        if: github.event_name == 'schedule'
+        env:
+          DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+        run: |
+          if [ -n "$DOCKERHUB_TOKEN" ] && [ -n "$DOCKERHUB_USERNAME" ]; then
+            echo "$DOCKERHUB_TOKEN" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+            docker push qcal/production:${{ github.run_number }} || echo "⚠️ Docker push failed"
+          else
+            echo "⚠️ Docker credentials not set, skipping image push"
+          fi

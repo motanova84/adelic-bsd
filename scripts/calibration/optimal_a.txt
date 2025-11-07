@@ -1,0 +1,4 @@
+recommended_a=200.0
+min_valid_a=129.6296
+delta_star=0.048460
+gamma=0.012320
