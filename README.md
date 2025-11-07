@@ -293,6 +293,14 @@ def test_lean_formalization_compiles():
 def test_no_sorry_in_critical_proofs():
     """✅ Verificar ausencia de 'sorry' críticos en Lean"""
     assert sorry_count <= axiom_count
+```
+
+---
+
+## 🧮 Hardy-Littlewood & Spectral Algorithms
+
+### 6. Hardy-Littlewood Singular Series
+
 $$\mathfrak{S}(n) = \prod_{p>2} \left(1 - \frac{1}{(p-1)^2}\right) \prod_{\substack{p \mid n \\ p > 2}} \frac{p-1}{p-2}$$
 
 **Key Features:**
@@ -613,6 +621,9 @@ algoritmo/
 - **[Tutorial 2: Calibración](examples/tutorial_02_calibration.ipynb)** - Calibrar parámetros
 - **[Tutorial 3: Verificación](examples/tutorial_03_verification.ipynb)** - Verificar resultados
 - **[Tutorial 4: LMFDB](examples/tutorial_04_lmfdb.ipynb)** - Validación masiva
+
+### Paper→Code Traceability
+
 Direct traceability between theoretical results and implementation:
 
 | Manuscript Reference | Implementation | Description |
@@ -660,6 +671,9 @@ This work is part of a broader research program connecting three complementary d
 - 🎨 **Visualización**: Gráficos, dashboards, interfaces
 
 **Ver**: [CONTRIBUTING.md](CONTRIBUTING.md) para guía completa
+
+### Enlaces de Documentación Adicional
+
 - **[MANUAL.md](docs/MANUAL.md)** - Complete technical guide with installation, usage, examples, and troubleshooting
 - **[BSD_FRAMEWORK.md](docs/BSD_FRAMEWORK.md)** - Theoretical foundations with explicit paper references
 - **[USAGE.md](USAGE.md)** - Quick start guide
