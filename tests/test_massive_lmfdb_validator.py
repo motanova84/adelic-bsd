@@ -13,7 +13,8 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 @pytest.mark.basic
 def test_massive_validator_module_exists():
     """Test that massive_lmfdb_validator.py module exists"""
-    module_path = Path(__file__).parent.parent / 'sagemath_integration' / 'sage' / 'schemes' / 'elliptic_curves' / 'bsd_spectral' / 'massive_lmfdb_validator.py'
+    module_path = (Path(__file__).parent.parent / 'sagemath_integration' / 'sage' /
+                   'schemes' / 'elliptic_curves' / 'bsd_spectral' / 'massive_lmfdb_validator.py')
     assert module_path.exists(), "massive_lmfdb_validator.py module not found"
     print("✓ massive_lmfdb_validator.py module exists")
 
@@ -24,7 +25,8 @@ def test_massive_validator_imports():
     try:
         # Try importing without Sage
         import importlib.util
-        module_path = Path(__file__).parent.parent / 'sagemath_integration' / 'sage' / 'schemes' / 'elliptic_curves' / 'bsd_spectral' / 'massive_lmfdb_validator.py'
+        module_path = (Path(__file__).parent.parent / 'sagemath_integration' / 'sage' /
+                       'schemes' / 'elliptic_curves' / 'bsd_spectral' / 'massive_lmfdb_validator.py')
         spec = importlib.util.spec_from_file_location("massive_lmfdb_validator", module_path)
         # Just check the file can be loaded
         assert spec is not None, "Could not load module spec"
@@ -66,7 +68,7 @@ def test_validator_initialization():
         import sys
         sys.path.insert(0, str(Path(__file__).parent.parent / 'sagemath_integration'))
         from sage.schemes.elliptic_curves.bsd_spectral.massive_lmfdb_validator import MassiveLMFDBValidator
-        
+
         validator = MassiveLMFDBValidator(sample_size=10)
         assert validator._sample_size == 10
         assert validator._conductor_max == 500000
@@ -84,7 +86,7 @@ def test_validator_custom_initialization():
         import sys
         sys.path.insert(0, str(Path(__file__).parent.parent / 'sagemath_integration'))
         from sage.schemes.elliptic_curves.bsd_spectral.massive_lmfdb_validator import MassiveLMFDBValidator
-        
+
         validator = MassiveLMFDBValidator(
             sample_size=50,
             conductor_max=100000,
@@ -109,7 +111,7 @@ def test_validator_repr():
         import sys
         sys.path.insert(0, str(Path(__file__).parent.parent / 'sagemath_integration'))
         from sage.schemes.elliptic_curves.bsd_spectral.massive_lmfdb_validator import MassiveLMFDBValidator
-        
+
         validator = MassiveLMFDBValidator(sample_size=100)
         repr_str = validator._repr_()
         assert 'sample=100' in repr_str
@@ -127,15 +129,15 @@ def test_validate_single_curve():
         import sys
         sys.path.insert(0, str(Path(__file__).parent.parent / 'sagemath_integration'))
         from sage.schemes.elliptic_curves.bsd_spectral.massive_lmfdb_validator import MassiveLMFDBValidator
-        
+
         # Test on a simple curve
         result = MassiveLMFDBValidator._validate_single_curve('11a1')
-        
+
         # Check that result has expected structure
         assert 'label' in result
         assert 'success' in result
         assert 'timestamp' in result
-        
+
         # If successful, check additional fields
         if result.get('success', False):
             assert 'conductor' in result
@@ -148,7 +150,7 @@ def test_validate_single_curve():
         else:
             # If failed, check for error
             print(f"⚠ Single curve validation failed (may be expected): {result.get('error', 'Unknown error')}")
-        
+
     except ImportError as e:
         pytest.skip(f"SageMath not available: {e}")
 
@@ -161,10 +163,10 @@ def test_get_lmfdb_sample():
         import sys
         sys.path.insert(0, str(Path(__file__).parent.parent / 'sagemath_integration'))
         from sage.schemes.elliptic_curves.bsd_spectral.massive_lmfdb_validator import MassiveLMFDBValidator
-        
+
         validator = MassiveLMFDBValidator(sample_size=20, conductor_max=1000, ranks=[0, 1])
         labels = validator._get_lmfdb_sample()
-        
+
         # Check that we got some labels
         assert isinstance(labels, list)
         assert len(labels) > 0
@@ -186,7 +188,7 @@ def test_run_validation_small():
         import shutil
         sys.path.insert(0, str(Path(__file__).parent.parent / 'sagemath_integration'))
         from sage.schemes.elliptic_curves.bsd_spectral.massive_lmfdb_validator import MassiveLMFDBValidator
-        
+
         # Use a very small sample and low conductor to keep test fast
         output_dir = 'test_validation_output'
         validator = MassiveLMFDBValidator(
@@ -196,10 +198,10 @@ def test_run_validation_small():
             n_processes=1,
             output_dir=output_dir
         )
-        
+
         # Run validation (non-parallel for deterministic testing)
         results = validator.run_validation(parallel=False)
-        
+
         # Check that results have expected structure
         assert 'total_curves' in results
         assert 'successes' in results
@@ -208,16 +210,16 @@ def test_run_validation_small():
         assert 'by_rank' in results
         assert 'confidence' in results
         assert 'gamma' in results
-        
+
         print(f"✓ Small validation completed: {results['total_curves']} curves tested")
         print(f"  Success rate: {results['success_rate']:.2%}")
-        
+
         # Cleanup
         try:
             shutil.rmtree(output_dir)
         except:
             pass
-            
+
     except ImportError as e:
         pytest.skip(f"SageMath not available: {e}")
     except Exception as e:
@@ -234,7 +236,7 @@ def test_generate_reports():
         import shutil
         sys.path.insert(0, str(Path(__file__).parent.parent / 'sagemath_integration'))
         from sage.schemes.elliptic_curves.bsd_spectral.massive_lmfdb_validator import MassiveLMFDBValidator
-        
+
         # Use a very small sample
         output_dir = 'test_reports_output'
         validator = MassiveLMFDBValidator(
@@ -244,27 +246,27 @@ def test_generate_reports():
             n_processes=1,
             output_dir=output_dir
         )
-        
+
         # Run validation
         validator.run_validation(parallel=False)
-        
+
         # Generate reports
         validator.generate_reports()
-        
+
         # Check that report files were created
         output_path = Path(output_dir)
         assert (output_path / 'validation_table.tex').exists()
         assert (output_path / 'validation_plots.png').exists()
         assert (output_path / 'validation_report.txt').exists()
-        
+
         print("✓ Reports generated successfully")
-        
+
         # Cleanup
         try:
             shutil.rmtree(output_dir)
         except:
             pass
-            
+
     except ImportError as e:
         pytest.skip(f"SageMath not available: {e}")
     except Exception as e:
@@ -279,7 +281,7 @@ def test_all_py_includes_validator():
         import sys
         sys.path.insert(0, str(Path(__file__).parent.parent / 'sagemath_integration'))
         from sage.schemes.elliptic_curves.bsd_spectral.all import MassiveLMFDBValidator, run_massive_validation
-        
+
         assert MassiveLMFDBValidator is not None
         assert run_massive_validation is not None
         print("✓ Validator is exported in all.py")
