@@ -37,6 +37,21 @@ This directory contains comprehensive documentation for the Spectral BSD Framewo
 
 ---
 
+### [HPC_SOLVER.md](HPC_SOLVER.md)
+**High-Performance Computing framework** - Conceptual documentation for quantum many-body physics simulations.
+
+**Contents**:
+- Exact Diagonalization method for quantum systems
+- GPU acceleration with CUDA/cuBLAS/cuSOLVER
+- Technical architecture and components
+- Performance benchmarks and scalability
+- Python/C++ integration patterns
+- Docker and reproducibility framework
+
+**Audience**: HPC researchers, computational physicists, and anyone interested in GPU-accelerated quantum simulations
+
+---
+
 ## 🔗 Quick Links
 
 - **Installation**: See [MANUAL.md#installation](MANUAL.md#installation)
