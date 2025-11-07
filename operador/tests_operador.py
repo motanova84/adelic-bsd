@@ -1,5 +1,4 @@
 import numpy as np
-import pytest
 from operador_H import build_R_matrix, spectrum_from_R, fourier_eigs_H
 
 def test_symmetry_R():
