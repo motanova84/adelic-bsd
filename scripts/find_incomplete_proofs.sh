@@ -1,0 +1,82 @@
+#!/bin/bash
+
+# Script para encontrar pruebas incompletas en archivos Lean
+# Author: José Manuel Mota Burruezo (JMMB Ψ · ∴)
+# Date: November 2025
+
+echo "╔════════════════════════════════════════════════════════╗"
+echo "║  BUSCANDO PRUEBAS INCOMPLETAS EN LEAN 4                ║"
+echo "║  Framework Espectral Adelico                           ║"
+echo "╚════════════════════════════════════════════════════════╝"
+# Script para encontrar pruebas incompletas (sorry) en Lean 4
+
+echo "🔍 Buscando pruebas incompletas (sorry) en Lean 4..."
+echo ""
+
+LEAN_DIR="formalization/lean"
+
+if [ ! -d "$LEAN_DIR" ]; then
+    echo "⚠️  Directorio $LEAN_DIR no encontrado"
+    exit 1
+fi
+
+echo "🔍 Buscando archivos .lean en $LEAN_DIR..."
+echo ""
+
+# Contar total de sorries
+TOTAL_SORRIES=$(find "$LEAN_DIR" -name "*.lean" -exec grep -c "sorry" {} + 2>/dev/null | awk '{s+=$1} END {print s}')
+
+if [ -z "$TOTAL_SORRIES" ] || [ "$TOTAL_SORRIES" -eq 0 ]; then
+    echo "✅ No se encontraron pruebas incompletas (sorry)"
+    exit 0
+fi
+
+echo "📊 Total de 'sorry' encontrados: $TOTAL_SORRIES"
+echo ""
+echo "════════════════════════════════════════════════════════"
+echo "PRUEBAS INCOMPLETAS POR ARCHIVO:"
+echo "════════════════════════════════════════════════════════"
+
+# Listar sorries por archivo
+find "$LEAN_DIR" -name "*.lean" | while read -r file; do
+    SORRY_COUNT=$(grep -c "sorry" "$file" 2>/dev/null || echo 0)
+    
+    if [ "$SORRY_COUNT" -gt 0 ]; then
+        echo ""
+        echo "📄 $(basename "$file"): $SORRY_COUNT prueba(s) pendiente(s)"
+        
+        # Mostrar líneas con sorry
+        grep -n "sorry" "$file" | while IFS=: read -r line_num line_content; do
+            echo "   Línea $line_num: ${line_content:0:60}..."
+        done
+    fi
+done
+
+echo ""
+echo "════════════════════════════════════════════════════════"
+echo "💡 Para mapeo detallado, ejecuta:"
+echo "   python3 scripts/complete_lean_proofs.py"
+echo "════════════════════════════════════════════════════════"
+# Buscar todos los sorry
+echo "📋 Archivos con 'sorry' encontrados:"
+echo ""
+
+TOTAL=0
+while IFS= read -r line; do
+    echo "⚠️  $line"
+    ((TOTAL++))
+done < <(grep -rn "sorry" "$LEAN_DIR" --include="*.lean")
+
+echo ""
+echo "📊 Total de 'sorry' encontrados: $TOTAL"
+
+if [ $TOTAL -eq 0 ]; then
+    echo ""
+    echo "✅ ¡No hay pruebas incompletas! Todas las formalizaciones están completas."
+    exit 0
+else
+    echo ""
+    echo "💡 Recomendación: Completar las pruebas marcadas con 'sorry'"
+    echo "   Ver: scripts/complete_lean_proofs.py para guía de completación"
+    exit 0
+fi
