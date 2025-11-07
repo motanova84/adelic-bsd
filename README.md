@@ -610,6 +610,7 @@ algoritmo/
 
 - **[QUICKSTART.md](QUICKSTART.md)** - Inicio rápido (5 minutos)
 - **[docs/BSD_FRAMEWORK.md](docs/BSD_FRAMEWORK.md)** - Fundamentos teóricos completos
+- **[docs/CENTRAL_IDENTITY.md](docs/CENTRAL_IDENTITY.md)** - Identidad Central: det(I - M_E(s)) = c(s)·L(E,s)
 - **[CALIBRATION_GUIDE.md](docs/CALIBRATION_GUIDE.md)** - Guía de calibración
 - **[VERIFICATION_GUIDE.md](docs/VERIFICATION_GUIDE.md)** - Guía de verificación
 - **[LEAN_FORMALIZATION.md](docs/LEAN_FORMALIZATION.md)** - Detalles de Lean 4
@@ -679,6 +680,7 @@ This work is part of a broader research program connecting three complementary d
 - **[USAGE.md](USAGE.md)** - Quick start guide
 - **[CONTRIBUTING.md](CONTRIBUTING.md)** - How to contribute
 - **[demo_notebook.ipynb](examples/demo_notebook.ipynb)** - Interactive examples
+- **[central_identity_demo.py](examples/central_identity_demo.py)** - Central Identity demonstration (NEW)
 - **[formalization/README.md](formalization/README.md)** - Lean 4 formalization guide (NEW)
 - **[LEAN_FORMALIZATION_SUMMARY.md](LEAN_FORMALIZATION_SUMMARY.md)** - Formalization implementation summary (NEW)
 
