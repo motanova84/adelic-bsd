@@ -91,12 +91,14 @@ except ImportError:
 
 try:
     from .dR_compatibility import (
-        dRCompatibilityProver,
-        prove_dR_all_cases
+        compute_h1f_dimension,
+        compute_dR_dimension,
+        verify_dR_compatibility
     )
 except ImportError:
-    dRCompatibilityProver = None
-    prove_dR_all_cases = None
+    compute_h1f_dimension = None
+    compute_dR_dimension = None
+    verify_dR_compatibility = None
 
 try:
     from .heights import (
@@ -193,8 +195,9 @@ __all__ = [
     "batch_prove_bsd",
     "CertificateGenerator",
     # dR compatibility module
-    "dRCompatibilityProver",
-    "prove_dR_all_cases",
+    "compute_h1f_dimension",
+    "compute_dR_dimension",
+    "verify_dR_compatibility",
     # PT Compatibility
     "PTCompatibilityProver",
     "prove_PT_all_ranks",
