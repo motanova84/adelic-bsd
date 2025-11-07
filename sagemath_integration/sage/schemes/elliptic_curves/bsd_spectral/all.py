@@ -36,6 +36,11 @@ from sage.schemes.elliptic_curves.bsd_spectral.complete_compatibility_extension 
     verify_PT_complete
 )
 
+from sage.schemes.elliptic_curves.bsd_spectral.massive_lmfdb_validator import (
+    MassiveLMFDBValidator,
+    run_massive_validation
+)
+
 __all__ = [
     'SpectralFinitenessProver',
     'verify_dR_compatibility',
@@ -45,5 +50,7 @@ __all__ = [
     'CompleteDRCompatibility',
     'CompletePTCompatibility',
     'verify_dR_complete',
-    'verify_PT_complete'
+    'verify_PT_complete',
+    'MassiveLMFDBValidator',
+    'run_massive_validation'
 ]
