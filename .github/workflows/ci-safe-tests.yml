@@ -9,6 +9,8 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     strategy:
       matrix:
         python-version: ['3.9', '3.10', '3.11']
@@ -61,6 +63,8 @@ jobs:
 
   sagemath-tests:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     container:
       image: sagemath/sagemath:latest
     
@@ -78,6 +82,8 @@ jobs:
 
   documentation:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
     - uses: actions/checkout@v3
     
