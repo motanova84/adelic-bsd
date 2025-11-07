@@ -186,7 +186,8 @@ class MassBSDVerifier:
                 try:
                     c_p = E.tamagawa_number(p)
                     tamagawa_product *= c_p
-                except:
+                except (AttributeError, RuntimeError):
+                    # If can't compute Tamagawa number, skip it
                     pass
             
             # Torsion order
@@ -195,7 +196,7 @@ class MassBSDVerifier:
             # Real period
             try:
                 real_period = float(E.period_lattice().omega())
-            except:
+            except (AttributeError, RuntimeError, ValueError):
                 real_period = 1.0
             
             return {

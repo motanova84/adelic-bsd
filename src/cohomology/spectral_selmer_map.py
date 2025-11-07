@@ -10,7 +10,6 @@ connecting spectral theory to p-adic Galois cohomology.
 """
 
 from sage.all import *
-import numpy as np
 
 
 class SpectralSelmerMap:

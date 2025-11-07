@@ -92,7 +92,7 @@ class BSDCertificateGenerator:
             if rank == 0:
                 try:
                     data['L_ratio'] = float(L.L_ratio())
-                except:
+                except (AttributeError, RuntimeError, ValueError):
                     data['L_ratio'] = None
             
             return data
@@ -108,7 +108,7 @@ class BSDCertificateGenerator:
             # Real period
             try:
                 components['real_period'] = float(E.period_lattice().omega())
-            except:
+            except (AttributeError, RuntimeError, ValueError):
                 components['real_period'] = None
             
             # Tamagawa numbers
@@ -117,7 +117,7 @@ class BSDCertificateGenerator:
             for p in conductor.prime_factors():
                 try:
                     tamagawa_numbers[str(p)] = E.tamagawa_number(p)
-                except:
+                except (AttributeError, RuntimeError):
                     tamagawa_numbers[str(p)] = None
             components['tamagawa_numbers'] = tamagawa_numbers
             
@@ -134,7 +134,7 @@ class BSDCertificateGenerator:
                         else:
                             # For higher rank, would compute determinant
                             components['regulator'] = 'computed'
-                except:
+                except (AttributeError, RuntimeError, ValueError):
                     components['regulator'] = None
             
             return components

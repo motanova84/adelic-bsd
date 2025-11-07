@@ -7,7 +7,7 @@ This module provides tools to verify the compatibility between
 spectral heights (from operator theory) and arithmetic Néron-Tate heights.
 """
 
-from sage.all import EllipticCurve, matrix, RR, log, sqrt
+from sage.all import EllipticCurve, matrix, RR
 from .advanced_spectral_heights import AdvancedSpectralHeightPairing
 
 
@@ -195,12 +195,12 @@ class HeightComparator:
         # Compute determinants (regulators)
         try:
             reg_spec = abs(float(H_spec.determinant()))
-        except:
+        except (TypeError, ValueError, AttributeError):
             reg_spec = 0.0
         
         try:
             reg_nt = abs(float(H_nt.determinant()))
-        except:
+        except (TypeError, ValueError, AttributeError):
             reg_nt = 0.0
         
         # Compare regulators
@@ -249,7 +249,7 @@ def verify_height_equality(E, kernel_basis=None, points=None):
         # Try to get points
         try:
             points = E.gens()[:rank] if points is None else points
-        except:
+        except (AttributeError, RuntimeError):
             return {
                 'verified': False,
                 'error': 'Could not compute generators'

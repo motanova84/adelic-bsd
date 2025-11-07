@@ -231,7 +231,7 @@ class AdvancedSpectralHeightPairing:
             f_minus = func(x0 - h)
             derivative = (f_plus - f_minus) / (2 * h)
             return float(derivative)
-        except:
+        except (TypeError, ValueError, AttributeError):
             return 0.0
     
     def compute_height_matrix_enhanced(self, kernel_basis, ME_operator=None):
