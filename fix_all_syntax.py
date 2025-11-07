@@ -111,11 +111,10 @@ class SyntaxFixer:
         # Count triple quotes
         triple_quotes = content.count('"""')
         
+        # Don't automatically fix - just report
+        # Automatically adding """ at the end can create orphaned strings
         if triple_quotes % 2 != 0:
-            # Odd number - add closing quote at end
-            content += '\n"""\n'
-            self.fixes_applied += 1
-            return content, True
+            return content, False
         
         return content, False
     
