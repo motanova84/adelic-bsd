@@ -10,7 +10,7 @@ This module proves constructively that Selmer group dimension equals
 analytic rank for ALL ranks:
 - Rank r=0 ✓ (trivial)
 - Rank r=1 ✓ (Gross-Zagier 1986)
-- Rank r≥2 ✓ (Yuan-Zhang-Zhang 2013 + Beilinson-Bloch heights)
+- Rank r>=2 ✓ (Yuan-Zhang-Zhang 2013 + Beilinson-Bloch heights)
 
 References:
 - Gross-Zagier (1986): "Heegner points and derivatives of L-series"

@@ -103,7 +103,7 @@ class LocalFactors:
         Compute product of all Tamagawa numbers
 
         Returns:
-            int: Product ∏_p c_p
+            int: Product prod_p c_p
         """
         return prod(self.tamagawa_number(p) for p in self.N.prime_factors())
 
@@ -263,7 +263,7 @@ def hardy_littlewood_singular_series(n, max_prime=1000, precision=50):
     
     Implements the corrected Hardy-Littlewood singular series:
     
-        S(n) = ∏_{p>2} (1 - 1/(p-1)²) · ∏_{p|n, p>2} (p-1)/(p-2)
+        S(n) = prod_{p>2} (1 - 1/(p-1)²) · prod_{p|n, p>2} (p-1)/(p-2)
     
     The local factor for p=2 is omitted, as in Hardy--Littlewood (1923).
     
@@ -292,13 +292,13 @@ def hardy_littlewood_singular_series(n, max_prime=1000, precision=50):
     RF = RealField(precision)
     result = RF(1.0)
     
-    # First product: ∏_{p>2} (1 - 1/(p-1)²)
+    # First product: prod_{p>2} (1 - 1/(p-1)²)
     # This is an infinite product, truncated at max_prime
     for p in prime_range(3, max_prime + 1):
         factor = 1 - RF(1) / RF((p - 1) ** 2)
         result *= factor
     
-    # Second product: ∏_{p|n, p>2} (p-1)/(p-2)
+    # Second product: prod_{p|n, p>2} (p-1)/(p-2)
     # Product over prime divisors of n, excluding p=2
     prime_divs = prime_divisors(n)
     for p in prime_divs:
@@ -315,7 +315,7 @@ def hardy_littlewood_constant(max_prime=1000, precision=50):
     Compute the Hardy-Littlewood constant for twin primes conjecture
     
     This is S(1), the infinite product:
-        C₂ = ∏_{p>2} (1 - 1/(p-1)²)
+        C₂ = prod_{p>2} (1 - 1/(p-1)²)
     
     Args:
         max_prime: Maximum prime to include in the product (default: 1000)
@@ -338,7 +338,7 @@ class CorrectionFactors:
     Computes local correction factors appearing in the central identity:
         det(I - M_E(s)) = c(s) * L(E, s)
     
-    where c(s) = ∏_p c_p(s) is holomorphic and non-vanishing near s=1.
+    where c(s) = prod_p c_p(s) is holomorphic and non-vanishing near s=1.
     This ensures the spectral operator determinant correctly encodes the
     L-function up to a well-behaved correction factor.
     """
@@ -359,7 +359,7 @@ class CorrectionFactors:
         Compute local correction factor c_p(s) at prime p
         
         This factor ensures that the spectral identity holds locally.
-        The key property (Theorem 6.1) is that c_p(1) ≠ 0 for all primes p.
+        The key property (Theorem 6.1) is that c_p(1) != 0 for all primes p.
         
         Args:
             p: Prime number
@@ -416,7 +416,7 @@ class CorrectionFactors:
         Compute correction factor for additive reduction
         
         Uses Kodaira-Néron theory. The correction involves the
-        conductor exponent and ensures c_p(1) ≠ 0.
+        conductor exponent and ensures c_p(1) != 0.
         
         Args:
             p: Prime with additive reduction
@@ -439,7 +439,7 @@ class CorrectionFactors:
     
     def global_correction_factor(self, s=1):
         """
-        Compute global correction factor c(s) = ∏_p c_p(s)
+        Compute global correction factor c(s) = prod_p c_p(s)
         
         This is the product of local correction factors over all primes
         dividing the conductor. The key property is that c(s) is
@@ -472,14 +472,14 @@ class CorrectionFactors:
     
     def verify_non_vanishing_theorem(self):
         """
-        Verify Theorem 6.1: c_p(1) ≠ 0 for all primes p
+        Verify Theorem 6.1: c_p(1) != 0 for all primes p
         
         Returns:
             dict: Verification results
         """
         verification = {
             'theorem': 'Local Non-Vanishing (Theorem 6.1)',
-            'statement': 'c_p(1) ≠ 0 for all primes p',
+            'statement': 'c_p(1) != 0 for all primes p',
             'primes_checked': [],
             'all_non_vanishing': True
         }

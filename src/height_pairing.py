@@ -254,7 +254,7 @@ def verify_height_compatibility(E):
     print("\n6. CONCLUSION:")
     if compatible:
         print("   ✓ Height pairing compatibility VERIFIED")
-        print("   ⇒ ⟨·,·⟩_spec = ⟨·,·⟩_NT holds for this curve")
+        print("   => ⟨·,·⟩_spec = ⟨·,·⟩_NT holds for this curve")
     else:
         print("   ⚠ Height pairing compatibility PENDING")
         print("   (May require more sophisticated computation)")

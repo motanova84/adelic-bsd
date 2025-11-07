@@ -288,13 +288,6 @@ def test_calibration_file_exists():
                 "Calibration file should contain recommended a=200"
 
 
-if __name__ == "__main__":
-    pytest.main([__file__, '-v'])
-    compute_spectral_bound,
-    find_optimal_a
-)
-
-
 class TestParameterCalibration:
     """Tests for parameter calibration"""
     

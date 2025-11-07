@@ -158,7 +158,7 @@ def prove_dR_all_cases():
                     # Test anyway for additive reduction verification
                     print(f"   🔄 p={p}: divide conductor, probando reducción no-buena")
                 else:
-                    print(f"   → p={p}: buena reducción esperada")
+                    print(f"   -> p={p}: buena reducción esperada")
                 
                 result = verify_dR_compatibility(E, p)
                 all_results.append(result)
