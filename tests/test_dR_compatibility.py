@@ -10,6 +10,15 @@ from pathlib import Path
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
+# Import classes for test suite (may fail if Sage not installed, handled in individual tests)
+try:
+    sys.path.insert(0, str(Path(__file__).parent.parent / 'src'))
+    from dR_compatibility import dRCompatibilityProver, prove_dR_all_cases
+except ImportError:
+    # If import fails, individual tests will skip appropriately
+    dRCompatibilityProver = None
+    prove_dR_all_cases = None
+
 
 @pytest.mark.basic
 def test_dR_compatibility_module_exists():
@@ -223,19 +232,12 @@ def test_exponential_map_multiplicative():
         
         E = EllipticCurve('11a1')
         prover = dRCompatibilityProver(E, 11, precision=10)
+        cert = prover.prove_dR_compatibility()
+        
+        assert cert is not None
+        assert 'dR_compatible' in cert
     except ImportError:
         pytest.skip("Sage not available")
-
-
-import pytest
-import json
-from pathlib import Path
-import sys
-
-# Add src to path
-sys.path.insert(0, str(Path(__file__).parent.parent / 'src'))
-
-from dR_compatibility import dRCompatibilityProver, prove_dR_all_cases
 
 
 class TestdRCompatibilityProver:
