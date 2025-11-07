@@ -95,13 +95,42 @@ We welcome suggestions for new features or improvements:
 git clone https://github.com/YOUR-USERNAME/algoritmo.git
 cd algoritmo
 
-# Create conda environment
+# Create conda environment (recommended for reproducibility)
 conda env create -f environment.yml
 conda activate algoritmo-spectral
+
+# Or create a virtual environment with pip
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install -r requirements.txt
 
 # Install in development mode
 pip install -e .
 ```
+
+### Reproducibility
+
+To ensure reproducible builds and consistent test results:
+
+1. **Use pinned versions**: All dependencies are pinned to specific versions in:
+   - `requirements.txt` - Production dependencies
+   - `requirements_ci.txt` - CI-specific dependencies
+   - `requirements-dev.txt` - Development dependencies
+   - `environment.yml` - Conda environment specification
+
+2. **Always install exact versions**:
+   ```bash
+   pip install -r requirements_ci.txt  # For CI-compatible setup
+   # OR
+   pip install -r requirements-dev.txt  # For full development setup
+   ```
+
+3. **Verify your environment**:
+   ```bash
+   pip freeze  # Compare output with requirements files
+   ```
+
+See [`docs/REPRODUCIBILITY.md`](docs/REPRODUCIBILITY.md) for detailed information about CI/CD reproducibility practices.
 
 ### Running Tests
 

@@ -55,7 +55,7 @@ Successfully implemented **advanced mathematical modules** for the Birch-Swinner
 
 **Capabilities:**
 - ✅ Maps spectral vectors to p-adic Galois cohomology
-- ✅ Implements Φ: ker M_E(1) → H^1_f(Q, V_p)
+- ✅ Implements Φ: ker K_E(1) → H^1_f(Q, V_p)
 - ✅ Handles good, multiplicative, and additive reduction types
 - ✅ Verifies Bloch-Kato conditions at all primes
 - ✅ Distinguishes ordinary and supersingular cases

@@ -9,23 +9,36 @@ on:
 jobs:
   basic-tests:
     name: Basic Tests (No SageMath)
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04  # Pin OS version for reproducibility
+    permissions:
+      contents: read  # Only needs to read repository contents
     strategy:
       matrix:
-        python-version: ['3.9', '3.10', '3.11']
+        python-version: ['3.9', '3.10', '3.11', '3.12']  # Extended support for newer Python versions
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744  # v3.6.0
     
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v3
+      uses: actions/setup-python@61a6322f88396a6271a6ee3565807d608ecaddd1  # v4.7.0
       with:
         python-version: ${{ matrix.python-version }}
+        cache: 'pip'
+        cache-dependency-path: requirements_ci.txt
     
     - name: Install basic dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install pytest flake8
+        pip install -r requirements_ci.txt
+      env:
+        # Ensure pip uses workspace for cache to avoid permission issues
+        PIP_CACHE_DIR: ${{ github.workspace }}/.pip-cache
+    
+    - name: Log installed packages for reproducibility
+      run: |
+        echo "=== Installed Package Versions ==="
+        pip freeze
+        echo "==================================="
     
     - name: Lint with flake8
       run: |
@@ -37,7 +50,7 @@ jobs:
     - name: Run basic tests
       run: |
         python tests/test_finiteness_basic.py
-        pytest tests/test_finiteness_basic.py -v
+        pytest tests/test_finiteness_basic.py -v -o cache_dir=${{ github.workspace }}/.pytest_cache
     
     - name: Check package structure
       run: |
@@ -46,16 +59,30 @@ jobs:
         echo "✓ Package structure verified"
 
   sage-tests:
-    runs-on: ubuntu-latest
-    container: sagemath/sagemath:latest
+    runs-on: ubuntu-22.04  # Pin OS version for reproducibility
+    permissions:
+      contents: read  # Only needs to read repository contents
+    container: 
+      image: sagemath/sagemath:9.8  # Pin SageMath version for reproducibility
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744  # v3.6.0
+      
       - name: Install python deps
         run: |
+          pip install --upgrade pip
           pip install -r requirements.txt
-          pip install pytest
+        env:
+          # Ensure pip uses workspace for cache to avoid permission issues
+          PIP_CACHE_DIR: ${{ github.workspace }}/.pip-cache
+      
+      - name: Log installed packages for reproducibility
+        run: |
+          echo "=== Installed Package Versions ==="
+          pip freeze
+          echo "==================================="
+      
       - name: Run tests
         run: |
-          sage -python -m pytest -q
+          sage -python -m pytest -q -o cache_dir=${{ github.workspace }}/.pytest_cache
 
 

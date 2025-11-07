@@ -1,6 +1,7 @@
 """
 Tests for Spectral Selmer Map
 Tests the spectral Selmer map implementation and related functionality
+Comprehensive tests for the Selmer map implementation
 """
 
 import sys

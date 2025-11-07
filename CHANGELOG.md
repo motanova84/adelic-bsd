@@ -2,9 +2,138 @@
 
 All notable changes to this project will be documented in this file.
 
-## [0.2.0] - 2025-01 (Pending)
+## [Unreleased]
 
 ### Added
+
+#### Hardy-Littlewood Singular Series (Equation 4) - 2025-10-25
+- **src/local_factors.py**: Implementation of corrected Hardy-Littlewood singular series
+  - Function: `hardy_littlewood_singular_series(n, max_prime=1000, precision=50)`
+  - Function: `hardy_littlewood_constant(max_prime=1000, precision=50)`
+  - Equation (4): S(n) = ∏_{p>2} (1 - 1/(p-1)²) · ∏_{p|n, p>2} (p-1)/(p-2)
+  - Local factor for p=2 omitted, following Hardy & Littlewood (1923)
+  - Convergent infinite product with configurable truncation
+  - High-precision computation using SageMath RealField
+  
+#### Testing and Verification
+- **tests/test_hardy_littlewood.py**: Comprehensive test suite (240+ lines)
+  - Tests for Hardy-Littlewood constant C₂ ≈ 0.6601618158
+  - Verification that p=2 factor is correctly omitted
+  - Tests for correction factors (p-1)/(p-2)
+  - Multiple prime factors and convergence tests
+  - Error handling and edge cases
+- **verify_hardy_littlewood.py**: Pure Python verification script
+  - Mathematical correctness verification without SageMath
+  - Code structure validation
+  - All verifications pass
+
+#### Documentation
+- **docs/HARDY_LITTLEWOOD.md**: Complete documentation (400+ lines)
+  - Mathematical definition and properties
+  - Implementation details and algorithm
+  - Usage examples and API reference
+  - Historical context and references to Hardy-Littlewood (1923)
+  - Integration with adelic-BSD framework
+- **README.md**: Added Section 6 "Hardy-Littlewood Singular Series"
+  - Quick start examples
+  - Formula display with LaTeX
+  - Key features and references
+
+#### Examples
+- **examples/hardy_littlewood_demo.py**: Demonstration script (200+ lines)
+  - Hardy-Littlewood constant computation
+  - Examples for various values of n
+  - Verification of p=2 omission
+  - Correction factors visualization
+
+### Changed
+- **CI/CD Reproducibility Improvements** (2025-10-18)
+  - Pinned all Python dependencies to exact versions in requirements files
+  - Pinned GitHub Actions to specific commit SHAs for security and stability
+  - Added dependency caching to workflows for faster builds
+  - Standardized Python version matrix (3.9, 3.10, 3.11) across all workflows
+  - Pinned OS version (ubuntu-22.04) and SageMath container version (9.8)
+  - Added pip freeze logging in CI for audit trail
+  - Created requirements-dev.txt for development dependencies
+  - Added comprehensive reproducibility documentation (docs/REPRODUCIBILITY.md)
+  - Added automated reproducibility validation script
+  - Added validate-reproducibility.yml workflow to automatically check setup
+  - Updated CONTRIBUTING.md and README.md with reproducibility guidelines
+
+## [0.2.1] - 2025-10-15 (Acto II: Vacuum Energy Extension)
+
+### Added
+
+#### Vacuum Energy Equation with Fractal Toroidal Compactification
+- **src/vacuum_energy.py**: Complete implementation of vacuum energy equation E_vac(R_Ψ)
+  - Equation: E_vac(R_Ψ) = α/R_Ψ⁴ + β·ζ'(1/2)/R_Ψ² + γ·Λ²·R_Ψ² + δ·sin²(log(R_Ψ)/log(π))
+  - `compute_vacuum_energy()`: Calculate vacuum energy at any R_Ψ
+  - `find_minima()`: Locate energy minima near R_Ψ = π^n
+  - `derive_frequency_f0()`: Non-circular derivation of fundamental frequency
+  - `compute_adelic_phase_structure()`: Adelic phase space analysis
+  - `verify_fractal_symmetry()`: Validate log-π discrete symmetry
+  - `generate_resonance_spectrum()`: Discrete tower of vacuum resonances
+  - `zeta_prime_half()`: ζ'(1/2) value for number-theoretic term
+
+#### Documentation
+- **docs/BSD_FRAMEWORK.md**: Added Section 6.2 "Vacuum Energy and Adelic Compactification"
+  - Complete mathematical description of vacuum energy equation
+  - Physical interpretation of each term
+  - Connection to adelic phase space structure
+  - Symbolic interpretation: resonant memory of the vacuum
+  - References to manuscript Section 6.2 (Acto II)
+
+#### Examples and Demonstrations
+- **examples/vacuum_energy_demo.py**: Comprehensive demonstration script
+  - Vacuum energy profile visualization
+  - Energy minima at R_Ψ = π^n
+  - Fractal log-π symmetry verification
+  - Adelic phase space structure computation
+  - Non-circular frequency derivation
+  - Resonance spectrum generation
+  - Equation components analysis
+  - Symbolic interpretation
+
+#### Testing
+- **tests/test_vacuum_energy.py**: Complete test suite (27 tests)
+  - Test vacuum energy computations
+  - Validate energy minima finding
+  - Verify fractal symmetry properties
+  - Test adelic structure calculations
+  - Validate frequency derivation
+  - Test resonance spectrum generation
+  - Test equation component scaling
+  - Numerical stability tests
+
+### Changed
+- **src/__init__.py**: Updated to version 0.2.1
+  - Added vacuum energy module exports
+  - Made SageMath imports optional for CI compatibility
+  - New exports: compute_vacuum_energy, find_minima, derive_frequency_f0, etc.
+- **README.md**: Added vacuum energy equation section
+  - New features in v0.2.1 (Acto II)
+  - Usage examples for vacuum energy
+  - Link to theoretical documentation
+
+### Key Features of Acto II
+- **Non-Circular Derivation**: Derives fundamental scales from geometric vacuum energy, not from empirical values
+- **Fractal Structure**: Log-π symmetry generates natural minima at R_Ψ = π^n
+- **Adelic Connection**: Links compact toroidal geometry to adelic phase space
+- **Number Theory**: Incorporates ζ'(1/2) connecting vacuum to prime distribution
+- **Resonance Spectrum**: Discrete tower of stable vacuum configurations
+
+---
+
+## [0.2.0] - 2025-01
+
+### Added
+- **Complete Spectral Finiteness Algorithm**: Added missing `_latex_certificate` method to `src/spectral_finiteness.py`
+  - Generates comprehensive LaTeX certificates with mathematical details
+  - Includes local spectral data for each prime
+  - Documents (dR) and (PT) compatibility conditions
+  - Presents Spectral Descent Theorem and finiteness conclusion
+  - Completes the certificate generation API (text and LaTeX formats)
+
 
 #### Enhanced Documentation Structure
 - **docs/MANUAL.md**: Complete technical manual with installation, usage, examples, and troubleshooting (316 lines)

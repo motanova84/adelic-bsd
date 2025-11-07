@@ -13,6 +13,12 @@ from .height_comparison import (
     verify_height_equality
 )
 
+from .height_comparison import (
+    HeightComparison,
+    compare_heights,
+    verify_regulator_compatibility
+)
+
 __all__ = [
     'AdvancedSpectralHeightPairing',
     'HeightComparator',

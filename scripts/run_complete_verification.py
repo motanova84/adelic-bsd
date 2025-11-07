@@ -5,6 +5,11 @@ Runs all verification steps and generates final certificates
 
 This is the main entry point for running comprehensive BSD verification
 across multiple curves with full reporting.
+Complete Verification Runner
+Executes full BSD verification system on test curves
+
+This script runs the complete spectral BSD verification framework,
+testing all components: operators, cohomology, heights, and verification.
 """
 
 import sys

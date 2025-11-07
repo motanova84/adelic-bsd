@@ -18,7 +18,7 @@ These modules extend the core spectral BSD framework with advanced mathematical 
 
 The `AdvancedSpectralSelmerMap` class implements the map:
 
-$$\Phi: \ker M_E(1) \to H^1_f(\mathbb{Q}, V_p)$$
+$$\Phi: \ker K_E(1) \to H^1_f(\mathbb{Q}, V_p)$$
 
 connecting spectral vectors to p-adic Galois cohomology.
 
@@ -65,7 +65,7 @@ print(f"Reduction type: {selmer_map.reduction_type}")
 Maps spectral vector to p-adic Galois cohomology.
 
 **Parameters:**
-- `v`: Spectral vector from ker M_E(1)
+- `v`: Spectral vector from ker K_E(1)
 
 **Returns:**
 - Dictionary with keys:
@@ -117,7 +117,7 @@ print(f"Compatible: {result['all_primes_compatible']}")
 
 The `AdvancedSpectralHeightPairing` class implements advanced height pairing theory, computing:
 
-$$\langle v_i, v_j \rangle_{\text{spec}} = \text{Res}_{s=1} \text{Tr}(v_i^* M_E'(s) v_j)$$
+$$\langle v_i, v_j \rangle_{\text{spec}} = \text{Res}_{s=1} \text{Tr}(v_i^* K_E'(s) v_j)$$
 
 and verifying compatibility with Néron-Tate heights.
 
@@ -165,7 +165,7 @@ print(f"Heights equal: {proof['heights_equal']}")
 Computes spectral height pairing between two vectors.
 
 **Parameters:**
-- `v1`, `v2`: Spectral vectors from ker M_E(1)
+- `v1`, `v2`: Spectral vectors from ker K_E(1)
 
 **Returns:**
 - `float`: Height pairing value

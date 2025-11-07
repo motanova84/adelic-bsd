@@ -8,7 +8,7 @@ This guide explains the new algorithmic capabilities for connecting spectral vec
 
 ### Algorithm 1: Spectral Vectors → Modular Symbols
 
-Converts spectral vectors from ker M_E(1) to modular symbols using the Manin-Merel theorem.
+Converts spectral vectors from ker K_E(1) to modular symbols using the Manin-Merel theorem.
 
 **Theory**: Modular symbols generate H¹(X₀(N), ℤ).
 
@@ -61,7 +61,7 @@ from src.spectral_cycles import (
     spectral_kernel_to_rational_points
 )
 
-# Step 1: Compute kernel of M_E(1)
+# Step 1: Compute kernel of K_E(1)
 kernel_basis = compute_kernel_basis(E)
 
 # Step 2: Convert to rational points
@@ -78,7 +78,7 @@ for p_data in points:
 ### Computing Spectral Height Matrix
 
 The spectral height pairing is defined as:
-⟨v_i, v_j⟩_spec = Res_{s=1} Tr(v_i* M_E'(s) v_j)
+⟨v_i, v_j⟩_spec = Res_{s=1} Tr(v_i* K_E'(s) v_j)
 
 ```python
 from src.height_pairing import compute_spectral_height_matrix
