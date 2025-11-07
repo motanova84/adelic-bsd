@@ -187,9 +187,9 @@ class MassiveLMFDBValidator(SageObject):
                                     rank_curves.append(label)
                                     if len(rank_curves) >= samples_per_rank:
                                         break
-                            except:
+                            except Exception:
                                 continue
-                    except:
+                    except Exception:
                         continue
 
                 # Random sample if too many
@@ -275,6 +275,14 @@ class MassiveLMFDBValidator(SageObject):
             elif rank == 2:
                 confidence = 0.999
 
+            # Extract gamma_positive from spectral_data if available
+            gamma_positive = False
+            if 'spectral_data' in spectral_result:
+                gamma_positive = spectral_result['spectral_data'].get('gamma_positive', False)
+            else:
+                # Fallback: check if gamma > 0
+                gamma_positive = spectral_result.get('gamma', 0) > 0
+
             return {
                 'label': label,
                 'success': success,
@@ -283,7 +291,7 @@ class MassiveLMFDBValidator(SageObject):
                 'spectral': {
                     'proved': spectral_result['finiteness_proved'],
                     'gamma': spectral_result['gamma'],
-                    'gamma_positive': spectral_result['gamma_positive']
+                    'gamma_positive': gamma_positive
                 },
                 'dR': {
                     'compatible': dR_compatible,
@@ -566,6 +574,9 @@ class MassiveLMFDBValidator(SageObject):
         r"""
         Generate LaTeX table of results.
 
+        NOTE: The generated LaTeX requires the booktabs package.
+        Add \usepackage{booktabs} to your LaTeX preamble.
+
         EXAMPLES::
 
             sage: validator = MassiveLMFDBValidator(sample_size=10)
@@ -574,7 +585,8 @@ class MassiveLMFDBValidator(SageObject):
         """
         stats = self._statistics
 
-        latex = r"""\begin{table}[h]
+        latex = r"""% NOTE: This table requires \usepackage{booktabs}
+\begin{table}[h]
 \centering
 \caption{BSD Spectral Framework: Massive LMFDB Validation Results}
 \begin{tabular}{lrrr}

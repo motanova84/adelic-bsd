@@ -217,8 +217,8 @@ def test_run_validation_small():
         # Cleanup
         try:
             shutil.rmtree(output_dir)
-        except:
-            pass
+        except (OSError, FileNotFoundError):
+            pass  # Ignore cleanup failures
 
     except ImportError as e:
         pytest.skip(f"SageMath not available: {e}")
@@ -264,8 +264,8 @@ def test_generate_reports():
         # Cleanup
         try:
             shutil.rmtree(output_dir)
-        except:
-            pass
+        except (OSError, FileNotFoundError):
+            pass  # Ignore cleanup failures
 
     except ImportError as e:
         pytest.skip(f"SageMath not available: {e}")
