@@ -28,7 +28,7 @@ def test_11a1_known_sha():
     # Spectral bound must be at least as large as actual Sha
     assert spectral_bound >= known_sha, f"Bound {spectral_bound} < known Sha {known_sha}"
 
-    print(f"✓ 11a1: Spectral bound {spectral_bound} ≥ known #Sha {known_sha}")
+    print(f"✓ 11a1: Spectral bound {spectral_bound} >= known #Sha {known_sha}")
 
 
 def test_37a1_known_sha():
@@ -43,7 +43,7 @@ def test_37a1_known_sha():
 
     assert spectral_bound >= known_sha, f"Bound {spectral_bound} < known Sha {known_sha}"
 
-    print(f"✓ 37a1: Spectral bound {spectral_bound} ≥ known #Sha {known_sha}")
+    print(f"✓ 37a1: Spectral bound {spectral_bound} >= known #Sha {known_sha}")
 
 
 def test_389a1_known_sha():
@@ -58,7 +58,7 @@ def test_389a1_known_sha():
 
     assert spectral_bound >= known_sha, f"Bound {spectral_bound} < known Sha {known_sha}"
 
-    print(f"✓ 389a1: Spectral bound {spectral_bound} ≥ known #Sha {known_sha}")
+    print(f"✓ 389a1: Spectral bound {spectral_bound} >= known #Sha {known_sha}")
 
 
 def test_lmfdb_comparison_multiple_curves():
@@ -86,7 +86,7 @@ def test_lmfdb_comparison_multiple_curves():
             spectral_bound = result['global_bound']
 
             if spectral_bound >= known_sha:
-                print(f"✓ {label}: bound {spectral_bound} ≥ #Sha {known_sha}")
+                print(f"✓ {label}: bound {spectral_bound} >= #Sha {known_sha}")
                 passed += 1
             else:
                 print(f"✗ {label}: bound {spectral_bound} < #Sha {known_sha}")
@@ -145,7 +145,7 @@ def test_comparison_with_conductor_range():
         # Fallback to hardcoded list
         curves_to_test = ['11a1', '11a2', '11a3', '14a1', '15a1', '17a1', '19a1']
 
-    print(f"\nTesting {len(curves_to_test)} curves with conductor ≤ 20:")
+    print(f"\nTesting {len(curves_to_test)} curves with conductor <= 20:")
 
     for label in curves_to_test:
         try:

@@ -20,11 +20,11 @@ def verify_hardy_littlewood_formula(max_prime=100):
     print("="*70)
     
     print("\nFormula (Equation 4):")
-    print("    S(n) = ∏_{p>2} (1 - 1/(p-1)²) · ∏_{p|n, p>2} (p-1)/(p-2)")
+    print("    S(n) = prod_{p>2} (1 - 1/(p-1)²) · prod_{p|n, p>2} (p-1)/(p-2)")
     print("\nNote: Local factor for p=2 is omitted")
     
     # Compute the base product (first term)
-    print(f"\n1. Computing base product ∏_{{p>2}}^{{{max_prime}}} (1 - 1/(p-1)²):")
+    print(f"\n1. Computing base product prod_{{p>2}}^{{{max_prime}}} (1 - 1/(p-1)²):")
     
     base_product = 1.0
     count = 0
@@ -53,8 +53,8 @@ def verify_hardy_littlewood_formula(max_prime=100):
         (3, "Correction: (3-1)/(3-2) = 2/1 = 2.0"),
         (4, "4=2², p=2 omitted, should equal S(1)"),
         (5, "Correction: (5-1)/(5-2) = 4/3 ≈ 1.333"),
-        (6, "6=2×3, only correction for p=3"),
-        (15, "15=3×5, corrections for p=3 and p=5"),
+        (6, "6=2*3, only correction for p=3"),
+        (15, "15=3*5, corrections for p=3 and p=5"),
     ]
     
     results = {}
@@ -71,39 +71,39 @@ def verify_hardy_littlewood_formula(max_prime=100):
     if abs(results[1] - results[2]) < 1e-10:
         print("   ✅ S(1) = S(2) (p=2 omitted)")
     else:
-        print(f"   ❌ S(1) = {results[1]:.10f} ≠ S(2) = {results[2]:.10f}")
+        print(f"   ❌ S(1) = {results[1]:.10f} != S(2) = {results[2]:.10f}")
     
     if abs(results[1] - results[4]) < 1e-10:
         print("   ✅ S(1) = S(4) (p=2 omitted)")
     else:
-        print(f"   ❌ S(1) = {results[1]:.10f} ≠ S(4) = {results[4]:.10f}")
+        print(f"   ❌ S(1) = {results[1]:.10f} != S(4) = {results[4]:.10f}")
     
-    # S(3) = S(1) × 2
+    # S(3) = S(1) * 2
     expected_S3 = results[1] * 2.0
     if abs(results[3] - expected_S3) < 1e-8:
-        print(f"   ✅ S(3) = S(1) × 2 = {results[3]:.8f}")
+        print(f"   ✅ S(3) = S(1) * 2 = {results[3]:.8f}")
     else:
-        print(f"   ❌ S(3) = {results[3]:.8f} ≠ expected {expected_S3:.8f}")
+        print(f"   ❌ S(3) = {results[3]:.8f} != expected {expected_S3:.8f}")
     
-    # S(5) = S(1) × 4/3
+    # S(5) = S(1) * 4/3
     expected_S5 = results[1] * (4.0 / 3.0)
     if abs(results[5] - expected_S5) < 1e-8:
-        print(f"   ✅ S(5) = S(1) × 4/3 = {results[5]:.8f}")
+        print(f"   ✅ S(5) = S(1) * 4/3 = {results[5]:.8f}")
     else:
-        print(f"   ❌ S(5) = {results[5]:.8f} ≠ expected {expected_S5:.8f}")
+        print(f"   ❌ S(5) = {results[5]:.8f} != expected {expected_S5:.8f}")
     
-    # S(6) = S(3) (6=2×3, p=2 omitted)
+    # S(6) = S(3) (6=2*3, p=2 omitted)
     if abs(results[6] - results[3]) < 1e-10:
-        print("   ✅ S(6) = S(3) (6=2×3, p=2 omitted)")
+        print("   ✅ S(6) = S(3) (6=2*3, p=2 omitted)")
     else:
-        print(f"   ❌ S(6) = {results[6]:.10f} ≠ S(3) = {results[3]:.10f}")
+        print(f"   ❌ S(6) = {results[6]:.10f} != S(3) = {results[3]:.10f}")
     
-    # S(15) = S(1) × 2 × 4/3 (15=3×5)
+    # S(15) = S(1) * 2 * 4/3 (15=3*5)
     expected_S15 = results[1] * 2.0 * (4.0 / 3.0)
     if abs(results[15] - expected_S15) < 1e-8:
-        print(f"   ✅ S(15) = S(1) × 2 × 4/3 = {results[15]:.8f}")
+        print(f"   ✅ S(15) = S(1) * 2 * 4/3 = {results[15]:.8f}")
     else:
-        print(f"   ❌ S(15) = {results[15]:.8f} ≠ expected {expected_S15:.8f}")
+        print(f"   ❌ S(15) = {results[15]:.8f} != expected {expected_S15:.8f}")
     
     print("\n" + "="*70)
     print("VERIFICATION COMPLETE")
@@ -116,7 +116,7 @@ def compute_S_n(n, base_product, max_prime):
     """
     Compute S(n) for a given n
     
-    S(n) = base_product × ∏_{p|n, p>2} (p-1)/(p-2)
+    S(n) = base_product * prod_{p|n, p>2} (p-1)/(p-2)
     """
     result = base_product
     

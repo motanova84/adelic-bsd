@@ -43,7 +43,7 @@ class CompleteDRCompatibility(SageObject):
     This class extends basic (dR) verification to handle:
     
     - All reduction types (good, multiplicative, additive)
-    - Wild ramification (conductor exponent ≥ 2)
+    - Wild ramification (conductor exponent >= 2)
     - Complex multiplication curves
     - Small primes (p=2, p=3) with special handling
     - Edge cases (large conductor, high rank)
@@ -202,7 +202,7 @@ class CompleteDRCompatibility(SageObject):
     
     def _verify_wild_ramification(self, reduction_data):
         r"""
-        Handle wild ramification cases (f_p ≥ 2).
+        Handle wild ramification cases (f_p >= 2).
         
         Uses Fontaine-Perrin-Riou generalized formulas.
         
@@ -218,7 +218,7 @@ class CompleteDRCompatibility(SageObject):
         ALGORITHM:
         
         Uses Perrin-Riou (1995) Theorem 3.2.3:
-        For f_p ≥ 2, the exponential map is still well-defined
+        For f_p >= 2, the exponential map is still well-defined
         via formal logarithm and explicit reciprocity.
         """
         f_p = reduction_data['conductor_valuation']
@@ -561,7 +561,7 @@ class CompletePTCompatibility(SageObject):
         
         For rank r:
         - Get r independent generators
-        - Compute r×r Gram matrix of height pairings
+        - Compute r*r Gram matrix of height pairings
         - Regulator = |det(Gram matrix)|
         """
         try:
@@ -608,7 +608,7 @@ class CompletePTCompatibility(SageObject):
         r"""
         Verify complete BSD formula for ANY rank.
         
-        L^(r)(E,1) / r! = Reg(E) · #Ш · ∏c_p · Ω / #tors²
+        L^(r)(E,1) / r! = Reg(E) · #Ш · prodc_p · Ω / #tors²
         
         EXAMPLES::
         
@@ -634,7 +634,7 @@ class CompletePTCompatibility(SageObject):
             except:
                 lhs = 0
             
-            # Right side: Reg · #Ш · ∏c_p · Ω / #tors²
+            # Right side: Reg · #Ш · prodc_p · Ω / #tors²
             reg = self._compute_regulator_complete()
             
             # Estimate other terms

@@ -223,8 +223,9 @@ def test_exponential_map_multiplicative():
         
         E = EllipticCurve('11a1')
         prover = dRCompatibilityProver(E, 11, precision=10)
-Tests for dR compatibility module
-"""
+    except ImportError:
+        pytest.skip("Sage not available")
+
 
 import pytest
 import json
@@ -304,8 +305,6 @@ class TestdRCompatibilityProver:
         assert exp_map['method'] == 'tate_uniformization'
         
         print("✓ Exponential map for multiplicative reduction verified")
-    except ImportError as e:
-        pytest.skip(f"SageMath not available: {e}")
 
 
 @pytest.mark.sage_required
