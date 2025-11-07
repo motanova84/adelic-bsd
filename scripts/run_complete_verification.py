@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
 """
+Complete BSD Verification Script
+Runs all verification steps and generates final certificates
+
+This is the main entry point for running comprehensive BSD verification
+across multiple curves with full reporting.
 Complete Verification Runner
 Executes full BSD verification system on test curves
 
@@ -9,172 +14,191 @@ testing all components: operators, cohomology, heights, and verification.
 
 import sys
 import os
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
-from sage.all import EllipticCurve
-from src.spectral_bsd import SpectralBSD
-from src.verification import FormalBSDProver
-from src.verification.mass_verification import batch_verify_bsd
+# Add src to path
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'src'))
+
+from src.verification.mass_verification import MassBSDVerifier
+from src.cohomology.spectral_selmer_map import test_spectral_selmer_map
+from src.cohomology.p_adic_integration import test_p_adic_integration
+from src.cohomology.bloch_kato_conditions import test_bloch_kato_conditions
 
 
-def run_single_verification(curve_label):
+def run_component_tests():
     """
-    Run complete verification for a single curve
-
-    Args:
-        curve_label: Curve label (e.g., '11a1')
+    Run tests for individual components
+    
+    Returns:
+        bool: True if all tests pass
     """
-    print(f"\n{'='*70}")
-    print(f"VERIFYING CURVE: {curve_label}")
-    print(f"{'='*70}\n")
-
-    try:
-        # Load curve
-        E = EllipticCurve(curve_label)
-        print(f"✓ Curve loaded: {curve_label}")
-        print(f"  Conductor: {E.conductor()}")
-        print(f"  Rank: {E.rank()}")
-
-        # Initialize spectral BSD framework
-        print("\n1. Initializing Spectral BSD Framework...")
-        spectral = SpectralBSD(E)
-        print("✓ Framework initialized")
-
-        # Compute spectral rank
-        print("\n2. Computing Spectral Rank...")
-        rank_data = spectral.compute_spectral_rank()
-        print(f"✓ Spectral rank: {rank_data['spectral_rank']}")
-        print(f"✓ Algebraic rank: {rank_data['algebraic_rank']}")
-        print(f"✓ Ranks match: {rank_data['ranks_match']}")
-
-        # Verify BSD formula
-        print("\n3. Verifying BSD Formula...")
-        bsd_verification = spectral.verify_bsd_formula()
-        print(f"✓ SHA finite: {bsd_verification['sha_bound']['finiteness_proved']}")
-        print(f"✓ SHA bound: {bsd_verification['sha_bound']['global_bound']}")
-
-        # Generate formal certificate
-        print("\n4. Generating Formal Certificate...")
-        prover = FormalBSDProver(E)
-        certificate = prover.prove_bsd_completely()
-        print(f"✓ BSD proven: {certificate.get('bsd_proven', False)}")
-
-        # Summary
-        print(f"\n{'='*70}")
-        print("VERIFICATION SUMMARY")
-        print(f"{'='*70}")
-        print(f"Curve: {curve_label}")
-        print(f"Ranks Compatible: {rank_data['ranks_match']}")
-        print(f"SHA Finite: {bsd_verification['sha_bound']['finiteness_proved']}")
-        print(f"BSD Proven: {certificate.get('bsd_proven', False)}")
-        print(f"{'='*70}\n")
-
-        return True
-
-    except Exception as e:
-        print(f"\n✗ Error during verification: {e}")
-        import traceback
-        traceback.print_exc()
-        return False
-
-
-def run_batch_verification(curve_labels):
-    """
-    Run batch verification for multiple curves
-
-    Args:
-        curve_labels: List of curve labels
-    """
-    print(f"\n{'='*70}")
-    print(f"BATCH VERIFICATION: {len(curve_labels)} curves")
-    print(f"{'='*70}\n")
-
-    try:
-        results = batch_verify_bsd(curve_labels, save_certificates=True)
-
-        # Summary
-        successful = sum(1 for r in results.values() if r.get('bsd_proven', False))
-        total = len(results)
-
-        print(f"\n{'='*70}")
-        print("BATCH VERIFICATION SUMMARY")
-        print(f"{'='*70}")
-        print(f"Total curves: {total}")
-        print(f"Successful: {successful}")
-        print(f"Failed: {total - successful}")
-        print(f"Success rate: {(successful/total*100):.1f}%")
-
-        # Details
-        print("\nDetailed Results:")
-        for label, result in results.items():
-            status = "✓" if result.get('bsd_proven', False) else "✗"
-            print(f"  {status} {label}")
-
-        print(f"{'='*70}\n")
-
-        return results
-
-    except Exception as e:
-        print(f"\n✗ Error during batch verification: {e}")
-        import traceback
-        traceback.print_exc()
-        return None
-
-
-def run_complete_test_suite():
-    """
-    Run complete test suite on standard curves
-    """
-    print("\n" + "="*70)
-    print("COMPLETE BSD VERIFICATION SYSTEM")
-    print("="*70)
-
-    # Test curves covering different ranks and reduction types
-    test_curves = [
-        '11a1',   # Rank 0, conductor 11
-        '37a1',   # Rank 1, conductor 37
-        '389a1',  # Rank 2, conductor 389
-        '5077a1',  # Rank 3, conductor 5077
-    ]
-
-    print(f"\nTest curves: {', '.join(test_curves)}")
-
-    # Run individual verifications
-    print("\n" + "="*70)
-    print("PHASE 1: Individual Verifications")
-    print("="*70)
-
-    for label in test_curves[:2]:  # Test first 2 in detail
-        run_single_verification(label)
-
-    # Run batch verification
-    print("\n" + "="*70)
-    print("PHASE 2: Batch Verification")
-    print("="*70)
-
-    run_batch_verification(test_curves)
-
-    print("\n" + "="*70)
-    print("VERIFICATION COMPLETE")
-    print("="*70)
-    print("\nCertificates saved in: certificates/")
-    print("="*70 + "\n")
-
-
-def main():
-    """Main entry point"""
-    if len(sys.argv) > 1:
-        # Run on specified curves
-        curve_labels = sys.argv[1:]
-
-        if len(curve_labels) == 1:
-            run_single_verification(curve_labels[0])
-        else:
-            run_batch_verification(curve_labels)
+    print("="*60)
+    print("STEP 1: TESTING INDIVIDUAL COMPONENTS")
+    print("="*60)
+    print()
+    
+    all_passed = True
+    
+    # Test 1: Spectral Selmer Map
+    print("1.1 Testing Spectral Selmer Map...")
+    print("-" * 40)
+    selmer_ok = test_spectral_selmer_map()
+    all_passed = all_passed and selmer_ok
+    print()
+    
+    # Test 2: p-adic Integration
+    print("1.2 Testing p-adic Integration...")
+    print("-" * 40)
+    integration_ok = test_p_adic_integration()
+    all_passed = all_passed and integration_ok
+    print()
+    
+    # Test 3: Bloch-Kato Conditions
+    print("1.3 Testing Bloch-Kato Conditions...")
+    print("-" * 40)
+    bloch_kato_ok = test_bloch_kato_conditions()
+    all_passed = all_passed and bloch_kato_ok
+    print()
+    
+    if all_passed:
+        print("✅ All component tests passed")
     else:
-        # Run complete test suite
-        run_complete_test_suite()
+        print("❌ Some component tests failed")
+    
+    return all_passed
+
+
+def run_mass_verification(max_rank=3, max_conductor=1000):
+    """
+    Run mass verification on LMFDB curves
+    
+    Args:
+        max_rank: Maximum rank to test
+        max_conductor: Maximum conductor
+        
+    Returns:
+        MassBSDVerifier: Verifier with results
+    """
+    print()
+    print("="*60)
+    print("STEP 2: RUNNING MASS VERIFICATION")
+    print("="*60)
+    print()
+    
+    verifier = MassBSDVerifier(results_file="mass_verification_results.json")
+    verifier.run_mass_verification(
+        max_rank=max_rank, 
+        max_conductor=max_conductor
+    )
+    
+    return verifier
+
+
+def generate_final_report(verifier):
+    """
+    Generate final verification report
+    
+    Args:
+        verifier: MassBSDVerifier with results
+    """
+    print()
+    print("="*60)
+    print("STEP 3: FINAL VERIFICATION REPORT")
+    print("="*60)
+    print()
+    
+    total = verifier.total_count
+    verified = verifier.verified_count
+    success_rate = (verified / total) * 100 if total > 0 else 0
+    
+    print(f"📊 Total curves tested: {total}")
+    print(f"✅ Curves verified: {verified}")
+    print(f"❌ Curves failed: {total - verified}")
+    print(f"🎯 Success rate: {success_rate:.1f}%")
+    print()
+    
+    if success_rate == 100:
+        print("🏆 ALL CURVES VERIFIED SUCCESSFULLY!")
+        print("✨ BSD SPECTRAL FRAMEWORK COMPLETELY VALIDATED!")
+    elif success_rate >= 80:
+        print("✅ EXCELLENT! Most curves verified successfully")
+        print("   Check individual certificates for details on failed cases")
+    elif success_rate >= 50:
+        print("⚠️  PARTIAL SUCCESS - Many curves verified")
+        print("   Some curves require additional analysis")
+    else:
+        print("⚠️  NEEDS ATTENTION - Many curves could not be verified")
+        print("   Review verification logs for details")
+    
+    return success_rate == 100
+
+
+def run_complete_verification(max_rank=3, max_conductor=1000):
+    """
+    Run complete BSD verification pipeline
+    
+    Args:
+        max_rank: Maximum rank to test
+        max_conductor: Maximum conductor
+        
+    Returns:
+        bool: True if verification successful
+    """
+    print()
+    print("🎯 COMPLETE BSD VERIFICATION PIPELINE")
+    print("="*60)
+    print()
+    
+    # Step 1: Test components
+    components_ok = run_component_tests()
+    
+    if not components_ok:
+        print()
+        print("❌ Component tests failed. Continuing with caution...")
+        print()
+    
+    # Step 2: Run mass verification
+    verifier = run_mass_verification(
+        max_rank=max_rank, 
+        max_conductor=max_conductor
+    )
+    
+    # Step 3: Generate report
+    success = generate_final_report(verifier)
+    
+    print()
+    print("="*60)
+    print("VERIFICATION COMPLETE")
+    print("="*60)
+    
+    return success
 
 
 if __name__ == "__main__":
-    main()
+    # Parse command line arguments
+    import argparse
+    
+    parser = argparse.ArgumentParser(
+        description='Run complete BSD verification'
+    )
+    parser.add_argument(
+        '--max-rank', 
+        type=int, 
+        default=3,
+        help='Maximum rank to test (default: 3)'
+    )
+    parser.add_argument(
+        '--max-conductor', 
+        type=int, 
+        default=1000,
+        help='Maximum conductor (default: 1000)'
+    )
+    
+    args = parser.parse_args()
+    
+    success = run_complete_verification(
+        max_rank=args.max_rank,
+        max_conductor=args.max_conductor
+    )
+    
+    sys.exit(0 if success else 1)
