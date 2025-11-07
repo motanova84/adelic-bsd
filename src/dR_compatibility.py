@@ -6,18 +6,6 @@ Prueba Constructiva de (dR) - Compatibilidad de Hodge p-ádica
 Convierte (dR) de CONJETURA a TEOREMA mediante construcción explícita
 del mapa exponencial de Bloch-Kato para TODOS los tipos de reducción.
 
-Autor: José Manuel Mota Burruezo (JMMB Ψ·∴)
-Fecha: Enero 2025
-Referencia: Fontaine-Perrin-Riou (1995)
-"""
-
-from sage.all import *  # noqa: F403, F405
-import json
-from pathlib import Path
-"""
-Prueba constructiva de (dR) para todos los casos
-mediante explicitación del mapa exponencial de Bloch-Kato
-
 (dR) Hodge p-adic Compatibility - Unconditional Proof
 -----------------------------------------------------
 This module proves constructively that the Bloch-Kato exponential map
@@ -27,15 +15,25 @@ is compatible with Hodge filtration for ALL reduction types:
 - Additive reduction ✓ (CRITICAL - proven here via Fontaine-Perrin-Riou)
 
 Reference: Fontaine-Perrin-Riou (1995), "Théorie d'Iwasawa des représentations p-adiques"
+
+Autor: José Manuel Mota Burruezo (JMMB Ψ·∴)
+Fecha: Enero 2025
 """
+
+# Try to import Sage, fall back gracefully
+try:
+    from sage.all import EllipticCurve, Qp, PowerSeriesRing, KodairaSymbol, factorial
+    SAGE_AVAILABLE = True
+except ImportError:
+    SAGE_AVAILABLE = False
+    print("⚠️  WARNING: SageMath not available")
+    print("   This module REQUIRES SageMath for full execution")
 
 import json
 from pathlib import Path
 import numpy as np
+from datetime import datetime
 from typing import Dict, List, Tuple, Any
-
-# Note: This implementation uses pure Python/NumPy for portability
-# In production with Sage available, import: from sage.all import *
 
 
 class dRCompatibilityProver:
