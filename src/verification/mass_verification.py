@@ -9,7 +9,8 @@ with comprehensive reporting and certificate generation.
 
 import json
 from datetime import datetime
-from sage.all import EllipticCurve
+from sage.all import EllipticCurve, Integer, RealNumber
+from src.heights.height_comparison import HeightComparator
 
 
 class MassBSDVerifier:
@@ -225,7 +226,6 @@ class MassBSDVerifier:
                         regulator = gens[0].height()
                     else:
                         # For rank > 1, compute height pairing matrix
-                        from src.heights.height_comparison import HeightComparator
                         H = HeightComparator().compute_nt_height_matrix(gens[:rank])
                         regulator = abs(H.determinant())
                     
@@ -291,17 +291,26 @@ class MassBSDVerifier:
         # Handle lists/tuples/sets
         if isinstance(obj, (list, tuple, set)):
             return [self._make_json_serializable(x) for x in obj]
-        # Handle Sage objects: try to convert to string
+        # Handle Sage Integer and RealNumber types
         try:
-            # For Sage Integer, RealNumber, etc., convert to int/float if possible
-            if hasattr(obj, 'is_integer') and obj.is_integer():
+            # Use isinstance checks for Sage types
+            if isinstance(obj, Integer):
                 return int(obj)
-            if hasattr(obj, 'is_real') and obj.is_real():
+            if isinstance(obj, RealNumber):
                 return float(obj)
-            # For EllipticCurve, etc., use string representation
-            return str(obj)
         except Exception:
-            return str(obj)
+            pass
+        # Fallback: try numeric conversions with exception handling
+        try:
+            # Attempt int conversion
+            return int(obj)
+        except (TypeError, ValueError, AttributeError):
+            try:
+                # Attempt float conversion
+                return float(obj)
+            except (TypeError, ValueError, AttributeError):
+                # Final fallback: string representation
+                return str(obj)
 
     def _save_results(self):
         """Save verification results to JSON file"""
