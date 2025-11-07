@@ -7,7 +7,7 @@ This module provides computational tools for p-adic integration,
 which is essential for constructing p-adic L-functions and cocycles.
 """
 
-from sage.all import *
+from sage.all import matrix, QQ, log, oo
 import numpy as np
 
 
