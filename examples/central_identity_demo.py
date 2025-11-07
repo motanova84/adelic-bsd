@@ -303,14 +303,10 @@ def demo_comparison_multiple_curves():
     
     for label, expected_rank, description in curves:
         E = EllipticCurve(label)
-        ci = CentralIdentity(E, s=1.0)
+        ci = CentralIdentity(E, s=1.0, verbose=False)  # Suppress verbose output
         
-        # Compute central identity (suppress output)
-        import io
-        import contextlib
-        
-        with contextlib.redirect_stdout(io.StringIO()):
-            result = ci.compute_central_identity()
+        # Compute central identity
+        result = ci.compute_central_identity()
         
         det_val = result['determinant_lhs']['value']
         l_val = result['l_function']['value']

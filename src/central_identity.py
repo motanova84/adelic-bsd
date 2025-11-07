@@ -57,7 +57,7 @@ class CentralIdentity:
     - dim ker M_E(1) = rango analítico de E
     """
     
-    def __init__(self, E, s: float = 1.0, precision: int = 20):
+    def __init__(self, E, s: float = 1.0, precision: int = 20, verbose: bool = True):
         """
         Inicializa el módulo de identidad central.
         
@@ -65,20 +65,23 @@ class CentralIdentity:
             E: Curva elíptica (EllipticCurve)
             s: Parámetro complejo (default: 1 para BSD)
             precision: Precisión para cálculos p-ádicos
+            verbose: If True, print initialization info (default: True)
         """
         self.E = E
         self.s = s
         self.prec = precision
         self.N = E.conductor()
+        self.verbose = verbose
         
         # Cache para cálculos
         self._local_operators = {}
         self._determinant_data = None
         self._c_factor_data = None
         
-        print(f"📐 Identidad Central inicializada para {self._curve_label()}")
-        print(f"   Conductor: N = {self.N}")
-        print(f"   Parámetro: s = {self.s}")
+        if self.verbose:
+            print(f"📐 Identidad Central inicializada para {self._curve_label()}")
+            print(f"   Conductor: N = {self.N}")
+            print(f"   Parámetro: s = {self.s}")
     
     def _curve_label(self) -> str:
         """Obtener etiqueta de la curva"""
@@ -86,6 +89,11 @@ class CentralIdentity:
             return self.E.label()
         except (AttributeError, ValueError):
             return f"[{self.E.ainvs()}]"
+    
+    def _vprint(self, *args, **kwargs):
+        """Print only if verbose mode is on"""
+        if self.verbose:
+            print(*args, **kwargs)
     
     def compute_central_identity(self) -> Dict[str, Any]:
         """
@@ -102,28 +110,28 @@ class CentralIdentity:
                 - order_vanishing: Orden de anulación en s=1
         """
         print("\n" + "="*60)
-        print("IDENTIDAD CENTRAL: det(I - M_E(s)) = c(s) · L(E, s)")
+        self._vprint("IDENTIDAD CENTRAL: det(I - M_E(s)) = c(s) · L(E, s)")
         print("="*60)
         
         # Paso 1: Calcular determinante del lado izquierdo
-        print("\n1️⃣ Calculando det(I - M_E(s))...")
+        self._vprint("\n1️⃣ Calculando det(I - M_E(s))...")
         det_lhs = self._compute_fredholm_determinant()
         
         # Paso 2: Calcular función L del lado derecho
-        print("\n2️⃣ Calculando L(E, s)...")
+        self._vprint("\n2️⃣ Calculando L(E, s)...")
         l_func = self._compute_l_function()
         
         # Paso 3: Calcular factor c(s)
-        print("\n3️⃣ Calculando factor c(s)...")
+        self._vprint("\n3️⃣ Calculando factor c(s)...")
         c_factor = self._compute_c_factor()
         
         # Paso 4: Verificar identidad
-        print("\n4️⃣ Verificando identidad...")
+        self._vprint("\n4️⃣ Verificando identidad...")
         rhs = c_factor['value'] * l_func['value']
         identity_holds = self._verify_identity(det_lhs['value'], rhs)
         
         # Paso 5: Orden de anulación
-        print("\n5️⃣ Calculando orden de anulación...")
+        self._vprint("\n5️⃣ Calculando orden de anulación...")
         order_data = self._compute_vanishing_order()
         
         result = {
@@ -166,7 +174,7 @@ class CentralIdentity:
         else:
             det_value = self._fredholm_expansion(M_E)
         
-        print(f"   ✓ det(I - M_E({self.s})) calculado")
+        self._vprint(f"   ✓ det(I - M_E({self.s})) calculado")
         print(f"   ✓ dim ker M_E({self.s}) = {kernel_dim}")
         
         return {
@@ -274,7 +282,17 @@ class CentralIdentity:
         }
     
     def _supercuspidal_operator(self, p: int) -> Dict[str, Any]:
-        """Operador para reducción supercuspidal (additive)"""
+        """
+        Operador para reducción supercuspidal (additive)
+        
+        Note: The eigenvalue construction follows the general principle that
+        for supercuspidal representations, the local operator dimension is
+        related to the conductor exponent f_p. The eigenvalues are constructed
+        to ensure c_p(s) remains non-vanishing near s=1 (Theorem 6.1).
+        
+        This is a simplified model; full implementation would use
+        representation theory of GL_2(Q_p).
+        """
         f_p = self.N.valuation(p)  # Exponente del conductor
         
         # Dimensión = f_p (típicamente f_p = 2 para most curves)
@@ -366,6 +384,7 @@ class CentralIdentity:
         
         Para s=1 y rank r>0, L(E,1) = 0 (anulación)
         """
+        l_evaluation_failed = False
         try:
             # Intentar evaluar L(E, s) directly
             if self.s == 1:
@@ -381,16 +400,19 @@ class CentralIdentity:
                 # Evaluar en s ≠ 1
                 l_value = float(self.E.lseries().dokchitser()(self.s))
         except Exception as e:
-            print(f"   ⚠ Error calculando L(E,{self.s}): {e}")
+            l_evaluation_failed = True
+            if self.verbose:
+                print(f"   ⚠ Error calculando L(E,{self.s}): {e}")
             # Fallback: aproximación via producto de Euler
             l_value = self._euler_product_approximation()
         
-        print(f"   ✓ L(E, {self.s}) = {l_value:.6f}")
+        if self.verbose:
+            print(f"   ✓ L(E, {self.s}) = {l_value:.6f}")
         
         return {
             'value': l_value,
             'rank': self.E.rank(),
-            'method': 'sage_lseries' if 'e' not in str(locals()) else 'euler_product'
+            'method': 'euler_product' if l_evaluation_failed else 'sage_lseries'
         }
     
     def _euler_product_approximation(self) -> float:
@@ -539,7 +561,7 @@ class CentralIdentity:
         rhs_val = result['rhs_value']
         
         print(f"\n📊 Valores:")
-        print(f"   det(I - M_E({self.s})) = {det_val:.6f}")
+        self._vprint(f"   det(I - M_E({self.s})) = {det_val:.6f}")
         print(f"   c({self.s})            = {c_val:.6f}")
         print(f"   L(E, {self.s})          = {l_val:.6f}")
         print(f"   c({self.s}) · L(E, {self.s}) = {rhs_val:.6f}")
@@ -574,7 +596,7 @@ class CentralIdentity:
         # Paso 1: Identidad central (incondicional)
         print("\n1️⃣ Identidad Central (Incondicional):")
         central = self.compute_central_identity()
-        print("   ✅ det(I - M_E(s)) = c(s) · L(E, s) PROBADA")
+        self._vprint("   ✅ det(I - M_E(s)) = c(s) · L(E, s) PROBADA")
         
         # Paso 2: Estado de (dR)
         print("\n2️⃣ Compatibilidad (dR) - Hodge p-ádica:")
