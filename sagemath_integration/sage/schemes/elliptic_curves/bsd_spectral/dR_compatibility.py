@@ -422,7 +422,7 @@ def compute_h1f_dimension(E, p):
     
     if reduction_type == 'good':
         return 1
-    elif reduction_type in ['split', 'nonsplit']:
+    elif reduction_type == 'multiplicative':
         return 1
     else:  # additive
         # For additive reduction, dimension can be 1 or 2
