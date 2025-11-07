@@ -1,0 +1,3 @@
+"""
+Sage package structure.
+"""
