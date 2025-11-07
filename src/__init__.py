@@ -137,7 +137,16 @@ except ImportError:
     PTCompatibilityProver = None
     prove_PT_all_ranks = None
 
-__version__ = "0.2.1"
+try:
+    from .central_identity import (
+        CentralIdentity,
+        demonstrate_central_identity
+    )
+except ImportError:
+    CentralIdentity = None
+    demonstrate_central_identity = None
+
+__version__ = "0.2.2"
 __author__ = "Mota Burruezo"
 
 __all__ = [
@@ -183,10 +192,13 @@ __all__ = [
     "MassVerification",
     "batch_prove_bsd",
     "CertificateGenerator",
-    # dR compatibility module (new)
+    # dR compatibility module
     "dRCompatibilityProver",
-    "prove_dR_all_cases"
-    # PT Compatibility (new)
+    "prove_dR_all_cases",
+    # PT Compatibility
     "PTCompatibilityProver",
-    "prove_PT_all_ranks"
+    "prove_PT_all_ranks",
+    # Central Identity (new in v0.2.2)
+    "CentralIdentity",
+    "demonstrate_central_identity"
 ]
