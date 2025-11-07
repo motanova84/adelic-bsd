@@ -162,10 +162,5 @@ formalization/lean/lakefile.olean
 formalization/lean/build/
 formalization/lean/lean_packages/
 
-# SageMath integration directory - track documentation, ignore generated code
-sagemath_integration/**/*.py
-sagemath_integration/**/*.pyc
-sagemath_integration/.lake/
-sagemath_integration/build/
-# Keep documentation files
-!sagemath_integration/doc/**
+# SageMath integration directory (NOTE: now part of repository structure)
+# sagemath_integration/ - removed from ignore to track SageMath module structure

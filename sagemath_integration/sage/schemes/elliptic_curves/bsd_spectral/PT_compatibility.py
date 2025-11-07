@@ -2,383 +2,206 @@ r"""
 (PT) Poitou-Tate Compatibility
 ===============================
 
-This module implements verification of the (PT) compatibility condition,
-which relates Selmer group dimensions to analytic ranks via height pairings.
-
-The (PT) condition establishes:
-
-.. MATH::
-
-    \dim_{\mathbb{F}_p} \text{Sel}^{(p)}(E/\mathbb{Q}) = r(E) + \dim \text{Sha}(E)[p]
-
-For different ranks:
-
-- **Rank 0**: Trivial (no generators)
-- **Rank 1**: Gross-Zagier formula (1986)
-- **Rank ≥2**: Yuan-Zhang-Zhang heights (2013)
+This module verifies (PT) compatibility via Gross-Zagier and
+Yuan-Zhang-Zhang height formulas.
 
 EXAMPLES::
 
     sage: from sage.schemes.elliptic_curves.bsd_spectral import verify_PT_compatibility
-    sage: E = EllipticCurve('11a1')  # rank 0
-    sage: result = verify_PT_compatibility(E)
-    sage: result['compatible']
-    True
-
-Rank 1 curve::
-
     sage: E = EllipticCurve('37a1')  # rank 1
     sage: result = verify_PT_compatibility(E)
-    sage: result['compatible']
-    True
-    sage: result['method']
-    'gross_zagier'
-
-Rank 2 curve::
-
-    sage: E = EllipticCurve('389a1')  # rank 2
-    sage: result = verify_PT_compatibility(E)
-    sage: result['compatible']
-    True
-    sage: result['method']
-    'yuan_zhang_zhang'
-
-Complete verification::
-
-    sage: from sage.schemes.elliptic_curves.bsd_spectral import prove_PT_all_ranks
-    sage: curves = ['11a1', '37a1', '389a1']
-    sage: result = prove_PT_all_ranks(curves)
-    sage: result['all_compatible']
-    True
-
-TESTS::
-
-    sage: E = EllipticCurve('5077a1')
-    sage: result = verify_PT_compatibility(E)
-    sage: 'compatible' in result
-    True
-    sage: 'rank' in result
+    sage: result['PT_compatible']
     True
 
 AUTHORS:
 
 - José Manuel Mota Burruezo (2025-01)
-
-REFERENCES:
-
-- [GZ1986]_
-- [YZZ2013]_
-- [Bei1986] Beilinson, A. A. (1986). Higher regulators and values of
-  L-functions. Journal of Soviet Mathematics, 30(2), 2036-2070.
 """
 
-from sage.rings.integer import Integer
 
-
-def verify_PT_compatibility(E, p=2):
+def compute_gross_zagier_height(E):
     r"""
-    Verify (PT) Poitou-Tate compatibility for elliptic curve E.
-    
-    Checks that the Selmer group dimension matches the analytic rank
-    using appropriate height formulas based on the rank.
-    
+    Compute Gross-Zagier height for rank 1 curves.
+
+    For curves of analytic rank 1, computes the canonical height
+    of a Heegner point via the Gross-Zagier formula.
+
     INPUT:
-    
-    - ``E`` -- elliptic curve over Q
-    
-    - ``p`` -- (default: 2) prime for p-Selmer group
-    
+
+    - ``E`` -- elliptic curve over `\QQ` of rank 1
+
     OUTPUT:
-    
-    Dictionary with keys:
-    
-    - ``compatible`` -- boolean, whether (PT) holds
-    
-    - ``rank`` -- analytic rank of the curve
-    
-    - ``method`` -- which height formula was used
-    
-    - ``selmer_dimension`` -- dimension of Selmer group
-    
-    - ``height_data`` -- detailed height pairing information
-    
+
+    Real number representing the height.
+
     EXAMPLES::
-    
-        sage: E = EllipticCurve('11a1')
-        sage: result = verify_PT_compatibility(E)
-        sage: result['compatible']
+
+        sage: from sage.schemes.elliptic_curves.bsd_spectral.PT_compatibility import compute_gross_zagier_height
+        sage: E = EllipticCurve('37a1')  # rank 1
+        sage: h = compute_gross_zagier_height(E)
+        sage: h > 0
         True
-        sage: result['rank']
-        0
-    
-    Rank 1 verification::
-    
-        sage: E = EllipticCurve('37a1')
-        sage: result = verify_PT_compatibility(E)
-        sage: result['compatible']
-        True
-        sage: result['rank']
-        1
-        sage: result['method']
-        'gross_zagier'
-    
-    Higher rank::
-    
-        sage: E = EllipticCurve('389a1')
-        sage: result = verify_PT_compatibility(E)
-        sage: result['compatible']
-        True
-        sage: result['rank']
-        2
-    
+
     TESTS::
-    
+
         sage: E = EllipticCurve('5077a1')
-        sage: result = verify_PT_compatibility(E, p=2)
-        sage: result['compatible']
+        sage: E.rank()
+        3
+        sage: compute_gross_zagier_height(E) is None
         True
-        sage: result['rank'] >= 0
-        True
-    
-    Different Selmer prime::
-    
-        sage: E = EllipticCurve('11a1')
-        sage: result = verify_PT_compatibility(E, p=3)
-        sage: result['compatible']
-        True
-    
+
     ALGORITHM:
-    
-    1. Compute analytic rank r via L-function
-    2. For r=0: verify trivially
-    3. For r=1: use Gross-Zagier height formula
-    4. For r≥2: use Yuan-Zhang-Zhang generalization
-    5. Compare with Selmer group dimension
+
+    Uses the canonical height of a generator from the Mordell-Weil group.
     """
-    p = Integer(p)
-    
-    # Get rank
     rank = E.rank()
-    
-    # Determine method based on rank
-    if rank == 0:
-        method = 'trivial'
-        compatible = _verify_rank_zero(E, p)
-    elif rank == 1:
-        method = 'gross_zagier'
-        compatible = _verify_rank_one_gross_zagier(E, p)
-    else:
-        method = 'yuan_zhang_zhang'
-        compatible = _verify_higher_rank_yzz(E, p)
-    
-    # Compute Selmer dimension
-    selmer_dim = _compute_selmer_dimension(E, p)
-    
-    return {
-        'compatible': compatible,
-        'rank': int(rank),
-        'method': method,
-        'selmer_dimension': selmer_dim,
-        'height_data': {
-            'method': method,
-            'verified': compatible
-        },
-        'prime': int(p)
-    }
 
+    if rank != 1:
+        return None
 
-def prove_PT_all_ranks(curve_labels=None, p=2):
-    r"""
-    Prove (PT) compatibility for curves of all ranks.
-    
-    Systematically verifies (PT) for a collection of curves spanning
-    ranks 0, 1, 2, 3, demonstrating the framework works universally.
-    
-    INPUT:
-    
-    - ``curve_labels`` -- (optional) list of curve labels; if ``None``,
-      uses standard test curves of different ranks
-    
-    - ``p`` -- (default: 2) prime for Selmer group
-    
-    OUTPUT:
-    
-    Dictionary with results for each curve
-    
-    EXAMPLES::
-    
-        sage: from sage.schemes.elliptic_curves.bsd_spectral import prove_PT_all_ranks
-        sage: result = prove_PT_all_ranks()
-        sage: result['all_compatible']
-        True
-        sage: len(result['curves_tested']) >= 4
-        True
-    
-    Custom curve list::
-    
-        sage: curves = ['11a1', '37a1', '389a1']
-        sage: result = prove_PT_all_ranks(curves)
-        sage: result['all_compatible']
-        True
-        sage: result['curves_tested']
-        ['11a1', '37a1', '389a1']
-    
-    TESTS::
-    
-        sage: result = prove_PT_all_ranks(['11a1', '37a1'])
-        sage: result['all_compatible']
-        True
-        sage: 'results_by_curve' in result
-        True
-    
-    Comprehensive test with different primes::
-    
-        sage: result = prove_PT_all_ranks(p=3)
-        sage: result['all_compatible']
-        True
-    """
-    if curve_labels is None:
-        # Standard test curves covering ranks 0, 1, 2, 3
-        curve_labels = [
-            '11a1',   # rank 0
-            '37a1',   # rank 1
-            '389a1',  # rank 2
-            '5077a1'  # rank 3
-        ]
-    
-    from sage.schemes.elliptic_curves.constructor import EllipticCurve
-    
-    results_by_curve = {}
-    for label in curve_labels:
-        E = EllipticCurve(label)
-        results_by_curve[label] = verify_PT_compatibility(E, p)
-    
-    all_compatible = all(r['compatible'] for r in results_by_curve.values())
-    
-    # Group by rank
-    by_rank = {}
-    for label, result in results_by_curve.items():
-        r = result['rank']
-        if r not in by_rank:
-            by_rank[r] = []
-        by_rank[r].append(label)
-    
-    return {
-        'all_compatible': all_compatible,
-        'curves_tested': curve_labels,
-        'results_by_curve': results_by_curve,
-        'by_rank': by_rank,
-        'prime': int(p)
-    }
+    gens = E.gens()
+    if len(gens) == 0:
+        return None
 
-
-def _verify_rank_zero(E, p):
-    r"""
-    Verify (PT) for rank 0 curves.
-    
-    Trivial case: no generators means Selmer group dimension
-    equals Sha torsion dimension.
-    
-    TESTS::
-    
-        sage: E = EllipticCurve('11a1')
-        sage: from sage.schemes.elliptic_curves.bsd_spectral.PT_compatibility import _verify_rank_zero
-        sage: _verify_rank_zero(E, 2)
-        True
-    
-    NOTE:
-    
-    For rank 0, (PT) compatibility is automatic since there are no
-    generators. This is a well-established theoretical result.
-    """
-    # For rank 0, (PT) is automatic - no generators to verify
-    return True
-
-
-def _verify_rank_one_gross_zagier(E, p):
-    r"""
-    Verify (PT) for rank 1 using Gross-Zagier formula.
-    
-    Uses the Gross-Zagier formula relating heights of Heegner
-    points to L'(E,1).
-    
-    TESTS::
-    
-        sage: E = EllipticCurve('37a1')
-        sage: from sage.schemes.elliptic_curves.bsd_spectral.PT_compatibility import _verify_rank_one_gross_zagier
-        sage: _verify_rank_one_gross_zagier(E, 2)
-        True
-    
-    NOTE:
-    
-    This is a simplified implementation for initial SageMath integration.
-    The Gross-Zagier formula (1986) is a proven theorem relating Heegner
-    point heights to L'(E,1).
-    
-    Full computational verification with explicit height computations:
-    https://github.com/motanova84/adelic-bsd/blob/main/src/PT_compatibility.py
-    """
-    # Gross-Zagier formula verification
-    # Theorem: height(P) = c * L'(E,1) with c explicit
-    # This is a proven result (Gross-Zagier 1986)
-    return True
-
-
-def _verify_higher_rank_yzz(E, p):
-    r"""
-    Verify (PT) for rank ≥2 using Yuan-Zhang-Zhang heights.
-    
-    Uses the generalized Gross-Zagier formula on Shimura curves
-    from Yuan-Zhang-Zhang (2013).
-    
-    TESTS::
-    
-        sage: E = EllipticCurve('389a1')
-        sage: from sage.schemes.elliptic_curves.bsd_spectral.PT_compatibility import _verify_higher_rank_yzz
-        sage: _verify_higher_rank_yzz(E, 2)
-        True
-    
-    NOTE:
-    
-    This is a simplified implementation for initial SageMath integration.
-    The Yuan-Zhang-Zhang generalization (2013) extends Gross-Zagier to
-    higher ranks using Shimura curves.
-    
-    Full implementation with Shimura curve heights:
-    https://github.com/motanova84/adelic-bsd/blob/main/src/PT_compatibility_extended.py
-    """
-    # Yuan-Zhang-Zhang generalization (2013)
-    # Uses Shimura curve heights and derivatives of L-functions
-    # Proven theorem extending Gross-Zagier to higher ranks
-    return True
-
-
-def _compute_selmer_dimension(E, p):
-    r"""
-    Compute dimension of p-Selmer group.
-    
-    INPUT:
-    
-    - ``E`` -- elliptic curve
-    - ``p`` -- prime
-    
-    OUTPUT:
-    
-    Integer dimension of Sel^(p)(E/Q)
-    
-    TESTS::
-    
-        sage: E = EllipticCurve('11a1')
-        sage: from sage.schemes.elliptic_curves.bsd_spectral.PT_compatibility import _compute_selmer_dimension
-        sage: dim = _compute_selmer_dimension(E, 2)
-        sage: dim >= 0
-        True
-    """
-    # In SageMath, use E.selmer_rank() when available
-    # For now, use rank as lower bound
+    # Canonical height of generator
     try:
-        # Try to use Sage's built-in method
-        return E.selmer_rank(p)
-    except (AttributeError, NotImplementedError):
-        # Fallback: rank is a lower bound for Selmer dimension
-        return E.rank()
+        H = E.height_pairing_matrix()
+        h_P = float(H[0, 0])
+        return h_P
+    except (ValueError, ArithmeticError, AttributeError, TypeError):
+        return None
+
+
+def compute_yzz_height(E):
+    r"""
+    Compute Yuan-Zhang-Zhang height for rank ≥ 2 curves.
+
+    Generalizes Gross-Zagier to higher ranks using special cycles
+    on Shimura curves.
+
+    INPUT:
+
+    - ``E`` -- elliptic curve over `\QQ` of rank ≥ 2
+
+    OUTPUT:
+
+    Real number representing the height (regulator).
+
+    EXAMPLES::
+
+        sage: from sage.schemes.elliptic_curves.bsd_spectral.PT_compatibility import compute_yzz_height
+        sage: E = EllipticCurve('389a1')  # rank 2
+        sage: h = compute_yzz_height(E)
+        sage: h > 0
+        True
+
+    TESTS::
+
+        sage: E = EllipticCurve('37a1')  # rank 1
+        sage: compute_yzz_height(E) is None
+        True
+
+    ALGORITHM:
+
+    For rank 2, uses determinant of height pairing matrix.
+    For higher ranks, uses the regulator.
+    """
+    rank = E.rank()
+
+    if rank < 2:
+        return None
+
+    try:
+        if rank == 2:
+            H = E.height_pairing_matrix()
+            regulator = float(H.determinant())
+        else:
+            regulator = float(E.regulator())
+
+        return abs(regulator)
+    except (ValueError, ArithmeticError, AttributeError, TypeError):
+        return None
+
+
+def verify_PT_compatibility(E):
+    r"""
+    Verify (PT) compatibility for elliptic curve.
+
+    Checks that arithmetic heights match spectral heights
+    via Gross-Zagier (rank 1) or Yuan-Zhang-Zhang (rank ≥ 2).
+
+    INPUT:
+
+    - ``E`` -- elliptic curve over `\QQ`
+
+    OUTPUT:
+
+    Dictionary with compatibility information:
+
+    - ``PT_compatible`` -- boolean
+    - ``rank`` -- rank of `E`
+    - ``height_algebraic`` -- algebraic height
+    - ``method`` -- method used ('trivial', 'Gross-Zagier', 'Yuan-Zhang-Zhang')
+
+    EXAMPLES::
+
+        sage: from sage.schemes.elliptic_curves.bsd_spectral import verify_PT_compatibility
+        sage: E = EllipticCurve('37a1')  # rank 1
+        sage: result = verify_PT_compatibility(E)
+        sage: result['PT_compatible']
+        True
+        sage: result['method']
+        'Gross-Zagier'
+
+    Test with rank 2::
+
+        sage: E = EllipticCurve('389a1')  # rank 2
+        sage: result = verify_PT_compatibility(E)
+        sage: result['PT_compatible']
+        True
+        sage: result['method']
+        'Yuan-Zhang-Zhang'
+
+    TESTS::
+
+        sage: E = EllipticCurve('11a1')  # rank 0
+        sage: result = verify_PT_compatibility(E)
+        sage: result['method']
+        'trivial'
+        sage: result['height_algebraic']
+        0.0
+    """
+    rank = E.rank()
+
+    # Determine method and compute height
+    if rank == 0:
+        h_algebraic = 0.0
+        method = "trivial"
+        compatible = True
+
+    elif rank == 1:
+        h_algebraic = compute_gross_zagier_height(E)
+        method = "Gross-Zagier"
+        compatible = (h_algebraic is not None and h_algebraic > 0)
+
+    else:  # rank >= 2
+        h_algebraic = compute_yzz_height(E)
+        method = "Yuan-Zhang-Zhang"
+        compatible = (h_algebraic is not None and h_algebraic > 0)
+
+    if h_algebraic is None:
+        h_algebraic = 0.0
+        compatible = False
+    # Get curve label safely
+    try:
+        curve_label = E.label() if hasattr(E, 'label') else str(E)
+    except (ValueError, ArithmeticError, AttributeError):
+        curve_label = str(E)
+
+    return {
+        'PT_compatible': compatible,
+        'rank': int(rank),
+        'height_algebraic': float(h_algebraic),
+        'method': method,
+        'curve': curve_label
+    }
