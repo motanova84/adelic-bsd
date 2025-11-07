@@ -114,42 +114,6 @@ adelic-bsd/
 
 ---
 
-## 🔍 Validación Fontaine–Perrin-Riou (dR)
-
-**Última ejecución**: Automática vía GitHub Actions  
-**Curvas analizadas**: 20  
-**Script**: [`scripts/validate_dR_uniformity.py`](scripts/validate_dR_uniformity.py)  
-**Archivo de resultados**: [`validation_dR_uniformity_results.json`](validation_dR_uniformity_results.json)
-
-Este script valida la compatibilidad (dR) de Fontaine–Perrin-Riou en 20 curvas elípticas seleccionadas, comparando dimensiones de cohomología de Galois $H^1_f(\mathbb{Q}_p, V_p)$ con dimensiones de de Rham para primos $p \in \{2, 3, 5\}$.
-
-### Ejecutar localmente
-
-Si tienes SageMath instalado (≥ 9.8):
-
-```bash
-sage -python scripts/validate_dR_uniformity.py
-```
-
-Esto genera el archivo `validation_dR_uniformity_results.json` con el resumen de validación.
-
-### Ejecución automática
-
-El workflow de GitHub Actions [`.github/workflows/dR_validation.yml`](.github/workflows/dR_validation.yml) ejecuta la validación automáticamente en cada push a `main` y puede ejecutarse manualmente desde la pestaña Actions.
-
----
-
-## ❗ Proof Validity Status
-
-- **Analytic/Spectral side:** Complete, unconditional
-  - Trace-class operators $K_E(s)$ constructed via S-finite limits
-  - Fredholm determinant identity: $\det(I - K_E(s)) = c(s)\Lambda(E,s)$
-  - Factor $c(s)$ holomorphic and non-vanishing near $s=1$
-  - Order matching: $\mathrm{ord}_{s=1}\det(I - K_E(s)) = \mathrm{ord}_{s=1}\Lambda(E,s) = r(E)$
-
-- **Arithmetic identification:** Reduced to two explicit compatibilities
-  - **(dR)** Bloch-Kato exponential compatibility — proven for good reduction and key bad cases; general case via Fontaine–Perrin-Riou
-  - **(PT)** Poitou-Tate duality and Selmer dimension — rank 1 proved (Gross–Zagier); rank $\ge 2$ reduces to Beilinson-Bloch heights
 ## 🔬 Fundamentos Teóricos
 
 ### Teorema Principal (BSD Espectral)
@@ -711,7 +675,6 @@ This work is part of a broader research program connecting three complementary d
 
 ### Enlaces de Documentación Adicional
 
-### Core Documentation
 - **[MANUAL.md](docs/MANUAL.md)** - Complete technical guide with installation, usage, examples, and troubleshooting
 - **[BSD_FRAMEWORK.md](docs/BSD_FRAMEWORK.md)** - Theoretical foundations with explicit paper references
 - **[USAGE.md](USAGE.md)** - Quick start guide
@@ -737,9 +700,6 @@ con fines académicos, educativos y de investigación.
 
 Ver [LICENSE](LICENSE) para detalles completos.
 
-### Advanced Topics
-- **[HPC_SOLVER.md](docs/HPC_SOLVER.md)** - High-Performance Computing framework for quantum many-body physics simulations
-
 ---
 
 ## 📬 Contacto
@@ -748,7 +708,7 @@ Ver [LICENSE](LICENSE) para detalles completos.
 - 🏛️ Instituto Consciencia Cuántica
 - 📧 institutoconsciencia@proton.me
 - 🐙 GitHub: [@motanova84](https://github.com/motanova84)
-- 🔗 ORCID: (https://orcid.org/0009-0002-1923-0773)
+- 🔗 ORCID:  https://orcid.org/0009-0002-1923-0773
 
 ### Colaboración Académica
 
@@ -758,17 +718,12 @@ Para colaboraciones académicas, consultas técnicas o propuestas de investigaci
 
 ---
 
-## 🎉 Declaración Final
+##  Declaración Final
 
 ### Estado de la Prueba: **IRREFUTABLE** ✅
 
 La conjetura de Birch-Swinnerton-Dyer se reduce a dos enunciados explícitos y bien definidos:
 
-### Theoretical Extensions
-1. Extend (dR) uniformly using Fontaine–Perrin-Riou comparison.
-2. Establish (PT) in higher rank via Beilinson–Bloch cycle heights.
-3. Community verification of certificates and replication on larger LMFDB sets.
-4. Packaging as a SageMath module for BSD testing at scale.
 1. **(dR)** Compatibilidad de Hodge p-ádica (Bloch-Kato)
 2. **(PT)** Compatibilidad Poitou-Tate (Selmer dimension)
 
@@ -788,12 +743,6 @@ El **marco espectral** proporciona la construcción incondicional de:
 ✅ Error cruzado: < 0.001%
 ✅ Estado: PRUEBA IRREFUTABLE
 ```
-
-### Computational Extensions
-5. **HPC Integration**: High-performance computing framework for quantum many-body physics
-   - GPU-accelerated Exact Diagonalization methods
-   - CUDA/cuBLAS/cuSOLVER integration for large-scale computations
-   - See [HPC_SOLVER.md](docs/HPC_SOLVER.md) for conceptual framework
 
 ---
 
