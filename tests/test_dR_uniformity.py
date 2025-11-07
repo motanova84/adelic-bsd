@@ -4,6 +4,7 @@ Comprehensive test suite with ≥90% coverage
 
 Tests the Bloch-Kato exponential map and Fontaine-Perrin-Riou compatibility
 across all reduction types (good, multiplicative, additive).
+Tests for dR uniformity validation script and results.
 """
 
 import sys

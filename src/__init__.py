@@ -90,6 +90,15 @@ except ImportError:
     BlochKatoConditions = None
 
 try:
+    from .dR_compatibility import (
+        dRCompatibilityProver,
+        prove_dR_all_cases
+    )
+except ImportError:
+    dRCompatibilityProver = None
+    prove_dR_all_cases = None
+
+try:
     from .heights import (
         AdvancedSpectralHeightPairing,
         HeightComparison,
@@ -118,6 +127,15 @@ except ImportError:
     MassVerification = None
     batch_prove_bsd = None
     CertificateGenerator = None
+
+try:
+    from .PT_compatibility import (
+        PTCompatibilityProver,
+        prove_PT_all_ranks
+    )
+except ImportError:
+    PTCompatibilityProver = None
+    prove_PT_all_ranks = None
 
 __version__ = "0.2.1"
 __author__ = "Mota Burruezo"
@@ -164,5 +182,11 @@ __all__ = [
     "MassFormalProof",
     "MassVerification",
     "batch_prove_bsd",
-    "CertificateGenerator"
+    "CertificateGenerator",
+    # dR compatibility module (new)
+    "dRCompatibilityProver",
+    "prove_dR_all_cases"
+    # PT Compatibility (new)
+    "PTCompatibilityProver",
+    "prove_PT_all_ranks"
 ]

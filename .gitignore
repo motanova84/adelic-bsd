@@ -48,6 +48,7 @@ coverage.xml
 *.py,cover
 .hypothesis/
 .pytest_cache/
+.pip-cache/
 
 # Translations
 *.mo
@@ -147,3 +148,19 @@ frozen-*.txt
 *-frozen.txt
 local-frozen.txt
 ci-frozen.txt
+
+# Validation results
+validation_dR_uniformity_results.json
+# Results and output
+results/
+datasets/
+calibration/
+
+# Lean build artifacts
+formalization/lean/.lake/
+formalization/lean/lakefile.olean
+formalization/lean/build/
+formalization/lean/lean_packages/
+
+# SageMath integration directory (generated)
+sagemath_integration/
