@@ -32,39 +32,42 @@ class SyntaxFixer:
     def fix_unicode_operators(self, content):
         """Replace Unicode operators with ASCII equivalents."""
         replacements = {
-            '>=': '>=',
-            '<=': '<=',
-            '!=': '!=',
-            '*': '*',
-            '/': '/',
-            '-': '-',
-            '+/-': '+/-',
-            'inf': 'inf',
-            'sqrt': 'sqrt',
-            'sum': 'sum',
-            'prod': 'prod',
-            'in': 'in',
-            'not in': 'not in',
-            'subset': 'subset',
-            'superset': 'superset',
-            'union': 'union',
-            'intersection': 'intersection',
-            'tensor': 'tensor',
-            'oplus': 'oplus',
-            'and': 'and',
-            'or': 'or',
-            'not': 'not',
-            'forall': 'forall',
-            'exists': 'exists',
-            'grad': 'grad',
-            'partial': 'partial',
-            'integral': 'integral',
-            '->': '->',
-            '<-': '<-',
-            '<->': '<->',
-            '=>': '=>',
-            '<=': '<=',
-            '<=>': '<=>'
+            '\u2265': '>=',  # ≥
+            '\u2264': '<=',  # ≤
+            '\u2260': '!=',  # ≠
+            '\u00d7': '*',   # ×
+            '\u00f7': '/',   # ÷
+            '\u2212': '-',   # −
+            '\u00b1': '+/-', # ±
+            '\u221e': 'inf', # ∞
+            '\u221a': 'sqrt', # √
+            '\u2211': 'sum',  # ∑
+            '\u220f': 'prod', # ∏
+            '\u2208': 'in',   # ∈
+            '\u2209': 'not in', # ∉
+            '\u2282': 'subset', # ⊂
+            '\u2283': 'superset', # ⊃
+            '\u222a': 'union', # ∪
+            '\u2229': 'intersection', # ∩
+            '\u2297': 'tensor', # ⊗
+            '\u2295': 'oplus', # ⊕
+            '\u2227': 'and',  # ∧
+            '\u2228': 'or',   # ∨
+            '\u00ac': 'not',  # ¬
+            '\u2200': 'forall', # ∀
+            '\u2203': 'exists', # ∃
+            '\u2207': 'grad', # ∇
+            '\u2202': 'partial', # ∂
+            '\u222b': 'integral', # ∫
+            '\u2192': '->',  # →
+            '\u2190': '<-',  # ←
+            '\u2194': '<->', # ↔
+            '\u21d2': '=>',  # ⇒
+            '\u21d0': '<=',  # ⇐
+            '\u21d4': '<=>', # ⇔
+            '\u27e8': '<',   # ⟨
+            '\u27e9': '>',   # ⟩
+            '\u2248': '~'    # ≈
         }
         
         modified = False
