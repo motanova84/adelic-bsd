@@ -87,7 +87,7 @@ def verify_bounds(abs_value: str, lower: float, upper: float) -> bool:
         upper: Upper bound
         
     Returns:
-        True if lower ≤ |ζ'(1/2)| ≤ upper, False otherwise
+        True if lower <= |ζ'(1/2)| <= upper, False otherwise
     """
     value_float = float(abs_value)
     return lower <= value_float <= upper
@@ -172,9 +172,9 @@ Examples:
         in_bounds = verify_bounds(abs_value_str, args.lower, args.upper)
         
         if in_bounds:
-            print(f"  ✓ |ζ'(1/2)| ∈ [{args.lower}, {args.upper}]")
+            print(f"  ✓ |ζ'(1/2)| in [{args.lower}, {args.upper}]")
         else:
-            print(f"  ✗ |ζ'(1/2)| ∉ [{args.lower}, {args.upper}]")
+            print(f"  ✗ |ζ'(1/2)| not in [{args.lower}, {args.upper}]")
             print(f"  WARNING: Bounds do not contain the computed value!")
         print()
     

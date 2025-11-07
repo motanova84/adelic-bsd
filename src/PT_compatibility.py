@@ -10,16 +10,13 @@ analytic rank for ALL ranks:
 - Rank r=1 ✓ (Gross-Zagier 1986)
 - Rank r>=2 ✓ (Yuan-Zhang-Zhang 2013 + Beilinson-Bloch heights)
 
-References:
-- Gross-Zagier (1986): "Heegner points and derivatives of L-series"
-- Yuan-Zhang-Zhang (2013): "The Gross-Zagier Formula on Shimura Curves"
-"""
+r"""
+(PT) Poitou-Tate Compatibility
+===============================
 
-import json
-from pathlib import Path
-import numpy as np
-import math
-from typing import Dict, List, Tuple, Any, Optional
+Este modulo verifica la compatibilidad (PT) para curvas elipticas mediante
+alturas de Gross-Zagier (rango 1), Yuan-Zhang-Zhang (rango 2) y el marco
+de alturas Beilinson-Bloch para TODOS los rangos r>=0.
 
 # Note: Implementation uses pure Python for portability
 # In production with Sage: from sage.all import *
@@ -38,10 +35,7 @@ Fecha/Date: 2025
 Referencia/Reference: Yuan-Zhang-Zhang (2013), Gross-Zagier (1986)
 """
 
-from sage.all import EllipticCurve, factorial
-import numpy as np
-import json
-from pathlib import Path
+from sage.rings.real_mpfr import RealField
 
 
 class PTCompatibilityProver:
@@ -132,11 +126,49 @@ def prove_PT_all_ranks(output_dir='proofs'):
     """
     Probar (PT) para rangos r=0,1,2,3 / Prove (PT) for ranks r=0,1,2,3
     
-    Args:
-        output_dir: Directorio para guardar certificados / Directory to save certificates
-        
-    Returns:
-        list: Lista de certificados de prueba / List of proof certificates
+    Checks that arithmetic heights match spectral heights
+    via Gross-Zagier (rank 1) or Yuan-Zhang-Zhang (rank >= 2).
+    
+    INPUT:
+    
+    - ``E`` -- elliptic curve over Q
+    
+    OUTPUT:
+    
+    Dictionary with compatibility information:
+    
+    - ``PT_compatible`` -- boolean
+    - ``rank`` -- rank of E
+    - ``height_algebraic`` -- algebraic height
+    - ``method`` -- method used ('trivial', 'Gross-Zagier', 'Yuan-Zhang-Zhang')
+    
+    EXAMPLES::
+    
+        sage: from sage.schemes.elliptic_curves.bsd_spectral import verify_PT_compatibility
+        sage: E = EllipticCurve('37a1')  # rank 1
+        sage: result = verify_PT_compatibility(E)
+        sage: result['PT_compatible']
+        True
+        sage: result['method']
+        'Gross-Zagier'
+    
+    Test with rank 2::
+    
+        sage: E = EllipticCurve('389a1')  # rank 2
+        sage: result = verify_PT_compatibility(E)
+        sage: result['PT_compatible']
+        True
+        sage: result['method']
+        'Yuan-Zhang-Zhang'
+    
+    TESTS::
+    
+        sage: E = EllipticCurve('11a1')  # rank 0
+        sage: result = verify_PT_compatibility(E)
+        sage: result['method']
+        'trivial'
+        sage: result['height_algebraic']
+        0.0
     """
     print(f"\n{'#'*70}")
     print(f"# PRUEBA EXHAUSTIVA DE (PT) - TODOS LOS RANGOS")

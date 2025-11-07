@@ -1,5 +1,5 @@
 """
-Demonstration of Spectral→Cycles→Points Algorithm
+Demonstration of Spectral->Cycles->Points Algorithm
 
 This script demonstrates the complete algorithmic pipeline:
 1. Spectral kernel computation
@@ -83,7 +83,7 @@ def demo_lmfdb_verification():
     print("DEMO 4: LMFDB LARGE-SCALE VERIFICATION")
     print("="*70)
     
-    # Run verification on curves with conductor ≤ 30
+    # Run verification on curves with conductor <= 30
     results = large_scale_verification(
         conductor_range=(11, 30),
         rank_range=[0, 1],  # Start with rank 0 and 1
@@ -128,7 +128,7 @@ def demo_algorithmic_steps():
             print(f"  v_{i}: {v}")
     
     # Step 2: Convert to points
-    print("\n--- Step 2: Spectral→Points Conversion ---")
+    print("\n--- Step 2: Spectral->Points Conversion ---")
     points = spectral_kernel_to_rational_points(kernel_basis, E)
     print(f"Points generated: {len(points)}")
     for p_data in points:
@@ -173,13 +173,13 @@ def run_all_demos():
     Run all demonstration scripts
     """
     print("\n" + "="*70)
-    print("SPECTRAL→CYCLES→POINTS COMPLETE DEMONSTRATION")
+    print("SPECTRAL->CYCLES->POINTS COMPLETE DEMONSTRATION")
     print("="*70)
     print("\nThis demonstration implements the algorithmic strategy")
     print("from the problem statement:")
-    print("  - Spectral vectors → Modular symbols")
-    print("  - Modular symbols → Cycles in Jacobian")
-    print("  - Cycles → Rational points on E")
+    print("  - Spectral vectors -> Modular symbols")
+    print("  - Modular symbols -> Cycles in Jacobian")
+    print("  - Cycles -> Rational points on E")
     print("  - Height pairing verification")
     print("  - Large-scale LMFDB validation")
     print("="*70)

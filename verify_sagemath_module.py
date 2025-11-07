@@ -87,7 +87,7 @@ def main():
     print_info(f"Total lines across 5 files: {total_lines}")
     
     if total_lines >= 800:
-        print_success(f"Line count requirement met (≥800 lines)")
+        print_success(f"Line count requirement met (>=800 lines)")
     else:
         print(f"⚠️  Line count below target: {total_lines} < 800")
     

@@ -364,7 +364,7 @@ class SpectralBSD:
         
         Strategy:
         1. For rank 0,1: BSD is **unconditional** via Gross-Zagier and Kolyvagin
-        2. For rank ≥ 2: BSD reduces to verifying (dR) and (PT) compatibilities
+        2. For rank >= 2: BSD reduces to verifying (dR) and (PT) compatibilities
         
         Returns:
             dict: Complete BSD proof certificate
@@ -399,7 +399,7 @@ class SpectralBSD:
                 'Corollary 4.3 (Central Identity)'
             ]
         else:
-            # Conditional on (dR) and (PT) for rank ≥ 2
+            # Conditional on (dR) and (PT) for rank >= 2
             certificate['status'] = 'CONDITIONAL'
             certificate['proof_method'] = 'Central Identity + (dR) + (PT) Compatibilities'
             certificate['conditions'] = [

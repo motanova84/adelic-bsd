@@ -33,7 +33,7 @@ class ExtendedPTCompatibility(PTCompatibilityProver):
         if r < 2:
             return None
         
-        print(f"      → Calculando matriz de Gram {r}×{r}...")
+        print(f"      -> Calculando matriz de Gram {r}*{r}...")
         
         # Matriz de emparejamientos de altura
         G = np.zeros((r, r))
@@ -50,9 +50,9 @@ class ExtendedPTCompatibility(PTCompatibilityProver):
         
         non_degenerate = abs(det_G) > 1e-10 and all(ev > 1e-10 for ev in eigenvalues)
         
-        print(f"      → det(G) = {det_G:.6e}")
-        print(f"      → Eigenvalues: {eigenvalues}")
-        print(f"      → No-degenerada: {non_degenerate}")
+        print(f"      -> det(G) = {det_G:.6e}")
+        print(f"      -> Eigenvalues: {eigenvalues}")
+        print(f"      -> No-degenerada: {non_degenerate}")
         
         return {
             'matrix': G.tolist(),
@@ -65,7 +65,7 @@ class ExtendedPTCompatibility(PTCompatibilityProver):
         """
         Verificar fórmula BSD para r >= 2:
         
-        L^(r)(E,1) / r! = Reg(E) × #Ш × ∏c_p × Ω / #tors²
+        L^(r)(E,1) / r! = Reg(E) * #Ш * prodc_p * Ω / #tors²
         """
         if self.rank < 2:
             return None
@@ -80,13 +80,13 @@ class ExtendedPTCompatibility(PTCompatibilityProver):
         except:
             lhs = 0
         
-        # Lado derecho: Reg × (términos aritméticos)
+        # Lado derecho: Reg * (términos aritméticos)
         reg = self._compute_regulator()
         
         # Estimación de otros términos
         # (para verificación completa necesitaríamos calcular Ш, c_p, Ω exactamente)
         sha_estimate = 1  # Supuesto: Ш = 1
-        tamagawa_product = 1  # ∏c_p
+        tamagawa_product = 1  # prodc_p
         omega = 1  # Período real
         torsion_order = len(self.E.torsion_points())
         
@@ -97,9 +97,9 @@ class ExtendedPTCompatibility(PTCompatibilityProver):
         else:
             ratio = 0
         
-        print(f"      → L^({self.rank})(1)/{self.rank}! = {lhs:.6e}")
-        print(f"      → Reg × (términos) ≈ {rhs_estimate:.6e}")
-        print(f"      → Ratio: {ratio:.3f}")
+        print(f"      -> L^({self.rank})(1)/{self.rank}! = {lhs:.6e}")
+        print(f"      -> Reg * (términos) ≈ {rhs_estimate:.6e}")
+        print(f"      -> Ratio: {ratio:.3f}")
         
         # Compatible si ratio está cerca de 1 (dentro de orden de magnitud)
         compatible = (0.01 < ratio < 100)

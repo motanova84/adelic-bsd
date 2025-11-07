@@ -21,7 +21,7 @@ class BeilinsonBlochHeightPairing:
     Beilinson-Bloch regulatory height pairing.
     
     Implements the pairing:
-    ⟨·,·⟩_BB : CH^2(X, 1) × CH^2(X, 1) → ℝ
+    ⟨·,·⟩_BB : CH^2(X, 1) * CH^2(X, 1) -> ℝ
     
     where CH^2(X, 1) is the higher Chow group.
     """
