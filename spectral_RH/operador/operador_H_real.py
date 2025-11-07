@@ -1,4 +1,3 @@
-import numpy as np
 # Placeholder: implementación real debe comparar autovalores con ceros de zeta
 print("Autovalores: [0.251, 0.254, 0.259, ...]")
 print("Ceros computados: ")
