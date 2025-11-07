@@ -101,7 +101,7 @@ def demo_c_factor_nonvanishing():
     """
     Demo 3: Non-Vanishing of c(s)
     
-    Verifies c(1) ≠ 0 for multiple curves (critical property).
+    Verifies c(1) != 0 for multiple curves (critical property).
     """
     print("\n" + "="*70)
     print("DEMO 3: NO-ANULACIÓN DE c(s) EN s=1")
@@ -114,7 +114,7 @@ def demo_c_factor_nonvanishing():
         ('5077a1', 3)
     ]
     
-    print("\n🔍 Verificando c(1) ≠ 0 para múltiples curvas...\n")
+    print("\n🔍 Verificando c(1) != 0 para múltiples curvas...\n")
     
     results = []
     
@@ -140,7 +140,7 @@ def demo_c_factor_nonvanishing():
     
     print(f"\n{'='*70}")
     if all_nonzero:
-        print("✅ VERIFICADO: c(1) ≠ 0 para todas las curvas")
+        print("✅ VERIFICADO: c(1) != 0 para todas las curvas")
         print("   (Propiedad crítica para la identidad central)")
     else:
         print("⚠ Warning: Some c(1) factors are zero")
@@ -231,7 +231,7 @@ def demo_local_factors():
     
     print(f"\n{'='*70}")
     print("✅ Factores locales calculados explícitamente")
-    print("   (Teorema 6.1: c_p(1) ≠ 0 para todos los primos)")
+    print("   (Teorema 6.1: c_p(1) != 0 para todos los primos)")
 
 
 def demo_certificate_generation(curve_label='11a1'):
@@ -269,7 +269,7 @@ def demo_certificate_generation(curve_label='11a1'):
     print(f"   det(I - M_E) = {ci_data['determinant']:.6f}")
     print(f"   c(1) = {ci_data['c_factor']:.6f}")
     print(f"   L(E, 1) = {ci_data['l_function']:.6f}")
-    print(f"   c(1) ≠ 0: {ci_data['c_non_vanishing']}")
+    print(f"   c(1) != 0: {ci_data['c_non_vanishing']}")
     
     print(f"\n📊 Reducción BSD:")
     bsd = certificate['bsd_reduction']

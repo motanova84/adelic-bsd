@@ -58,7 +58,7 @@ def main():
         print(f"⏳ Validando {c} ...")
         res = validate_curve(c)
         all_results.append(res)
-        print(f"✅ {c} → {'OK' if res['passed'] else 'FALLO'}")
+        print(f"✅ {c} -> {'OK' if res['passed'] else 'FALLO'}")
 
     summary = {
         "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
@@ -73,7 +73,7 @@ def main():
     with open("validation_dR_uniformity_results.json", "w") as f:
         json.dump(summary, f, indent=2)
     print("\n📊 Validación completada:")
-    print(f"  → {summary['passed']}/{summary['total']} curvas correctas ({summary['success_rate']}%)")
+    print(f"  -> {summary['passed']}/{summary['total']} curvas correctas ({summary['success_rate']}%)")
 
 
 if __name__ == "__main__":

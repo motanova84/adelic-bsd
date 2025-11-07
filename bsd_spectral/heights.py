@@ -5,7 +5,7 @@ Heights Module
 Beilinson-Bloch height pairings and regulators.
 
 This module provides height pairing computations and
-regulator verification for ranks r ≥ 2.
+regulator verification for ranks r >= 2.
 """
 
 import sys

@@ -7,7 +7,7 @@ Este script encuentra el valor óptimo del parámetro 'a' que garantiza:
 - γ (gamma) > 0
 
 Problema Original:
-- a = 7.0 → δ* = 0.0253 → γ posiblemente < 0
+- a = 7.0 -> δ* = 0.0253 -> γ posiblemente < 0
 
 Solución Esperada:
 - a_calibrado ≈ 200.0
@@ -20,7 +20,7 @@ garantizando así la prueba incondicional de finitud.
 
 Basado en:
 - δ* = arg max_δ [F_spec(δ)]
-- γ = ∂²F/∂δ² |_{δ=δ*}
+- γ = partial²F/partialδ² |_{δ=δ*}
 - Necesitamos: γ > 0 (convexidad positiva)
 
 Author: José Manuel Mota Burruezo (JMMB Ψ · ∴)
@@ -37,8 +37,8 @@ def compute_delta_star(a: float) -> float:
     Calcula δ* en función del parámetro a.
     
     Fórmula basada en la teoría espectral:
-    Para a = 7.0 → δ* = 0.0253
-    Para a = 200.0 → δ* = 0.0485
+    Para a = 7.0 -> δ* = 0.0253
+    Para a = 200.0 -> δ* = 0.0485
     
     Calibración exacta usando interpolación
     
@@ -52,7 +52,7 @@ def compute_delta_star(a: float) -> float:
         raise ValueError("El parámetro 'a' debe ser positivo")
     
     # Calibración lineal interpolada entre puntos conocidos
-    # a=7 → δ*=0.0253, a=200 → δ*=0.0485
+    # a=7 -> δ*=0.0253, a=200 -> δ*=0.0485
     # Pendiente: (0.0485 - 0.0253) / (200 - 7) = 0.00012
     delta_star = 0.0253 + 0.00012 * (a - 7.0)
     return delta_star
@@ -216,7 +216,7 @@ def main():
     print(f"   - δ* = {target_result['delta_star']:.4f} > 0.04 ✅")
     print(f"   - γ = {target_result['gamma']:.4f} > 0 ✅")
     print()
-    print(f"4. Rango válido: a ∈ [{a_min_valid:.1f}, ∞)")
+    print(f"4. Rango válido: a in [{a_min_valid:.1f}, inf)")
     print(f"   El valor a = {a_recommended:.0f} está bien dentro del rango seguro.")
     print("-" * 60)
     
@@ -316,7 +316,7 @@ def compute_gamma(delta_star: float, a: float, zeta_prime_half: float = -1.460) 
     """
     Calcula amortiguamiento γ usando segunda derivada numérica
     
-    γ = ∂²F/∂δ² |_{δ=δ*}
+    γ = partial²F/partialδ² |_{δ=δ*}
     
     Necesitamos: γ > 0 (convexidad positiva en el máximo)
     
@@ -350,7 +350,7 @@ def find_optimal_a(
     Encuentra el valor mínimo de a tal que γ > target_gamma
     
     Procedimiento:
-    1. Escanear a ∈ [a_min, a_max]
+    1. Escanear a in [a_min, a_max]
     2. Para cada a, calcular δ* y γ
     3. Encontrar primer a donde γ > target_gamma
     
@@ -368,7 +368,7 @@ def find_optimal_a(
     
     if verbose:
         print(f"🔬 Calibrando parámetro a para γ > {target_gamma}...")
-        print(f"   Rango de búsqueda: a ∈ [{a_min}, {a_max}]")
+        print(f"   Rango de búsqueda: a in [{a_min}, {a_max}]")
         print(f"   Número de puntos: {num_points}\n")
     
     for a in np.linspace(a_min, a_max, num_points):

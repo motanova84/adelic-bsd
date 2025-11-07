@@ -179,7 +179,7 @@ class CompleteCalibratorValidator:
         a_std = np.std(a_values)
         
         print(f"📊 RESUMEN DE VALIDACIÓN CRUZADA:")
-        print(f"   a promedio: {a_mean:.2f} ± {a_std:.2f}")
+        print(f"   a promedio: {a_mean:.2f} +/- {a_std:.2f}")
         print(f"   Consistencia: {'✅ ALTA' if a_std/a_mean < 0.1 else '⚠️ MEDIA'}")
         
         # Seleccionar valor conservador (más alto para seguridad)

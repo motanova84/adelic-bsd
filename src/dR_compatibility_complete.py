@@ -26,7 +26,7 @@ class CompleteDRCompatibility(dRCompatibilityProver):
     
     def handle_wild_ramification_complete(self):
         """
-        Casos de ramificación salvaje (f_p ≥ 2)
+        Casos de ramificación salvaje (f_p >= 2)
         
         Estos son los más difíciles, pero tenemos:
         - Teoría de Fontaine completa
@@ -36,7 +36,7 @@ class CompleteDRCompatibility(dRCompatibilityProver):
         f_p = V_p.get('conductor_exponent', 0)
         
         if f_p >= 2:
-            print(f"      → Ramificación salvaje: f_p = {f_p}")
+            print(f"      -> Ramificación salvaje: f_p = {f_p}")
             
             # Usar clasificación de Ogg-Néron-Tate
             if f_p == 2:
@@ -166,7 +166,7 @@ def validate_dR_complete_coverage():
         # Reducción aditiva potencialmente buena
         ('27a1', 3, 'additive_potential_good'),
         
-        # Reducción aditiva salvaje (f_p ≥ 2)
+        # Reducción aditiva salvaje (f_p >= 2)
         ('50a1', 2, 'additive_wild'),
         ('24a1', 2, 'additive_wild'),
         

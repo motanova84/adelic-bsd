@@ -15,7 +15,7 @@ class BlochKatoExponential:
     """
     Explicit construction of the Bloch-Kato exponential map:
     
-    exp: H^1(Q_p, V_p) → D_dR(V_p)/Fil^0
+    exp: H^1(Q_p, V_p) -> D_dR(V_p)/Fil^0
     
     This map connects Galois cohomology to de Rham cohomology.
     

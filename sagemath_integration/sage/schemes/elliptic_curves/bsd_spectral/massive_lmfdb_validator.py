@@ -21,7 +21,7 @@ Coverage:
     - Special families (quadratic twist, etc.)
 
 Quality Metrics:
-    - Success rate (target: ≥ 99%)
+    - Success rate (target: >= 99%)
     - Confidence distribution
     - Performance benchmarks
     - Statistical analysis
@@ -742,7 +742,7 @@ CONCLUSION
 """
 
         if stats['success_rate'] >= 0.99:
-            report += "✅ VALIDATION SUCCESSFUL - Target ≥99% achieved\n"
+            report += "✅ VALIDATION SUCCESSFUL - Target >=99% achieved\n"
         elif stats['success_rate'] >= 0.95:
             report += "⚠️  VALIDATION MOSTLY SUCCESSFUL - Minor improvements needed\n"
         else:
