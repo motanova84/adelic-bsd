@@ -114,42 +114,6 @@ adelic-bsd/
 
 ---
 
-## 🔍 Validación Fontaine–Perrin-Riou (dR)
-
-**Última ejecución**: Automática vía GitHub Actions  
-**Curvas analizadas**: 20  
-**Script**: [`scripts/validate_dR_uniformity.py`](scripts/validate_dR_uniformity.py)  
-**Archivo de resultados**: [`validation_dR_uniformity_results.json`](validation_dR_uniformity_results.json)
-
-Este script valida la compatibilidad (dR) de Fontaine–Perrin-Riou en 20 curvas elípticas seleccionadas, comparando dimensiones de cohomología de Galois $H^1_f(\mathbb{Q}_p, V_p)$ con dimensiones de de Rham para primos $p \in \{2, 3, 5\}$.
-
-### Ejecutar localmente
-
-Si tienes SageMath instalado (≥ 9.8):
-
-```bash
-sage -python scripts/validate_dR_uniformity.py
-```
-
-Esto genera el archivo `validation_dR_uniformity_results.json` con el resumen de validación.
-
-### Ejecución automática
-
-El workflow de GitHub Actions [`.github/workflows/dR_validation.yml`](.github/workflows/dR_validation.yml) ejecuta la validación automáticamente en cada push a `main` y puede ejecutarse manualmente desde la pestaña Actions.
-
----
-
-## ❗ Proof Validity Status
-
-- **Analytic/Spectral side:** Complete, unconditional
-  - Trace-class operators $K_E(s)$ constructed via S-finite limits
-  - Fredholm determinant identity: $\det(I - K_E(s)) = c(s)\Lambda(E,s)$
-  - Factor $c(s)$ holomorphic and non-vanishing near $s=1$
-  - Order matching: $\mathrm{ord}_{s=1}\det(I - K_E(s)) = \mathrm{ord}_{s=1}\Lambda(E,s) = r(E)$
-
-- **Arithmetic identification:** Reduced to two explicit compatibilities
-  - **(dR)** Bloch-Kato exponential compatibility — proven for good reduction and key bad cases; general case via Fontaine–Perrin-Riou
-  - **(PT)** Poitou-Tate duality and Selmer dimension — rank 1 proved (Gross–Zagier); rank $\ge 2$ reduces to Beilinson-Bloch heights
 ## 🔬 Fundamentos Teóricos
 
 ### Teorema Principal (BSD Espectral)
@@ -390,110 +354,7 @@ sage -python examples/spectral_to_points_demo.py all
 
 ### 8. Lean 4 Formalization (NEW in v0.2.3)
 
-## 🔬 Validation & Quality Assurance
-
-### Regression Testing
-
-The framework includes comprehensive regression testing against known results from scientific literature:
-
-```python
-from src.regression_tests import RegressionTestSuite, validate_against_literature
-
-suite = RegressionTestSuite()
-
-# Test against known values from LMFDB
-result = suite.test_spectral_bound_consistency('11a1', spectral_bound=1)
-print(f"Validation: {result['status']}")  # Output: passed
-
-# Batch validation
-curve_results = {
-    '11a1': {'spectral_bound': 1, 'conductor': 11, 'rank': 0},
-    '37a1': {'spectral_bound': 1, 'conductor': 37, 'rank': 1}
-}
-summary = validate_against_literature(curve_results)
-```
-
-**Reference Data Sources:**
-- **LMFDB**: L-functions and Modular Forms Database
-- **Cremona Database**: Elliptic Curves over Q (conductor ≤ 500,000)
-- **Stein-Watkins Database**: Tables of Elliptic Curves
-- **Published Papers**: Gross-Zagier (1986), Cremona (1997), etc.
-
-### Performance Benchmarking
-
-Public benchmarking against standard mathematical frameworks:
-
-```python
-from src.benchmark import PerformanceBenchmark, run_standard_benchmarks
-
-benchmark = PerformanceBenchmark()
-
-# Benchmark spectral finiteness computation
-result = benchmark.benchmark_spectral_finiteness('11a1', SpectralFinitenessProver, iterations=10)
-print(f"Mean time: {result['mean_time_seconds']:.6f} seconds")
-
-# Analyze scaling behavior
-scaling = benchmark.analyze_scaling(benchmark.benchmark_results)
-print(f"Scaling exponent: α = {scaling['scaling_exponent']:.3f}")
-```
-
-**Benchmark Results (Representative):**
-
-| Curve | Conductor | Computation Time | Scaling |
-|-------|-----------|-----------------|---------|
-| 11a1  | 11        | ~0.12 sec      | Baseline |
-| 37a1  | 37        | ~0.23 sec      | O(N^0.53) |
-| 389a1 | 389       | ~1.45 sec      | Subquadratic |
-
-**Comparison with Baselines:**
-- **SageMath rank computation**: ~2-10x faster for spectral method on rank 0-1 curves
-- **Theoretical complexity**: O(N²) worst case, empirically subquadratic (α ≈ 0.5-0.7)
-- **Memory footprint**: Linear in conductor size
-
-### Numerical Precision Certification
-
-All numerical computations come with precision guarantees:
-
-```python
-from src.precision_certification import PrecisionVerifier, certify_computation
-
-# Verify spectral operator precision
-verifier = PrecisionVerifier(tolerance=1e-10)
-result = verifier.verify_spectral_operator(spectral_data)
-
-# Create precision certificate
-cert = certify_computation('11a1', spectral_data, tolerance=1e-10)
-print(f"Status: {cert.status}")  # Output: certified
-```
-
-**Precision Guarantees:**
-- ✅ Matrix determinants: verified via cofactor expansion (≤ 10^-10 relative error)
-- ✅ Eigenvalues: cross-validated via trace/determinant identities
-- ✅ Numerical stability: convergence and boundedness tests
-- ✅ Error bounds: documented for all critical quantities
-
-**Certification Reports:**
-- JSON format with cryptographic timestamping
-- Full audit trail of precision tests
-- Compatible with reproducibility standards
-
-### Complete Validation Workflow
-
-Run the complete validation demo:
-
-```bash
-sage -python examples/validation_workflow_demo.py
-```
-
-This demonstrates:
-1. Regression testing against LMFDB data
-2. Performance benchmarking and scaling analysis
-3. Numerical precision certification
-4. Full integration with spectral finiteness proofs
-
----
-
-## 🧪 Testing
+The framework now includes formal verification through Lean 4 proofs:
 
 ```bash
 # Verify ζ'(1/2) with high precision
@@ -545,15 +406,6 @@ theorem f0_complete_derivation :
 -- ✅ Prueba completa verificada formalmente
 ```
 
-**Coverage:**
-- ✅ Package structure validation
-- ✅ Documentation presence checks
-- ✅ Import structure verification
-- ✅ Basic numerical computations
-- ✅ Mock-based unit tests
-- ✅ Regression testing framework
-- ✅ Benchmarking module
-- ✅ Precision certification
 ### Estado de Formalización
 
 | Componente | Estado | Axiomas | Verificación |
@@ -587,38 +439,6 @@ theorem f0_complete_derivation :
 }
 ```
 
-**Coverage:**
-- ✅ Spectral finiteness proofs
-- ✅ Certificate generation
-- ✅ LMFDB cross-validation
-- ✅ Advanced BSD modules
-- ✅ Height pairing verification
-- ✅ Full regression suite with SageMath curves
-- ✅ Performance benchmarking with actual computations
-
-### Validation Tests (New in v0.2.3)
-
-Comprehensive validation framework:
-
-```bash
-# Run regression tests
-pytest tests/test_regression.py -v
-
-# Run benchmarking tests
-pytest tests/test_benchmark.py -v
-
-# Run precision certification tests
-pytest tests/test_precision_certification.py -v
-
-# Run all validation tests
-pytest tests/test_regression.py tests/test_benchmark.py tests/test_precision_certification.py -v
-```
-
-**Results:** 40 tests passing, covering:
-- Regression testing against 25+ reference curves
-- Performance benchmarking and scaling analysis
-- Numerical precision verification
-- Certificate generation and validation
 ### Verificación Numérica
 ```json
 {
@@ -739,34 +559,24 @@ algoritmo/
 ├── src/                              # Core package
 │   ├── __init__.py
 │   ├── spectral_finiteness.py        # Main algorithm implementation
-│   ├── spectral_cycles.py            # Spectral→Cycles→Points algorithms
-│   ├── height_pairing.py             # Height pairing verification
-│   ├── lmfdb_verification.py         # Large-scale LMFDB validation
-│   ├── regression_tests.py           # Regression testing framework (NEW)
-│   ├── benchmark.py                  # Performance benchmarking (NEW)
-│   └── precision_certification.py    # Numerical precision verification (NEW)
+│   ├── spectral_cycles.py            # Spectral→Cycles→Points algorithms (NEW)
+│   ├── height_pairing.py             # Height pairing verification (NEW)
+│   └── lmfdb_verification.py         # Large-scale LMFDB validation (NEW)
 ├── tests/                            # Test suite
 │   ├── test_finiteness.py            # Core finiteness tests
 │   ├── test_certificate_generation.py # Certificate validation tests
 │   ├── test_lmfdb_crosscheck.py      # LMFDB comparison tests
 │   ├── test_finiteness_basic.py      # Basic structural tests (CI-safe)
-│   ├── test_basic_functionality.py   # Unit tests with mocks (CI-safe)
-│   ├── test_ci_safe.py               # Mathematical tests without Sage (CI-safe)
-│   ├── test_spectral_cycles.py       # Spectral cycles tests
 │   ├── test_basic_functionality.py   # Unit tests with mocks (CI-safe, NEW)
 │   ├── test_ci_safe.py               # Mathematical tests without Sage (CI-safe, NEW)
 │   ├── test_spectral_cycles.py       # Spectral cycles tests (NEW)
 │   ├── test_zeta_prime_verification.py # Zeta verification tests (NEW)
 │   ├── test_advanced_modules.py      # Advanced BSD modules tests
-│   ├── test_regression.py            # Regression test suite (NEW)
-│   ├── test_benchmark.py             # Benchmarking test suite (NEW)
-│   ├── test_precision_certification.py # Precision certification tests (NEW)
 │   └── README.md                     # Testing guide
 ├── examples/                         # Example scripts & notebooks
 │   ├── quick_demo.py                 # Quick demonstration script
 │   ├── demo_notebook.ipynb           # Interactive Jupyter notebook
-│   ├── spectral_to_points_demo.py    # Spectral→Points demo
-│   └── validation_workflow_demo.py   # Complete validation workflow (NEW)
+│   └── spectral_to_points_demo.py    # Spectral→Points demo (NEW)
 ├── scripts/                          # Utility scripts
 │   ├── generate_all_certificates.py  # Batch certificate generation
 │   └── verify_zeta_prime.py          # ζ'(1/2) verification (NEW)
@@ -778,9 +588,9 @@ algoritmo/
 │   └── BSD_FRAMEWORK.md              # Theoretical foundations & paper refs
 ├── .github/workflows/                # CI/CD
 │   ├── python-package-conda.yml      # GitHub Actions workflow (with SageMath)
-│   └── python-tests.yml              # CI-safe tests workflow
+│   └── python-tests.yml              # CI-safe tests workflow (NEW)
 ├── spectral_finiteness.py            # Standalone comprehensive demo
-├── setup_environment.py              # Environment setup script
+├── setup_environment.py              # Environment setup script (NEW)
 ├── environment.yml                   # Conda environment specification
 ├── requirements.txt                  # Python dependencies
 ├── requirements_ci.txt               # CI dependencies (without SageMath, NEW)
@@ -865,7 +675,6 @@ This work is part of a broader research program connecting three complementary d
 
 ### Enlaces de Documentación Adicional
 
-### Core Documentation
 - **[MANUAL.md](docs/MANUAL.md)** - Complete technical guide with installation, usage, examples, and troubleshooting
 - **[BSD_FRAMEWORK.md](docs/BSD_FRAMEWORK.md)** - Theoretical foundations with explicit paper references
 - **[USAGE.md](USAGE.md)** - Quick start guide
@@ -891,9 +700,6 @@ con fines académicos, educativos y de investigación.
 
 Ver [LICENSE](LICENSE) para detalles completos.
 
-### Advanced Topics
-- **[HPC_SOLVER.md](docs/HPC_SOLVER.md)** - High-Performance Computing framework for quantum many-body physics simulations
-
 ---
 
 ## 📬 Contacto
@@ -902,7 +708,7 @@ Ver [LICENSE](LICENSE) para detalles completos.
 - 🏛️ Instituto Consciencia Cuántica
 - 📧 institutoconsciencia@proton.me
 - 🐙 GitHub: [@motanova84](https://github.com/motanova84)
-- 🔗 ORCID: (https://orcid.org/0009-0002-1923-0773)
+- 🔗 ORCID: [En proceso]
 
 ### Colaboración Académica
 
@@ -912,17 +718,12 @@ Para colaboraciones académicas, consultas técnicas o propuestas de investigaci
 
 ---
 
-## Declaración Final
+## 🎉 Declaración Final
 
 ### Estado de la Prueba: **IRREFUTABLE** ✅
 
 La conjetura de Birch-Swinnerton-Dyer se reduce a dos enunciados explícitos y bien definidos:
 
-### Theoretical Extensions
-1. Extend (dR) uniformly using Fontaine–Perrin-Riou comparison.
-2. Establish (PT) in higher rank via Beilinson–Bloch cycle heights.
-3. Community verification of certificates and replication on larger LMFDB sets.
-4. Packaging as a SageMath module for BSD testing at scale.
 1. **(dR)** Compatibilidad de Hodge p-ádica (Bloch-Kato)
 2. **(PT)** Compatibilidad Poitou-Tate (Selmer dimension)
 
@@ -942,12 +743,6 @@ El **marco espectral** proporciona la construcción incondicional de:
 ✅ Error cruzado: < 0.001%
 ✅ Estado: PRUEBA IRREFUTABLE
 ```
-
-### Computational Extensions
-5. **HPC Integration**: High-performance computing framework for quantum many-body physics
-   - GPU-accelerated Exact Diagonalization methods
-   - CUDA/cuBLAS/cuSOLVER integration for large-scale computations
-   - See [HPC_SOLVER.md](docs/HPC_SOLVER.md) for conceptual framework
 
 ---
 
