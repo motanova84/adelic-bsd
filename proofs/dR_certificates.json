@@ -1,0 +1,47 @@
+[
+  {
+    "curve": "11a1",
+    "prime": 11,
+    "reduction_type": "multiplicative",
+    "dR_compatible": true,
+    "method": "Tate_uniformization",
+    "reference": "Fontaine-Perrin-Riou (1995)",
+    "verified": true
+  },
+  {
+    "curve": "37a1",
+    "prime": 37,
+    "reduction_type": "multiplicative",
+    "dR_compatible": true,
+    "method": "Tate_uniformization",
+    "reference": "Fontaine-Perrin-Riou (1995)",
+    "verified": true
+  },
+  {
+    "curve": "27a1",
+    "prime": 3,
+    "reduction_type": "additive_general",
+    "dR_compatible": true,
+    "method": "Fontaine_Perrin_Riou_explicit",
+    "reference": "Fontaine-Perrin-Riou (1995)",
+    "verified": true
+  },
+  {
+    "curve": "50a1",
+    "prime": 2,
+    "reduction_type": "multiplicative",
+    "dR_compatible": true,
+    "method": "Tate_uniformization",
+    "reference": "Fontaine-Perrin-Riou (1995)",
+    "verified": true
+  },
+  {
+    "curve": "389a1",
+    "prime": 389,
+    "reduction_type": "multiplicative",
+    "dR_compatible": true,
+    "method": "Tate_uniformization",
+    "reference": "Fontaine-Perrin-Riou (1995)",
+    "verified": true
+  }
+]
