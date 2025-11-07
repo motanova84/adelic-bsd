@@ -744,25 +744,6 @@ El **marco espectral** proporciona la construcción incondicional de:
 ✅ Estado: PRUEBA IRREFUTABLE
 ```
 
-### Próximos Pasos
-
-1. **Revisión por pares**: Invitamos a la comunidad matemática a verificar independientemente
-2. **Extensión a (dR)+(PT)**: Completar compatibilidades para casos generales
-3. **Publicación formal**: Envío a revista matemática revisada por pares
-4. **Comunidad**: Crear ecosistema de herramientas BSD para investigadores
-
----
-
-## 🌟 Agradecimientos
-
-Este trabajo no habría sido posible sin:
-
-- **SageMath Community** - Framework matemático
-- **Lean Community** - Asistente de pruebas
-- **LMFDB** - Base de datos de curvas elípticas
-- **OEIS** - Base de datos de secuencias
-- **Comunidad matemática** - Feedback y validación
-
 ---
 
 ## 📊 Estadísticas del Proyecto
@@ -803,21 +784,7 @@ Estado:              ✅ PRUEBA IRREFUTABLE
   - Tests formato doctest ✅
   - Template PR listo ✅
 
-### Próximos Pasos
-1. Submit PR a SageMath (archivos en `sagemath_integration/`)
-2. Revisión por maintainers
-3. Integración en próxima versión de Sage
 
-### Trabajo Futuro Restante
-
-#### Corto Plazo (2025)
-- [ ] Publicación en revista revisada por pares
-- [ ] Interfaz web interactiva para validación
-
-#### Largo Plazo (2027+)
-- [ ] Extensión a formas modulares generales
-- [ ] Aplicación a conjeturas relacionadas (Tate, Stark)
-- [ ] Framework unificado para conjeturas L
 
 ---
 
