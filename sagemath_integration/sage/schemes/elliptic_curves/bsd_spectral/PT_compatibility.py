@@ -1,1 +1,0 @@
-# Compatibilidad Poitou-Tate
