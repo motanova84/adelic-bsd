@@ -133,8 +133,8 @@ def generate_final_certificate(dR_results, PT_results, spectral_results):
         dict: Certificado completo
     """
     # Verificar éxitos
-    dR_success = all(r.get('dR_compatible', False) for r in dR_results)
-    PT_success = all(r.get('PT_compatible', False) for r in PT_results)
+    dR_success = len(dR_results) > 0 and all(r.get('dR_compatible', False) for r in dR_results)
+    PT_success = len(PT_results) > 0 and all(r.get('PT_compatible', False) for r in PT_results)
     spectral_success = spectral_results.get('verified', False)
     
     all_proved = dR_success and PT_success and spectral_success
