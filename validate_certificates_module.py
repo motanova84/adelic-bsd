@@ -91,8 +91,9 @@ def test_hash_functionality():
     """Test SHA-256 hash functionality (without Sage)"""
     print("Testing hash functionality...")
     
-    # Test basic hash computation
-    data1 = "11:1:-122023936/161051:0"
+    # Test basic hash computation using the same format as certificates.py
+    # Format: conductor:discriminant:j_invariant
+    data1 = "11:-161051:-122023936/161051"
     hash1 = hashlib.sha256(data1.encode()).hexdigest()
     
     # Hash should be 64 characters
@@ -105,8 +106,8 @@ def test_hash_functionality():
     hash2 = hashlib.sha256(data1.encode()).hexdigest()
     assert hash1 == hash2, "Same data should produce same hash"
     
-    # Different data should produce different hash
-    data2 = "37:37:-2214408306:-7069"
+    # Different data should produce different hash (using same format)
+    data2 = "37:-7069:-2214408306"
     hash3 = hashlib.sha256(data2.encode()).hexdigest()
     assert hash1 != hash3, "Different data should produce different hash"
     
@@ -161,26 +162,21 @@ def test_latex_elements():
     """Test LaTeX export elements (without Sage)"""
     print("Testing LaTeX elements...")
     
-    # Test basic LaTeX string construction
-    label = '11a1'
-    N = 11
-    rank = 0
+    # Read the actual export_latex method to ensure consistency
+    with open("sagemath_integration/sage/schemes/elliptic_curves/bsd_spectral/certificates.py", 'r') as f:
+        content = f.read()
     
-    latex = f"""\\begin{{theorem}}[BSD Certificate for {label}]
-For the elliptic curve $E = $ {label} with conductor $N = {N}$ and rank $r = {rank}$:
-
-\\textbf{{Spectral Finiteness}}: The Tate-Shafarevich group $\\Sha(E/\\mathbb{{Q}})$ is finite.
-
-\\end{{theorem}}
-"""
+    # Verify key LaTeX structural elements are present in export_latex method
+    # These are the literal strings in the source code with escaped braces
+    assert '{{theorem}}' in content, "LaTeX theorem structure missing from export_latex"
+    assert '{{enumerate}}' in content, "LaTeX enumerate structure missing from export_latex"
+    assert '{{itemize}}' in content, "LaTeX itemize structure missing from export_latex"
+    assert 'Sha(' in content or '\\Sha' in content, "Sha reference missing from export_latex"
+    assert 'Spectral Finiteness' in content, "Spectral Finiteness section missing"
+    assert '(dR) Compatibility' in content, "(dR) section missing"
+    assert '(PT) Compatibility' in content, "(PT) section missing"
     
-    # Check LaTeX elements
-    assert '\\begin{theorem}' in latex, "LaTeX begin missing"
-    assert '\\end{theorem}' in latex, "LaTeX end missing"
-    assert '\\Sha' in latex, "Sha symbol missing"
-    assert label in latex, "Curve label missing"
-    
-    print("✓ LaTeX elements are correct")
+    print("✓ LaTeX elements are correct and consistent")
 
 
 def test_file_permissions():
