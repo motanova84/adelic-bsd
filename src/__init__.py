@@ -91,12 +91,14 @@ except ImportError:
 
 try:
     from .dR_compatibility import (
-        dRCompatibilityProver,
-        prove_dR_all_cases
+        compute_h1f_dimension,
+        compute_dR_dimension,
+        verify_dR_compatibility
     )
 except ImportError:
-    dRCompatibilityProver = None
-    prove_dR_all_cases = None
+    compute_h1f_dimension = None
+    compute_dR_dimension = None
+    verify_dR_compatibility = None
 
 try:
     from .heights import (
@@ -137,7 +139,16 @@ except ImportError:
     PTCompatibilityProver = None
     prove_PT_all_ranks = None
 
-__version__ = "0.2.1"
+try:
+    from .central_identity import (
+        CentralIdentity,
+        demonstrate_central_identity
+    )
+except ImportError:
+    CentralIdentity = None
+    demonstrate_central_identity = None
+
+__version__ = "0.2.2"
 __author__ = "Mota Burruezo"
 
 __all__ = [
@@ -183,10 +194,14 @@ __all__ = [
     "MassVerification",
     "batch_prove_bsd",
     "CertificateGenerator",
-    # dR compatibility module (new)
-    "dRCompatibilityProver",
-    "prove_dR_all_cases"
-    # PT Compatibility (new)
+    # dR compatibility module
+    "compute_h1f_dimension",
+    "compute_dR_dimension",
+    "verify_dR_compatibility",
+    # PT Compatibility
     "PTCompatibilityProver",
-    "prove_PT_all_ranks"
+    "prove_PT_all_ranks",
+    # Central Identity (new in v0.2.2)
+    "CentralIdentity",
+    "demonstrate_central_identity"
 ]

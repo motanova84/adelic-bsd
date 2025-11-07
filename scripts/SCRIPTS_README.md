@@ -70,6 +70,35 @@ Runs all phases:
 bash scripts/run_proof_completion.sh
 ```
 
+### 5. Fix and Run BSD Proof (SageMath)
+**File**: `fix_and_run_BSD_proof.py`
+
+Executes the complete BSD proof with real SageMath verification:
+- Checks SageMath availability
+- Runs (dR) compatibility proof
+- Runs (PT) compatibility proof
+- Integrates complete BSD unconditional proof
+- Verifies all certificate components
+
+```bash
+python scripts/fix_and_run_BSD_proof.py
+```
+
+**Prerequisites**:
+- SageMath must be installed and available in PATH
+- Install via: `conda install -c conda-forge sage`
+
+**Output**:
+- Executes dR_compatibility.py with Sage
+- Executes PT_compatibility.py with Sage
+- Executes prove_BSD_unconditional.py with Sage
+- Verifies BSD_UNCONDITIONAL_CERTIFICATE.json
+- Reports completion status for all components
+
+**Exit codes**:
+- 0: All components proved successfully
+- 1: SageMath not available or proof incomplete
+
 ## Validation
 
 ### Run Calibration Tests
@@ -78,6 +107,13 @@ python -m pytest tests/test_calibration.py -v
 ```
 
 Expected: 11/11 tests pass ✅
+
+### Run Fix and Run BSD Proof Tests
+```bash
+python -m pytest tests/test_fix_and_run_BSD_proof.py -v
+```
+
+Expected: 4/4 tests pass ✅
 
 ## Results
 
@@ -105,10 +141,13 @@ See `docs/PROOF_COMPLETION.md` for comprehensive documentation including:
 ### Python
 - numpy
 - pytest (for tests)
+- SageMath (for fix_and_run_BSD_proof.py)
 
 Install:
 ```bash
 pip install numpy pytest
+# For SageMath
+conda install -c conda-forge sage
 ```
 
 ### Lean 4
@@ -129,12 +168,14 @@ scripts/
 ├── find_incomplete_proofs.sh         # Shell script to find sorries
 ├── complete_lean_proofs.py           # Python script for detailed mapping
 ├── run_proof_completion.sh           # Complete workflow
+├── fix_and_run_BSD_proof.py          # Execute BSD proof with SageMath
 ├── calibration/
 │   └── optimal_a.txt                 # Calibration results
 └── README.md                         # This file
 
 tests/
-└── test_calibration.py               # Calibration validation tests
+├── test_calibration.py               # Calibration validation tests
+└── test_fix_and_run_BSD_proof.py     # Fix and run BSD proof tests
 
 formalization/
 ├── README.md                         # Lean formalization guide
