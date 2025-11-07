@@ -197,7 +197,7 @@ def verify_PT_compatibility(E):
             return {
                 'curve': label,
                 'rank': rank,
-                'compatible': False,
+                'PT_compatible': False,
                 'error': 'Failed to compute heights'
             }
         
