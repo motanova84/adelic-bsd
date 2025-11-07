@@ -187,9 +187,11 @@ class MassiveLMFDBValidator(SageObject):
                                     rank_curves.append(label)
                                     if len(rank_curves) >= samples_per_rank:
                                         break
-                            except Exception:
+                            except Exception:  # noqa: E722
+                                # Intentionally catch all: continue sampling even if curve fails
                                 continue
-                    except Exception:
+                    except Exception:  # noqa: E722
+                        # Intentionally catch all: continue sampling even if conductor fails
                         continue
 
                 # Random sample if too many
@@ -245,7 +247,8 @@ class MassiveLMFDBValidator(SageObject):
                 try:
                     dR_res = verify_dR_complete(E, p)
                     dR_results.append(dR_res)
-                except Exception as e:
+                except Exception as e:  # noqa: E722
+                    # Intentionally catch all: record failure and continue validation
                     dR_results.append({'dR_compatible': False, 'error': str(e)})
 
             dR_compatible = all(r.get('dR_compatible', False) for r in dR_results)
@@ -254,7 +257,8 @@ class MassiveLMFDBValidator(SageObject):
             try:
                 PT_result = verify_PT_complete(E)
                 PT_compatible = PT_result.get('PT_compatible', False)
-            except Exception as e:
+            except Exception as e:  # noqa: E722
+                # Intentionally catch all: record failure and continue validation
                 PT_compatible = False
                 PT_result = {'error': str(e)}
 
