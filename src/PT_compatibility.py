@@ -172,7 +172,7 @@ def verify_PT_compatibility(E):
     """
     if not SAGE_AVAILABLE:
         return {
-            'compatible': False,
+            'PT_compatible': False,
             'error': 'SageMath not available'
         }
     
@@ -227,7 +227,7 @@ def verify_PT_compatibility(E):
     except Exception as e:
         return {
             'curve': str(E) if E else 'unknown',
-            'compatible': False,
+            'PT_compatible': False,
             'error': str(e)
         }
 
@@ -304,7 +304,10 @@ def prove_PT_all_ranks():
     print(f"RESUMEN (PT):")
     print(f"   Total casos probados: {total}")
     print(f"   Compatibilidades verificadas: {success}")
-    print(f"   Tasa de éxito: {success}/{total} ({100*success/total:.1f}%)" if total > 0 else "")
+    if total > 0:
+        print(f"   Tasa de éxito: {success}/{total} ({100*success/total:.1f}%)")
+    else:
+        print(f"   Tasa de éxito: {success}/{total}")
     
     if success == total and total > 0:
         print(f"\n   ✅ (PT) COMPATIBILIDAD: PROBADA")

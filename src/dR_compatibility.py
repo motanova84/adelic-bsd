@@ -130,7 +130,7 @@ def verify_dR_compatibility(E, p):
     """
     if not SAGE_AVAILABLE:
         return {
-            'compatible': False,
+            'dR_compatible': False,
             'error': 'SageMath not available'
         }
     
@@ -145,7 +145,7 @@ def verify_dR_compatibility(E, p):
             return {
                 'curve': label,
                 'prime': p,
-                'compatible': False,
+                'dR_compatible': False,
                 'error': 'Failed to compute dimensions'
             }
         
@@ -167,7 +167,7 @@ def verify_dR_compatibility(E, p):
         return {
             'curve': str(E) if E else 'unknown',
             'prime': p,
-            'compatible': False,
+            'dR_compatible': False,
             'error': str(e)
         }
 
@@ -254,7 +254,10 @@ def prove_dR_all_cases():
     print(f"RESUMEN (dR):")
     print(f"   Total casos probados: {total}")
     print(f"   Compatibilidades verificadas: {success}")
-    print(f"   Tasa de éxito: {success}/{total} ({100*success/total:.1f}%)" if total > 0 else "")
+    if total > 0:
+        print(f"   Tasa de éxito: {success}/{total} ({100*success/total:.1f}%)")
+    else:
+        print(f"   Tasa de éxito: {success}/{total}")
     
     if success == total and total > 0:
         print(f"\n   ✅ (dR) COMPATIBILIDAD: PROBADA")
