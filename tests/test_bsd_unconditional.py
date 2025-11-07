@@ -31,7 +31,7 @@ def test_prove_BSD_unconditional_script_exists():
     """Test that prove_BSD_unconditional script exists"""
     script_path = Path(__file__).parent.parent / 'scripts' / 'prove_BSD_unconditional.py'
     assert script_path.exists(), "prove_BSD_unconditional.py not found"
-    assert os.access(script_path, os.X_OK) or script_path.suffix == '.py', "Script is not executable"
+    assert os.access(script_path, os.X_OK) or script_path.suffix == '.py', "Script must be a Python file or executable"
     print("✓ prove_BSD_unconditional script exists")
 
 
