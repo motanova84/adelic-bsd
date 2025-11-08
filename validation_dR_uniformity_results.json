@@ -1,8 +1,8 @@
 {
   "timestamp": "2025-10-27T22:00:00Z",
   "total": 20,
-  "passed": 18,
-  "success_rate": 90.0,
+  "passed": 16,
+  "success_rate": 80.0,
   "results": [
     {
       "curve": "11a1",
