@@ -70,7 +70,7 @@
     {
       "curve": "54a1",
       "validations": [
-        {"p": 2, "H1f": 2, "dR": 1, "ok": false},
+        {"p": 2, "H1f": 1, "dR": 2, "ok": false},
         {"p": 3, "H1f": 1, "dR": 1, "ok": true},
         {"p": 5, "H1f": 1, "dR": 1, "ok": true}
       ],
