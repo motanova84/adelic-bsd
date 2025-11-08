@@ -1,6 +1,6 @@
 """
 Spectral Cycles Module - Connection from Spectral Vectors to Rational Points
-Implements the algorithmic strategy for Spectral→Cycles connection
+Implements the algorithmic strategy for Spectral->Cycles connection
 
 Based on the algorithmic framework for connecting ker K_E(1) to E(ℚ)
 """
@@ -31,7 +31,7 @@ class SpectralCycleConstructor:
         """
         Algorithm 1: Construction of modular symbols from spectral vector
 
-        Given v ∈ ker K_E(1) ⊂ S₂(Γ₀(N_E)), compute its modular symbol
+        Given v in ker K_E(1) subset S₂(Γ₀(N_E)), compute its modular symbol
 
         Args:
             v: Spectral vector (form modular or q-expansion)
@@ -109,7 +109,7 @@ class SpectralCycleConstructor:
             E = self.E
 
         try:
-            # Method A: Use modular parametrization Φ: X₀(N) → E
+            # Method A: Use modular parametrization Φ: X₀(N) -> E
             # This is the main theoretical path
             param = E.modular_parametrization()
 
@@ -150,7 +150,7 @@ class SpectralCycleConstructor:
 
 def spectral_kernel_to_rational_points(ME_kernel_basis, E):
     """
-    Main Algorithm: Connection Spectral→Rational Points
+    Main Algorithm: Connection Spectral->Rational Points
 
     Input: Base {v₁,...,v_r} of ker K_E(1)
     Output: Points {P₁,...,P_r} in E(ℚ) (conjecturally generators)
@@ -249,7 +249,7 @@ def demonstrate_spectral_to_points(curve_label):
     E = EllipticCurve(curve_label)
 
     print(f"\n{'='*60}")
-    print(f"SPECTRAL→POINTS ALGORITHM FOR {curve_label}")
+    print(f"SPECTRAL->POINTS ALGORITHM FOR {curve_label}")
     print(f"{'='*60}")
 
     # Step 1: Compute kernel of K_E(1)

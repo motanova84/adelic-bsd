@@ -1,0 +1,3 @@
+"""
+Sage schemes package.
+"""
