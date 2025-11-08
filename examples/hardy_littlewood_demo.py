@@ -3,7 +3,7 @@
 Demonstration of Hardy-Littlewood Singular Series (Equation 4)
 
 This script demonstrates the corrected Hardy-Littlewood singular series:
-    S(n) = ∏_{p>2} (1 - 1/(p-1)²) · ∏_{p|n, p>2} (p-1)/(p-2)
+    S(n) = prod_{p>2} (1 - 1/(p-1)²) · prod_{p|n, p>2} (p-1)/(p-2)
 
 with the local factor for p=2 omitted, as in Hardy--Littlewood (1923).
 """
@@ -24,7 +24,7 @@ def demo_hardy_littlewood_constant():
     """
     Demonstrate the Hardy-Littlewood constant C₂
     
-    This is the infinite product ∏_{p>2} (1 - 1/(p-1)²)
+    This is the infinite product prod_{p>2} (1 - 1/(p-1)²)
     appearing in the twin prime conjecture.
     """
     print("\n" + "="*70)
@@ -32,7 +32,7 @@ def demo_hardy_littlewood_constant():
     print("="*70)
     
     print("\nThe Hardy-Littlewood constant (twin prime constant) is:")
-    print("    C₂ = ∏_{p>2} (1 - 1/(p-1)²)")
+    print("    C₂ = prod_{p>2} (1 - 1/(p-1)²)")
     print("\nThis appears in the asymptotic formula for twin primes.")
     
     # Compute with increasing precision
@@ -53,7 +53,7 @@ def demo_singular_series_examples():
     print("="*70)
     
     print("\nFormula (Equation 4):")
-    print("    S(n) = ∏_{p>2} (1 - 1/(p-1)²) · ∏_{p|n, p>2} (p-1)/(p-2)")
+    print("    S(n) = prod_{p>2} (1 - 1/(p-1)²) · prod_{p|n, p>2} (p-1)/(p-2)")
     print("\nNote: The local factor for p=2 is omitted.")
     
     print("\n" + "-"*70)
@@ -68,18 +68,18 @@ def demo_singular_series_examples():
         (2, "p=2 omitted, equals S(1)"),
         (3, "Factor: (3-1)/(3-2) = 2/1 = 2.0"),
         (5, "Factor: (5-1)/(5-2) = 4/3 ≈ 1.333"),
-        (6, "6=2×3: p=2 omitted, only factor for p=3"),
+        (6, "6=2*3: p=2 omitted, only factor for p=3"),
         (7, "Factor: (7-1)/(7-2) = 6/5 = 1.2"),
-        (15, "15=3×5: factors for p=3 and p=5"),
-        (21, "21=3×7: factors for p=3 and p=7"),
-        (30, "30=2×3×5: p=2 omitted, factors for p=3,5"),
+        (15, "15=3*5: factors for p=3 and p=5"),
+        (21, "21=3*7: factors for p=3 and p=7"),
+        (30, "30=2*3*5: p=2 omitted, factors for p=3,5"),
     ]
     
     for n, description in examples:
         S_n = hardy_littlewood_singular_series(n, max_prime=max_p)
         ratio = S_n / S_1
         print(f"\n  S({n:2d}) = {S_n:.8f}")
-        print(f"       = S(1) × {ratio:.6f}")
+        print(f"       = S(1) * {ratio:.6f}")
         print(f"       {description}")
 
 
@@ -109,19 +109,19 @@ def demo_p_equals_2_omission():
     print(f"\n   All equal? {abs(S_1 - S_2) < 1e-10 and abs(S_1 - S_4) < 1e-10}")
     
     # 2 times odd primes
-    print("\n2. Products 2×p for odd primes p:")
+    print("\n2. Products 2*p for odd primes p:")
     S_3 = hardy_littlewood_singular_series(3, max_prime=max_p)
-    S_6 = hardy_littlewood_singular_series(6, max_prime=max_p)  # 6 = 2×3
+    S_6 = hardy_littlewood_singular_series(6, max_prime=max_p)  # 6 = 2*3
     
     S_5 = hardy_littlewood_singular_series(5, max_prime=max_p)
-    S_10 = hardy_littlewood_singular_series(10, max_prime=max_p)  # 10 = 2×5
+    S_10 = hardy_littlewood_singular_series(10, max_prime=max_p)  # 10 = 2*5
     
     print(f"   S(3)  = {S_3:.10f}")
-    print(f"   S(6)  = {S_6:.10f}  (should equal S(3), since 6=2×3)")
+    print(f"   S(6)  = {S_6:.10f}  (should equal S(3), since 6=2*3)")
     print(f"   Equal? {abs(S_3 - S_6) < 1e-10}")
     
     print(f"\n   S(5)  = {S_5:.10f}")
-    print(f"   S(10) = {S_10:.10f}  (should equal S(5), since 10=2×5)")
+    print(f"   S(10) = {S_10:.10f}  (should equal S(5), since 10=2*5)")
     print(f"   Equal? {abs(S_5 - S_10) < 1e-10}")
 
 

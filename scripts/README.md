@@ -1,8 +1,53 @@
 # Scripts
 
-Utility scripts for batch processing and certificate generation.
+Utility scripts for batch processing, certificate generation, verification, and SageMath PR preparation.
 
 ## 📝 Available Scripts
+
+### 🔍 final_verification.sh ⭐ NEW
+
+Comprehensive verification script that checks all critical aspects of the project before SageMath PR submission.
+
+**Usage**:
+```bash
+./scripts/final_verification.sh
+```
+
+**What it checks**:
+- ✅ GitHub Actions status
+- ✅ Local CI-safe tests (4 tests)
+- ✅ Local basic functionality tests (6 tests)
+- ✅ Syntax check (flake8 on source code)
+- ✅ Code quality metrics (informational)
+- ✅ Critical files integrity
+- ✅ Python version compatibility
+
+**Expected output**: `🎉 ALL CRITICAL CHECKS PASSED! READY FOR SAGEMATH PR`
+
+### 🚀 prepare_sagemath_pr.sh ⭐ NEW
+
+Interactive script to prepare a pull request for the SageMath repository.
+
+**Usage**:
+```bash
+# Default location (../sagemath-fork)
+./scripts/prepare_sagemath_pr.sh
+
+# Custom location
+export SAGEMATH_DIR=/path/to/sagemath-fork
+./scripts/prepare_sagemath_pr.sh
+```
+
+**What it does**:
+1. Checks/clones SageMath repository
+2. Fetches latest changes from upstream
+3. Creates feature branch `bsd-spectral-framework`
+4. Copies module files, documentation, and tests
+5. Runs SageMath tests (optional)
+6. Creates comprehensive commit
+7. Provides push instructions
+
+**Prerequisites**: SageMath fork cloned (or the script will guide you)
 
 ### generate_all_certificates.py
 
@@ -55,6 +100,44 @@ $ sage -python scripts/generate_all_certificates.py --conductor 20
    Success rate: 100.0%
 
 📁 Certificates saved in: certificates/
+```
+
+---
+
+## 🔄 Recommended Workflow
+
+### For Development and Testing
+```bash
+# 1. Make changes to code
+vim src/your_file.py
+
+# 2. Run verification to ensure nothing broke
+./scripts/final_verification.sh
+
+# 3. If all checks pass, commit
+git add .
+git commit -m "Your descriptive message"
+git push
+```
+
+### For SageMath PR Submission
+```bash
+# 1. Ensure all tests pass
+./scripts/final_verification.sh
+# Expected: ✅ ALL CRITICAL CHECKS PASSED!
+
+# 2. Prepare SageMath PR
+./scripts/prepare_sagemath_pr.sh
+# Follow the interactive prompts
+
+# 3. Push to your fork (instructions will be provided)
+cd ../sagemath-fork
+git push -u YOUR_FORK bsd-spectral-framework
+
+# 4. Create PR on GitHub
+# - Go to https://github.com/sagemath/sage
+# - Click "New Pull Request"
+# - Use template from ../SAGEMATH_PR.md
 ```
 
 ---
