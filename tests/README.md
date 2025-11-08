@@ -14,6 +14,12 @@ This directory contains tests for the Spectral Finiteness Framework.
 ### Full Tests (Require SageMath)
 
 - **`test_finiteness.py`**: Full functional tests requiring SageMath
+- **`test_advanced_modules.py`**: Tests for advanced cohomology and heights modules
+- **`test_spectral_selmer_map.py`**: Tests for spectral Selmer map implementation (new)
+- **`test_spectral_cycles.py`**: Tests for spectral cycles and kernel computations
+- **`test_certificate_generation.py`**: Tests for certificate generation
+- **`test_integration_advanced.py`**: Integration tests for advanced features
+- **`test_lmfdb_crosscheck.py`**: LMFDB cross-validation tests
 - **`test_spectral_cycles.py`**: Tests for spectral cycle computations
 - **`test_spectral_core.py`**: Core spectral tests validating theoretical integrity
 - **`test_advanced_modules.py`**: Tests for advanced BSD modules
@@ -79,6 +85,12 @@ The test suite uses pytest markers for better control:
 # Run only tests that DON'T require SageMath
 pytest -m "not sage_required" -v
 
+# All tests (requires Sage)
+sage -python -m pytest tests/ -v
+
+# Run specific test modules
+sage -python tests/test_spectral_selmer_map.py
+sage -python tests/test_advanced_modules.py
 # Run only tests that require SageMath (when Sage is available)
 sage -python -m pytest -m "sage_required" -v
 
