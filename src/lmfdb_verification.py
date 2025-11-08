@@ -2,11 +2,13 @@
 LMFDB Verification Module - Large-Scale Verification System
 Implements algorithms for large-scale verification against LMFDB data
 
-Tests the spectral→cycles→points algorithm on extensive curve databases
+Tests the spectral->cycles->points algorithm on extensive curve databases
 """
 
+import os
 from sage.all import EllipticCurve, cremona_curves
 from src.height_pairing import verify_height_compatibility
+from src.utils import get_safe_output_path
 
 
 def get_lmfdb_curves(conductor_range=None, rank_range=None, limit=None):
@@ -101,7 +103,7 @@ def get_lmfdb_curves(conductor_range=None, rank_range=None, limit=None):
 def large_scale_verification(conductor_range=(11, 50), rank_range=None,
                              limit=20, verbose=True):
     """
-    Large-scale verification of the spectral→cycles→points algorithm
+    Large-scale verification of the spectral->cycles->points algorithm
 
     Implements the massive LMFDB verification described in the problem statement
 
@@ -234,7 +236,7 @@ def generate_verification_report(verification_data, output_file=None):
     """
     report = []
     report.append("="*70)
-    report.append("SPECTRAL→CYCLES→POINTS VERIFICATION REPORT")
+    report.append("SPECTRAL->CYCLES->POINTS VERIFICATION REPORT")
     report.append("="*70)
     report.append("")
 
@@ -283,9 +285,11 @@ def generate_verification_report(verification_data, output_file=None):
 
     # Save to file if specified
     if output_file:
-        with open(output_file, 'w') as f:
+        # Use safe directory for file writing
+        filepath = get_safe_output_path(output_file)
+        with open(filepath, 'w') as f:
             f.write(report_text)
-        print(f"\nReport saved to: {output_file}")
+        print(f"\nReport saved to: {filepath}")
 
     return report_text
 

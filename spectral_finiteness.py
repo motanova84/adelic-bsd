@@ -17,6 +17,27 @@ from sage.all import EllipticCurve, matrix, QQ, prime_divisors, latex, prod
 from sage.databases.cremona import cremona_letter
 from sage.schemes.elliptic_curves.ell_rational_field import EllipticCurve_rational_field
 import math
+import os
+import sys
+
+# Add src to path if not already there
+src_path = os.path.join(os.path.dirname(__file__), 'src')
+if src_path not in sys.path and os.path.exists(src_path):
+    sys.path.insert(0, src_path)
+
+try:
+    from utils import get_safe_output_path
+except ImportError:
+    # Fallback if utils module is not available
+    def get_safe_output_path(filename_or_dir, is_dir=False):
+        safe_base = os.environ.get('GITHUB_WORKSPACE', os.getcwd())
+        if os.path.isabs(filename_or_dir):
+            safe_path = filename_or_dir
+        else:
+            safe_path = os.path.join(safe_base, filename_or_dir)
+        if is_dir:
+            os.makedirs(safe_path, exist_ok=True)
+        return safe_path
 
 class SpectralFinitenessProver:
     """
@@ -64,7 +85,7 @@ class SpectralFinitenessProver:
         Basado en construcción explícita para p=11
         """
         ap = self.E.ap(p)
-        # Para Steinberg: ap = ±1, tomamos la construcción de p=11
+        # Para Steinberg: ap = +/-1, tomamos la construcción de p=11
         if ap == -1:
             return matrix(QQ, [[1, p**(-1)], [0, 1]])
         else:  # ap = 1
@@ -151,7 +172,7 @@ class SpectralFinitenessProver:
         
         # Paso 2: Verificar discreción (inyectividad de Φ)
         total_kernel_dim = sum(data['kernel_dim'] for data in spectral_info['spectral_data'].values())
-        print(f"\n2. DISCRECIÓN: dim total del kernel = {total_kernel_dim} < ∞ ✓")
+        print(f"\n2. DISCRECIÓN: dim total del kernel = {total_kernel_dim} < inf ✓")
         
         # Paso 3: Verificar compacidad cocompacta
         global_bound = spectral_info['global_bound']
@@ -160,9 +181,9 @@ class SpectralFinitenessProver:
         # Paso 4: Conclusión de finitud
         print(f"\n4. CONCLUSIÓN:")
         print(f"   Λ_spec es discreto, cocompacto y acotado por {global_bound}")
-        print(f"   ⇒ Λ_spec es FINITO")
-        print(f"   ⇒ Ш_spec = Sel_spec/Λ_spec es FINITO")  
-        print(f"   ⇒ Ш(E/ℚ) es FINITO (por quasi-isomorfismo) ✓")
+        print(f"   => Λ_spec es FINITO")
+        print(f"   => Ш_spec = Sel_spec/Λ_spec es FINITO")  
+        print(f"   => Ш(E/ℚ) es FINITO (por quasi-isomorfismo) ✓")
         
         return {
             'finiteness_proved': True,
@@ -182,7 +203,7 @@ class SpectralFinitenessProver:
             
             our_bound = self.compute_spectral_selmer_lattice()['global_bound']
             print(f"   Nuestra cota espectral = {our_bound}")
-            print(f"   Cota ≥ Conocido? {our_bound >= sha_size} ✓")
+            print(f"   Cota >= Conocido? {our_bound >= sha_size} ✓")
             
             return sha_size
         except:
@@ -359,9 +380,12 @@ if __name__ == "__main__":
             # Generar certificado para curvas importantes
             if E.conductor() <= 20:
                 cert = generate_finiteness_certificate(E, proof_result)
-                with open(f"certificado_finitud_{curve_label}.tex", "w") as f:
+                # Use safe directory for file writing
+                cert_filename = f"certificado_finitud_{curve_label}.tex"
+                cert_path = get_safe_output_path(cert_filename)
+                with open(cert_path, "w") as f:
                     f.write(cert)
-                print(f"   📄 Certificado LaTeX generado: certificado_finitud_{curve_label}.tex")
+                print(f"   📄 Certificado LaTeX generado: {cert_path}")
                 
         except Exception as e:
             print(f"   ❌ ERROR: {e}")
@@ -411,7 +435,7 @@ if __name__ == "__main__":
     print("   4. ¡EL ALGORITMO FUNCIONA! 🎉")
 
     print(f"\n📁 SALIDAS GENERADAS:")
-    print("   • Certificados LaTeX para curvas de conductor ≤ 20")
+    print("   • Certificados LaTeX para curvas de conductor <= 20")
     print("   • Dataset completo con todas las cotas espectrales")
     print("   • Estadísticas detalladas para publicación")
 

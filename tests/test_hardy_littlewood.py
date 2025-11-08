@@ -46,7 +46,7 @@ class TestHardyLittlewoodSeries(unittest.TestCase):
         """
         Test S(1) = Hardy-Littlewood constant C₂
         
-        S(1) should equal the infinite product ∏_{p>2} (1 - 1/(p-1)²)
+        S(1) should equal the infinite product prod_{p>2} (1 - 1/(p-1)²)
         Known value: approximately 0.6601618158...
         """
         S_1 = self.S(1, max_prime=1000)
@@ -128,7 +128,7 @@ class TestHardyLittlewoodSeries(unittest.TestCase):
         Test the correction factor (p-1)/(p-2) for individual primes
         
         For n = p (prime > 2), we have:
-        S(p) = S(1) × (p-1)/(p-2)
+        S(p) = S(1) * (p-1)/(p-2)
         """
         S_1 = self.S(1, max_prime=500)
         
@@ -147,31 +147,31 @@ class TestHardyLittlewoodSeries(unittest.TestCase):
         expected_7 = S_1 * (6.0 / 5.0)
         self.assertAlmostEqual(S_7, expected_7, places=8)
         
-        print(f"✅ S(3) = S(1) × 2/1 = {S_3:.6f}")
-        print(f"✅ S(5) = S(1) × 4/3 = {S_5:.6f}")
-        print(f"✅ S(7) = S(1) × 6/5 = {S_7:.6f}")
+        print(f"✅ S(3) = S(1) * 2/1 = {S_3:.6f}")
+        print(f"✅ S(5) = S(1) * 4/3 = {S_5:.6f}")
+        print(f"✅ S(7) = S(1) * 6/5 = {S_7:.6f}")
     
     def test_multiple_prime_factors(self):
         """
         Test S(n) for n with multiple prime factors > 2
         
         For n = p·q with p,q > 2 distinct primes:
-        S(p·q) = S(1) × (p-1)/(p-2) × (q-1)/(q-2)
+        S(p·q) = S(1) * (p-1)/(p-2) * (q-1)/(q-2)
         """
         S_1 = self.S(1, max_prime=500)
         
-        # n = 15 = 3 × 5
+        # n = 15 = 3 * 5
         S_15 = self.S(15, max_prime=500)
         expected_15 = S_1 * (2.0 / 1.0) * (4.0 / 3.0)
         self.assertAlmostEqual(S_15, expected_15, places=8)
         
-        # n = 21 = 3 × 7
+        # n = 21 = 3 * 7
         S_21 = self.S(21, max_prime=500)
         expected_21 = S_1 * (2.0 / 1.0) * (6.0 / 5.0)
         self.assertAlmostEqual(S_21, expected_21, places=8)
         
-        print(f"✅ S(15) = S(1) × (2/1) × (4/3) = {S_15:.6f}")
-        print(f"✅ S(21) = S(1) × (2/1) × (6/5) = {S_21:.6f}")
+        print(f"✅ S(15) = S(1) * (2/1) * (4/3) = {S_15:.6f}")
+        print(f"✅ S(21) = S(1) * (2/1) * (6/5) = {S_21:.6f}")
     
     def test_convergence_with_max_prime(self):
         """
