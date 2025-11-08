@@ -85,7 +85,7 @@ class SpectralFinitenessProver:
         Basado en construcción explícita para p=11
         """
         ap = self.E.ap(p)
-        # Para Steinberg: ap = ±1, tomamos la construcción de p=11
+        # Para Steinberg: ap = +/-1, tomamos la construcción de p=11
         if ap == -1:
             return matrix(QQ, [[1, p**(-1)], [0, 1]])
         else:  # ap = 1
@@ -172,7 +172,7 @@ class SpectralFinitenessProver:
         
         # Paso 2: Verificar discreción (inyectividad de Φ)
         total_kernel_dim = sum(data['kernel_dim'] for data in spectral_info['spectral_data'].values())
-        print(f"\n2. DISCRECIÓN: dim total del kernel = {total_kernel_dim} < ∞ ✓")
+        print(f"\n2. DISCRECIÓN: dim total del kernel = {total_kernel_dim} < inf ✓")
         
         # Paso 3: Verificar compacidad cocompacta
         global_bound = spectral_info['global_bound']
@@ -181,9 +181,9 @@ class SpectralFinitenessProver:
         # Paso 4: Conclusión de finitud
         print(f"\n4. CONCLUSIÓN:")
         print(f"   Λ_spec es discreto, cocompacto y acotado por {global_bound}")
-        print(f"   ⇒ Λ_spec es FINITO")
-        print(f"   ⇒ Ш_spec = Sel_spec/Λ_spec es FINITO")  
-        print(f"   ⇒ Ш(E/ℚ) es FINITO (por quasi-isomorfismo) ✓")
+        print(f"   => Λ_spec es FINITO")
+        print(f"   => Ш_spec = Sel_spec/Λ_spec es FINITO")  
+        print(f"   => Ш(E/ℚ) es FINITO (por quasi-isomorfismo) ✓")
         
         return {
             'finiteness_proved': True,
@@ -203,7 +203,7 @@ class SpectralFinitenessProver:
             
             our_bound = self.compute_spectral_selmer_lattice()['global_bound']
             print(f"   Nuestra cota espectral = {our_bound}")
-            print(f"   Cota ≥ Conocido? {our_bound >= sha_size} ✓")
+            print(f"   Cota >= Conocido? {our_bound >= sha_size} ✓")
             
             return sha_size
         except:
@@ -435,7 +435,7 @@ if __name__ == "__main__":
     print("   4. ¡EL ALGORITMO FUNCIONA! 🎉")
 
     print(f"\n📁 SALIDAS GENERADAS:")
-    print("   • Certificados LaTeX para curvas de conductor ≤ 20")
+    print("   • Certificados LaTeX para curvas de conductor <= 20")
     print("   • Dataset completo con todas las cotas espectrales")
     print("   • Estadísticas detalladas para publicación")
 

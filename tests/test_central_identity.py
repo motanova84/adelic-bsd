@@ -377,7 +377,7 @@ class TestNonVanishing:
     """Test critical non-vanishing property"""
     
     def test_c_factor_nonzero_at_s1(self):
-        """Test c(1) ≠ 0 for various curves"""
+        """Test c(1) != 0 for various curves"""
         curves = ['11a1', '37a1', '389a1', '5077a1']
         
         for label in curves:
@@ -394,7 +394,7 @@ class TestNonVanishing:
                 f"c(1) too close to zero for curve {label}"
     
     def test_local_c_factors_nonzero(self):
-        """Test local c_p(1) ≠ 0 for bad primes"""
+        """Test local c_p(1) != 0 for bad primes"""
         E = EllipticCurve('11a1')
         ci = CentralIdentity(E, s=1.0)
         

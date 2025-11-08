@@ -16,34 +16,31 @@ EXAMPLES::
 """
 
 from sage.schemes.elliptic_curves.bsd_spectral.spectral_finiteness import (
-    SpectralFinitenessProver
+    SpectralFinitenessProver,
+    prove_sha_finiteness
 )
 
 from sage.schemes.elliptic_curves.bsd_spectral.dR_compatibility import (
     verify_dR_compatibility,
-    prove_dR_all_cases
+    prove_dR_all_cases,
+    compute_h1f_dimension,
+    compute_dR_dimension
 )
 
 from sage.schemes.elliptic_curves.bsd_spectral.PT_compatibility import (
     verify_PT_compatibility,
-    prove_PT_all_ranks
-)
-
-from sage.schemes.elliptic_curves.bsd_spectral.complete_compatibility_extension import (
-    CompleteDRCompatibility,
-    CompletePTCompatibility,
-    verify_dR_complete,
-    verify_PT_complete
+    compute_gross_zagier_height,
+    compute_yzz_height
 )
 
 __all__ = [
     'SpectralFinitenessProver',
+    'prove_sha_finiteness',
     'verify_dR_compatibility',
     'prove_dR_all_cases',
+    'compute_h1f_dimension',
+    'compute_dR_dimension',
     'verify_PT_compatibility',
-    'prove_PT_all_ranks',
-    'CompleteDRCompatibility',
-    'CompletePTCompatibility',
-    'verify_dR_complete',
-    'verify_PT_complete'
+    'compute_gross_zagier_height',
+    'compute_yzz_height'
 ]

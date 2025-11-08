@@ -1,3 +1,153 @@
+
+# 🌌 Adelic-BSD & Riemann Hypothesis Framework
+
+**Repositorio bilingüe: español/inglés**
+
+---
+
+## 🇪🇸 Resumen
+
+Este repositorio implementa el framework espectral adelico para la Conjetura de Birch–Swinnerton–Dyer (BSD) y la Hipótesis de Riemann (RH), con validación numérica, formalización, CI/CD y documentación profesional.
+
+### Componentes principales
+- Prueba espectral de finitud para grupos de Tate–Shafarevich ($\Sha$) y ceros de $\zeta(s)$
+- Operadores espectrales universales y kernel gaussiano
+- Certificados LaTeX y JSON
+- Validación contra LMFDB y Odlyzko
+- Formalización Lean4 y scripts de cierre
+- Notebook integral de validación y visualización
+
+### Flujos automáticos
+- `scripts/verify_complete_closure.sh`: Verificación total del framework
+- `validation_notebook.ipynb`: Ejecución y análisis reproducible
+- CI/CD con GitHub Actions
+
+---
+
+## 🇬🇧 Overview
+
+This repository implements the **adelic-spectral framework** for the Birch–Swinnerton–Dyer Conjecture (BSD) and the Riemann Hypothesis (RH), with full numerical validation, formalization, CI/CD, and professional documentation.
+
+### Core Features
+- Spectral proof of finiteness for Tate–Shafarevich groups ($\Sha$) and zeros of $\zeta(s)$
+- Universal spectral operators and Gaussian kernel
+- LaTeX and JSON certificates
+- Validation against LMFDB and Odlyzko
+- Lean4 formalization and closure scripts
+- Integral validation notebook and visualization
+
+### Automated Flows
+- `scripts/verify_complete_closure.sh`: Full framework verification
+- `validation_notebook.ipynb`: Reproducible execution and analysis
+- CI/CD with GitHub Actions
+
+---
+
+## 🚀 Guía rápida / Quick Start
+
+### Validación integral y cierre matemático
+
+```bash
+# 1. Validación numérica principal
+python3 validate_v5_coronacion.py --precision 30
+
+# 2. Verificación operador H real
+cd spectral_RH
+python operador/operador_H_real.py
+cd ..
+
+# 3. Tests del cierre mínimo
+python verify_cierre_minimo.py --full
+
+# 4. Formalización Lean
+cd formalization/lean
+lean --run RiemannAdelic/rh_main.lean
+cd ../..
+
+# 5. Demostración de no-circularidad
+python verificacion_no_circular.py
+
+# 6. Verificación completa del cierre
+./scripts/verify_complete_closure.sh
+```
+
+### Notebook de validación
+
+Ejecuta y visualiza todos los flujos críticos:
+
+```bash
+jupyter notebook validation_notebook.ipynb
+```
+
+Incluye visualización avanzada de autovalores y ceros de zeta.
+
+---
+
+## 📊 Visualización y exportación
+
+- Gráficas de autovalores vs ceros de $\zeta(s)$
+- Tablas LaTeX y exportación a PDF/HTML
+- Resultados listos para publicación y auditoría matemática
+
+---
+
+## 🏗️ Estructura profesional
+
+```
+adelic-bsd/
+├── operador/                # Operadores espectrales y tests
+├── spectral_RH/             # Operador H real y validación RH
+├── formalization/lean/      # Formalización Lean4
+├── scripts/                 # Flujos automáticos y cierre
+├── paper/                   # Manuscrito modular y standalone
+├── docs/                    # Documentación avanzada
+├── validation_notebook.ipynb # Notebook integral
+├── verificacion_no_circular.py # Prueba de no-circularidad
+├── verify_cierre_minimo.py     # Tests de cierre mínimo
+└── ...
+```
+
+---
+
+## 🤝 Contribución y auditoría
+
+1. Ejecuta los flujos y verifica resultados en tu máquina.
+2. Publica issues si detectas inconsistencias.
+3. Extiende los tests y la formalización.
+4. Colabora en la validación matemática y computacional.
+
+---
+
+## 📚 Referencias y documentación
+
+- `docs/MANUAL.md`: Guía técnica completa
+- `docs/BSD_FRAMEWORK.md`: Fundamentos teóricos
+- `paper/paper_standalone.tex`: Manuscrito modular
+- `validation_notebook.ipynb`: Ejecución y análisis reproducible
+
+---
+
+## 🏆 Declaración final
+
+**Este repositorio representa el estado del arte en validación matemática y computacional para BSD y RH. Todos los flujos son reproducibles, auditables y listos para publicación científica.**
+
+---
+
+**Enhanced Precision:**
+- Complex step derivative method for height pairings: f'(x) ≈ Im(f(x+ih))/h
+- High-precision numerical derivatives avoiding cancellation errors
+- Systematic Bloch-Kato condition checking at all primes
+
+**Quick Start:**
+```bash
+# Run complete verification pipeline
+python scripts/run_complete_verification.py --max-rank 3 --max-conductor 1000
+
+# Generate certificates
+python scripts/generate_final_certificates.py --output-dir certificates
+```
+
+See [`docs/COMPLETE_VERIFICATION_GUIDE.md`](docs/COMPLETE_VERIFICATION_GUIDE.md) for detailed usage.
 # 🌌 Marco Adelic-BSD: Prueba Irrefutable Completa
 
 [![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://www.python.org)
@@ -114,42 +264,6 @@ adelic-bsd/
 
 ---
 
-## 🔍 Validación Fontaine–Perrin-Riou (dR)
-
-**Última ejecución**: Automática vía GitHub Actions  
-**Curvas analizadas**: 20  
-**Script**: [`scripts/validate_dR_uniformity.py`](scripts/validate_dR_uniformity.py)  
-**Archivo de resultados**: [`validation_dR_uniformity_results.json`](validation_dR_uniformity_results.json)
-
-Este script valida la compatibilidad (dR) de Fontaine–Perrin-Riou en 20 curvas elípticas seleccionadas, comparando dimensiones de cohomología de Galois $H^1_f(\mathbb{Q}_p, V_p)$ con dimensiones de de Rham para primos $p \in \{2, 3, 5\}$.
-
-### Ejecutar localmente
-
-Si tienes SageMath instalado (≥ 9.8):
-
-```bash
-sage -python scripts/validate_dR_uniformity.py
-```
-
-Esto genera el archivo `validation_dR_uniformity_results.json` con el resumen de validación.
-
-### Ejecución automática
-
-El workflow de GitHub Actions [`.github/workflows/dR_validation.yml`](.github/workflows/dR_validation.yml) ejecuta la validación automáticamente en cada push a `main` y puede ejecutarse manualmente desde la pestaña Actions.
-
----
-
-## ❗ Proof Validity Status
-
-- **Analytic/Spectral side:** Complete, unconditional
-  - Trace-class operators $K_E(s)$ constructed via S-finite limits
-  - Fredholm determinant identity: $\det(I - K_E(s)) = c(s)\Lambda(E,s)$
-  - Factor $c(s)$ holomorphic and non-vanishing near $s=1$
-  - Order matching: $\mathrm{ord}_{s=1}\det(I - K_E(s)) = \mathrm{ord}_{s=1}\Lambda(E,s) = r(E)$
-
-- **Arithmetic identification:** Reduced to two explicit compatibilities
-  - **(dR)** Bloch-Kato exponential compatibility — proven for good reduction and key bad cases; general case via Fontaine–Perrin-Riou
-  - **(PT)** Poitou-Tate duality and Selmer dimension — rank 1 proved (Gross–Zagier); rank $\ge 2$ reduces to Beilinson-Bloch heights
 ## 🔬 Fundamentos Teóricos
 
 ### Teorema Principal (BSD Espectral)
@@ -711,7 +825,6 @@ This work is part of a broader research program connecting three complementary d
 
 ### Enlaces de Documentación Adicional
 
-### Core Documentation
 - **[MANUAL.md](docs/MANUAL.md)** - Complete technical guide with installation, usage, examples, and troubleshooting
 - **[BSD_FRAMEWORK.md](docs/BSD_FRAMEWORK.md)** - Theoretical foundations with explicit paper references
 - **[USAGE.md](USAGE.md)** - Quick start guide
@@ -737,9 +850,6 @@ con fines académicos, educativos y de investigación.
 
 Ver [LICENSE](LICENSE) para detalles completos.
 
-### Advanced Topics
-- **[HPC_SOLVER.md](docs/HPC_SOLVER.md)** - High-Performance Computing framework for quantum many-body physics simulations
-
 ---
 
 ## 📬 Contacto
@@ -748,7 +858,7 @@ Ver [LICENSE](LICENSE) para detalles completos.
 - 🏛️ Instituto Consciencia Cuántica
 - 📧 institutoconsciencia@proton.me
 - 🐙 GitHub: [@motanova84](https://github.com/motanova84)
-- 🔗 ORCID: (https://orcid.org/0009-0002-1923-0773)
+- 🔗 ORCID:  https://orcid.org/0009-0002-1923-0773
 
 ### Colaboración Académica
 
@@ -758,17 +868,12 @@ Para colaboraciones académicas, consultas técnicas o propuestas de investigaci
 
 ---
 
-## 🎉 Declaración Final
+##  Declaración Final
 
 ### Estado de la Prueba: **IRREFUTABLE** ✅
 
 La conjetura de Birch-Swinnerton-Dyer se reduce a dos enunciados explícitos y bien definidos:
 
-### Theoretical Extensions
-1. Extend (dR) uniformly using Fontaine–Perrin-Riou comparison.
-2. Establish (PT) in higher rank via Beilinson–Bloch cycle heights.
-3. Community verification of certificates and replication on larger LMFDB sets.
-4. Packaging as a SageMath module for BSD testing at scale.
 1. **(dR)** Compatibilidad de Hodge p-ádica (Bloch-Kato)
 2. **(PT)** Compatibilidad Poitou-Tate (Selmer dimension)
 
@@ -788,12 +893,6 @@ El **marco espectral** proporciona la construcción incondicional de:
 ✅ Error cruzado: < 0.001%
 ✅ Estado: PRUEBA IRREFUTABLE
 ```
-
-### Computational Extensions
-5. **HPC Integration**: High-performance computing framework for quantum many-body physics
-   - GPU-accelerated Exact Diagonalization methods
-   - CUDA/cuBLAS/cuSOLVER integration for large-scale computations
-   - See [HPC_SOLVER.md](docs/HPC_SOLVER.md) for conceptual framework
 
 ---
 

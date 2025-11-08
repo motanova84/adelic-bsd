@@ -10,6 +10,15 @@ from pathlib import Path
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
+# Import classes for test suite (may fail if Sage not installed, handled in individual tests)
+try:
+    sys.path.insert(0, str(Path(__file__).parent.parent / 'src'))
+    from dR_compatibility import dRCompatibilityProver, prove_dR_all_cases
+except ImportError:
+    # If import fails, individual tests will skip appropriately
+    dRCompatibilityProver = None
+    prove_dR_all_cases = None
+
 
 @pytest.mark.basic
 def test_dR_compatibility_module_exists():
@@ -223,18 +232,12 @@ def test_exponential_map_multiplicative():
         
         E = EllipticCurve('11a1')
         prover = dRCompatibilityProver(E, 11, precision=10)
-Tests for dR compatibility module
-"""
-
-import pytest
-import json
-from pathlib import Path
-import sys
-
-# Add src to path
-sys.path.insert(0, str(Path(__file__).parent.parent / 'src'))
-
-from dR_compatibility import dRCompatibilityProver, prove_dR_all_cases
+        cert = prover.prove_dR_compatibility()
+        
+        assert cert is not None
+        assert 'dR_compatible' in cert
+    except ImportError:
+        pytest.skip("Sage not available")
 
 
 class TestdRCompatibilityProver:
@@ -304,8 +307,6 @@ class TestdRCompatibilityProver:
         assert exp_map['method'] == 'tate_uniformization'
         
         print("✓ Exponential map for multiplicative reduction verified")
-    except ImportError as e:
-        pytest.skip(f"SageMath not available: {e}")
 
 
 @pytest.mark.sage_required
@@ -465,11 +466,6 @@ def test_error_handling():
         print("✓ Error handling works correctly")
     except ImportError as e:
         pytest.skip(f"SageMath not available: {e}")
-        exp_map = prover._exp_additive(V_p, D_dR)
-        
-        assert exp_map['compatible'] is True
-        assert exp_map['lands_in_Fil0'] is True
-        assert exp_map['method'] == 'Fontaine_Perrin_Riou_explicit'
     
     def test_prove_dR_compatibility(self):
         """Test main proof method"""
