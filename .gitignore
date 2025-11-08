@@ -154,6 +154,13 @@ validation_dR_uniformity_results.json
 # Results and output
 results/
 datasets/
+
+# Dependency comparison files
+frozen.txt
+frozen-*.txt
+*-frozen.txt
+local-frozen.txt
+ci-frozen.txt
 calibration/
 
 # Lean build artifacts

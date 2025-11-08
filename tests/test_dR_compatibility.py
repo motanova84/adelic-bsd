@@ -466,11 +466,6 @@ def test_error_handling():
         print("✓ Error handling works correctly")
     except ImportError as e:
         pytest.skip(f"SageMath not available: {e}")
-        exp_map = prover._exp_additive(V_p, D_dR)
-        
-        assert exp_map['compatible'] is True
-        assert exp_map['lands_in_Fil0'] is True
-        assert exp_map['method'] == 'Fontaine_Perrin_Riou_explicit'
     
     def test_prove_dR_compatibility(self):
         """Test main proof method"""

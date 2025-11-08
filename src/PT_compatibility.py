@@ -10,7 +10,6 @@ analytic rank for ALL ranks:
 - Rank r=1 ✓ (Gross-Zagier 1986)
 - Rank r>=2 ✓ (Yuan-Zhang-Zhang 2013 + Beilinson-Bloch heights)
 
-r"""
 (PT) Poitou-Tate Compatibility
 ===============================
 
@@ -18,9 +17,9 @@ Este modulo verifica la compatibilidad (PT) para curvas elipticas mediante
 alturas de Gross-Zagier (rango 1), Yuan-Zhang-Zhang (rango 2) y el marco
 de alturas Beilinson-Bloch para TODOS los rangos r>=0.
 
-# Note: Implementation uses pure Python for portability
-# In production with Sage: from sage.all import *
-"""
+Note: Implementation uses pure Python for portability
+In production with Sage: from sage.all import *
+
 Prueba Constructiva de (PT) - Compatibilidad Poitou-Tate
 Constructive Proof of (PT) - Poitou-Tate Compatibility
 
@@ -35,7 +34,15 @@ Fecha/Date: 2025
 Referencia/Reference: Yuan-Zhang-Zhang (2013), Gross-Zagier (1986)
 """
 
+import json
+from typing import Dict, Any
 from sage.rings.real_mpfr import RealField
+
+try:
+    from sage.schemes.elliptic_curves.constructor import EllipticCurve
+except ImportError:
+    # Fallback for environments without Sage
+    EllipticCurve = None
 
 
 class PTCompatibilityProver:
