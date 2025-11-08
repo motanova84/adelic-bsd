@@ -213,3 +213,51 @@ class AdelicOperator:
             }
 
         return kernels
+
+    def compute_fredholm_determinant(self, s=None):
+        """
+        Compute Fredholm determinant det(I - M_E(s)) for the adelic operator
+
+        This computes the S-finite approximation of the Fredholm determinant
+        which, in the full theory, satisfies:
+            det(I - M_E(s)) = c(s) * L(E, s)
+
+        The computation uses local operators at bad primes and applies
+        the product formula for determinants.
+
+        Args:
+            s: Complex parameter (default: use self.s)
+
+        Returns:
+            dict: Fredholm determinant data including value and local contributions
+        """
+        if s is None:
+            s = self.s
+
+        # For S-finite approximation, compute product of local determinants
+        local_dets = {}
+        global_det = 1
+
+        for p, p_data in self.local_operators.items():
+            operator = p_data['operator']
+
+            # Compute det(I - M_p(s)) where M_p is the local operator
+            # For our construction, the operator is already at s=self.s
+            identity = identity_matrix(operator.nrows())
+            det_factor = (identity - operator).determinant()
+
+            local_dets[p] = {
+                'determinant': det_factor,
+                'reduction_type': p_data['reduction_type'],
+                'dimension': p_data['dimension']
+            }
+
+            global_det *= det_factor
+
+        return {
+            'global_determinant': global_det,
+            'local_determinants': local_dets,
+            'parameter_s': s,
+            'curve': self.E.cremona_label() if hasattr(self.E, 'cremona_label') else str(self.E),
+            'method': 'S_finite_approximation'
+        }

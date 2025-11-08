@@ -23,7 +23,7 @@ def generate_certificates_for_conductor_range(max_conductor=100, output_dir='cer
     # Use safe directory for file writing
     full_output_dir = get_safe_output_path(output_dir, is_dir=True)
 
-    print(f"🚀 Generating certificates for curves with conductor ≤ {max_conductor}")
+    print(f"🚀 Generating certificates for curves with conductor <= {max_conductor}")
     print(f"📁 Output directory: {full_output_dir}/")
     print("=" * 70)
 
