@@ -238,8 +238,8 @@ def prove_PT_all_ranks():
     
     Test curves:
     - Rank 0: 11a1, 234446a1
-    - Rank 1: 37a1, 389a1
-    - Rank 2: 389a1 (alternative), 5077a1
+    - Rank 1: 37a1, 5077a1
+    - Rank 2: 389a1, 433a1
     - Rank 3: 5077a1 (if available)
     
     Returns:
