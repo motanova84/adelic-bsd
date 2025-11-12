@@ -1,0 +1,30 @@
+name: Operator Validation
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install numpy pytest
+
+      - name: Run tests
+        run: pytest -v operador/
+
+      - name: Extended test with output
+        run: pytest -s operador/tests_operador_extended.py > convergencia.log
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: convergencia-table
+          path: convergencia.log

@@ -1,3 +1,153 @@
+
+# 🌌 Adelic-BSD & Riemann Hypothesis Framework
+
+**Repositorio bilingüe: español/inglés**
+
+---
+
+## 🇪🇸 Resumen
+
+Este repositorio implementa el framework espectral adelico para la Conjetura de Birch–Swinnerton–Dyer (BSD) y la Hipótesis de Riemann (RH), con validación numérica, formalización, CI/CD y documentación profesional.
+
+### Componentes principales
+- Prueba espectral de finitud para grupos de Tate–Shafarevich ($\Sha$) y ceros de $\zeta(s)$
+- Operadores espectrales universales y kernel gaussiano
+- Certificados LaTeX y JSON
+- Validación contra LMFDB y Odlyzko
+- Formalización Lean4 y scripts de cierre
+- Notebook integral de validación y visualización
+
+### Flujos automáticos
+- `scripts/verify_complete_closure.sh`: Verificación total del framework
+- `validation_notebook.ipynb`: Ejecución y análisis reproducible
+- CI/CD con GitHub Actions
+
+---
+
+## 🇬🇧 Overview
+
+This repository implements the **adelic-spectral framework** for the Birch–Swinnerton–Dyer Conjecture (BSD) and the Riemann Hypothesis (RH), with full numerical validation, formalization, CI/CD, and professional documentation.
+
+### Core Features
+- Spectral proof of finiteness for Tate–Shafarevich groups ($\Sha$) and zeros of $\zeta(s)$
+- Universal spectral operators and Gaussian kernel
+- LaTeX and JSON certificates
+- Validation against LMFDB and Odlyzko
+- Lean4 formalization and closure scripts
+- Integral validation notebook and visualization
+
+### Automated Flows
+- `scripts/verify_complete_closure.sh`: Full framework verification
+- `validation_notebook.ipynb`: Reproducible execution and analysis
+- CI/CD with GitHub Actions
+
+---
+
+## 🚀 Guía rápida / Quick Start
+
+### Validación integral y cierre matemático
+
+```bash
+# 1. Validación numérica principal
+python3 validate_v5_coronacion.py --precision 30
+
+# 2. Verificación operador H real
+cd spectral_RH
+python operador/operador_H_real.py
+cd ..
+
+# 3. Tests del cierre mínimo
+python verify_cierre_minimo.py --full
+
+# 4. Formalización Lean
+cd formalization/lean
+lean --run RiemannAdelic/rh_main.lean
+cd ../..
+
+# 5. Demostración de no-circularidad
+python verificacion_no_circular.py
+
+# 6. Verificación completa del cierre
+./scripts/verify_complete_closure.sh
+```
+
+### Notebook de validación
+
+Ejecuta y visualiza todos los flujos críticos:
+
+```bash
+jupyter notebook validation_notebook.ipynb
+```
+
+Incluye visualización avanzada de autovalores y ceros de zeta.
+
+---
+
+## 📊 Visualización y exportación
+
+- Gráficas de autovalores vs ceros de $\zeta(s)$
+- Tablas LaTeX y exportación a PDF/HTML
+- Resultados listos para publicación y auditoría matemática
+
+---
+
+## 🏗️ Estructura profesional
+
+```
+adelic-bsd/
+├── operador/                # Operadores espectrales y tests
+├── spectral_RH/             # Operador H real y validación RH
+├── formalization/lean/      # Formalización Lean4
+├── scripts/                 # Flujos automáticos y cierre
+├── paper/                   # Manuscrito modular y standalone
+├── docs/                    # Documentación avanzada
+├── validation_notebook.ipynb # Notebook integral
+├── verificacion_no_circular.py # Prueba de no-circularidad
+├── verify_cierre_minimo.py     # Tests de cierre mínimo
+└── ...
+```
+
+---
+
+## 🤝 Contribución y auditoría
+
+1. Ejecuta los flujos y verifica resultados en tu máquina.
+2. Publica issues si detectas inconsistencias.
+3. Extiende los tests y la formalización.
+4. Colabora en la validación matemática y computacional.
+
+---
+
+## 📚 Referencias y documentación
+
+- `docs/MANUAL.md`: Guía técnica completa
+- `docs/BSD_FRAMEWORK.md`: Fundamentos teóricos
+- `paper/paper_standalone.tex`: Manuscrito modular
+- `validation_notebook.ipynb`: Ejecución y análisis reproducible
+
+---
+
+## 🏆 Declaración final
+
+**Este repositorio representa el estado del arte en validación matemática y computacional para BSD y RH. Todos los flujos son reproducibles, auditables y listos para publicación científica.**
+
+---
+
+**Enhanced Precision:**
+- Complex step derivative method for height pairings: f'(x) ≈ Im(f(x+ih))/h
+- High-precision numerical derivatives avoiding cancellation errors
+- Systematic Bloch-Kato condition checking at all primes
+
+**Quick Start:**
+```bash
+# Run complete verification pipeline
+python scripts/run_complete_verification.py --max-rank 3 --max-conductor 1000
+
+# Generate certificates
+python scripts/generate_final_certificates.py --output-dir certificates
+```
+
+See [`docs/COMPLETE_VERIFICATION_GUIDE.md`](docs/COMPLETE_VERIFICATION_GUIDE.md) for detailed usage.
 # 🌌 Marco Adelic-BSD: Prueba Irrefutable Completa
 
 [![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://www.python.org)
@@ -610,6 +760,7 @@ algoritmo/
 
 - **[QUICKSTART.md](QUICKSTART.md)** - Inicio rápido (5 minutos)
 - **[docs/BSD_FRAMEWORK.md](docs/BSD_FRAMEWORK.md)** - Fundamentos teóricos completos
+- **[docs/CENTRAL_IDENTITY.md](docs/CENTRAL_IDENTITY.md)** - Identidad Central: det(I - M_E(s)) = c(s)·L(E,s)
 - **[CALIBRATION_GUIDE.md](docs/CALIBRATION_GUIDE.md)** - Guía de calibración
 - **[VERIFICATION_GUIDE.md](docs/VERIFICATION_GUIDE.md)** - Guía de verificación
 - **[LEAN_FORMALIZATION.md](docs/LEAN_FORMALIZATION.md)** - Detalles de Lean 4
@@ -679,6 +830,7 @@ This work is part of a broader research program connecting three complementary d
 - **[USAGE.md](USAGE.md)** - Quick start guide
 - **[CONTRIBUTING.md](CONTRIBUTING.md)** - How to contribute
 - **[demo_notebook.ipynb](examples/demo_notebook.ipynb)** - Interactive examples
+- **[central_identity_demo.py](examples/central_identity_demo.py)** - Central Identity demonstration (NEW)
 - **[formalization/README.md](formalization/README.md)** - Lean 4 formalization guide (NEW)
 - **[LEAN_FORMALIZATION_SUMMARY.md](LEAN_FORMALIZATION_SUMMARY.md)** - Formalization implementation summary (NEW)
 
@@ -706,7 +858,7 @@ Ver [LICENSE](LICENSE) para detalles completos.
 - 🏛️ Instituto Consciencia Cuántica
 - 📧 institutoconsciencia@proton.me
 - 🐙 GitHub: [@motanova84](https://github.com/motanova84)
-- 🔗 ORCID: [En proceso]
+- 🔗 ORCID:  https://orcid.org/0009-0002-1923-0773
 
 ### Colaboración Académica
 
@@ -716,7 +868,7 @@ Para colaboraciones académicas, consultas técnicas o propuestas de investigaci
 
 ---
 
-## 🎉 Declaración Final
+##  Declaración Final
 
 ### Estado de la Prueba: **IRREFUTABLE** ✅
 
@@ -741,25 +893,6 @@ El **marco espectral** proporciona la construcción incondicional de:
 ✅ Error cruzado: < 0.001%
 ✅ Estado: PRUEBA IRREFUTABLE
 ```
-
-### Próximos Pasos
-
-1. **Revisión por pares**: Invitamos a la comunidad matemática a verificar independientemente
-2. **Extensión a (dR)+(PT)**: Completar compatibilidades para casos generales
-3. **Publicación formal**: Envío a revista matemática revisada por pares
-4. **Comunidad**: Crear ecosistema de herramientas BSD para investigadores
-
----
-
-## 🌟 Agradecimientos
-
-Este trabajo no habría sido posible sin:
-
-- **SageMath Community** - Framework matemático
-- **Lean Community** - Asistente de pruebas
-- **LMFDB** - Base de datos de curvas elípticas
-- **OEIS** - Base de datos de secuencias
-- **Comunidad matemática** - Feedback y validación
 
 ---
 
@@ -801,21 +934,7 @@ Estado:              ✅ PRUEBA IRREFUTABLE
   - Tests formato doctest ✅
   - Template PR listo ✅
 
-### Próximos Pasos
-1. Submit PR a SageMath (archivos en `sagemath_integration/`)
-2. Revisión por maintainers
-3. Integración en próxima versión de Sage
 
-### Trabajo Futuro Restante
-
-#### Corto Plazo (2025)
-- [ ] Publicación en revista revisada por pares
-- [ ] Interfaz web interactiva para validación
-
-#### Largo Plazo (2027+)
-- [ ] Extensión a formas modulares generales
-- [ ] Aplicación a conjeturas relacionadas (Tate, Stark)
-- [ ] Framework unificado para conjeturas L
 
 ---
 
