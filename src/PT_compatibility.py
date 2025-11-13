@@ -307,7 +307,7 @@ def prove_PT_all_ranks():
     if total > 0:
         print(f"   Tasa de éxito: {success}/{total} ({100*success/total:.1f}%)")
     else:
-        print(f"   Tasa de éxito: {success}/{total}")
+        print("   No se probaron casos.")
     
     if success == total and total > 0:
         print(f"\n   ✅ (PT) COMPATIBILIDAD: PROBADA")
