@@ -7,7 +7,7 @@ setup(
     author="José Manuel Mota Burruezo",
     packages=find_packages(),
     install_requires=[
-        "cryptography>=41.0.0,<44.0.0",
+        "cryptography>=42.0.4,<44.0.0",
     ],
     python_requires=">=3.9",
     classifiers=[

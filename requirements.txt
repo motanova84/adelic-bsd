@@ -24,4 +24,4 @@ sphinx>=7.0.1,<8.0.0
 sphinx-rtd-theme>=1.2.2,<2.0.0
 
 # Cryptography for QCAL Beacon signatures
-cryptography>=41.0.0,<44.0.0
+cryptography>=42.0.4,<44.0.0

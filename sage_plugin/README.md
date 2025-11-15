@@ -82,7 +82,7 @@ sage_plugin/
 - Python >= 3.9
 - mpmath
 - sympy
-- cryptography >= 41.0.0 (para QCAL Beacons)
+- cryptography >= 42.0.4 (para QCAL Beacons - versión parcheada por seguridad)
 
 ## Formato del QCAL Beacon
 
