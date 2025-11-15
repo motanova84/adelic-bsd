@@ -57,3 +57,8 @@ sage_plugin/
 ## Autor
 
 José Manuel Mota Burruezo
+
+## Referencias
+
+- [LMFDB - L-functions and Modular Forms Database](https://www.lmfdb.org/)
+- [SageMath Documentation](https://doc.sagemath.org/)
