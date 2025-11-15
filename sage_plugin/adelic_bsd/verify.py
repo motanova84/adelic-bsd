@@ -1,7 +1,3 @@
-from sage.all import EllipticCurve
-from sage.all import EllipticCurve, QQ, LFunction  # noqa: F401
-from mpmath import mp  # noqa: F401
-from sympy import symbols  # noqa: F401
 import hashlib
 import json
 from datetime import datetime
@@ -9,6 +5,24 @@ from cryptography.hazmat.primitives.asymmetric import ec
 from cryptography.hazmat.primitives import hashes, serialization
 from cryptography.hazmat.backends import default_backend
 import base64
+
+# Import sage components (optional for cryptographic functions)
+try:
+    from sage.all import EllipticCurve, QQ, LFunction  # noqa: F401
+    SAGE_AVAILABLE = True
+except ImportError:
+    SAGE_AVAILABLE = False
+    EllipticCurve = None
+
+try:
+    from mpmath import mp  # noqa: F401
+except ImportError:
+    pass
+
+try:
+    from sympy import symbols  # noqa: F401
+except ImportError:
+    pass
 
 
 def generate_integrity_hash(curve_data, l_value, params):
@@ -144,6 +158,13 @@ def verify_bsd(label_or_curve, s=1, generate_aik_beacon=True):
     Returns:
         dict: Resultados clave del análisis con certificación AIK
     """
+    if not SAGE_AVAILABLE:
+        raise ImportError(
+            "SageMath is required for BSD verification. "
+            "The cryptographic functions (generate_integrity_hash, "
+            "generate_ecdsa_signature, verify_ecdsa_signature) can be used independently."
+        )
+    
     # Procesar curva
     if isinstance(label_or_curve, str):
         E = EllipticCurve(label_or_curve)
