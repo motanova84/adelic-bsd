@@ -151,6 +151,12 @@ ci-frozen.txt
 
 # Validation results
 validation_dR_uniformity_results.json
+validation_results/
+gaia_validation_results/
+delta_f_eventos_gaia_inf3.csv
+resumen_validacion_gaia_inf3.csv
+validation_results_gaia_inf3.json
+validation_plot_gaia_inf3.png
 # Results and output
 results/
 datasets/

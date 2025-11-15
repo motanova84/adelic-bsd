@@ -81,6 +81,20 @@ jupyter notebook validation_notebook.ipynb
 
 Incluye visualización avanzada de autovalores y ceros de zeta.
 
+### Validación GAIA ∞³ (Nuevo)
+
+Valida correlación entre eventos gravitacionales LIGO y señal GAIA usando f₀ = 141.7001 Hz:
+
+```bash
+# Ejecutar validación GAIA-LIGO
+python scripts/validate_gaia_ligo.py --output-dir results/
+
+# Ejecutar tests de validación
+pytest tests/test_gaia_validation.py -v
+```
+
+**Ver**: [docs/GAIA_VALIDATION.md](docs/GAIA_VALIDATION.md) para detalles del protocolo científico.
+
 ---
 
 ## 📊 Visualización y exportación
