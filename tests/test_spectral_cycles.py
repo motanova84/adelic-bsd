@@ -106,7 +106,7 @@ def test_kernel_basis_computation():
 
 
 def test_spectral_to_points():
-    """Test main spectral→points algorithm"""
+    """Test main spectral->points algorithm"""
     E = EllipticCurve('11a1')
 
     try:
@@ -121,9 +121,9 @@ def test_spectral_to_points():
             P = p_data['point']
             assert P in E
 
-        print(f"✓ Spectral→Points algorithm works: {len(points)} points generated")
+        print(f"✓ Spectral->Points algorithm works: {len(points)} points generated")
     except Exception as e:
-        print(f"⚠ Spectral→Points algorithm: {e}")
+        print(f"⚠ Spectral->Points algorithm: {e}")
 
 
 def test_spectral_height_matrix():
@@ -235,7 +235,7 @@ def run_all_tests():
         ("Cycle Construction", test_cycle_construction),
         ("Point Projection", test_point_projection),
         ("Kernel Basis", test_kernel_basis_computation),
-        ("Spectral→Points", test_spectral_to_points),
+        ("Spectral->Points", test_spectral_to_points),
         ("Spectral Height", test_spectral_height_matrix),
         ("NT Height", test_nt_height_matrix),
         ("Height Compat", test_height_compatibility_11a1),

@@ -319,7 +319,7 @@ def verify_fractal_symmetry(
     """
     Verify the fractal symmetry properties of the vacuum energy.
 
-    The equation exhibits self-similarity under scaling R_Ψ → π·R_Ψ,
+    The equation exhibits self-similarity under scaling R_Ψ -> π·R_Ψ,
     which is a discrete logarithmic Bloch-type symmetry.
 
     Args:
@@ -377,7 +377,7 @@ if __name__ == "__main__":
     R_values = np.logspace(-1, 2, 100)
     energies = [compute_vacuum_energy(R) for R in R_values]
     print(f"   Computed E_vac for {len(R_values)} values of R_Ψ")
-    print(f"   Range: R_Ψ ∈ [{R_values[0]:.3f}, {R_values[-1]:.3f}]")
+    print(f"   Range: R_Ψ in [{R_values[0]:.3f}, {R_values[-1]:.3f}]")
     print()
 
     # Find minima
@@ -393,7 +393,7 @@ if __name__ == "__main__":
     R_test = 1.5
     symmetry = verify_fractal_symmetry(R_test)
     print(f"   Base R_Ψ = {symmetry['R_psi_base']:.6f}")
-    print(f"   Scaled R_Ψ = {symmetry['R_psi_scaled']:.6f} (×π)")
+    print(f"   Scaled R_Ψ = {symmetry['R_psi_scaled']:.6f} (*π)")
     print(f"   Fractal term (base) = {symmetry['fractal_term_base']:.6f}")
     print(f"   Fractal term (scaled) = {symmetry['fractal_term_scaled']:.6f}")
     print()

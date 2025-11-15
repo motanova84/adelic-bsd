@@ -90,6 +90,17 @@ except ImportError:
     BlochKatoConditions = None
 
 try:
+    from .dR_compatibility import (
+        compute_h1f_dimension,
+        compute_dR_dimension,
+        verify_dR_compatibility
+    )
+except ImportError:
+    compute_h1f_dimension = None
+    compute_dR_dimension = None
+    verify_dR_compatibility = None
+
+try:
     from .heights import (
         AdvancedSpectralHeightPairing,
         HeightComparison,
@@ -119,7 +130,25 @@ except ImportError:
     batch_prove_bsd = None
     CertificateGenerator = None
 
-__version__ = "0.2.1"
+try:
+    from .PT_compatibility import (
+        PTCompatibilityProver,
+        prove_PT_all_ranks
+    )
+except ImportError:
+    PTCompatibilityProver = None
+    prove_PT_all_ranks = None
+
+try:
+    from .central_identity import (
+        CentralIdentity,
+        demonstrate_central_identity
+    )
+except ImportError:
+    CentralIdentity = None
+    demonstrate_central_identity = None
+
+__version__ = "0.2.2"
 __author__ = "Mota Burruezo"
 
 __all__ = [
@@ -164,5 +193,15 @@ __all__ = [
     "MassFormalProof",
     "MassVerification",
     "batch_prove_bsd",
-    "CertificateGenerator"
+    "CertificateGenerator",
+    # dR compatibility module
+    "compute_h1f_dimension",
+    "compute_dR_dimension",
+    "verify_dR_compatibility",
+    # PT Compatibility
+    "PTCompatibilityProver",
+    "prove_PT_all_ranks",
+    # Central Identity (new in v0.2.2)
+    "CentralIdentity",
+    "demonstrate_central_identity"
 ]
