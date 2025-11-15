@@ -7,7 +7,7 @@ This module provides computational tools for p-adic integration,
 which is essential for constructing p-adic L-functions and cocycles.
 """
 
-from sage.all import matrix, QQ, log, oo
+from sage.all import EllipticCurve, matrix, QQ, log, oo
 
 
 class PAdicIntegrator:
