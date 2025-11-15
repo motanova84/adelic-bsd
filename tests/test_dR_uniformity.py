@@ -1,6 +1,6 @@
 """
 Tests for p-adic comparison and dR uniformity
-Comprehensive test suite with ≥90% coverage
+Comprehensive test suite with >=90% coverage
 
 Tests the Bloch-Kato exponential map and Fontaine-Perrin-Riou compatibility
 across all reduction types (good, multiplicative, additive).

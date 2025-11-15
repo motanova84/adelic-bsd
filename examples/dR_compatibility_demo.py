@@ -111,7 +111,7 @@ def demo_batch_proof():
     print()
     if proved == total:
         print("🎉 All curves proved successfully!")
-        print("(dR) compatibility: CONJETURA → TEOREMA ✅")
+        print("(dR) compatibility: CONJETURA -> TEOREMA ✅")
     else:
         print(f"⚠️ {total - proved} curve(s) need additional review")
 

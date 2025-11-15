@@ -32,7 +32,7 @@ class SpectralFinitenessProver:
             E: Elliptic curve
             a: Spectral amplitude parameter (optional)
                If None, uses calibrated value from calibration_report.json
-               For γ > 0 guarantee, use a ≥ 1.0 (typically a ≈ 200)
+               For γ > 0 guarantee, use a >= 1.0 (typically a ≈ 200)
         """
         self.E = E
         self.N = E.conductor()
@@ -212,7 +212,7 @@ Prime {p}:
   - Kernel dimension: {data['kernel_dim']}
   - Torsion bound: {data['torsion_bound']}"""
 
-        cert += f"\n\nCONCLUSION: Ш(E/ℚ) is finite with #Ш ≤ {proof_data['global_bound']}"
+        cert += f"\n\nCONCLUSION: Ш(E/ℚ) is finite with #Ш <= {proof_data['global_bound']}"
         return cert
 
     def _latex_certificate(self, proof_data):

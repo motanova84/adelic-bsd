@@ -434,3 +434,63 @@ class SpectralFinitenessProver:
             return self.E.label()
         else:
             return f"Conductor {self.N}"
+
+
+def prove_sha_finiteness(E, a=None, prec=53):
+    r"""
+    Prove finiteness of the Tate-Shafarevich group Sha(E/Q).
+    
+    This is a convenience function that creates a SpectralFinitenessProver
+    and calls its prove_finiteness method.
+    
+    INPUT:
+    
+    - ``E`` -- elliptic curve over Q
+    
+    - ``a`` -- (default: ``None``) spectral parameter; if ``None``, uses
+      calibrated value (typically ~200.0)
+    
+    - ``prec`` -- (default: 53) precision in bits for computations
+    
+    OUTPUT:
+    
+    Dictionary with finiteness proof data. See
+    :meth:`SpectralFinitenessProver.prove_finiteness` for details.
+    
+    EXAMPLES::
+    
+        sage: from sage.schemes.elliptic_curves.bsd_spectral import prove_sha_finiteness
+        sage: E = EllipticCurve('11a1')
+        sage: result = prove_sha_finiteness(E)
+        sage: result['finiteness_proved']
+        True
+        sage: result['gamma'] > 0
+        True
+    
+    Specifying a custom spectral parameter::
+    
+        sage: E = EllipticCurve('37a1')
+        sage: result = prove_sha_finiteness(E, a=200.0)
+        sage: result['spectral_data']['calibrated_a']
+        200.0
+    
+    TESTS::
+    
+        sage: E = EllipticCurve('389a1')
+        sage: result = prove_sha_finiteness(E, a=200.84)
+        sage: 'spectral_data' in result
+        True
+        sage: result['gamma'] > 0
+        True
+    
+    ALGORITHM:
+    
+    Uses the spectral-adelic framework to establish finiteness under
+    (dR) and (PT) compatibility conditions. See [JMMB2025]_ for details.
+    
+    REFERENCES:
+    
+    - [JMMB2025]_
+    """
+    prover = SpectralFinitenessProver(E, a=a, prec=prec)
+    return prover.prove_finiteness()
