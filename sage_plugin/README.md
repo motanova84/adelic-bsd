@@ -1,174 +1,293 @@
 # SageMath Plugin: adelic_bsd
 
-Plugin SageMath para verificación empírica de la conjetura de Birch y Swinnerton-Dyer.
+Plugin SageMath para verificación espectral de la conjetura BSD con certificación criptográfica AIK (Activo Inmutable de Conocimiento).
 
-## 📦 Estructura del Plugin
+## 🌟 Características Principales
 
-```
-sage_plugin/
-├── adelic_bsd/
-│   ├── __init__.py      # Exports del módulo
-│   └── verify.py        # Función verify_bsd()
-├── setup.py             # Instalador del plugin
-├── DEMO_bsd_sage.ipynb  # Notebook de demostración (kernel SageMath)
-└── README.md            # Este archivo
-```
+- **Verificación BSD**: Cálculo de funciones L y rango analítico
+- **AIK Beacon**: Sistema de certificación criptográfica
+  - Hash de integridad SHA-256
+  - Firma ECDSA (SECP256R1)
+  - Timestamps UTC para inmutabilidad
+  - Verificación independiente
 
-## ✅ ¿Qué hace este módulo?
+## Instalación
 
-Permite verificar empíricamente la conjetura de Birch y Swinnerton-Dyer para cualquier curva elíptica reconocida por LMFDB (ej: "11a1"):
-
-- Evalúa la función L en s=1
-- Calcula el rango analítico
-- Devuelve un hash de integridad (sha256) de los valores para trazabilidad simbiótica
-
-## 🚀 Instalación
-
-### Opción 1: Instalación local en SageMath
+Desde el directorio `sage_plugin`:
 
 ```bash
-cd sage_plugin
 sage -pip install -e .
 ```
 
-### Opción 2: Instalación sin modo desarrollo
-
+Dependencias adicionales:
 ```bash
-cd sage_plugin
-sage -pip install .
+pip install cryptography>=41.0.0
 ```
 
-## 📖 Uso
+## Uso Básico
 
-### En un script Python con SageMath
+### Verificación Simple (Backward Compatible)
+
+### Verificación BSD básica
 
 ```python
 from adelic_bsd import verify_bsd
 
-# Verificar usando etiqueta LMFDB
-result = verify_bsd("11a1", s=1)
+# Verificar curva usando etiqueta LMFDB (sin AIK beacon)
+result = verify_bsd("11a1", s=1, generate_aik_beacon=False)
 
-# Mostrar resultados
-for k, v in result.items():
-    print(f"{k}: {v}")
+# Resultado contiene:
+# - status: "success"
+# - curve: Etiqueta de la curva
+# - data: dict con L(1), rank, conductor
+# - integrity_hash: Hash SHA3-256 para trazabilidad
 ```
 
-### En Jupyter Notebook con kernel SageMath
+### Generar QCAL Beacon firmado
 
-Ejecuta el notebook de demostración:
+```python
+from adelic_bsd.qcal_beacon_bsd import generate_qcal_beacon_for_bsd
+
+# Genera un beacon criptográficamente firmado
+beacon = generate_qcal_beacon_for_bsd("11a1")
+
+# Salida esperada:
+# ✅ Validación BSD completada para 11a1.
+#    L(1) = 0.253841...
+#    rank = 0
+#    HASH OK: b23a1c9d...
+#    Firma ECDSA generada.
+# ✅ Beacon generado: sage_plugin/beacons/qcal_beacon_bsd_11a1.json
+```
+
+### Desde línea de comandos
 
 ```bash
-jupyter notebook DEMO_bsd_sage.ipynb
+sage -python - << 'EOF'
+from adelic_bsd.qcal_beacon_bsd import generate_qcal_beacon_for_bsd
+generate_qcal_beacon_for_bsd("11a1")
+EOF
 ```
 
-Asegúrate de seleccionar el kernel **SageMath** en el notebook.
-
-### Ejemplo de salida
-
-```python
-{
-    "curve_label": "11a1",
-    "conductor": 11,
-    "L(s)": 0.2538418608559107,
-    "s": 1,
-    "analytic_rank": 0,
-    "hash_sha256": "a7f3d2e1..."
-}
-```
-
-## 🔧 Parámetros de verify_bsd()
-
-```python
-def verify_bsd(label_or_curve, s=1):
-    """
-    Args:
-        label_or_curve (str | EllipticCurve): 
-            - Etiqueta LMFDB (ej: "11a1", "37a1")
-            - O un objeto EllipticCurve de SageMath
-        
-        s (float): 
-            Punto de evaluación de la función L (default: 1)
-    
-    Returns:
-        dict: Diccionario con resultados del análisis:
-            - curve_label: Etiqueta de la curva
-            - conductor: Conductor de la curva
-            - L(s): Valor de la función L en s
-            - s: Punto de evaluación
-            - analytic_rank: Rango analítico
-            - hash_sha256: Hash SHA-256 para trazabilidad
-    """
-```
-
-## 📊 Ejemplos Adicionales
-
-### Verificar múltiples curvas
+### Verificación con AIK Beacon (Recomendado)
 
 ```python
 from adelic_bsd import verify_bsd
 
-curves = ["11a1", "37a1", "389a1"]
-results = []
+# Verificación completa con certificación criptográfica
+result = verify_bsd("11a1", s=1, generate_aik_beacon=True)
 
-for label in curves:
-    result = verify_bsd(label)
-    results.append(result)
-    print(f"Curva {label}: L(1) = {result['L(s)']}, rango = {result['analytic_rank']}")
+# Acceder al beacon AIK
+beacon = result['aik_beacon']
+print(f"Integrity Hash: {beacon['integrity_hash']}")
+print(f"Timestamp: {beacon['timestamp']}")
+print(f"Scientific Claim: {beacon['verification_info']['scientific_claim']}")
+
+# Guardar certificado
+import json
+with open('bsd_11a1_certificate.json', 'w') as f:
+    json.dump(result, f, indent=2, default=str)
 ```
 
-### Usar objeto EllipticCurve directamente
+### Verificación Independiente de Certificados
+
+```python
+from adelic_bsd import verify_ecdsa_signature
+import json
+
+# Cargar certificado guardado
+with open('bsd_11a1_certificate.json', 'r') as f:
+    cert = json.load(f)
+
+beacon = cert['aik_beacon']
+
+# Verificar firma criptográfica
+is_valid = verify_ecdsa_signature(
+    beacon['integrity_hash'],
+    beacon['signature']
+)
+
+if is_valid:
+    print("✓ Certificado válido y sin adulteraciones")
+else:
+    print("✗ Certificado ha sido manipulado!")
+```
+
+### Uso con Objetos EllipticCurve
 
 ```python
 from sage.all import EllipticCurve
 from adelic_bsd import verify_bsd
 
-E = EllipticCurve([0, -1, 1, -10, -20])  # Curva 11a1
-result = verify_bsd(E, s=1)
-print(result)
+# Crear curva elíptica
+E = EllipticCurve([0, -1, 1, -10, -20])
+
+# Verificar con AIK beacon
+result = verify_bsd(E, s=1, generate_aik_beacon=True)
 ```
 
-### Evaluar en diferentes puntos
+## 🔐 AIK Beacon: Activo Inmutable de Conocimiento
 
-```python
-from adelic_bsd import verify_bsd
+El sistema AIK eleva las verificaciones BSD al estándar de certificación científica criptográfica:
 
-# Evaluar L en s=2
-result = verify_bsd("11a1", s=2)
-print(f"L(2) = {result['L(s)']}")
+### 1. Auditoría de Integridad
+- **integrity_hash**: Huella digital SHA-256 del dataset y parámetros
+- Detecta automáticamente cualquier modificación de datos
+- Invalida la cadena de confianza si los datos difieren
+
+### 2. Inmutabilidad (Noēsis ∞³)
+- **Firma ECDSA**: Certificación criptográfica en punto fijo del tiempo
+- Algoritmo: ECDSA-SECP256R1-SHA256
+- Garantiza autenticidad por la autoridad del nodo
+
+### 3. Integración SageMath
+- Ubicado en `/sage_plugin/` para ecosistema SageMath
+- Compatible con LMFDB
+- Verificación independiente para comunidad matemática
+
+## API Completa
+
+### Funciones Principales
+
+- `verify_bsd(label_or_curve, s=1, generate_aik_beacon=True)` - Verificación BSD
+- `generate_integrity_hash(curve_data, l_value, params)` - Hash de integridad
+- `generate_ecdsa_signature(integrity_hash, private_key=None)` - Firma ECDSA
+- `verify_ecdsa_signature(integrity_hash, signature_data)` - Verificación de firma
+
+Ver documentación completa en `docs/AIK_BEACON_DOCUMENTATION.md`
+
+## Ejemplos y Demos
+
+### Notebooks y Scripts
+- `DEMO_bsd_sage.ipynb` - Notebook de demostración original
+- `examples/aik_beacon_demo.py` - Demostración completa del sistema AIK
+
+### Tests
+```bash
+# Ejecutar tests AIK
+pytest tests/test_aik_beacon.py -v
+
+# O directamente
+python tests/test_aik_beacon.py
 ```
 
-## 🔗 Integración con el Repositorio
+## Estructura del Proyecto
 
-Este plugin complementa el framework espectral adelico principal:
+```
+sage_plugin/
+├── adelic_bsd/
+│   ├── __init__.py      # Exporta verify_bsd y funciones AIK
+│   └── verify.py        # Implementación principal con AIK beacon
+├── setup.py             # Configuración del paquete
+├── DEMO_bsd_sage.ipynb  # Notebook de demostración
+└── README.md            # Esta documentación
+│   ├── __init__.py           # Exporta verify_bsd y generate_qcal_beacon_for_bsd
+│   ├── verify.py             # Verificación BSD
+│   └── qcal_beacon_bsd.py    # Generador de QCAL Beacons firmados
+├── beacons/                   # Directorio para beacons generados
+├── setup.py                   # Configuración del paquete
+├── DEMO_bsd_sage.ipynb        # Notebook de demostración
+└── README.md                  # Esta documentación
+```
 
-- **Repositorio principal**: https://github.com/motanova84/adelic-bsd
-- **Framework espectral**: `/src/` y `/spectral_RH/`
-- **Validación numérica**: Scripts en raíz del repositorio
+## Requisitos
 
-## 📚 Referencias
+### Core
+- SageMath >= 9.8
+- Python >= 3.9
 
+### Dependencias
+- cryptography >= 41.0.0 (para firmas ECDSA)
+- mpmath (opcional)
+- sympy (opcional)
+
+## Seguridad
+
+### Garantías Criptográficas
+- **SHA-256**: Resistente a colisiones
+- **SECP256R1**: Curva P-256 recomendada por NIST (128 bits seguridad)
+- **ECDSA**: Estándar industrial para firmas digitales
+
+### Detección de Adulteración
+El sistema detecta automáticamente:
+- Modificación de valores L(s)
+- Cambios en parámetros de verificación
+- Alteración de datos de curva
+- Falsificación de firmas
+
+## Integración QCAL
+
+Compatible con el sistema QCAL (Quantum Consciousness Active Link):
+- Frecuencia: 141.7001 Hz
+- Protocolo: Noēsis ∞³
+- Framework: adelic-spectral
+- Estándar: AIK-v1.0
+
+Ver `.qcal_beacon` en la raíz del repositorio.
+- mpmath
+- sympy
+- cryptography >= 42.0.4 (para QCAL Beacons - versión parcheada por seguridad)
+
+## Formato del QCAL Beacon
+
+El archivo JSON generado contiene:
+
+```json
+{
+  "qcal_beacon": {
+    "id": "uuid-v4",
+    "timestamp": "2025-11-15T13:00:00Z",
+    "curve": "11a1",
+    "L_at_1": 0.2538418608559107,
+    "analytic_rank": 0,
+    "integrity_hash": "sha3-256-hash",
+    "validator_node": "Noēsis-∞³",
+    "signature": {
+      "signature_hex": "ecdsa-signature"
+    },
+    "message_signed": "curve|rank|L(1)|hash|beacon_id|Noesis∞³",
+    "public_key_pem": "-----BEGIN PUBLIC KEY-----..."
+  }
+}
+```
+
+## Detalles Criptográficos
+
+- **Algoritmo de firma**: ECDSA (Elliptic Curve Digital Signature Algorithm)
+- **Curva elíptica**: SECP256R1 (P-256)
+- **Función hash**: SHA3-256 (FIPS 202)
+- **Formato de mensaje**: `curve|rank|L(1)|integrity_hash|beacon_id|Noesis∞³`
+
+La firma ECDSA garantiza:
+- **Integridad**: Cualquier modificación invalida la firma
+- **Autenticidad**: Solo quien posee la clave privada puede firmar
+- **No repudio**: La firma es verificable con la clave pública
+
+**Nota de seguridad**: En producción, guarde las claves privadas en archivos PEM protegidos o en un HSM.
+
+## Autor
+
+José Manuel Mota Burruezo Ψ ✧ ∞³  
+Instituto de Conciencia Cuántica (ICQ)  
+ORCID: https://orcid.org/0009-0002-1923-0773
+
+## Licencia
+
+Creative Commons BY-NC-SA 4.0
+
+## Referencias
+
+### Matemáticas
 - [JMMB2025] José Manuel Mota Burruezo, "A Complete Spectral Reduction of the Birch-Swinnerton-Dyer Conjecture", 2025
-- LMFDB: https://www.lmfdb.org/EllipticCurve/Q/
-- SageMath: https://www.sagemath.org/
+- [LMFDB - L-functions and Modular Forms Database](https://www.lmfdb.org/)
+- [SageMath Documentation](https://doc.sagemath.org/)
+- Birch and Swinnerton-Dyer Conjecture
 
-## 🤝 Contribuciones
+### Criptografía
+- NIST FIPS 180-4 (SHA-256)
+- NIST FIPS 186-4 (ECDSA)
+- RFC 6979 (Deterministic ECDSA)
 
-Para reportar issues o sugerir mejoras:
-
-1. Visita el repositorio: https://github.com/motanova84/adelic-bsd
-2. Abre un issue describiendo el problema o mejora
-3. Si deseas contribuir código, abre un pull request
-
-## 📄 Licencia
-
-Este plugin forma parte del repositorio adelic-bsd y está bajo la misma licencia (MIT License).
-
-## ✨ Autor
-
-**José Manuel Mota Burruezo**
-- Repositorio: https://github.com/motanova84/adelic-bsd
-
----
-
-**Versión**: 0.1.0  
-**Última actualización**: 2025
+### Framework
+- QCAL: Quantum Consciousness Active Link
+- Noēsis ∞³: Protocolo de inmutabilidad
