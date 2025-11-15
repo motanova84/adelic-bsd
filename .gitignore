@@ -171,3 +171,6 @@ formalization/lean/lean_packages/
 
 # SageMath integration directory (NOTE: now part of repository structure)
 # sagemath_integration/ - removed from ignore to track SageMath module structure
+
+# Backup files
+*.backup
