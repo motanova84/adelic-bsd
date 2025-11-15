@@ -1,4 +1,7 @@
 from sage.all import EllipticCurve
+from sage.all import EllipticCurve, QQ, LFunction  # noqa: F401
+from mpmath import mp  # noqa: F401
+from sympy import symbols  # noqa: F401
 import hashlib
 
 
