@@ -179,7 +179,7 @@
     "document": {
       "title": "Formal Closure Certificate: dR and PT Compatibilities in BSD",
       "version": "1.0.0",
-      "date": "2025-11-15T19:51:50.995048",
+      "date": "2025-11-15T19:57:34.723057",
       "status": "FORMALLY_CLOSED"
     },
     "author": {
@@ -235,5 +235,5 @@
       "active": true
     }
   },
-  "timestamp": "2025-11-15T19:51:50.994914"
+  "timestamp": "2025-11-15T19:57:34.722927"
 }
