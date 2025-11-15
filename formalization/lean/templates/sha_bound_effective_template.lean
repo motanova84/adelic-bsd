@@ -1,5 +1,5 @@
 -- Template para completar: sha_bound_effective
--- Archivo original: Emergence.lean (línea 55)
+-- Archivo original: sha_bound_effective_template.lean (línea 11)
 -- 
 -- TODO: Implementar la prueba
 

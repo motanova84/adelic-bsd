@@ -1,5 +1,5 @@
 -- Template para completar: local_to_global_bound
--- Archivo original: Emergence.lean (línea 63)
+-- Archivo original: local_to_global_bound_template.lean (línea 11)
 -- 
 -- TODO: Implementar la prueba
 

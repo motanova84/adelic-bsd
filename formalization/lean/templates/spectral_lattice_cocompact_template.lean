@@ -1,5 +1,5 @@
 -- Template para completar: spectral_lattice_cocompact
--- Archivo original: Emergence.lean (línea 33)
+-- Archivo original: spectral_lattice_cocompact_template.lean (línea 11)
 -- 
 -- TODO: Implementar la prueba
 

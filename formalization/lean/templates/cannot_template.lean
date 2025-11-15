@@ -1,5 +1,5 @@
 -- Template para completar: cannot
--- Archivo original: Zeta.lean (línea 164)
+-- Archivo original: cannot_template.lean (línea 11)
 -- 
 -- TODO: Implementar la prueba
 

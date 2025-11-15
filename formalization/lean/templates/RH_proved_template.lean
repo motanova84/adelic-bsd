@@ -1,5 +1,5 @@
 -- Template para completar: RH_proved
--- Archivo original: rh_main.lean (línea 6)
+-- Archivo original: RH_proved_template.lean (línea 11)
 -- 
 -- TODO: Implementar la prueba
 

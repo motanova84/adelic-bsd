@@ -1,5 +1,5 @@
 -- Template para completar: prime_series_partial_sum
--- Archivo original: Zeta.lean (línea 175)
+-- Archivo original: prime_series_partial_sum_template.lean (línea 11)
 -- 
 -- TODO: Implementar la prueba
 

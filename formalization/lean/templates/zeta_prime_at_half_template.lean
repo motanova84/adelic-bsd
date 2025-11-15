@@ -1,5 +1,5 @@
 -- Template para completar: zeta_prime_at_half
--- Archivo original: Zeta.lean (línea 32)
+-- Archivo original: zeta_prime_at_half_template.lean (línea 11)
 -- 
 -- TODO: Implementar la prueba
 

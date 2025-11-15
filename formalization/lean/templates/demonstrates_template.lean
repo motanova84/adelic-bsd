@@ -1,5 +1,5 @@
 -- Template para completar: demonstrates
--- Archivo original: Zeta.lean (línea 41)
+-- Archivo original: demonstrates_template.lean (línea 11)
 -- 
 -- TODO: Implementar la prueba
 

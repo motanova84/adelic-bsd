@@ -1,5 +1,5 @@
 -- Template para completar: prime_series_convergence
--- Archivo original: Zeta.lean (línea 182)
+-- Archivo original: prime_series_convergence_template.lean (línea 11)
 -- 
 -- TODO: Implementar la prueba
 

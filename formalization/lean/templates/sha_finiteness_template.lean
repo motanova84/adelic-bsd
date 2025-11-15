@@ -1,5 +1,5 @@
 -- Template para completar: sha_finiteness
--- Archivo original: Emergence.lean (línea 46)
+-- Archivo original: sha_finiteness_template.lean (línea 11)
 -- 
 -- TODO: Implementar la prueba
 
