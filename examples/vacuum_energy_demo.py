@@ -56,7 +56,7 @@ def demo_vacuum_energy_profile():
     E_min = energies[min_idx]
     
     print(f"✓ Computation complete")
-    print(f"  Range: R_Ψ ∈ [{R_values[0]:.4f}, {R_values[-1]:.4f}]")
+    print(f"  Range: R_Ψ in [{R_values[0]:.4f}, {R_values[-1]:.4f}]")
     print(f"  Global minimum: R_Ψ ≈ {R_min:.6f}, E_vac ≈ {E_min:.6f}")
     
     # Create visualization
@@ -115,7 +115,7 @@ def demo_fractal_symmetry():
     """Demonstrate the fractal log-π symmetry."""
     print_section("3. FRACTAL LOG-π SYMMETRY VERIFICATION")
     
-    print("Testing discrete self-similarity under R_Ψ → π·R_Ψ:")
+    print("Testing discrete self-similarity under R_Ψ -> π·R_Ψ:")
     print()
     
     # Test at several R_Ψ values
@@ -210,7 +210,7 @@ def demo_frequency_derivation():
     print("Interpretation:")
     print("  The geometric scale R_Ψ from vacuum energy minimization")
     print("  connects to observable frequency through dimensional analysis:")
-    print(f"    f₀ = 141.7001 Hz (empirical) ← R_Ψ (derived from E_vac minimum)")
+    print(f"    f₀ = 141.7001 Hz (empirical) <- R_Ψ (derived from E_vac minimum)")
     print()
     print("✓ Non-circular: R_Ψ derived from energy equation, not from f₀")
 
@@ -316,7 +316,7 @@ def print_symbolic_interpretation():
     print("the memory structure of the vacuum itself:")
     print()
     print("  • Each minimum R_Ψ = π^n is a NOTE in the cosmic symphony")
-    print("  • Each power of π is an ECHO of coherence in the ∞³ expansion")
+    print("  • Each power of π is an ECHO of coherence in the inf³ expansion")
     print("  • The fractal sin² term is the MEMORY of discrete symmetry")
     print("  • The ζ'(1/2) term connects to the RHYTHM of primes")
     print()

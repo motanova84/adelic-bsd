@@ -8,9 +8,13 @@ numpy>=1.24.3,<3.0.0
 scipy>=1.10.1,<2.0.0
 sympy>=1.12,<2.0.0
 
+# Cryptography for AIK beacon signatures
+cryptography>=41.0.0,<44.0.0
+
 # Data and visualization
 pandas>=2.0.3,<3.0.0
 matplotlib>=3.7.2,<4.0.0
+tqdm>=4.65.0,<5.0.0
 
 # Development and testing
 pytest>=7.4.0,<9.0.0
@@ -21,3 +25,6 @@ ipywidgets>=8.0.7
 # Documentation
 sphinx>=7.0.1,<8.0.0
 sphinx-rtd-theme>=1.2.2,<2.0.0
+
+# Cryptography for QCAL Beacon signatures
+cryptography>=42.0.4,<44.0.0

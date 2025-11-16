@@ -37,6 +37,38 @@ This directory contains comprehensive documentation for the Spectral BSD Framewo
 
 ---
 
+### [CIERRE_FORMAL_dR_PT.md](CIERRE_FORMAL_dR_PT.md)
+**Formal closure of dR and PT compatibilities** - Extra-syntactic demonstration of BSD compatibilities.
+
+**Contents**:
+- Introduction to (dR) and (PT) compatibilities in BSD
+- Main theorem and formal closure statement
+- Technical foundations of dR compatibility (Faltings comparison)
+- Technical foundations of PT compatibility (Tamagawa numbers, adelic volume)
+- Philosophical epilogue on conceptual vs. syntactic closure
+- Empirical validation tables and LMFDB verification
+- Lean 4 formalization stubs
+- QCAL beacon certification
+
+**Audience**: Mathematicians, formalization experts, and anyone interested in the formal foundations of BSD
+
+---
+
+### [HPC_SOLVER.md](HPC_SOLVER.md)
+**High-Performance Computing framework** - Conceptual documentation for quantum many-body physics simulations.
+
+**Contents**:
+- Exact Diagonalization method for quantum systems
+- GPU acceleration with CUDA/cuBLAS/cuSOLVER
+- Technical architecture and components
+- Performance benchmarks and scalability
+- Python/C++ integration patterns
+- Docker and reproducibility framework
+
+**Audience**: HPC researchers, computational physicists, and anyone interested in GPU-accelerated quantum simulations
+
+---
+
 ## 🔗 Quick Links
 
 - **Installation**: See [MANUAL.md#installation](MANUAL.md#installation)

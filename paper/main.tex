@@ -1,0 +1,32 @@
+% main.tex
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{hyperref}
+\title{Noncircular Proof of the Riemann Hypothesis via Sfinite Adelic Spectral Systems}
+\author{Motanova et al.}
+\date{October 2025}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+We present a noncircular proof of the Riemann Hypothesis (RH) using Sfinite adelic spectral systems. Our construction avoids any direct input from the Riemann zeta function $\zeta(s)$, its Euler product, or its functional equation. Instead, we follow four independent pillars: geometry, symmetry, spectral uniqueness, and arithmetic emergence. The approach is extended to elliptic curves and BSD in the second part.
+\end{abstract}
+
+% --- Secciones principales ---
+\input{sections/01_introduction.tex}
+\input{sections/02_geometry.tex}
+\input{sections/03_spectral_primes.tex}
+\input{sections/04_functional_equation.tex}
+\input{sections/05_positivity_debranges.tex}
+\input{sections/06_paley_wiener.tex}
+\input{sections/07_zero_divisor.tex}
+\input{sections/08_spectral_inversion.tex}
+\input{sections/11_dR_PT_closure.tex}
+
+% --- Apéndices y referencias ---
+\input{sections/09_appendix.tex}
+\input{sections/10_bibliography.tex}
+
+\end{document}
