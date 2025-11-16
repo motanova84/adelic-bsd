@@ -5,3 +5,5 @@ import AdelicBSD.Emergence
 import AdelicBSD.Main
 import AdelicBSD.SelmerDesc
 import AdelicBSD.Traces.ModularParam
+import AdelicBSD.BSDStatement
+import AdelicBSD.BirchSwinnertonDyerFinal
