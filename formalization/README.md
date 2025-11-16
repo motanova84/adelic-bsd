@@ -66,6 +66,13 @@ Complete formalization of the Birch and Swinnerton-Dyer conjecture:
 - ✅ `pt_compatibility` - Period-Tamagawa compatibility
 - ✅ `BSD_final_statement` - Complete BSD conjecture statement
 - ✅ `BSD_qcal_connection` - Connection to QCAL frequency f₀ = 141.7001 Hz
+### BirchSwinnertonDyerFinal.lean
+Final stage of BSD formalization (dR and PT compatibility):
+- `DeRhamCohomology` - Structure for H¹_dR(E/ℚ)
+- `dR_compatibility` - De Rham cohomology compatibility theorem (rank = order of vanishing)
+- `Omega_E` - Period integral over real components
+- `adelicVolume` - Adelic volume of E(𝔄_ℚ)/E(ℚ)
+- `pt_compatibility` - Poitou-Tate compatibility theorem (local-global normalization)
 
 ## Status
 
