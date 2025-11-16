@@ -1,6 +1,8 @@
 
 # 🌌 Adelic-BSD & Riemann Hypothesis Framework
 
+[![codecov](https://codecov.io/gh/motanova84/adelic-bsd/branch/main/graph/badge.svg)](https://codecov.io/gh/motanova84/adelic-bsd)
+
 **Repositorio bilingüe: español/inglés**
 
 ---
