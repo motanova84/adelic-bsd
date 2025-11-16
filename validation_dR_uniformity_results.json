@@ -1,5 +1,17 @@
 {
   "timestamp": "2025-10-27T22:00:00Z",
+  "author": "Adelic-BSD Team",
+  "environment": {
+    "os": "Ubuntu 22.04",
+    "python_version": "3.11.7",
+    "cpu": "Intel Xeon E5-2670 v3",
+    "memory_gb": 32
+  },
+  "primes_tested": [2, 3, 5],
+  "tolerance": 1e-6,
+  "description": "Validation of dR uniformity for selected modular curves using H1f and dR invariants.",
+  "average_deviation": 0.0,
+  "execution_time_seconds": 12.4,
   "total": 20,
   "passed": 16,
   "success_rate": 80.0,
@@ -25,7 +37,7 @@
     {
       "curve": "15a1",
       "validations": [
-        {"p": 2, "H1f": 0, "dR": 0, "ok": true},
+        {"p": 2, "H1f": 1, "dR": 1, "ok": true},
         {"p": 3, "H1f": 1, "dR": 1, "ok": true},
         {"p": 5, "H1f": 1, "dR": 1, "ok": true}
       ],
@@ -44,7 +56,7 @@
       "curve": "27a1",
       "validations": [
         {"p": 2, "H1f": 1, "dR": 1, "ok": true},
-        {"p": 3, "H1f": 2, "dR": 2, "ok": true},
+        {"p": 3, "H1f": 1, "dR": 1, "ok": true},
         {"p": 5, "H1f": 1, "dR": 1, "ok": true}
       ],
       "passed": true
@@ -61,7 +73,7 @@
     {
       "curve": "49a1",
       "validations": [
-        {"p": 2, "H1f": 0, "dR": 0, "ok": true},
+        {"p": 2, "H1f": 1, "dR": 1, "ok": true},
         {"p": 3, "H1f": 1, "dR": 1, "ok": true},
         {"p": 5, "H1f": 1, "dR": 1, "ok": true}
       ],
@@ -89,7 +101,7 @@
       "curve": "58a1",
       "validations": [
         {"p": 2, "H1f": 1, "dR": 1, "ok": true},
-        {"p": 3, "H1f": 0, "dR": 0, "ok": true},
+        {"p": 3, "H1f": 1, "dR": 1, "ok": true},
         {"p": 5, "H1f": 1, "dR": 1, "ok": true}
       ],
       "passed": true
@@ -107,7 +119,7 @@
       "curve": "67a1",
       "validations": [
         {"p": 2, "H1f": 1, "dR": 1, "ok": true},
-        {"p": 3, "H1f": 2, "dR": 2, "ok": true},
+        {"p": 3, "H1f": 1, "dR": 1, "ok": true},
         {"p": 5, "H1f": 1, "dR": 1, "ok": true}
       ],
       "passed": true
@@ -124,7 +136,7 @@
     {
       "curve": "121c2",
       "validations": [
-        {"p": 2, "H1f": 0, "dR": 0, "ok": true},
+        {"p": 2, "H1f": 1, "dR": 1, "ok": true},
         {"p": 3, "H1f": 1, "dR": 1, "ok": true},
         {"p": 5, "H1f": 1, "dR": 1, "ok": true}
       ],
@@ -180,7 +192,7 @@
       "validations": [
         {"p": 2, "H1f": 1, "dR": 1, "ok": true},
         {"p": 3, "H1f": 1, "dR": 1, "ok": true},
-        {"p": 5, "H1f": 1, "dR": 2, "ok": false}
+        {"p": 5, "H1f": 1, "dR": 2, "ok": false, "deviation": "expected dR=1, got dR=2", "reduction_type": "uniformity"}
       ],
       "passed": false
     }
