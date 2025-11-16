@@ -21,7 +21,7 @@ jobs:
         run: pytest -v operador/
 
       - name: Extended test with output
-        run: pytest -s operador/tests_operador_extended.py > convergencia.log
+        run: pytest -s operador/test_operador_extended.py > convergencia.log
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
