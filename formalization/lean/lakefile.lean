@@ -7,6 +7,9 @@ package «adelic_bsd» where
 lean_lib «AdelicBSD» where
   -- Add library configuration options here
 
+lean_lib «RiemannAdelic» where
+  -- Riemann-Adelic formalization library
+
 @[default_target]
 lean_exe «adelic_bsd» where
   root := `Main

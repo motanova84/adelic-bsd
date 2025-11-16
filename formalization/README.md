@@ -12,11 +12,12 @@ formalization/lean/
 ├── lakefile.lean              # Lake build configuration
 ├── AdelicBSD.lean            # Root module (imports all components)
 └── AdelicBSD/
-    ├── Constants.lean        # Fundamental constants
-    ├── Zeta.lean            # Riemann zeta function properties
-    ├── GoldenRatio.lean     # Golden ratio algebra
-    ├── Emergence.lean       # Emergence formula for f₀
-    └── Main.lean            # Main unconditional theorem
+    ├── Constants.lean                    # Fundamental constants
+    ├── Zeta.lean                         # Riemann zeta function properties
+    ├── GoldenRatio.lean                  # Golden ratio algebra
+    ├── Emergence.lean                    # Emergence formula for f₀
+    ├── Main.lean                         # Main unconditional theorem
+    └── BirchSwinnertonDyerFinal.lean    # BSD final stage: dR and PT compatibility
 ```
 
 ## Key Components
@@ -54,6 +55,14 @@ Main unconditional theorems:
 - ✅ `calibration_valid` - Calibration satisfies all constraints
 - ✅ `spectral_descent_unconditional` - Constructive bounds exist
 - ✅ `sha_finiteness` - Finiteness of Ш(E/ℚ)
+
+### BirchSwinnertonDyerFinal.lean
+Final stage of BSD formalization (dR and PT compatibility):
+- `DeRhamCohomology` - Structure for H¹_dR(E/ℚ)
+- `dR_compatibility` - De Rham cohomology compatibility theorem (rank = order of vanishing)
+- `Omega_E` - Period integral over real components
+- `adelicVolume` - Adelic volume of E(𝔄_ℚ)/E(ℚ)
+- `pt_compatibility` - Poitou-Tate compatibility theorem (local-global normalization)
 
 ## Status
 
