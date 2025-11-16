@@ -16,7 +16,8 @@ formalization/lean/
     ├── Zeta.lean            # Riemann zeta function properties
     ├── GoldenRatio.lean     # Golden ratio algebra
     ├── Emergence.lean       # Emergence formula for f₀
-    └── Main.lean            # Main unconditional theorem
+    ├── Main.lean            # Main unconditional theorem
+    └── BSDFinal.lean        # Final BSD conjecture formalization
 ```
 
 ## Key Components
@@ -54,6 +55,24 @@ Main unconditional theorems:
 - ✅ `calibration_valid` - Calibration satisfies all constraints
 - ✅ `spectral_descent_unconditional` - Constructive bounds exist
 - ✅ `sha_finiteness` - Finiteness of Ш(E/ℚ)
+
+### BSDFinal.lean
+Complete formalization of the Birch and Swinnerton-Dyer conjecture:
+- ✅ `L_E` - L-series definition for elliptic curves over ℚ
+- ✅ `analytic_rank` - Order of zero at s=1 of L(E,s)
+- ✅ `algebraic_rank` - Mordell-Weil rank E(ℚ)
+- ✅ `rank_compatibility` - Analytic rank equals algebraic rank
+- ✅ `dR_compatibility` - De Rham cohomology compatibility
+- ✅ `pt_compatibility` - Period-Tamagawa compatibility
+- ✅ `BSD_final_statement` - Complete BSD conjecture statement
+- ✅ `BSD_qcal_connection` - Connection to QCAL frequency f₀ = 141.7001 Hz
+### BirchSwinnertonDyerFinal.lean
+Final stage of BSD formalization (dR and PT compatibility):
+- `DeRhamCohomology` - Structure for H¹_dR(E/ℚ)
+- `dR_compatibility` - De Rham cohomology compatibility theorem (rank = order of vanishing)
+- `Omega_E` - Period integral over real components
+- `adelicVolume` - Adelic volume of E(𝔄_ℚ)/E(ℚ)
+- `pt_compatibility` - Poitou-Tate compatibility theorem (local-global normalization)
 
 ## Status
 

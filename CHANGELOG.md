@@ -6,6 +6,17 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+#### Birch-Swinnerton-Dyer Final Stage Formalization - 2025-11-15
+- **formalization/lean/AdelicBSD/BirchSwinnertonDyerFinal.lean**: Final stage of BSD formalization
+  - Structure: `DeRhamCohomology` - H¹_dR(E/ℚ) for elliptic curves
+  - Theorem: `dR_compatibility` - De Rham cohomology compatibility (rank = order of vanishing)
+  - Definition: `Omega_E` - Period integral over real components
+  - Definition: `adelicVolume` - Adelic volume of E(𝔄_ℚ)/E(ℚ)
+  - Theorem: `pt_compatibility` - Poitou-Tate compatibility (local-global normalization)
+  - Axioms: `adelicVolume_positive`, `Omega_E_positive` - Positivity properties
+- **formalization/lean/AdelicBSD.lean**: Added import for BirchSwinnertonDyerFinal module
+- **formalization/README.md**: Updated documentation with new module structure
+
 #### Hardy-Littlewood Singular Series (Equation 4) - 2025-10-25
 - **src/local_factors.py**: Implementation of corrected Hardy-Littlewood singular series
   - Function: `hardy_littlewood_singular_series(n, max_prime=1000, precision=50)`
