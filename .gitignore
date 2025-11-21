@@ -174,3 +174,6 @@ formalization/lean/lean_packages/
 
 # Backup files
 *.backup
+
+# Standalone test scripts
+test_analytical_standalone.py
