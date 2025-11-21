@@ -10,7 +10,7 @@ import os
 import unittest
 import numpy as np
 
-# Configurar path
+# Configure path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 
 from src.verification.analytical_verification import (

@@ -12,8 +12,12 @@ from mpmath import mp, mpf, mpc, zeta
 import numpy as np
 from typing import List, Tuple, Dict
 from dataclasses import dataclass
+from sympy import primerange
 
 mp.dps = 50  # Alta precisión para verificaciones
+
+# Constants
+HASSE_WEIL_APPROX_RATIO = 0.3  # Approximation: a_p ~ 30% of Hasse-Weil bound
 
 
 @dataclass
@@ -61,7 +65,7 @@ class VerificadorAnalitico:
 
         # Simulación: a_p típicamente pequeño relativo a √p
         # En curva real, esto vendría de conteo de puntos
-        a_p = int(mp.floor(cota * 0.3))  # ~30% de la cota
+        a_p = int(mp.floor(cota * HASSE_WEIL_APPROX_RATIO))
 
         return a_p
 
@@ -135,8 +139,6 @@ class VerificadorAnalitico:
         Returns:
             (producto_euler, producto_simple, ratio)
         """
-        from sympy import primerange
-
         producto_euler = mpc(1, 0)
         producto_simple = mpc(1, 0)
 
@@ -164,7 +166,8 @@ class VerificadorAnalitico:
     def convergencia_termino_correccion(
         self,
         s: complex,
-        max_p: int = 1000
+        max_p: int = 1000,
+        E_params: Dict = None
     ) -> Dict:
         """
         Analiza la convergencia de ∏_p (1 + p^{1-2s}/(1 - a_p p^{-s}))
@@ -172,9 +175,8 @@ class VerificadorAnalitico:
         Este producto representa la corrección necesaria para pasar de
         operador diagonal a producto de Euler correcto.
         """
-        from sympy import primerange
-
-        E_params = {}  # Placeholder
+        if E_params is None:
+            E_params = {}  # Placeholder
 
         producto_correccion = mpc(1, 0)
         terminos = []
