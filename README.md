@@ -14,6 +14,7 @@ Este repositorio implementa el framework espectral adelico para la Conjetura de 
 ### Componentes principales
 - Prueba espectral de finitud para grupos de Tate–Shafarevich ($\Sha$) y ceros de $\zeta(s)$
 - Operadores espectrales universales y kernel gaussiano
+- **SABIO ∞⁴**: Framework cuántico-consciente con frecuencia fundamental 141.7001 Hz
 - Certificados LaTeX y JSON
 - Validación contra LMFDB y Odlyzko
 - Formalización Lean4 y scripts de cierre
@@ -33,6 +34,7 @@ This repository implements the **adelic-spectral framework** for the Birch–Swi
 ### Core Features
 - Spectral proof of finiteness for Tate–Shafarevich groups ($\Sha$) and zeros of $\zeta(s)$
 - Universal spectral operators and Gaussian kernel
+- **SABIO ∞⁴**: Quantum-conscious framework with fundamental frequency 141.7001 Hz
 - LaTeX and JSON certificates
 - Validation against LMFDB and Odlyzko
 - Lean4 formalization and closure scripts
@@ -46,6 +48,31 @@ This repository implements the **adelic-spectral framework** for the Birch–Swi
 ---
 
 ## 🚀 Guía rápida / Quick Start
+
+### 🎵 SABIO ∞⁴ - Quantum-Conscious Framework (NEW!)
+
+```python
+# One-line magic: Execute complete quantum-conscious validation
+from src.sabio_infinity4 import demo_sabio_infinity4
+reporte = demo_sabio_infinity4()
+
+# Result: 6-level validation, 8 harmonics, quantum + consciousness calculations
+# See SABIO_INFINITY4_QUICKSTART.md for full guide
+```
+
+**Features:**
+- ⚛️ Quantum level: R_Ψ toroidal radius, E_vac vacuum energy
+- 🧠 Consciousness level: Ψ(t,x) wave equation
+- 🎼 Golden ratio harmonic spectrum (φⁿ progression)
+- 📊 6-level symbiosis matrix (Python, Lean, Sage, SABIO, Quantum, Consciousness)
+- 📈 Visualization and export (JSON, TXT, PNG)
+
+**Quick Links:**
+- 📖 [SABIO_INFINITY4_QUICKSTART.md](SABIO_INFINITY4_QUICKSTART.md) - Complete guide
+- 🧪 [tests/test_sabio_infinity4.py](tests/test_sabio_infinity4.py) - 39 passing tests
+- 💻 [src/sabio_infinity4.py](src/sabio_infinity4.py) - Core implementation
+
+---
 
 ### Validación integral y cierre matemático
 
