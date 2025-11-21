@@ -141,9 +141,17 @@ def test_validation_with_partial_failure():
     validator = SpectralIdentityValidator(verbose=False)
     
     mock_results = [
-        {'success': True, 'rank': 0, 'spectral_identity_verified': True,
-         'vanishing_order_matches_rank': True, 'c_factor_nonzero': True},
-        {'success': False, 'rank': 1}  # Failed validation
+        {
+            'success': True,
+            'rank': 0,
+            'spectral_identity_verified': True,
+            'vanishing_order_matches_rank': True,
+            'c_factor_nonzero': True
+        },
+        {
+            'success': False,
+            'rank': 1
+        }  # Failed validation
     ]
     
     summary = validator._generate_summary(mock_results)

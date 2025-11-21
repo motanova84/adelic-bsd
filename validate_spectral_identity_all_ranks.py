@@ -14,7 +14,7 @@ Curvas de referencia:
 - 389a1:  r=2 (Yuan-Zhang-Zhang)
 - 5077a1: r=3 (Yuan-Zhang-Zhang + Beilinson-Bloch)
 
-Autor: José Manuel Mota Burruezo (JMMB Ψ·∴)
+Autor: José Manuel Mota Burruezo (JMMB)
 Fecha: Noviembre 2025
 """
 
@@ -223,6 +223,12 @@ class SpectralIdentityValidator:
         ranks_covered = sorted(set(r.get('rank', 0) for r in results 
                                   if r.get('success', False)))
         
+        # Check if all validations passed
+        all_checks_passed = (successful == total and 
+                             identity_verified == total and 
+                             rank_match == total and 
+                             c_nonzero == total)
+        
         return {
             'total_curves': total,
             'successful_validations': successful,
@@ -231,10 +237,7 @@ class SpectralIdentityValidator:
             'c_nonzero_count': c_nonzero,
             'ranks_covered': ranks_covered,
             'success_rate': successful / total if total > 0 else 0,
-            'all_passed': successful == total and 
-                         identity_verified == total and 
-                         rank_match == total and 
-                         c_nonzero == total
+            'all_passed': all_checks_passed
         }
     
     def _print_final_report(self, summary: Dict[str, Any]):
@@ -253,9 +256,12 @@ class SpectralIdentityValidator:
         print(f"   ord_{{s=1}} det = r(E): {summary['rank_compatibility_count']}/{summary['total_curves']}")
         print(f"   c(1) ≠ 0: {summary['c_nonzero_count']}/{summary['total_curves']}")
         
+        # Expected rank coverage for complete validation
+        EXPECTED_RANK_COUNT = 4  # Covers r=0,1,2,3
+        
         print(f"\n📈 Cobertura de Rangos:")
         print(f"   Rangos probados: {', '.join(f'r={r}' for r in summary['ranks_covered'])}")
-        print(f"   Cobertura completa: {'✅ Sí' if len(summary['ranks_covered']) >= 4 else '⚠️ Parcial'}")
+        print(f"   Cobertura completa: {'✅ Sí' if len(summary['ranks_covered']) >= EXPECTED_RANK_COUNT else '⚠️ Parcial'}")
         
         if summary['all_passed']:
             print(f"\n{'='*70}")

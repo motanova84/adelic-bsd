@@ -93,7 +93,7 @@ $$\det(I - K_E(s)) = c(s) \cdot \Lambda(E, s)$$
 | r = 1 | Gross-Zagier (1986) | 37a1 | ✅ Validado |
 | r = 2 | Yuan-Zhang-Zhang (2013) | 389a1 | ✅ Validado |
 | r = 3 | YZZ + Beilinson-Bloch | 5077a1 | ✅ Validado |
-| r ≥ 4 | Beilinson-Bloch Heights | Extrapolación | ✅ Algoritmo |
+| r ≥ 4 | Beilinson-Bloch Heights | Extrapolation | ✅ Algorithm |
 
 **Validación**: Ejecutar `python3 validate_spectral_identity_all_ranks.py`
 
