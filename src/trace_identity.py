@@ -600,25 +600,76 @@ class TraceIdentityProver:
         return certificate
 
 
+def create_operator_from_sage(curve_label: str) -> AdelicOperatorME:
+    """
+    Create operator from real elliptic curve using SageMath
+    
+    This function creates an operator with ACTUAL L-function coefficients
+    from an elliptic curve in the LMFDB database.
+    
+    Args:
+        curve_label: LMFDB label (e.g., "11a1", "37a1", "389a1")
+        
+    Returns:
+        AdelicOperatorME with real elliptic curve coefficients
+        
+    Raises:
+        ImportError: If SageMath is not available
+        
+    Example:
+        >>> operator = create_operator_from_sage("11a1")
+        >>> prover = TraceIdentityProver(operator)
+        >>> result = prover.verify_trace_identity(2.0, 2, 500)
+    """
+    try:
+        from sage.all import EllipticCurve
+    except ImportError:
+        raise ImportError(
+            "SageMath is required for real elliptic curve coefficients. "
+            "Install SageMath or use create_example_operator() for testing."
+        )
+    
+    E = EllipticCurve(curve_label)
+    
+    def a_coefficients(n: int) -> complex:
+        """Get actual L-function coefficient from elliptic curve"""
+        return complex(E.an(n))
+    
+    return AdelicOperatorME(a_coefficients, curve_label)
+
+
 def create_example_operator(curve_label: str = "11a1") -> AdelicOperatorME:
     """
     Create example operator for elliptic curve
     
-    For demonstration, we use simple a_n coefficients.
-    In practice, these come from sage.all.EllipticCurve.
+    ⚠️  WARNING: This uses PLACEHOLDER coefficients for demonstration only.
+    
+    For real elliptic curves, use coefficients from SageMath:
+        from sage.all import EllipticCurve
+        E = EllipticCurve(curve_label)
+        def a_coefficients(n):
+            return E.an(n)
+    
+    The placeholder coefficients satisfy basic properties but do NOT represent
+    a real elliptic curve. They are used for:
+    - Unit testing the mathematical framework
+    - Demonstrating the trace identity computation
+    - Validating convergence analysis
     
     Args:
-        curve_label: Curve label
+        curve_label: Curve label (for labeling only, not actual data)
         
     Returns:
-        AdelicOperatorME instance
+        AdelicOperatorME instance with PLACEHOLDER coefficients
     """
-    # Simple example: a_n = (-1)^{n+1} for demonstration
-    # In reality, use E.an(n) from SageMath
+    # PLACEHOLDER coefficients: a_n = (-1)^{n+1} / √n
+    # These satisfy |aₙ| ≤ C√n but are NOT from a real elliptic curve
+    # 
+    # ⚠️  For production use, replace with actual E.an(n) from SageMath
     def a_coefficients(n: int) -> complex:
         if n == 1:
             return 1.0
-        # Placeholder: replace with actual E.an(n)
+        # Simple alternating series satisfying Hasse-Weil-like bounds
         return (-1.0) ** (n + 1) / math.sqrt(n)
     
     return AdelicOperatorME(a_coefficients, curve_label)

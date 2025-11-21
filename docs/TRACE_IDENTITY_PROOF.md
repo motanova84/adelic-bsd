@@ -239,13 +239,13 @@ All tests pass successfully.
 
 ## Usage Examples
 
-### Basic Usage
+### Basic Usage with Placeholder Coefficients
 
 ```python
 from trace_identity import create_example_operator, TraceIdentityProver
 
-# Create operator
-operator = create_example_operator("11a1")
+# Create operator with placeholder coefficients (for testing)
+operator = create_example_operator("test_curve")
 prover = TraceIdentityProver(operator)
 
 # Verify trace identity
@@ -256,6 +256,20 @@ N = 500
 verification = prover.verify_trace_identity(s, k, N)
 print(f"Identity verified: {verification['identity_verified']}")
 print(f"Error: {verification['difference']:.2e}")
+```
+
+### Usage with Real Elliptic Curves (SageMath)
+
+```python
+from trace_identity import create_operator_from_sage, TraceIdentityProver
+
+# Create operator from actual elliptic curve
+operator = create_operator_from_sage("11a1")  # Requires SageMath
+prover = TraceIdentityProver(operator)
+
+# Verify with real L-function coefficients
+verification = prover.verify_trace_identity(2.0, 2, 500)
+print(f"Real curve verification: {verification['identity_verified']}")
 ```
 
 ### Certificate Generation
