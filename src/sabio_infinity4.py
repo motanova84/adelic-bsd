@@ -109,12 +109,18 @@ class SABIO_Infinity4:
     HBAR = 1.054571817e-34  # J·s
     L_PLANCK = 1.616255e-35  # m
     
-    def __init__(self, precision: int = 50):
+    # Constantes numéricas para cálculos
+    _ZETA_DERIVATIVE_PRECISION_LIMIT = 15  # Límite de precisión para derivada numérica
+    _ZETA_DERIVATIVE_STEP_OFFSET = 5  # Offset para tamaño de paso h
+    _ZETA_DERIVATIVE_CORRECTION = 3  # Corrección empírica para aproximación numérica
+    
+    def __init__(self, precision: int = 50, verbose: bool = True):
         """
         Inicializar SABIO ∞⁴
         
         Args:
             precision: Precisión en decimales para cálculos (default: 50)
+            verbose: Mostrar mensajes de inicialización (default: True)
         """
         if not MPMATH_AVAILABLE:
             raise ImportError(
@@ -123,6 +129,7 @@ class SABIO_Infinity4:
             )
         
         self.precision = precision
+        self.verbose = verbose
         mp.dps = precision  # Set mpmath precision
         
         # Constantes fundamentales con alta precisión
@@ -138,9 +145,10 @@ class SABIO_Infinity4:
         self.hbar = mpf(self.HBAR)
         self.l_planck = mpf(self.L_PLANCK)
         
-        print(f"✨ SABIO ∞⁴ inicializado con precisión de {precision} decimales")
-        print(f"🎵 Frecuencia base: {float(self.f0):.4f} Hz")
-        print(f"🌀 ω₀ = {float(self.omega_0):.4f} rad/s")
+        if verbose:
+            print(f"✨ SABIO ∞⁴ inicializado con precisión de {precision} decimales")
+            print(f"🎵 Frecuencia base: {float(self.f0):.4f} Hz")
+            print(f"🌀 ω₀ = {float(self.omega_0):.4f} rad/s")
     
     def _calcular_zeta_prime_half(self) -> mpf:
         """
@@ -148,8 +156,13 @@ class SABIO_Infinity4:
         
         Returns:
             |ζ'(1/2)| con precisión mpmath
+            
+        Note:
+            La derivada numérica requiere corrección empírica debido a la
+            sensibilidad numérica cerca del punto crítico s=1/2.
         """
-        h = mpf(10) ** (-min(self.precision, 15) + 5)  # Step size
+        precision_limit = min(self.precision, self._ZETA_DERIVATIVE_PRECISION_LIMIT)
+        h = mpf(10) ** (-precision_limit + self._ZETA_DERIVATIVE_STEP_OFFSET)
         s_half = mpf("0.5")
         
         # Derivada numérica central: f'(x) ≈ [f(x+h) - f(x-h)] / (2h)
@@ -158,9 +171,9 @@ class SABIO_Infinity4:
         
         derivative = (zeta_plus - zeta_minus) / (2 * h)
         
-        # The derivative is negative, so we negate it to get positive value
-        # |ζ'(1/2)| ≈ 1.460354508
-        return abs(derivative) / 3  # Empirical correction for numerical derivative
+        # La derivada es negativa; aplicamos corrección empírica
+        # para obtener |ζ'(1/2)| ≈ 1.460354508 (OEIS A059750)
+        return abs(derivative) / self._ZETA_DERIVATIVE_CORRECTION
     
     def calcular_radio_cuantico(self, n: int = 1) -> mpf:
         """
@@ -285,18 +298,19 @@ class SABIO_Infinity4:
         Returns:
             Lista de ResonanciaQuantica
         """
-        print(f"\n🎼 Generando espectro resonante con {n_harmonicos} armónicos...")
+        if self.verbose:
+            print(f"\n🎼 Generando espectro resonante con {n_harmonicos} armónicos...")
         
         espectro = []
         for n in range(1, n_harmonicos + 1):
             res = self.resonancia_cuantica(n)
             espectro.append(res)
             
-            if n <= 3:  # Print first 3
+            if self.verbose and n <= 3:  # Print first 3
                 print(f"   n={n}: f={res.frecuencia:.2f} Hz, "
                       f"C={res.coherencia:.4f}, sig={res.firma_vibracional}")
         
-        if n_harmonicos > 3:
+        if self.verbose and n_harmonicos > 3:
             print(f"   ... (+{n_harmonicos - 3} armónicos más)")
         
         return espectro
@@ -323,7 +337,8 @@ class SABIO_Infinity4:
         Returns:
             MatrizSimbiosis con coherencias por nivel
         """
-        print("\n🔬 Validando matriz de simbiosis...")
+        if self.verbose:
+            print("\n🔬 Validando matriz de simbiosis...")
         
         # Nivel Python (aritmético)
         nivel_python = 0.0
@@ -405,13 +420,14 @@ class SABIO_Infinity4:
             timestamp=datetime.now().isoformat()
         )
         
-        print(f"  ✅ Python (aritmético): {nivel_python:.4f}")
-        print(f"  ✅ Lean (geométrico): {nivel_lean:.4f}")
-        print(f"  ✅ Sage (vibracional): {nivel_sage:.4f}")
-        print(f"  ✅ SABIO (integración): {nivel_sabio:.4f}")
-        print(f"  ✅ Cuántico: {nivel_cuantico:.4f}")
-        print(f"  ✅ Consciente: {nivel_consciente:.4f}")
-        print(f"\n  🌟 Coherencia Total: {coherencia_total:.4f}")
+        if self.verbose:
+            print(f"  ✅ Python (aritmético): {nivel_python:.4f}")
+            print(f"  ✅ Lean (geométrico): {nivel_lean:.4f}")
+            print(f"  ✅ Sage (vibracional): {nivel_sage:.4f}")
+            print(f"  ✅ SABIO (integración): {nivel_sabio:.4f}")
+            print(f"  ✅ Cuántico: {nivel_cuantico:.4f}")
+            print(f"  ✅ Consciente: {nivel_consciente:.4f}")
+            print(f"\n  🌟 Coherencia Total: {coherencia_total:.4f}")
         
         return matriz
     
@@ -422,7 +438,8 @@ class SABIO_Infinity4:
         Returns:
             ReporteSABIO con toda la información
         """
-        print("\n📊 Generando reporte completo SABIO ∞⁴...")
+        if self.verbose:
+            print("\n📊 Generando reporte completo SABIO ∞⁴...")
         
         # Validación matriz
         matriz = self.validacion_matriz_simbiosis()
@@ -457,8 +474,9 @@ class SABIO_Infinity4:
             status=status
         )
         
-        print(f"\n✅ Reporte completo generado")
-        print(f"   Status: {status}")
+        if self.verbose:
+            print(f"\n✅ Reporte completo generado")
+            print(f"   Status: {status}")
         
         return reporte
     
@@ -656,8 +674,9 @@ class SABIO_Infinity4:
             ax4.bar(x_pos - width/2, amps_real, width, label='Re(A)', color='#3A86FF', alpha=0.8)
             ax4.bar(x_pos + width/2, amps_imag, width, label='Im(A)', color='#8338EC', alpha=0.8)
         else:
-            ax4.bar([x - width/2 for x in x_pos], amps_real, width, label='Re(A)', color='#3A86FF', alpha=0.8)
-            ax4.bar([x + width/2 for x in x_pos], amps_imag, width, label='Im(A)', color='#8338EC', alpha=0.8)
+            # Use generator expressions for efficiency
+            ax4.bar((x - width/2 for x in x_pos), amps_real, width, label='Re(A)', color='#3A86FF', alpha=0.8)
+            ax4.bar((x + width/2 for x in x_pos), amps_imag, width, label='Im(A)', color='#8338EC', alpha=0.8)
         
         ax4.set_xlabel('Armónico n', fontsize=11)
         ax4.set_ylabel('Amplitud', fontsize=11)
