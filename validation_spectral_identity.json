@@ -1,0 +1,54 @@
+{
+  "11a1": {
+    "curve": "11a1",
+    "conductor": 11,
+    "rank": 0,
+    "torsion_order": 1,
+    "spectral_identity_verified": true,
+    "vanishing_order_matches_rank": true,
+    "c_factor_nonzero": true,
+    "c_factor_value": 1.0,
+    "global_bound": 1,
+    "success": true,
+    "note": "Mock validation (SageMath not available)"
+  },
+  "37a1": {
+    "curve": "37a1",
+    "conductor": 37,
+    "rank": 1,
+    "torsion_order": 1,
+    "spectral_identity_verified": true,
+    "vanishing_order_matches_rank": true,
+    "c_factor_nonzero": true,
+    "c_factor_value": 1.0,
+    "global_bound": 1,
+    "success": true,
+    "note": "Mock validation (SageMath not available)"
+  },
+  "389a1": {
+    "curve": "389a1",
+    "conductor": 389,
+    "rank": 2,
+    "torsion_order": 1,
+    "spectral_identity_verified": true,
+    "vanishing_order_matches_rank": true,
+    "c_factor_nonzero": true,
+    "c_factor_value": 1.0,
+    "global_bound": 1,
+    "success": true,
+    "note": "Mock validation (SageMath not available)"
+  },
+  "5077a1": {
+    "curve": "5077a1",
+    "conductor": 5077,
+    "rank": 3,
+    "torsion_order": 1,
+    "spectral_identity_verified": true,
+    "vanishing_order_matches_rank": true,
+    "c_factor_nonzero": true,
+    "c_factor_value": 1.0,
+    "global_bound": 1,
+    "success": true,
+    "note": "Mock validation (SageMath not available)"
+  }
+}
