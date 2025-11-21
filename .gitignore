@@ -174,3 +174,8 @@ formalization/lean/lean_packages/
 
 # Backup files
 *.backup
+
+# SABIO ∞⁴ generated reports and visualizations
+sabio_infinity4_report_*.json
+sabio_infinity4_report_*.txt
+sabio_infinity4_spectrum_*.png

@@ -14,6 +14,14 @@ from .vacuum_energy import (
     zeta_prime_half
 )
 
+# Import SABIO ∞⁴ module (no SageMath dependency)
+from .sabio_infinity4 import (
+    SABIO_Infinity4,
+    ResonanciaQuantica,
+    MatrizSimbiosis,
+    demo_sabio_infinity4
+)
+
 # Try to import SageMath-dependent modules
 try:
     from .spectral_finiteness import (
@@ -160,6 +168,11 @@ __all__ = [
     "verify_fractal_symmetry",
     "generate_resonance_spectrum",
     "zeta_prime_half",
+    # SABIO ∞⁴ module (new in v0.2.3)
+    "SABIO_Infinity4",
+    "ResonanciaQuantica",
+    "MatrizSimbiosis",
+    "demo_sabio_infinity4",
     # Spectral finiteness (SageMath required)
     "SpectralFinitenessProver",
     "prove_finiteness_for_curve",
