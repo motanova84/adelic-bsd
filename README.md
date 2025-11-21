@@ -153,7 +153,11 @@ adelic-bsd/
 - `docs/BSD_FRAMEWORK.md`: Fundamentos teóricos
 - `paper/paper_standalone.tex`: Manuscrito modular
 - `validation_notebook.ipynb`: Ejecución y análisis reproducible
-- **[`CRITIQUE_RESPONSE.md`](CRITIQUE_RESPONSE.md)**: Respuesta técnica completa a críticas del framework ✨
+
+**🛡️ Respuesta a Críticas del Framework:**
+- **[`CRITIQUE_RESPONSE.md`](CRITIQUE_RESPONSE.md)**: Respuesta técnica completa (600+ líneas) ✨
+- **[`CRITIQUE_RESPONSE_SUMMARY.md`](CRITIQUE_RESPONSE_SUMMARY.md)**: Resumen ejecutivo con verificación automatizada ⚡
+- **[`VERIFICATION_EXAMPLES.md`](VERIFICATION_EXAMPLES.md)**: Guía de verificación reproducible paso a paso 🔍
 
 ---
 
