@@ -151,6 +151,9 @@ adelic-bsd/
 
 - `docs/MANUAL.md`: Guía técnica completa
 - `docs/BSD_FRAMEWORK.md`: Fundamentos teóricos
+- `BSD_EXECUTIVE_SUMMARY.md`: **Resumen ejecutivo del estado de la demostración BSD** (transparencia total)
+- `TRACE_IDENTITY_RIGOROUS_PROOF.md`: Demostración rigurosa de la identidad de traza
+- `verificacion_brecha_analitica.py`: Verificación numérica de la brecha estructural
 - `paper/paper_standalone.tex`: Manuscrito modular
 - `validation_notebook.ipynb`: Ejecución y análisis reproducible
 
@@ -820,6 +823,8 @@ algoritmo/
 
 ### Guías Principales
 
+- **[BSD_EXECUTIVE_SUMMARY.md](BSD_EXECUTIVE_SUMMARY.md)** - 🎯 **Resumen ejecutivo: Estado de la demostración BSD con transparencia total**
+- **[TRACE_IDENTITY_RIGOROUS_PROOF.md](TRACE_IDENTITY_RIGOROUS_PROOF.md)** - 📐 **Demostración rigurosa de la identidad de traza**
 - **[QUICKSTART.md](QUICKSTART.md)** - Inicio rápido (5 minutos)
 - **[docs/BSD_FRAMEWORK.md](docs/BSD_FRAMEWORK.md)** - Fundamentos teóricos completos
 - **[docs/CENTRAL_IDENTITY.md](docs/CENTRAL_IDENTITY.md)** - Identidad Central: det(I - M_E(s)) = c(s)·L(E,s)
@@ -831,6 +836,7 @@ algoritmo/
 ### Tutoriales y Demos
 
 - **[Demo interactivo completo](examples/demo_notebook.ipynb)** - Notebook integral con análisis y visualización
+- **[Verificación de brecha analítica](verificacion_brecha_analitica.py)** - 🔍 **Script que verifica la brecha estructural entre productos**
 - **[Demo de calibración](examples/calibration_demo.py)** - Calibración de parámetros espectrales
 - **[Demo de validación](examples/validation_workflow_demo.py)** - Flujo de verificación completo
 - **[Demo espectral a puntos](examples/spectral_to_points_demo.py)** - Algoritmo espectral→ciclos→puntos
