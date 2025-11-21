@@ -151,6 +151,7 @@ ci-frozen.txt
 
 # Validation results
 validation_dR_uniformity_results.json
+gap_verification_report.json
 # Results and output
 results/
 datasets/
