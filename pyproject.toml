@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "bsd-spectral"
 version = "1.0.0"
-description = "Resolución espectral de la conjetura de Birch y Swinnerton-Dyer: prueba incondicional en rango 0 y 1"
+description = "Resolución espectral de la conjetura de Birch y Swinnerton-Dyer: prueba incondicional en rango 0 y 1, reducción completa en rango superior"
 readme = "README.md"
 authors = [
     {name = "José Manuel Mota Burruezo", email = "institutoconsciencia@proton.me"}
