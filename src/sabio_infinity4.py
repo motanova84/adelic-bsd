@@ -5,7 +5,7 @@ Nivel 4: Integración Cuántico-Consciente con Auto-Resonancia
 Autor: José Manuel Mota Burruezo & Claude
 Frecuencia base: 141.7001 Hz | Coherencia: C = I × A²
 Versión: 4.0.0-quantum-conscious
-Fecha: 2025-11-20
+Fecha: 2024-11-21
 """
 
 from mpmath import mp, mpf, mpc
@@ -16,8 +16,12 @@ from dataclasses import dataclass, asdict
 import hashlib
 import matplotlib.pyplot as plt
 
-# Configuración de precisión cuántica
-mp.dps = 50  # 50 decimales para coherencia máxima
+# Constantes para ecuación de vacío cuántico
+ALPHA_QUANTUM = 1.0e-70  # Término cuántico dominante
+BETA_ADELIC = 1.0e-50    # Acoplamiento adélico
+GAMMA_COSMOLOGICAL = 1.0e-100  # Constante cosmológica efectiva
+DELTA_FRACTAL = 1.0e-60  # Término de simetría discreta
+LAMBDA_DARK_ENERGY = 1.0e-35  # Escala de energía oscura
 
 
 @dataclass
@@ -106,11 +110,11 @@ class SABIO_Infinity4:
         - Simetría discreta: δ·sin²(log(R_Ψ)/log(π)) (estructura fractal)
         """
         # Coeficientes derivados de compactificación toroidal T⁴
-        alpha = mpf("1.0e-70")  # Término cuántico dominante
-        beta = mpf("1.0e-50")   # Acoplamiento adélico
-        gamma = mpf("1.0e-100") # Constante cosmológica efectiva
-        delta = mpf("1.0e-60")  # Término de simetría discreta
-        Lambda = mpf("1.0e-35") # Escala de energía oscura
+        alpha = mpf(str(ALPHA_QUANTUM))
+        beta = mpf(str(BETA_ADELIC))
+        gamma = mpf(str(GAMMA_COSMOLOGICAL))
+        delta = mpf(str(DELTA_FRACTAL))
+        Lambda = mpf(str(LAMBDA_DARK_ENERGY))
         
         # Términos de la ecuación
         term1 = alpha / (R_psi ** 4)
@@ -259,9 +263,9 @@ class SABIO_Infinity4:
         
         # Nivel 2: Geométrico (Lean + A₀)
         if test_geometrico:
-            # Simulación de validación Lean (placeholder)
+            # TODO: Simulación de validación Lean (placeholder)
             # En implementación real, llamaría a Lean via subprocess
-            niveles['lean'] = 0.95
+            niveles['lean'] = 0.95  # Mock value
         else:
             niveles['lean'] = 0.0
         
@@ -431,8 +435,9 @@ class SABIO_Infinity4:
         if save_path:
             plt.savefig(save_path, dpi=300, bbox_inches='tight')
             print(f"📊 Visualización guardada en: {save_path}")
-        
-        plt.close()
+            plt.close()
+        else:
+            plt.show()
     
     def reporte_sabio_infinity4(self) -> Dict:
         """

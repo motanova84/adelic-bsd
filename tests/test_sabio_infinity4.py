@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """
-Tests para SABIO ∞⁴ - Sistema Cuántico-Consciente
+Tests for SABIO ∞⁴ - Quantum-Conscious System
+
+Comprehensive test suite for the Symbiotic Adelic-Based Infinite-Order Operator
 """
 
 import sys
@@ -18,6 +20,9 @@ from src.sabio_infinity4 import (
     MatrizSimbiosis
 )
 
+# Test constants
+MIN_COHERENCE_THRESHOLD = 0.85  # Minimum expected total coherence
+
 
 class TestSABIOInfinity4(unittest.TestCase):
     """Tests para el sistema SABIO ∞⁴"""
@@ -34,7 +39,6 @@ class TestSABIOInfinity4(unittest.TestCase):
         self.assertIsNotNone(self.sabio.omega0)
         self.assertIsNotNone(self.sabio.zeta_prime_half)
         self.assertIsNotNone(self.sabio.phi_golden)
-        print("✅ Inicialización: OK")
     
     def test_constantes_fundamentales(self):
         """Test de valores de constantes fundamentales"""
@@ -53,8 +57,6 @@ class TestSABIOInfinity4(unittest.TestCase):
         # Velocidad de la luz
         c_float = float(self.sabio.c)
         self.assertEqual(c_float, 299792458.0)
-        
-        print("✅ Constantes fundamentales: OK")
     
     def test_radio_cuantico(self):
         """Test del cálculo del radio cuántico R_Ψ"""
@@ -67,8 +69,6 @@ class TestSABIOInfinity4(unittest.TestCase):
         l_planck = float(self.sabio.l_planck)
         self.assertGreater(float(R_psi), l_planck)
         self.assertLess(float(R_psi), l_planck * 100)
-        
-        print(f"✅ Radio cuántico R_Ψ: {float(R_psi):.6e} m")
     
     def test_energia_vacio_cuantico(self):
         """Test de cálculo de energía de vacío cuántico"""
@@ -81,8 +81,6 @@ class TestSABIOInfinity4(unittest.TestCase):
         # E_vac debe ser finita
         from mpmath import mp
         self.assertTrue(mp.isfinite(E_vac))
-        
-        print(f"✅ Energía de vacío E_vac: {float(E_vac):.6e} J")
     
     def test_ecuacion_onda_consciencia(self):
         """Test de ecuación de onda de consciencia"""
@@ -98,8 +96,6 @@ class TestSABIOInfinity4(unittest.TestCase):
         # |Ψ| debe estar cerca de 1 (normalización)
         magnitude = abs(psi)
         self.assertAlmostEqual(float(magnitude), 1.0, places=1)
-        
-        print(f"✅ Ψ(0,0): {float(psi.real):.4f} + {float(psi.imag):.4f}i")
     
     def test_calcular_coherencia(self):
         """Test de cálculo de coherencia universal"""
@@ -114,8 +110,6 @@ class TestSABIOInfinity4(unittest.TestCase):
         # Coherencia mínima
         C_min = self.sabio.calcular_coherencia(I=0.0, A=0.0)
         self.assertAlmostEqual(C_min, 0.0, places=6)
-        
-        print("✅ Coherencia universal: OK")
     
     def test_firma_vibracional(self):
         """Test de generación de firma vibracional"""
@@ -135,8 +129,6 @@ class TestSABIOInfinity4(unittest.TestCase):
         
         # Firma debe tener 16 caracteres
         self.assertEqual(len(firma1), 16)
-        
-        print("✅ Firma vibracional: OK")
     
     def test_resonancia_cuantica(self):
         """Test de generación de resonancia cuántica"""
@@ -157,8 +149,6 @@ class TestSABIOInfinity4(unittest.TestCase):
         
         # Verificar entropía no negativa
         self.assertGreaterEqual(res.entropia, 0.0)
-        
-        print(f"✅ Resonancia cuántica n=1: f={res.frecuencia:.2f} Hz, C={res.coherencia:.4f}")
     
     def test_resonancia_armonicos(self):
         """Test de armónicos con escalado áureo"""
@@ -169,8 +159,6 @@ class TestSABIOInfinity4(unittest.TestCase):
         phi = float(self.sabio.phi_golden)
         expected_f2 = res1.frecuencia * phi
         self.assertAlmostEqual(res2.frecuencia, expected_f2, places=1)
-        
-        print(f"✅ Escalado áureo: f₂/f₁ ≈ φ")
     
     def test_validacion_matriz_simbiosis(self):
         """Test de validación simbiótica multi-nivel"""
@@ -204,8 +192,6 @@ class TestSABIOInfinity4(unittest.TestCase):
         
         # Verificar firma hash
         self.assertEqual(len(matriz.firma_hash), 16)
-        
-        print(f"✅ Matriz de simbiosis: Coherencia total={matriz.coherencia_total:.4f}")
     
     def test_nivel_aritmetico(self):
         """Test específico del nivel aritmético"""
@@ -219,8 +205,6 @@ class TestSABIOInfinity4(unittest.TestCase):
         
         # Nivel aritmético debe ser alto (cerca de 1.0)
         self.assertGreater(matriz.nivel_python, 0.99)
-        
-        print(f"✅ Nivel aritmético: {matriz.nivel_python:.6f}")
     
     def test_nivel_vibracional(self):
         """Test específico del nivel vibracional"""
@@ -234,8 +218,6 @@ class TestSABIOInfinity4(unittest.TestCase):
         
         # Nivel vibracional debe ser alto (cerca de 1.0)
         self.assertGreater(matriz.nivel_sage, 0.99)
-        
-        print(f"✅ Nivel vibracional: {matriz.nivel_sage:.6f}")
     
     def test_nivel_cuantico(self):
         """Test específico del nivel cuántico"""
@@ -249,8 +231,6 @@ class TestSABIOInfinity4(unittest.TestCase):
         
         # Nivel cuántico debe ser positivo
         self.assertGreater(matriz.nivel_cuantico, 0.0)
-        
-        print(f"✅ Nivel cuántico: {matriz.nivel_cuantico:.4f}")
     
     def test_nivel_consciente(self):
         """Test específico del nivel consciente"""
@@ -264,8 +244,6 @@ class TestSABIOInfinity4(unittest.TestCase):
         
         # Nivel consciente debe ser positivo
         self.assertGreater(matriz.nivel_consciente, 0.0)
-        
-        print(f"✅ Nivel consciente: {matriz.nivel_consciente:.4f}")
     
     def test_generar_espectro_resonante(self):
         """Test de generación de espectro resonante completo"""
@@ -282,8 +260,6 @@ class TestSABIOInfinity4(unittest.TestCase):
         # Verificar que las coherencias decaen
         for i in range(len(espectro) - 1):
             self.assertGreaterEqual(espectro[i].coherencia, espectro[i+1].coherencia)
-        
-        print(f"✅ Espectro resonante: {n_harmonicos} armónicos generados")
     
     def test_reporte_sabio_infinity4(self):
         """Test de generación de reporte completo"""
@@ -325,8 +301,6 @@ class TestSABIOInfinity4(unittest.TestCase):
         metricas = reporte['metricas_globales']
         self.assertIn('coherencia_total', metricas)
         self.assertIn('num_armonicos', metricas)
-        
-        print("✅ Reporte SABIO ∞⁴: Estructura completa verificada")
     
     def test_exportar_reporte_json(self):
         """Test de exportación de reporte en formato JSON"""
@@ -345,8 +319,6 @@ class TestSABIOInfinity4(unittest.TestCase):
         
         # Limpiar archivo de test
         Path(filename).unlink()
-        
-        print(f"✅ Exportación JSON: {filename}")
     
     def test_exportar_reporte_txt(self):
         """Test de exportación de reporte en formato TXT"""
@@ -366,8 +338,6 @@ class TestSABIOInfinity4(unittest.TestCase):
         
         # Limpiar archivo de test
         Path(filename).unlink()
-        
-        print(f"✅ Exportación TXT: {filename}")
     
     def test_visualizar_espectro(self):
         """Test de generación de visualización del espectro"""
@@ -383,8 +353,6 @@ class TestSABIOInfinity4(unittest.TestCase):
         
         # Limpiar archivo de test
         Path(vis_file).unlink()
-        
-        print("✅ Visualización del espectro: Generada correctamente")
     
     def test_estado_operacional(self):
         """Test de verificación del estado operacional del sistema"""
@@ -393,18 +361,14 @@ class TestSABIOInfinity4(unittest.TestCase):
         
         # El sistema debe estar operacional o sintonizando
         self.assertIn(estado, ["OPERACIONAL ✅", "SINTONIZANDO 🔄"])
-        
-        print(f"✅ Estado del sistema: {estado}")
     
     def test_coherencia_total_alta(self):
         """Test de verificación de coherencia total alta"""
         reporte = self.sabio.reporte_sabio_infinity4()
         coherencia_total = reporte['metricas_globales']['coherencia_total']
         
-        # La coherencia total debe ser razonablemente alta (>0.85)
-        self.assertGreater(coherencia_total, 0.85)
-        
-        print(f"✅ Coherencia total: {coherencia_total:.4f}")
+        # La coherencia total debe ser razonablemente alta
+        self.assertGreater(coherencia_total, MIN_COHERENCE_THRESHOLD)
 
 
 class TestSABIOIntegration(unittest.TestCase):
