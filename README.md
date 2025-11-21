@@ -1,6 +1,8 @@
 
 # 🌌 Adelic-BSD & Riemann Hypothesis Framework
 
+[![codecov](https://codecov.io/gh/motanova84/adelic-bsd/branch/main/graph/badge.svg)](https://codecov.io/gh/motanova84/adelic-bsd)
+
 **Repositorio bilingüe: español/inglés**
 
 ---
@@ -799,12 +801,15 @@ algoritmo/
 - **[LEAN_FORMALIZATION.md](docs/LEAN_FORMALIZATION.md)** - Detalles de Lean 4
 - **[API_REFERENCE.md](docs/API_REFERENCE.md)** - Referencia API
 
-### Tutoriales
+### Tutoriales y Demos
 
-- **[Tutorial 1: Primera Curva](examples/tutorial_01_first_curve.ipynb)** - Analizar 11a1
-- **[Tutorial 2: Calibración](examples/tutorial_02_calibration.ipynb)** - Calibrar parámetros
-- **[Tutorial 3: Verificación](examples/tutorial_03_verification.ipynb)** - Verificar resultados
-- **[Tutorial 4: LMFDB](examples/tutorial_04_lmfdb.ipynb)** - Validación masiva
+- **[Demo interactivo completo](examples/demo_notebook.ipynb)** - Notebook integral con análisis y visualización
+- **[Demo de calibración](examples/calibration_demo.py)** - Calibración de parámetros espectrales
+- **[Demo de validación](examples/validation_workflow_demo.py)** - Flujo de verificación completo
+- **[Demo espectral a puntos](examples/spectral_to_points_demo.py)** - Algoritmo espectral→ciclos→puntos
+- **[Demo de compatibilidad dR](examples/dR_compatibility_demo.py)** - Verificación de compatibilidad de Hodge
+- **[Demo Hardy-Littlewood](examples/hardy_littlewood_demo.py)** - Serie singular de Hardy-Littlewood
+- **[Demo Beilinson-Bloch](examples/beilinson_bloch_demo.ipynb)** - Notebook de conjetura Beilinson-Bloch
 
 ### Paper→Code Traceability
 

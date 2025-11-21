@@ -143,6 +143,9 @@ pytest tests/test_finiteness.py::test_11a1_finiteness -v
 
 # Run with coverage
 pytest --cov=src tests/
+
+# Generate coverage report
+pytest --cov=src --cov-report=xml --cov-report=term tests/
 ```
 
 ### Code Style
@@ -231,10 +234,12 @@ def test_new_feature():
 
 ### Test Coverage
 
-- Aim for high test coverage
+- Aim for high test coverage (80%+ for new code)
 - Test edge cases
 - Test error handling
 - Test with various curve types (good/multiplicative/supercuspidal reduction)
+- Coverage reports are automatically uploaded to Codecov in CI/CD
+- View coverage details at: https://codecov.io/gh/motanova84/adelic-bsd
 
 ### LMFDB Cross-Validation
 
