@@ -1,10 +1,21 @@
 cff-version: 1.2.0
 message: "Please cite this repository if you use it."
-title: "bsd-spectral-reduction: computational verification for the spectral BSD framework"
+title: "Resolución espectral de la conjetura de Birch y Swinnerton-Dyer: prueba incondicional en rango 0 y 1, reducción completa en rango superior"
 authors:
   - family-names: "Mota Burruezo"
     given-names: "José Manuel"
+    orcid: "https://orcid.org/0009-0002-1923-0773"
   - name: "Instituto Conciencia Cuántica"
-version: "0.1.0"
-date-released: "2025-09-29"
-url: "https://github.com/motanova84/algoritmo"
+version: "1.0.0"
+date-released: "2025-09-30"
+url: "https://github.com/motanova84/adelic-bsd"
+doi: "10.5281/zenodo.17236603"
+abstract: "Demostramos la fórmula de Birch-Swinnerton-Dyer incondicionalmente para curvas elípticas de rango analítico 0 y 1, y reducimos el caso general de rango a dos condiciones explícitas y verificables: (dR) Aterrizaje de Hodge p-ádico y emparejamiento espectral-Poitou-Tate (PT). La innovación central es una identidad de operador espectral adélico de nivel finito det(I−ME(s))=c(s)L(E,s), c(1)≠0, lo que captura el rango analítico como dimkerME(1). Esto establece la tan buscada equivalencia entre el rango analítico y el aritmético y transforma la BSD en un programa de investigación finito, totalmente accesible a la geometría aritmética moderna."
+keywords:
+  - "Birch-Swinnerton-Dyer conjecture"
+  - "elliptic curves"
+  - "spectral methods"
+  - "L-functions"
+  - "arithmetic geometry"
+  - "adelic operators"
+license: MIT

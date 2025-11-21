@@ -659,10 +659,15 @@ theorem f0_complete_derivation :
 
 ### Artículo Principal
 
-**"Una Reducción Espectral Completa de la Conjetura BSD"**
+**"Resolución espectral de la conjetura de Birch y Swinnerton-Dyer: prueba incondicional en rango 0 y 1, reducción completa en rango superior"**
 - Autor: José Manuel Mota Burruezo (JMMB Ψ·∴)
+- ORCID: [0009-0002-1923-0773](https://orcid.org/0009-0002-1923-0773)
 - DOI: [10.5281/zenodo.17236603](https://doi.org/10.5281/zenodo.17236603)
-- Fecha: Septiembre 2025
+- Fecha: 30 de septiembre de 2025
+- Versión: v1
+- Tipo: Presentación Abierta
+
+**Resumen**: Demostramos la fórmula de Birch-Swinnerton-Dyer incondicionalmente para curvas elípticas de rango analítico 0 y 1, y reducimos el caso general de rango a dos condiciones explícitas y verificables: (dR) Aterrizaje de Hodge p-ádico y emparejamiento espectral-Poitou-Tate (PT). La innovación central es una identidad de operador espectral adélico de nivel finito det(I−ME(s))=c(s)L(E,s), c(1)≠0, lo que captura el rango analítico como dimkerME(1).
 
 ### Mapeo Paper → Código
 
