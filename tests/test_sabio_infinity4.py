@@ -451,18 +451,30 @@ class TestPrecision:
 
     def test_precision_configuracion(self):
         """Precisión debe configurarse correctamente"""
+        # Guardar precisión original
+        original_prec = mp.dps
+
         for prec in [15, 30, 50, 100]:
             sabio = SABIO_Infinity4(precision=prec)
             assert mp.dps == prec
 
+        # Restaurar precisión original
+        mp.dps = original_prec
+
     def test_alta_precision_radio_cuantico(self):
         """Radio cuántico con alta precisión"""
+        # Guardar precisión original
+        original_prec = mp.dps
+
         sabio = SABIO_Infinity4(precision=100)
         R_psi = sabio.calcular_radio_cuantico(n=1)
 
         # Debe ser muy preciso
         R_str = str(R_psi)
         assert len(R_str) > 50  # Al menos 50 dígitos significativos
+
+        # Restaurar precisión original
+        mp.dps = original_prec
 
 
 # ============================================================================

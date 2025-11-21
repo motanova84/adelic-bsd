@@ -182,7 +182,7 @@ class SABIO_Infinity4:
 
         # Firma vibracional única
         firma_data = f"{frecuencia:.6f}_{amplitud:.6f}_{fase:.6f}_{n_harmonico}"
-        firma = hashlib.md5(firma_data.encode()).hexdigest()[:16]
+        firma = hashlib.sha256(firma_data.encode()).hexdigest()[:16]
 
         return ResonanciaQuantica(
             frecuencia=frecuencia,
@@ -276,7 +276,7 @@ class SABIO_Infinity4:
 
         # Firma hash de la matriz
         firma_data = f"{nivel_python}_{nivel_lean}_{nivel_sage}_{nivel_sabio}_{nivel_cuantico}_{nivel_consciente}"
-        firma_hash = hashlib.md5(firma_data.encode()).hexdigest()[:16]
+        firma_hash = hashlib.sha256(firma_data.encode()).hexdigest()[:16]
 
         return MatrizSimbiosis(
             nivel_python=nivel_python,
