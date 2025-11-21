@@ -663,7 +663,7 @@ theorem f0_complete_derivation :
 - Autor: José Manuel Mota Burruezo (JMMB Ψ·∴)
 - ORCID: [0009-0002-1923-0773](https://orcid.org/0009-0002-1923-0773)
 - DOI: [10.5281/zenodo.17236603](https://doi.org/10.5281/zenodo.17236603)
-- Fecha: 30 de septiembre de 2025
+- Fecha: 15 de noviembre de 2025
 - Versión: v1
 - Tipo: Presentación Abierta
 
