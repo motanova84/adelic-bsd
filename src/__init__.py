@@ -157,7 +157,22 @@ except ImportError:
     CentralIdentity = None
     demonstrate_central_identity = None
 
-__version__ = "0.2.2"
+try:
+    from .analytical_trace_identity import (
+        OperatorME,
+        FredholmDeterminant,
+        AnalyticalTraceIdentity,
+        demonstrate_analytical_proof,
+        batch_verification
+    )
+except ImportError:
+    OperatorME = None
+    FredholmDeterminant = None
+    AnalyticalTraceIdentity = None
+    demonstrate_analytical_proof = None
+    batch_verification = None
+
+__version__ = "0.2.3"
 __author__ = "Mota Burruezo"
 
 __all__ = [
@@ -218,5 +233,11 @@ __all__ = [
     "prove_PT_all_ranks",
     # Central Identity (new in v0.2.2)
     "CentralIdentity",
-    "demonstrate_central_identity"
+    "demonstrate_central_identity",
+    # Analytical Trace Identity (new in v0.2.3)
+    "OperatorME",
+    "FredholmDeterminant",
+    "AnalyticalTraceIdentity",
+    "demonstrate_analytical_proof",
+    "batch_verification"
 ]
