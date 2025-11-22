@@ -4,11 +4,11 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "bsd-spectral"
-version = "0.3.0"
-description = "BSD Spectral Framework: Computational verification of the Birch-Swinnerton-Dyer conjecture"
+version = "1.0.0"
+description = "Resolución espectral de la conjetura de Birch y Swinnerton-Dyer: prueba incondicional en rango 0 y 1, reducción completa en rango superior"
 readme = "README.md"
 authors = [
-    {name = "Mota Burruezo"}
+    {name = "José Manuel Mota Burruezo", email = "institutoconsciencia@proton.me"}
 ]
 license = {text = "MIT"}
 classifiers = [
@@ -54,6 +54,7 @@ Homepage = "https://github.com/motanova84/adelic-bsd"
 Documentation = "https://github.com/motanova84/adelic-bsd/blob/main/README.md"
 Repository = "https://github.com/motanova84/adelic-bsd"
 Issues = "https://github.com/motanova84/adelic-bsd/issues"
+DOI = "https://doi.org/10.5281/zenodo.17236603"
 
 [project.scripts]
 bsd-spectral-demo = "bsd_spectral:main"
