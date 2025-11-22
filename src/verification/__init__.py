@@ -13,6 +13,11 @@ from .mass_formal_proof import (
 )
 from .mass_verification import MassBSDVerifier
 from .certificate_generator import BSDCertificateGenerator
+from .analytical_verification import (
+    VerificadorAnalitico,
+    FactorLocal,
+    demo_verificacion_analitica
+)
 
 __all__ = [
     'FormalBSDProver',
@@ -20,5 +25,8 @@ __all__ = [
     'MassFormalProof',
     'batch_prove_bsd',
     'MassBSDVerifier',
-    'BSDCertificateGenerator'
+    'BSDCertificateGenerator',
+    'VerificadorAnalitico',
+    'FactorLocal',
+    'demo_verificacion_analitica'
 ]
