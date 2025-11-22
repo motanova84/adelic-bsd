@@ -1,7 +1,7 @@
 # Makefile for BSD Unconditional Proof
 # Orchestrates the complete proof workflow
 
-.PHONY: all calibrate verify prove-dR prove-PT prove-BSD test docs clean quick unconditional help
+.PHONY: all calibrate verify prove-dR prove-PT prove-BSD prove-operator test test-operator docs clean quick unconditional help
 
 # Default target
 all: calibrate verify prove-dR prove-PT prove-BSD test
@@ -32,8 +32,15 @@ prove-PT:
 	@echo "=================================================="
 	@python src/PT_compatibility.py
 
+# Validate operator proof M_E(s)
+prove-operator:
+	@echo ""
+	@echo "🔬 Validando Operador Espectral M_E(s)..."
+	@echo "=========================================="
+	@python scripts/validate_operator_proof.py
+
 # Final BSD unconditional proof
-prove-BSD: prove-dR prove-PT
+prove-BSD: prove-dR prove-PT prove-operator
 	@echo ""
 	@echo "🎯 PRUEBA FINAL BSD..."
 	@echo "====================="
@@ -44,6 +51,12 @@ test:
 	@echo ""
 	@echo "🧪 Ejecutando suite completa de tests..."
 	@pytest tests/ -v --tb=short || echo "⚠️  Algunos tests requieren dependencias adicionales"
+
+# Run operator proof tests only
+test-operator:
+	@echo ""
+	@echo "🧪 Ejecutando tests del operador M_E(s)..."
+	@pytest tests/test_operator_proof.py -v
 
 # Generate documentation
 docs:
@@ -91,8 +104,10 @@ help:
 	@echo "  make verify       - Verificación numérica exhaustiva"
 	@echo "  make prove-dR     - Probar compatibilidad (dR)"
 	@echo "  make prove-PT     - Probar compatibilidad (PT)"
+	@echo "  make prove-operator - Validar operador espectral M_E(s)"
 	@echo "  make prove-BSD    - Prueba final BSD"
 	@echo "  make test         - Ejecutar suite de tests"
+	@echo "  make test-operator - Ejecutar tests del operador M_E(s)"
 	@echo "  make quick        - Verificación rápida (sin calibración)"
 	@echo "  make unconditional - Prueba completa con banner final"
 	@echo "  make clean        - Limpiar archivos generados"

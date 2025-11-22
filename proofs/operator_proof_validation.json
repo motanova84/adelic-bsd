@@ -1,0 +1,44 @@
+{
+  "validation_type": "Operator Proof M_E(s)",
+  "parameters": {
+    "N_terms": 50,
+    "s_value": 2.0,
+    "max_power_k": 5
+  },
+  "tests": {
+    "trace_identity": {
+      "status": "PASSED",
+      "trace_values": [
+        0.5824652886265671,
+        0.23486972135173254,
+        0.1061732366171184,
+        0.049891604339062326,
+        0.023552035476038336
+      ],
+      "description": "Trace computed for powers k=1 to k=5"
+    },
+    "operator_compactness": {
+      "status": "PASSED",
+      "decay_rate": 0.0001225163867196812,
+      "max_eigenvalue": 0.47248911791023446,
+      "min_eigenvalue": 2.3802945615739135e-06
+    },
+    "fredholm_determinant": {
+      "status": "PASSED",
+      "det_value": 0.4697200114292784,
+      "L_value": 0.5824652886265671,
+      "c_factor": 0.8064343414126219
+    },
+    "trace_convergence": {
+      "status": "PASSED",
+      "partial_sums": [
+        0.7524745363547795,
+        0.755576320108283,
+        0.7556177989151952,
+        0.7556184821531476
+      ],
+      "convergence_diff": 6.832379524368548e-07
+    }
+  },
+  "overall_status": "PASSED"
+}
