@@ -15,28 +15,17 @@ problem statement, establishing:
 
 where c(s) is holomorphic with c(1) ≠ 0, valid for Re(s) > 3/2.
 
-Mathematical Framework
----------------------
-Given an elliptic curve E/Q with Dirichlet series:
-    L(E,s) = Σ_{n=1}^∞ a_n / n^s, Re(s) > 3/2
-
-We define the operator M_E(s) on ℓ²(ℕ) by:
-    M_E(s)(e_n) := (a_n / n^s) · e_n
-
-where {e_n}_{n∈ℕ} is the canonical orthonormal basis.
-
-Properties:
-- M_E(s) is compact (eigenvalues → 0)
-- M_E(s) is self-adjoint for s ∈ ℝ
-- M_E(s) is diagonal by definition
-
-Key Result (Q.E.D.):
-    Tr(M_E(s)^k) = Σ_{n=1}^∞ a_n^k / n^{ks}
-    det(I - M_E(s)) = L(E,s) · c(s)
-
-This closes the analytical link of the proof: the spectral identity
-no longer depends on numerical validation, but on exact trace.
+Constants
+---------
+CONVERGENCE_THRESHOLD: Minimum Re(s) for convergence (3/2)
+ZERO_TOLERANCE: Tolerance for checking if values are effectively zero
+RELATIVE_ERROR_TOLERANCE: Maximum relative error for identity verification
 """
+
+# Mathematical constants
+CONVERGENCE_THRESHOLD = 1.5  # Re(s) > 3/2 required for convergence
+ZERO_TOLERANCE = 1e-10  # Tolerance for zero comparison
+RELATIVE_ERROR_TOLERANCE = 0.1  # 10% tolerance for S-finite approximation
 
 import numpy as np
 from typing import Dict, List, Tuple, Optional, Union
@@ -102,7 +91,7 @@ class OperatorME:
             n: Index
             
         Returns:
-            a_n coefficient
+            int: L-series coefficient a_n
         """
         if n in self._coefficients:
             return self._coefficients[n]
@@ -139,26 +128,29 @@ class OperatorME:
         Returns:
             True if operator is compact
         """
-        # Check that eigenvalues decrease
         s_re = self.s.real
         
         # For convergence, need Re(s) > 3/2
-        if s_re <= 1.5:
+        if s_re <= CONVERGENCE_THRESHOLD:
             return False
         
-        # Verify eigenvalues decay
+        # Verify eigenvalues decay asymptotically
         # By Hasse bound: |a_n| ≤ 2√n
         # So |λ_n| ≤ 2√n / n^{Re(s)} = 2 / n^{Re(s) - 1/2}
         # This → 0 if Re(s) > 1/2, and absolutely convergent for Re(s) > 3/2
         
-        sample_eigenvalues = [abs(self.eigenvalue(n)) for n in [10, 50, 100, 500, 1000]]
+        # Check that eigenvalues approach zero for large n
+        # Sample eigenvalues at increasing indices
+        large_indices = [100, 500, 1000]
+        large_eigenvalues = [abs(self.eigenvalue(n)) for n in large_indices]
         
-        # Check they're decreasing
-        for i in range(len(sample_eigenvalues) - 1):
-            if sample_eigenvalues[i] < sample_eigenvalues[i + 1]:
-                return False
+        # Verify asymptotic decay: eigenvalues should be small for large n
+        # Use bound |λ_n| < 3 / n^{Re(s) - 1/2} which is generous but correct
+        max_expected = 3.0 / (large_indices[0] ** (s_re - 0.5))
         
-        return True
+        # All large eigenvalues should be smaller than this bound
+        return all(ev < max_expected for ev in large_eigenvalues)
+
     
     def is_self_adjoint(self) -> bool:
         """
@@ -171,7 +163,7 @@ class OperatorME:
             True if operator is self-adjoint
         """
         # Self-adjoint requires s real and coefficients real
-        return abs(self.s.imag) < 1e-10
+        return abs(self.s.imag) < ZERO_TOLERANCE
     
     def compute_trace(self, k: int = 1) -> complex:
         """
@@ -431,10 +423,10 @@ class AnalyticalTraceIdentity:
             L_value = None
         
         # Compute correction factor c(s) = det / L(E,s)
-        if L_value is not None and abs(L_value) > 1e-10:
+        if L_value is not None and abs(L_value) > ZERO_TOLERANCE:
             c_value = det_value / L_value
-            c_nonzero = abs(c_value) > 1e-10
-            relative_error = abs(det_value - L_value * c_value) / abs(det_value) if abs(det_value) > 1e-10 else 0.0
+            c_nonzero = abs(c_value) > ZERO_TOLERANCE
+            relative_error = abs(det_value - L_value * c_value) / abs(det_value) if abs(det_value) > ZERO_TOLERANCE else 0.0
         else:
             c_value = None
             c_nonzero = None

@@ -56,7 +56,8 @@ def format_complex(z, decimals: int = 6):
     return f"{z.real:.{decimals}f} + {z.imag:.{decimals}f}i"
 
 
-def validate_single_curve(curve_label: str, s: float = 2.0, verbose: bool = True):
+def validate_single_curve(curve_label: str, s: float = 2.0, verbose: bool = True,
+                         max_n: int = 500, max_k: int = 40):
     """
     Validate analytical proof for a single curve
     
@@ -64,6 +65,8 @@ def validate_single_curve(curve_label: str, s: float = 2.0, verbose: bool = True
         curve_label: Cremona label
         s: Parameter value
         verbose: Print detailed output
+        max_n: Maximum n for operator truncation (higher = more precision)
+        max_k: Maximum k for trace series (higher = more accuracy)
         
     Returns:
         Certificate dictionary
@@ -79,7 +82,7 @@ def validate_single_curve(curve_label: str, s: float = 2.0, verbose: bool = True
         print(f"Discriminant: {E.discriminant()}")
     
     # Create proof instance
-    proof = AnalyticalTraceIdentity(E, s=s, max_n=500, max_k=40)
+    proof = AnalyticalTraceIdentity(E, s=s, max_n=max_n, max_k=max_k)
     
     # Generate certificate
     certificate = proof.generate_qed_certificate()
