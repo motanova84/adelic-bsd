@@ -22,6 +22,8 @@ on:
 jobs:
   validate-operator-proof:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     strategy:
       matrix:
         python-version: ['3.9', '3.10', '3.11', '3.12', '3.13']
@@ -77,6 +79,8 @@ jobs:
 
   operator-proof-summary:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     needs: validate-operator-proof
     if: always()
     
