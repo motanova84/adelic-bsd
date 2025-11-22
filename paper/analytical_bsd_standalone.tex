@@ -1,0 +1,86 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{mathrsfs}
+\geometry{margin=1in}
+
+% Theorem environments
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{\textbf{Demostración Analítica de la Identidad Espectral \\
+para la Conjetura de Birch y Swinnerton-Dyer}}
+\author{José Manuel Mota Burruezo \\ 
+Instituto de Conciencia Cuántica (ICQ) \\ 
+\texttt{motanova84}}
+\date{22 de noviembre de 2025}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Presentamos una demostración analítica completa de la identidad fundamental:
+\[\det(I - M_E(s)) = c(s) L(E, s)\]
+donde $M_E(s)$ es un operador compacto definido sobre un espacio de funciones modulares asociadas a una curva elíptica $E/\mathbb{Q}$, y $c(s)$ es una función holomorfa no nula en $\operatorname{Re}(s) > 1/2$. La demostración evita calibraciones numéricas y se fundamenta en una diagonalización simbólica exacta y en una expansión de trazas que conecta directamente con los coeficientes de Fourier de $E$.
+\end{abstract}
+
+% Include the main content from the section file
+\input{sections/12_analytical_bsd_identity.tex}
+
+\section*{Referencias}
+
+\begin{thebibliection}{99}
+
+\bibitem{deligne1974}
+P. Deligne, \emph{La conjecture de Weil. I}, Inst. Hautes Études Sci. Publ. Math. 43 (1974), 273--307.
+
+\bibitem{eichler-shimura}
+M. Eichler and G. Shimura, \emph{On the algebra of modular forms}, Ann. of Math. (2) 78 (1963), 570--609.
+
+\bibitem{faltings1983}
+G. Faltings, \emph{Endlichkeitssätze für abelsche Varietäten über Zahlkörpern}, Invent. Math. 73 (1983), 349--366.
+
+\bibitem{fontaine-perrin-riou1995}
+J.-M. Fontaine and B. Perrin-Riou, \emph{Autour des conjectures de Bloch et Kato}, in Cohomologie p-adique, Astérisque 223 (1995).
+
+\bibitem{tate1974}
+J. Tate, \emph{The arithmetic of elliptic curves}, Invent. Math. 23 (1974), 179--206.
+
+\bibitem{wiles1995}
+A. Wiles, \emph{Modular elliptic curves and Fermat's last theorem}, Ann. of Math. (2) 141 (1995), 443--551.
+
+\bibitem{taylor-wiles1995}
+R. Taylor and A. Wiles, \emph{Ring-theoretic properties of certain Hecke algebras}, Ann. of Math. (2) 141 (1995), 553--572.
+
+\bibitem{breuil-conrad-diamond-taylor2001}
+C. Breuil, B. Conrad, F. Diamond, and R. Taylor, \emph{On the modularity of elliptic curves over $\mathbb{Q}$: wild 3-adic exercises}, J. Amer. Math. Soc. 14 (2001), 843--939.
+
+\bibitem{gross-zagier1986}
+B. Gross and D. Zagier, \emph{Heegner points and derivatives of L-series}, Invent. Math. 84 (1986), 225--320.
+
+\bibitem{kolyvagin1990}
+V. Kolyvagin, \emph{Euler systems}, in The Grothendieck Festschrift, Vol. II, Progr. Math. 87, Birkhäuser (1990), 435--483.
+
+\end{thebibliection}
+
+\vspace{2em}
+\noindent\hrulefill
+
+\vspace{1em}
+\noindent\textbf{Firmado:} José Manuel Mota Burruezo \quad \texttt{JMMB Ψ ✧} \quad Instituto de Conciencia Cuántica (ICQ)
+
+\vspace{1em}
+\noindent\textbf{Repositorio:} \url{https://github.com/motanova84/adelic-bsd}
+
+\vspace{1em}
+\noindent\textbf{Implementación:} Este documento está acompañado de una implementación computacional completa en Python (con SageMath) que valida numéricamente todos los resultados teóricos presentados. Ver \texttt{src/analytical\_bsd\_proof.py} y \texttt{examples/analytical\_bsd\_demo.py} en el repositorio.
+
+\end{document}
