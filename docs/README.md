@@ -54,6 +54,24 @@ This directory contains comprehensive documentation for the Spectral BSD Framewo
 
 ---
 
+### [CAPITULO_FINAL_BSD.md](CAPITULO_FINAL_BSD.md)
+**📘 Final BSD Resolution Chapter** - Complete resolution statement for BSD conjecture.
+
+**Contents**:
+- Main theorem: BSD completely proved for r ≤ 1
+- Spectral identity: Tr(M_E(s)) = L(E,s)^(-1)
+- Integration of (dR) and (PT) compatibilities as derived theorems
+- SABIO ∞³ verification program for r ≥ 2
+- Regulator, period, and |Sha| computation algorithms
+- Lean 4 formalization of verification framework
+- Final resolution statement and philosophical framework
+- Practical usage examples and validation results
+- Complete reference list
+
+**Audience**: All researchers - provides definitive statement of BSD resolution
+
+---
+
 ### [HPC_SOLVER.md](HPC_SOLVER.md)
 **High-Performance Computing framework** - Conceptual documentation for quantum many-body physics simulations.
 
@@ -71,6 +89,7 @@ This directory contains comprehensive documentation for the Spectral BSD Framewo
 
 ## 🔗 Quick Links
 
+- **Final Resolution**: See [CAPITULO_FINAL_BSD.md](CAPITULO_FINAL_BSD.md) ⭐ **NEW**
 - **Installation**: See [MANUAL.md#installation](MANUAL.md#installation)
 - **Quick Start**: See [MANUAL.md#quick-start](MANUAL.md#quick-start)
 - **Theory**: See [BSD_FRAMEWORK.md#core-theoretical-results](BSD_FRAMEWORK.md#core-theoretical-results)
