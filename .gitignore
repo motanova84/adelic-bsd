@@ -151,6 +151,12 @@ ci-frozen.txt
 
 # Validation results
 validation_dR_uniformity_results.json
+validation_results/
+gaia_validation_results/
+delta_f_eventos_gaia_inf3.csv
+resumen_validacion_gaia_inf3.csv
+validation_results_gaia_inf3.json
+validation_plot_gaia_inf3.png
 # Results and output
 results/
 datasets/
@@ -174,3 +180,16 @@ formalization/lean/lean_packages/
 
 # Backup files
 *.backup
+
+# SABIO Infinity 4 generated outputs (keep sample outputs committed)
+sabio_infinity4_report_*.json
+sabio_infinity4_report_*.txt
+sabio_infinity4_spectrum_*.png
+!sabio_infinity4_report_20251121_023023.json
+!sabio_infinity4_report_20251121_023023.txt
+!sabio_infinity4_spectrum_20251121_023023.png
+
+# SABIO Infinity 4 example outputs
+example_report.json
+example_report.txt
+example_spectrum.png
