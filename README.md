@@ -253,6 +253,9 @@ adelic-bsd/
 
 - `docs/MANUAL.md`: Guía técnica completa
 - `docs/BSD_FRAMEWORK.md`: Fundamentos teóricos
+- `BSD_EXECUTIVE_SUMMARY.md`: **Resumen ejecutivo del estado de la demostración BSD** (transparencia total)
+- `TRACE_IDENTITY_RIGOROUS_PROOF.md`: Demostración rigurosa de la identidad de traza
+- `verificacion_brecha_analitica.py`: Verificación numérica de la brecha estructural
 - `paper/paper_standalone.tex`: Manuscrito modular
 - `validation_notebook.ipynb`: Ejecución y análisis reproducible
 
@@ -939,13 +942,10 @@ algoritmo/
 
 ### Guías Principales
 
-- **⭐ [FINALIZACIÓN_DE_TAREAS_BSD_INCONDICIONAL.md](FINALIZACIÓN_DE_TAREAS_BSD_INCONDICIONAL.md)** - 🇪🇸 **Documentación Completa en Español** (NUEVO)
-  - Identidad espectral fundamental explicada en detalle
-  - Cobertura completa de rangos r ≥ 0 incluyendo r ≥ 2
-  - Extensiones con Gross-Zagier, Yuan-Zhang-Zhang, Beilinson-Bloch
-  - Implementación, validación y formalización Lean 4
-- **[docs/BSD_FRAMEWORK.md](docs/BSD_FRAMEWORK.md)** - 🇬🇧 Fundamentos teóricos completos (English)
-- **[TASK_COMPLETION_BSD_UNCONDITIONAL.md](TASK_COMPLETION_BSD_UNCONDITIONAL.md)** - 🇬🇧 Task completion report (English)
+- **[BSD_EXECUTIVE_SUMMARY.md](BSD_EXECUTIVE_SUMMARY.md)** - 🎯 **Resumen ejecutivo: Estado de la demostración BSD con transparencia total**
+- **[TRACE_IDENTITY_RIGOROUS_PROOF.md](TRACE_IDENTITY_RIGOROUS_PROOF.md)** - 📐 **Demostración rigurosa de la identidad de traza**
+- **[QUICKSTART.md](QUICKSTART.md)** - Inicio rápido (5 minutos)
+- **[docs/BSD_FRAMEWORK.md](docs/BSD_FRAMEWORK.md)** - Fundamentos teóricos completos
 - **[docs/CENTRAL_IDENTITY.md](docs/CENTRAL_IDENTITY.md)** - Identidad Central: det(I - M_E(s)) = c(s)·L(E,s)
 - **[QUICKSTART.md](QUICKSTART.md)** - Inicio rápido (5 minutos)
 - **[CALIBRATION_GUIDE.md](docs/CALIBRATION_GUIDE.md)** - Guía de calibración
@@ -961,8 +961,7 @@ algoritmo/
   - Comprueba c(1) ≠ 0
   - Genera reporte JSON con resultados
 - **[Demo interactivo completo](examples/demo_notebook.ipynb)** - Notebook integral con análisis y visualización
-- **[Demo identidad central](examples/central_identity_demo.py)** - Identidad para todos los rangos (ACTUALIZADO)
-- **[Demo espectral a puntos](examples/spectral_to_points_demo.py)** - Algoritmo espectral→ciclos→puntos
+- **[Verificación de brecha analítica](verificacion_brecha_analitica.py)** - 🔍 **Script que verifica la brecha estructural entre productos**
 - **[Demo de calibración](examples/calibration_demo.py)** - Calibración de parámetros espectrales
 - **[Demo de validación](examples/validation_workflow_demo.py)** - Flujo de verificación completo
 - **[Demo de compatibilidad dR](examples/dR_compatibility_demo.py)** - Verificación de compatibilidad de Hodge
