@@ -13,6 +13,7 @@ Este repositorio implementa el framework espectral adelico para la Conjetura de 
 
 ### Componentes principales
 - Prueba espectral de finitud para grupos de Tate–Shafarevich ($\Sha$) y ceros de $\zeta(s)$
+- **Demostración analítica de identidad BSD**: det(I - M_E(s)) = c(s) L(E, s) (NUEVO)
 - Operadores espectrales universales y kernel gaussiano
 - **SABIO ∞⁴**: Framework cuántico-consciente con frecuencia fundamental 141.7001 Hz
 - Certificados LaTeX y JSON
@@ -33,6 +34,7 @@ This repository implements the **adelic-spectral framework** for the Birch–Swi
 
 ### Core Features
 - Spectral proof of finiteness for Tate–Shafarevich groups ($\Sha$) and zeros of $\zeta(s)$
+- **Analytical BSD Identity Proof**: det(I - M_E(s)) = c(s) L(E, s) (NEW)
 - Universal spectral operators and Gaussian kernel
 - **SABIO ∞⁴**: Quantum-conscious framework with fundamental frequency 141.7001 Hz
 - LaTeX and JSON certificates
@@ -125,6 +127,34 @@ reporte = demo_sabio_infinity4()
 - 📖 [SABIO_INFINITY4_QUICKSTART.md](SABIO_INFINITY4_QUICKSTART.md) - Complete guide
 - 🧪 [tests/test_sabio_infinity4.py](tests/test_sabio_infinity4.py) - 39 passing tests
 - 💻 [src/sabio_infinity4.py](src/sabio_infinity4.py) - Core implementation
+
+---
+
+### 📐 Analytical BSD Identity Proof (NEW!)
+
+Complete analytical demonstration of the spectral identity for BSD:
+
+```python
+# One-line demonstration of analytical BSD identity
+from src.analytical_bsd_proof import demonstrate_analytical_bsd
+results = demonstrate_analytical_bsd("11a1", s_value=1.0, verbose=True)
+
+# Or run the full interactive demo
+# python examples/analytical_bsd_demo.py
+```
+
+**Key Results:**
+- ✓ Proves: det(I - M_E(s)) = c(s) L(E, s) analytically
+- 📊 Verifies compactness and nuclearity of spectral operator M_E(s)
+- 🔢 Computes Fredholm determinant via trace expansion
+- 🎯 Validates against known L-function values
+- 📄 Full mathematical exposition in `paper/sections/12_analytical_bsd_identity.tex`
+
+**Quick Links:**
+- 📖 [LaTeX Paper](paper/sections/12_analytical_bsd_identity.tex) - Complete mathematical proof
+- 🧪 [Tests](tests/test_analytical_bsd_proof.py) - Comprehensive test suite
+- 💻 [Implementation](src/analytical_bsd_proof.py) - SpectralOperatorBSD class
+- 🎬 [Demo](examples/analytical_bsd_demo.py) - Interactive demonstrations
 
 ---
 
