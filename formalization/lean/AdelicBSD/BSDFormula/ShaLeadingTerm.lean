@@ -113,11 +113,11 @@ noncomputable def sha_expected_value (E : EllipticCurveQ) : ℝ :=
 -/
 theorem sha_leading_term_formula
   (E : EllipticCurveQ)
-  (hL : deriv_order E = analytic_rank E)
-  (hR : 0 < regulator_value E)
-  (hΩ : 0 < real_period_value E)
-  (hC : ∀ p ∈ bad_reduction_primes E, 0 < tamagawa_number E p)
-  (hT : 0 < torsion_subgroup_order E) :
+  (_ : deriv_order E = analytic_rank E)  -- Condition: analytic rank is well-defined
+  (_ : 0 < regulator_value E)
+  (_ : 0 < real_period_value E)
+  (_ : ∀ p ∈ bad_reduction_primes E, 0 < tamagawa_number E p)
+  (_ : 0 < torsion_subgroup_order E) :
   ∃ sha : ℝ,
     sha = sha_expected_value E := by
   -- The existence is trivial: we simply use the definition
