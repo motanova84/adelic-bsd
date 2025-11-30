@@ -65,27 +65,35 @@ def filterByAnomaly (curves : List BSDInfinity3Curve) : List BSDInfinity3Curve :
 def filterByShaEstimate (threshold : Float) (curves : List BSDInfinity3Curve) : List BSDInfinity3Curve :=
   curves.filter (λ E => E.shaEstimate > threshold)
 
+-- Current dataset size (500 curves in simulation)
+def INFINITY3_SIZE : Nat := 500
+
 /-
 Main Theorem: Sha Non-triviality for BSD ∞³
 
-For the complete BSD ∞³ family of 15,500+ curves,
-there exist significant numbers of curves with non-trivial Sha.
+For the current 500-curve simulation dataset,
+approximately 151 curves have Sha estimate > 1 (~30%).
+Note: These bounds are based on simulated data and should be updated
+when real LMFDB data is imported.
 -/
 theorem sha_nontrivial_infinity3 :
-    (bsd_infinity3_family.filter (λ E => E.shaEstimate > 1)).length ≥ 810 := by
+    bsd_infinity3_family.length = INFINITY3_SIZE →
+    (bsd_infinity3_family.filter (λ E => E.shaEstimate > 1)).length ≥ 150 := by
+  intro _h
   sorry
 
 /-
 Theorem: Rank ≥ 2 Sha Statistics
 
 For curves with rank ≥ 2 in the BSD ∞³ family:
-- ~35% have non-zero Sha[2]
-- ~8% have Sha[2] ≥ 2
-- Mean dim(Sha[2]) ≈ 0.45
+- ~50% have non-zero Sha[2]
+- ~3% have Sha[2] ≥ 2
 -/
 theorem rank2plus_sha_statistics :
+    bsd_infinity3_family.length > 0 →
     ∃ E ∈ filterByRank 2 bsd_infinity3_family,
       E.sha2Dim > 0 := by
+  intro _h
   sorry
 
 /-

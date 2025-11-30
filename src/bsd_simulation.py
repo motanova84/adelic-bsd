@@ -3,20 +3,23 @@ BSD Simulation Module - Large-Scale Curve Simulation for BSD Conjecture Validati
 ==================================================================================
 
 This module provides functionality to simulate elliptic curves with rank ≥ 2
-and estimate Tate-Shafarevich group (Sha) values using the BSD formula.
+and estimate Tate-Shafarevich group (Sha) values using an approximated BSD formula.
 
 Features:
 ---------
 - Generate simulated BSD data for curves E_10001 to E_10500+
-- Estimate |Sha| using simplified BSD formula
+- Estimate |Sha| using simplified BSD formula (without full local factors)
 - Selmer parity analysis for rank ≥ 2 curves
 - Anomaly detection for BSD candidates
 - Export to CSV for analysis and Lean4 formalization
 
-Statistics aligned with LMFDB data:
+Note: This module generates SIMULATED data for testing and validation purposes.
+The Sha estimates use a simplified approximation formula, not the full BSD formula.
+
+Statistics aligned with LMFDB-style distributions:
 - 70% rank=2, 25% rank=3, 5% rank=4
-- Conductors 100k-800k
-- Sha estimates ~0.001-0.05 via exact BSD formula
+- Conductors in range 1k-100k (10^3 to 10^5)
+- Sha estimates computed via simplified formula: L'(E,1) * |Torsion|² / (Ω * Reg)
 """
 
 import numpy as np
