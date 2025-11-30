@@ -38,6 +38,26 @@ except ImportError:
     SAGE_AVAILABLE = False
 
 
+# Constants
+DENOMINATOR_THRESHOLD = 1e-100
+CSV_FIELD_NAMES = [
+    'label', 'rank', 'sha_estimate', 'l_derivative',
+    'omega', 'R', 'torsion', 'tamagawa'
+]
+DEFAULT_CONDUCTOR_MAX_RANK2 = 100000
+DEFAULT_CONDUCTOR_MAX_RANK3 = 500000
+
+# Precomputed factorials for common ranks to improve performance
+FACTORIAL_CACHE = {i: factorial(i) for i in range(10)}
+
+
+def cached_factorial(n):
+    """Return factorial with caching for common values."""
+    if n in FACTORIAL_CACHE:
+        return FACTORIAL_CACHE[n]
+    return factorial(n)
+
+
 class ShaEstimator:
     """
     Estimator for |Ш(E)| using the BSD formula for curves with rank ≥ 2.
@@ -113,9 +133,9 @@ class ShaEstimator:
             tamagawa = prod(E.tamagawa_numbers())
             
             # BSD formula: |Ш| = L^{(r)}(1) / (r! · Ω · R · |Tors|² · ∏c_p)
-            denominator = factorial(r) * Omega * R * (tors_order ** 2) * tamagawa
+            denominator = cached_factorial(r) * Omega * R * (tors_order ** 2) * tamagawa
             
-            if abs(denominator) < 1e-100:
+            if abs(denominator) < DENOMINATOR_THRESHOLD:
                 return {
                     'label': label,
                     'rank': r,
@@ -241,13 +261,8 @@ class ShaEstimator:
         filepath = Path(filepath)
         filepath.parent.mkdir(parents=True, exist_ok=True)
         
-        fieldnames = [
-            'label', 'rank', 'sha_estimate', 'l_derivative', 
-            'omega', 'R', 'torsion', 'tamagawa'
-        ]
-        
         with open(filepath, 'w', newline='') as csvfile:
-            writer = csv.DictWriter(csvfile, fieldnames=fieldnames, 
+            writer = csv.DictWriter(csvfile, fieldnames=CSV_FIELD_NAMES, 
                                    extrasaction='ignore')
             writer.writeheader()
             writer.writerows(results)
@@ -397,9 +412,11 @@ def run_bsd_10000_paso9(rank2_limit=500, rank3_limit=50,
         print("Collecting curves with rank ≥ 2...")
     
     rank2_curves = get_curves_by_rank(min_rank=2, max_rank=2, 
-                                       conductor_max=100000, limit=rank2_limit)
+                                       conductor_max=DEFAULT_CONDUCTOR_MAX_RANK2, 
+                                       limit=rank2_limit)
     rank3_curves = get_curves_by_rank(min_rank=3, max_rank=3, 
-                                       conductor_max=500000, limit=rank3_limit)
+                                       conductor_max=DEFAULT_CONDUCTOR_MAX_RANK3, 
+                                       limit=rank3_limit)
     
     all_curves = rank2_curves + rank3_curves
     
