@@ -195,20 +195,26 @@ class LMFDBCurveSelector:
 
         # Extend with more generated labels if needed
         if len(all_curves) < limit:
-            for N in range(61, 200):
-                for letter in 'abcd':
-                    for num in range(1, 5):
-                        label = f'{N}{letter}{num}'
-                        if label not in all_curves:
-                            all_curves.append(label)
-                        if len(all_curves) >= limit:
-                            break
-                    if len(all_curves) >= limit:
-                        break
-                if len(all_curves) >= limit:
-                    break
+            all_curves.extend(self._generate_additional_labels(
+                len(all_curves), limit, set(all_curves)
+            ))
 
         return all_curves[:limit]
+
+    def _generate_additional_labels(
+            self, current_count: int, limit: int, existing: set) -> List[str]:
+        """Generate additional curve labels to reach the limit."""
+        import itertools
+        additional = []
+        for N, letter, num in itertools.product(
+            range(61, 200), 'abcd', range(1, 5)
+        ):
+            label = f'{N}{letter}{num}'
+            if label not in existing:
+                additional.append(label)
+                if current_count + len(additional) >= limit:
+                    break
+        return additional
 
 
 class ShaEstimator:
@@ -318,16 +324,16 @@ class ShaEstimator:
             reg = E.regulator()
             return float(reg) if reg > 0 else 1.0
         except Exception:
-            # Fallback: estimate regulator
+            # Fallback: compute regulator from height pairing matrix
             try:
                 gens = E.gens()
                 if not gens:
                     return 1.0
-                # Build height matrix
-                heights = []
-                for g in gens:
-                    heights.append(float(E.height_matrix()[0, 0]))
-                return np.prod(heights) if heights else 1.0
+                # Compute height pairing matrix and take determinant
+                # height_matrix() returns the matrix of <P_i, P_j>
+                H = E.height_matrix()
+                det_H = float(H.det())
+                return abs(det_H) if det_H > 0 else 1.0
             except Exception:
                 return 1.0
 
@@ -490,8 +496,6 @@ class ResonanceDetector:
 
         # Compute spectral features
         sha_array = np.array(sha_values)
-        # Note: log_sha could be used for additional spectral analysis
-        _ = np.log(sha_array[sha_array > 0])  # Available for future use
 
         # Detect harmonics of f0
         harmonics = self._detect_harmonics(sha_array)

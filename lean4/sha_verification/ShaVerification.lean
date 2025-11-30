@@ -29,9 +29,19 @@ structure CurveLabel where
   number : ℕ
   deriving Repr, BEq, Hashable
 
-/-- Parse a curve label string like "11a1" -/
-def CurveLabel.fromString (s : String) : Option CurveLabel := 
-  -- Simplified parser - production version would be more robust
+/--
+Parse a curve label string like "11a1".
+
+NOTE: This is a simplified placeholder implementation. In production,
+this should parse the actual string format: <conductor><class><number>.
+For example, "389a1" would yield { conductor := 389, isogenyClass := 'a', number := 1 }.
+
+The current implementation always returns a default value and is intended
+only for type-checking the overall structure. Actual curve data comes from
+the Python analysis pipeline.
+-/
+def CurveLabel.fromString (s : String) : Option CurveLabel :=
+  -- TODO: Implement proper parsing when Lean 4 string processing matures
   some { conductor := 11, isogenyClass := 'a', number := 1 }
 
 /-- BSD parameters for an elliptic curve E -/
