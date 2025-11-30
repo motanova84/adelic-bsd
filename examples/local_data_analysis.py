@@ -20,7 +20,16 @@ import os
 # Add project root to path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 
-from sage.all import EllipticCurve  # noqa: E402
+try:
+    from sage.all import EllipticCurve  # noqa: E402
+except ImportError:
+    print("⚠️  SageMath not available. This script requires SageMath to run.")
+    print("   Install SageMath or run within a SageMath environment.")
+    sys.exit(1)
+
+# Curve coefficients: y^2 = x^3 + CURVE_A*x + CURVE_B
+CURVE_A = -7423918274321
+CURVE_B = 139820174982374921
 
 
 def analyze_local_data(output_file=None):
@@ -47,12 +56,11 @@ def analyze_local_data(output_file=None):
     log("=" * 70)
     log("")
 
-    # Define the elliptic curve
-    # E: y^2 = x^3 + ax + b where a = -7423918274321, b = 139820174982374921
+    # Define the elliptic curve using module constants
     log("📊 CURVE DEFINITION")
     log("-" * 70)
 
-    E = EllipticCurve([-7423918274321, 139820174982374921])
+    E = EllipticCurve([CURVE_A, CURVE_B])
     log(f"Curve: {E}")
     log(f"Conductor: {E.conductor()}")
     log(f"Discriminant: {E.discriminant()}")
