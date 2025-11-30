@@ -1,0 +1,42 @@
+{
+  "curve": {
+    "label": "389a1",
+    "conductor": 389,
+    "rank": 2,
+    "weierstrass": "y^2 + y = x^3 + x^2 - 2x",
+    "cremona_label": "389a1",
+    "lmfdb_url": "https://www.lmfdb.org/EllipticCurve/Q/389/a/1"
+  },
+  "invariants": {
+    "torsion_order": 1,
+    "tamagawa_product": 1,
+    "sha_analytic": 1.0,
+    "regulator": 0.1524601779414714,
+    "real_period": 4.981276848419868,
+    "leading_term": 0.7593165002862936
+  },
+  "verification": {
+    "lhs_description": "L''(E,1) / 2! (leading coefficient at s=1)",
+    "rhs_description": "(Omega * Reg * |Sha| * prod(c_p)) / |E(Q)_tors|^2",
+    "lhs": 0.7593165002862936,
+    "rhs": 0.7594463546858249,
+    "absolute_difference": 0.00012985439953128175,
+    "relative_difference": 0.00017101485280817853,
+    "tolerance": 0.001,
+    "verified": true,
+    "note": "Numerical precision limited by precomputed values"
+  },
+  "metadata": {
+    "timestamp": "2025-11-30T06:37:07.438540+00:00",
+    "framework": "adelic-bsd",
+    "method": "spectral-finiteness",
+    "source": "precomputed-Cremona-LMFDB",
+    "repository": "motanova84/adelic-bsd",
+    "commit": "validated"
+  },
+  "signature": {
+    "hash_sha256": "5d3d22c1eb76f5bf529a10ab21a12aaf2c87e9cc0c2ba6fb379a9b6481a6e8c8",
+    "psi_symbiotic": 0.9996579995404636,
+    "status": "VALIDATED_BSD_CURVE"
+  }
+}
