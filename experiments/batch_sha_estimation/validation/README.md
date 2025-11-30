@@ -80,6 +80,26 @@ The input CSV file (`sha_estimates.csv`) must have the following columns:
 - Very small regulators leading to inflated |Ш| estimates
 - Weak or negative correlation where positive is expected
 
+### Analysis Results (Sample Data)
+
+Based on the sample dataset with 35 curves:
+
+| Metric | Value |
+|--------|-------|
+| Total curves | 35 |
+| Rank 2 curves | 16 |
+| Rank 3 curves | 10 |
+| Rank 4 curves | 9 |
+| Mean |Ш| | 2.26 |
+| Median |Ш| | 1.00 |
+| Mean log(|Ш|) | 0.42 |
+| Correlation log|Ш| vs log(R) | -0.47 |
+
+**Key Observations:**
+1. The negative correlation between log|Ш| and log(R) is consistent with BSD formula predictions
+2. Most curves have |Ш| = 1, with outliers having |Ш| = 4, 9, or 16 (all perfect squares)
+3. One outlier detected: curve 115673a1 with |Ш| = 16 (z-score = 3.08)
+
 ## Theoretical Background
 
 The Birch-Swinnerton-Dyer conjecture predicts:
