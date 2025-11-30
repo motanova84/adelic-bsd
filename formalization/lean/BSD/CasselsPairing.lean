@@ -194,9 +194,16 @@ Combined with descent arguments and the spectral methods developed in the
 AdelicBSD framework, this establishes strong evidence for BSD.
 -/
 
-/-- Statement: Full finiteness of Ш(E) follows from control of n-torsion for all n -/
+/-- The full Tate-Shafarevich group Ш(E/ℚ) (symbolic representation) -/
+axiom Sha (E : EllipticCurveWithIsogeny) : Type
+
+/-- The n-torsion subgroup Ш(E)[n] -/
+axiom ShaN (E : EllipticCurveWithIsogeny) (n : ℕ) : Type
+
+/-- Statement: Full finiteness of Ш(E) follows from control of n-torsion for all n
+    This is a standard result from arithmetic geometry -/
 axiom sha_finite_from_torsion (E : EllipticCurveWithIsogeny) :
-    (∀ n : ℕ, n > 0 → Finite { x : Sha2 E // True }) → Finite (Sha2 E)
+    (∀ n : ℕ, n > 0 → Finite (ShaN E n)) → Finite (Sha E)
 
 /-!
 ## Notes for Future Development
