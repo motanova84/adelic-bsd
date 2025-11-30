@@ -17,7 +17,9 @@ formalization/lean/
     ├── GoldenRatio.lean     # Golden ratio algebra
     ├── Emergence.lean       # Emergence formula for f₀
     ├── Main.lean            # Main unconditional theorem
-    └── BSDFinal.lean        # Final BSD conjecture formalization
+    ├── BSDFinal.lean        # Final BSD conjecture formalization
+    └── BSDFormula/
+        └── ShaLeadingTerm.lean  # Leading term formula for |Ш(E)|
 ```
 
 ## Key Components
@@ -66,6 +68,7 @@ Complete formalization of the Birch and Swinnerton-Dyer conjecture:
 - ✅ `pt_compatibility` - Period-Tamagawa compatibility
 - ✅ `BSD_final_statement` - Complete BSD conjecture statement
 - ✅ `BSD_qcal_connection` - Connection to QCAL frequency f₀ = 141.7001 Hz
+
 ### BirchSwinnertonDyerFinal.lean
 Final stage of BSD formalization (dR and PT compatibility):
 - `DeRhamCohomology` - Structure for H¹_dR(E/ℚ)
@@ -74,20 +77,34 @@ Final stage of BSD formalization (dR and PT compatibility):
 - `adelicVolume` - Adelic volume of E(𝔄_ℚ)/E(ℚ)
 - `pt_compatibility` - Poitou-Tate compatibility theorem (local-global normalization)
 
+### BSDFormula/ShaLeadingTerm.lean
+Leading term formula for |Ш(E)|:
+- ✅ `sha_expected_value` - Definition of expected Sha from BSD formula
+- ✅ `sha_leading_term_formula` - Conditional BSD formula: |Ш(E)| = L^{(r)}(1) / (r! · R · Ω · ∏c_p · T²)
+- ✅ `sha_expected_denominator_positive` - Denominator is positive when invariants are positive
+- ⚠️ `sha_rank_zero_formula` - Simplified formula for rank 0 curves (partial)
+- ✅ `sha_rank_one_formula` - Simplified formula for rank 1 curves
+- ✅ `sha_higher_rank_formula` - General formula for rank ≥ 2 curves
+- `sha_integrality` - BSD integrality prediction (axiom)
+- ⚠️ `sha_spectral_connection` - Connection to spectral framework (partial)
+- `BSDInvariants` - Structure for holding all BSD invariants
+- ✅ `compute_sha_eq_expected` - Computed Sha matches expected value
+
 ## Status
 
 ### Proof Completion
-- **Total theorems**: 12
-- **Completed**: 11 (92%)
-- **Remaining**: 1 (numerical verification in Emergence)
+- **Total theorems**: 18
+- **Completed**: 15 (83%)
+- **Remaining**: 3 (numerical verification in Emergence, rank 0 formula, spectral connection)
 
 ### Sorry Count
 - **Initial**: 4
-- **Current**: 1 (in emergence_formula_correct, marked as numerical verification)
-- **Reduction**: 75%
+- **Current**: 3 (emergence_formula_correct, sha_rank_zero_formula, sha_spectral_connection)
+- **Note**: sha_rank_zero_formula requires axiom about regulator convention for rank 0
 
 ### Main Result
 The main theorem `main_theorem_f0` is **complete without sorry** ✅
+The BSD leading term formula `sha_leading_term_formula` is **complete** ✅
 
 ## Building
 
