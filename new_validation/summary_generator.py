@@ -14,6 +14,10 @@ import os
 from datetime import datetime
 
 
+# Maximum length for j-invariant display in CSV (for readability)
+J_INVARIANT_MAX_LENGTH = 30
+
+
 def generate_summary_csv(results_list, output_path):
     """
     Generate summary CSV file from experimental results.
@@ -57,7 +61,8 @@ def generate_summary_csv(results_list, output_path):
                 'label': result.get('label', 'N/A'),
                 'conductor': terms.get('conductor', ''),
                 'rank': terms.get('rank', ''),
-                'j_invariant': terms.get('j_invariant', '')[:30] if terms.get('j_invariant') else '',
+                'j_invariant': (terms.get('j_invariant', '')[:J_INVARIANT_MAX_LENGTH]
+                                if terms.get('j_invariant') else ''),
                 'torsion_order': terms.get('torsion', {}).get('order', ''),
                 'omega': f"{terms.get('omega', {}).get('omega_plus', 0):.10f}",
                 'regulator': f"{terms.get('regulator', {}).get('value', 0):.10f}",

@@ -110,11 +110,11 @@ def generate_qcal_seal(experiment_results):
         }
     }
 
-    # Compute seal signature (hash of seal content)
+    # Compute seal signature (full SHA-256 hash for cryptographic integrity)
     seal_content = json.dumps(
         {k: v for k, v in seal.items() if k != 'signature'},
         sort_keys=True, default=str)
-    seal['signature'] = hashlib.sha256(seal_content.encode('utf-8')).hexdigest()[:32]
+    seal['signature'] = hashlib.sha256(seal_content.encode('utf-8')).hexdigest()
 
     return seal
 
@@ -135,7 +135,7 @@ def verify_qcal_seal(seal):
         original_signature = seal_copy.pop('signature', None)
 
         seal_content = json.dumps(seal_copy, sort_keys=True, default=str)
-        computed_signature = hashlib.sha256(seal_content.encode('utf-8')).hexdigest()[:32]
+        computed_signature = hashlib.sha256(seal_content.encode('utf-8')).hexdigest()
 
         signature_valid = (original_signature == computed_signature)
 

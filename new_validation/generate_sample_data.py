@@ -303,9 +303,9 @@ def create_curve_directory(curve_data, base_dir):
         },
     }
 
-    # Add signature
+    # Add full SHA-256 signature for cryptographic integrity
     seal_content = json.dumps({k: v for k, v in seal.items()}, sort_keys=True)
-    seal['signature'] = hashlib.sha256(seal_content.encode()).hexdigest()[:32]
+    seal['signature'] = hashlib.sha256(seal_content.encode()).hexdigest()
 
     with open(os.path.join(curve_dir, 'qcal_seal.json'), 'w') as f:
         json.dump(seal, f, indent=2)

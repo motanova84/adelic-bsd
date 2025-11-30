@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "type": "BSD_EXPERIMENTAL_QCAL_SEAL",
-  "timestamp": "2025-11-30T06:48:36.019772",
+  "timestamp": "2025-11-30T06:51:29.409870",
   "qcal_frequency_hz": 141.7001,
   "curve_data": {
     "label": "1171a1",
@@ -18,5 +18,5 @@
     "method": "BSD_spectral_comparison",
     "framework": "Adelic-BSD"
   },
-  "signature": "7b949200222ecc5dcde1fa1cb78caa03"
+  "signature": "db3444cb51815c2af3013d18fce9dbb3542b42e03e751373c3289ff08b014b29"
 }
