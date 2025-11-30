@@ -64,7 +64,6 @@ def TorsionSubgroup (E : EllipticCurveQ) (ℓ : ℕ) : Type :=
 /-- Rational points of an elliptic curve -/
 def RationalPoints (E : EllipticCurveQ) : Type := rational_points E
 
-/-- The Tate-Shafarevich group Ш(E) -/
 /-- The Tate-Shafarevich group Ш(E)[ℓ] (ℓ-torsion part) -/
 structure Sha (E : EllipticCurveQ) (ℓ : ℕ := 2) where
   /-- Element of H¹(ℚ, E[ℓ]) locally trivial everywhere -/
