@@ -56,9 +56,12 @@ structure BSDData (E : EllipticCurve_Q) where
 ### BSD Hypothesis Structure
 
 Extends BSDData with explicit positivity and non-degeneracy hypotheses.
+We provide two variants:
+- `BSDHypothesis` for rank ≥ 1 (typical BSD applications)
+- `BSDHypothesisRankZero` for rank 0 curves
 -/
 
-/-- The BSD hypothesis with all positivity conditions -/
+/-- The BSD hypothesis with all positivity conditions (for rank ≥ 1) -/
 structure BSDHypothesis (E : EllipticCurve_Q) extends BSDData E where
   /-- Rank is positive (for non-trivial cases) -/
   h_rank_pos : 0 < rank
@@ -72,6 +75,21 @@ structure BSDHypothesis (E : EllipticCurve_Q) extends BSDData E where
   h_tamagawa_pos : 0 < tamagawa_product
   /-- L-derivative is non-zero (non-degeneracy) -/
   h_L_deriv_ne_zero : L_deriv_at_1 ≠ 0
+
+/-- The BSD hypothesis for rank 0 curves -/
+structure BSDHypothesisRankZero (E : EllipticCurve_Q) extends BSDData E where
+  /-- Rank is zero -/
+  h_rank_zero : rank = 0
+  /-- Real period is positive -/
+  h_real_period_pos : 0 < real_period
+  /-- Regulator is 1 for rank 0 -/
+  h_regulator_one : regulator = 1
+  /-- Torsion order is positive -/
+  h_torsion_pos : 0 < torsion_order
+  /-- Tamagawa product is positive -/
+  h_tamagawa_pos : 0 < tamagawa_product
+  /-- L-value is non-zero at s=1 for rank 0 -/
+  h_L_ne_zero : L_deriv_at_1 ≠ 0
 
 /-!
 ### Helper Lemmas
@@ -165,20 +183,20 @@ theorem bsd_sha_leading_term
 For ranks 0, 1, and 2, the factorial simplifies.
 -/
 
-/-- BSD formula for rank 0: factorial(0) = 1 -/
+/-- BSD formula for rank 0 using the specialized hypothesis structure.
+    For rank 0, factorial(0) = 1 and regulator = 1 by convention. -/
 theorem bsd_sha_rank_0
     (E : EllipticCurve_Q)
-    (h0 : BSDHypothesis E)
-    (h_rank0 : h0.rank = 0) :
+    (h0 : BSDHypothesisRankZero E) :
     ∃ sha : ℝ,
       sha = h0.L_deriv_at_1 /
-            (h0.regulator *
-             h0.real_period *
+            (h0.real_period *
              h0.tamagawa_product *
              (h0.torsion_order : ℝ) ^ 2) ∧
       sha > 0 := by
-  -- Note: This contradicts h_rank_pos if rank = 0
-  -- In practice, rank 0 uses a modified hypothesis
+  -- For rank 0, factorial(0) = 1 and regulator = 1
+  have h_fact0 : (0 : ℕ).factorial = 1 := Nat.factorial_zero
+  have h_reg : h0.regulator = 1 := h0.h_regulator_one
   sorry
 
 /-- BSD formula for rank 1: factorial(1) = 1 -/
@@ -203,8 +221,9 @@ theorem bsd_sha_rank_2
     (h2 : BSDHypothesis E)
     (h_rank2 : h2.rank = 2) :
     ∃ sha : ℝ,
-      sha = h2.L_deriv_at_1 / 2 /
-            (h2.regulator *
+      sha = h2.L_deriv_at_1 /
+            ((h2.rank.factorial : ℝ) *
+             h2.regulator *
              h2.real_period *
              h2.tamagawa_product *
              (h2.torsion_order : ℝ) ^ 2) ∧
