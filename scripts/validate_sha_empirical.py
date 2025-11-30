@@ -80,7 +80,8 @@ The script estimates |Sha(E)| using the simplified BSD formula:
         '--num-curves', '-n',
         type=int,
         default=500,
-        help='Number of curves to simulate (default: 500)'
+        help='Number of synthetic curves to simulate (default: 500). '
+             'Note: This generates random simulated data, not real curve analysis.'
     )
     
     parser.add_argument(

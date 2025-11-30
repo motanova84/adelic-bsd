@@ -2,10 +2,16 @@
 """
 Sha Empirical Estimator Module - BSD ∞³ Framework
 
-Empirical validation module for estimating |Sha(E)| (Tate-Shafarevich group)
+Synthetic simulation module for estimating |Sha(E)| (Tate-Shafarevich group)
 for elliptic curves with rank >= 2 using a simplified BSD formula.
 
-The estimation uses:
+IMPORTANT: This module generates synthetic/simulated curve data with random
+parameters for empirical validation purposes. It does not use actual elliptic
+curve data from LMFDB. Real curves have correlated properties that are not
+captured in this simulation. For analysis of real curves, use the SageMath
+integration modules in this repository.
+
+The estimation uses a simplified BSD formula:
     |Sha| ≈ (L'(E,1) * |T|²) / (R * Ω)
 
 Where:
@@ -13,6 +19,9 @@ Where:
     |T| = order of the torsion subgroup
     R = regulator
     Ω = real period
+
+Note: The complete BSD formula also includes Tamagawa numbers (∏ᵖ cₚ),
+which are omitted here for simplification.
 
 This module is part of the SABIO ∞³ verification protocol for extended
 empirical validation of BSD conjecture.
@@ -33,10 +42,13 @@ import pandas as pd
 
 class ShaEmpiricalEstimator:
     """
-    Empirical estimator for |Sha(E)| on curves with rank >= 2.
+    Synthetic simulation estimator for |Sha(E)| on curves with rank >= 2.
     
     Implements the BSD ∞³ verification protocol for estimating
-    the order of the Tate-Shafarevich group.
+    the order of the Tate-Shafarevich group using simulated curve data.
+    
+    Note: This class generates random synthetic curve parameters.
+    For real curve analysis, use the SageMath integration modules.
     """
     
     def __init__(
@@ -71,7 +83,12 @@ class ShaEmpiricalEstimator:
         return np.random.randint(10**3, 10**5, self.num_curves)
     
     def _generate_ranks(self) -> np.ndarray:
-        """Generate random ranks >= 2 (values 2, 3, or 4)."""
+        """
+        Generate random ranks >= 2 (values 2, 3, or 4).
+        
+        Note: This generates synthetic ranks for simulation purposes.
+        Real elliptic curve ranks have different distributions.
+        """
         return np.random.choice([2, 3, 4], self.num_curves)
     
     def _generate_torsion_orders(self) -> np.ndarray:
@@ -104,7 +121,9 @@ class ShaEmpiricalEstimator:
             |Sha| ≈ (L'(E,1) * |T|²) / (R * Ω)
         
         Note: This is a simplified formula that does not include
-        local factors (Tamagawa numbers) for empirical validation.
+        local factors (Tamagawa numbers: ∏ᵖ cₚ) for empirical validation.
+        The complete BSD formula includes these factors, which could
+        affect accuracy for curves with bad reduction at multiple primes.
         
         Args:
             l_derivative: L'(E,1) - derivative of L-function at s=1
@@ -116,10 +135,16 @@ class ShaEmpiricalEstimator:
             Estimated value of |Sha(E)|
         """
         denominator = regulator * real_period
-        # Avoid division by zero
+        # Avoid division by zero or near-zero denominators
+        min_denominator = 1e-10
         with np.errstate(divide='ignore', invalid='ignore'):
-            sha_estimate = (l_derivative * torsion_order**2) / denominator
-            sha_estimate = np.where(denominator == 0, np.nan, sha_estimate)
+            # Replace near-zero denominators with nan to avoid unrealistic estimates
+            safe_denominator = np.where(
+                np.abs(denominator) < min_denominator, 
+                np.nan, 
+                denominator
+            )
+            sha_estimate = (l_derivative * torsion_order**2) / safe_denominator
         return np.round(sha_estimate, 3)
     
     def generate_simulation(self) -> pd.DataFrame:
@@ -304,15 +329,16 @@ class ShaEmpiricalEstimator:
         return certificate
 
 
-def _is_near_perfect_square(x: float, tolerance: float = 0.01) -> bool:
+def _is_near_perfect_square(x: float, tolerance: float = 1e-6) -> bool:
     """
     Check if a value is near a perfect square.
     
     BSD predicts that |Sha| should be a perfect square for verified curves.
+    Uses relative tolerance for larger values.
     
     Args:
         x: Value to check
-        tolerance: Tolerance for floating point comparison
+        tolerance: Relative tolerance for floating point comparison
         
     Returns:
         True if x is near a perfect square
@@ -321,7 +347,11 @@ def _is_near_perfect_square(x: float, tolerance: float = 0.01) -> bool:
         return False
     sqrt_x = np.sqrt(x)
     nearest_int = round(sqrt_x)
-    return abs(sqrt_x - nearest_int) < tolerance
+    if nearest_int == 0:
+        return abs(sqrt_x) < tolerance
+    # Use relative tolerance
+    relative_error = abs(sqrt_x - nearest_int) / nearest_int
+    return relative_error < tolerance
 
 
 def run_empirical_validation(
