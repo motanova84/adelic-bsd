@@ -43,13 +43,13 @@ structure EllipticCohomology where
   /-- Rank constraint: requires rank ≥ 2 -/
   rank_ge_two : rank ≥ 2 := by decide
 
-/-- Test case: Curve 5077a1 (rank 2) -/
+/-- Test case: Curve 5077a1 (rank 3) -/
 def test_5077a1 : EllipticCohomology := {
   curve_id := "5077a1"
-  rank := 2
+  rank := 3
   dR_matrix := !![1, 0; 0, 1]  -- Identity (compatible)
   pt_matrix := !![1, 0; 0, 1]  -- Perrin-Riou approximation
-  mw_rank := 2
+  mw_rank := 3
   rank_ge_two := by decide
 }
 

@@ -9,7 +9,7 @@ Author: José Manuel Mota Burruezo (JMMB Ψ · ∴)
 Date: November 2025
 -/
 
-import rational_structures.DRvsPTAnalyzer
+import RationalStructures.DRvsPTAnalyzer
 
 open BSD.RationalStructures
 
