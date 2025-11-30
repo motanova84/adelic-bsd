@@ -10,6 +10,10 @@ lean_lib «AdelicBSD» where
 lean_lib «RiemannAdelic» where
   -- Riemann-Adelic formalization library
 
+lean_lib «bsd_formula» where
+  -- BSD formula leading term library
+  srcDir := "bsd_formula"
+
 @[default_target]
 lean_exe «adelic_bsd» where
   root := `Main
