@@ -88,7 +88,7 @@ def generate_bsd_dataset(
             - conductor: Conductor of the curve
             - analytic_rank: Analytic rank r such that ord_{s=1}L(E,s) = r
             - torsion_order: Order of the torsion subgroup |E(ℚ)_tors|
-            - L_derivative_E1: L^(r)(E,1)/r! value
+            - L_derivative_E1: L^(r)(E,1)/r! normalized derivative value
             - real_period: Real period Ω_E
             - regulator: Regulator Reg_E
             - sha_estimate: Estimated |Ш| from BSD formula
@@ -163,12 +163,13 @@ def generate_bsd_dataset(
 
     # Compute Sha estimates using BSD formula:
     # |Ш| ≈ L^(r)(E,1)/r! / (Ω_E * Reg_E * |E(ℚ)_tors|²)
+    # Note: L_derivative_E1 represents L^(r)(E,1)/r! (the normalized value)
     torsion_squared = torsion ** 2
     sha_estimates = L_derivatives / (
         real_periods * regulators * torsion_squared
     )
     sha_estimates = np.round(sha_estimates, 5)
-    # Ensure sha_estimate is always strictly positive (BSD predicts |Ш| ≥ 1)
+    # Ensure sha_estimate is always strictly positive (avoid zero from rounding)
     sha_estimates = np.maximum(sha_estimates, 1e-5)
 
     # Create DataFrame
