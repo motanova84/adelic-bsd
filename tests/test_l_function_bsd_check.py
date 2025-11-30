@@ -123,10 +123,9 @@ class TestLFunctionBSDCheckWithSage:
         """Test L-function computation with explicit coefficients."""
         from validation.l_function_bsd_check import compute_l_function_bsd_check
 
-        # Use simple curve 11a1 coefficients: y^2 + y = x^3 - x^2 - 10x - 20
-        # In short Weierstrass form: [0, -1, 1, -10, -20]
-        # We'll use a simpler test with known a4, a6
-        result = compute_l_function_bsd_check(coefficients=(0, -4))  # y^2 = x^3 - 4
+        # Test with a simple curve y^2 = x^3 - 4 (Mordell curve)
+        # This has conductor 27 and rank 0
+        result = compute_l_function_bsd_check(coefficients=(0, -4))
 
         assert 'L_at_1' in result
         assert 'conductor' in result

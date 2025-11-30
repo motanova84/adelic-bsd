@@ -99,7 +99,11 @@ def compute_l_function_bsd_check(coefficients=None, curve_label=None, output_fil
             "Run this script with 'sage -python l_function_bsd_check.py'"
         )
 
-    # Default coefficients as specified in the problem statement
+    # Default coefficients as specified in the problem statement (PASO 4)
+    # Curve: y^2 = x^3 + a4*x + a6 with:
+    #   a4 = -7423918274321
+    #   a6 = 139820174982374921
+    # This is a curve with specific properties for BSD verification testing
     default_a4 = -7423918274321
     default_a6 = 139820174982374921
 
@@ -161,7 +165,7 @@ def compute_l_function_bsd_check(coefficients=None, curve_label=None, output_fil
     log("-" * 50)
 
     analytic_rank = E.analytic_rank()
-    log(f"Orden de anulación en s = 1 (rango analítico): {analytic_rank}")
+    log(f"Order of vanishing at s = 1 (analytic rank): {analytic_rank}")
     log("")
 
     # Step 5: Compute algebraic rank
@@ -170,7 +174,7 @@ def compute_l_function_bsd_check(coefficients=None, curve_label=None, output_fil
     log("-" * 50)
 
     algebraic_rank = E.rank()
-    log(f"Rango algebraico: {algebraic_rank}")
+    log(f"Algebraic rank: {algebraic_rank}")
     log("")
 
     # Step 6: BSD Consistency Verification
@@ -283,9 +287,9 @@ def run_test_curves():
         try:
             result = compute_l_function_bsd_check(curve_label=label)
             results.append(result)
-        except Exception as e:
-            print(f"Error processing {label}: {e}")
-            results.append({'curve_label': label, 'error': str(e)})
+        except (ValueError, TypeError, RuntimeError) as e:
+            print(f"Error processing {label}: {type(e).__name__}: {e}")
+            results.append({'curve_label': label, 'error': str(e), 'error_type': type(e).__name__})
 
     return results
 
