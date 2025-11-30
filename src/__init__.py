@@ -23,6 +23,17 @@ from .sabio_infinity4 import (
     validacion_rapida
 )
 
+# Import BSD curve simulator (no SageMath dependency)
+from .bsd_curve_simulator import (
+    generate_bsd_dataset,
+    generate_curve_label,
+    filter_by_rank,
+    get_sha_statistics,
+    validate_bsd_consistency,
+    export_to_csv,
+    export_to_latex
+)
+
 # Try to import SageMath-dependent modules
 try:
     from .spectral_finiteness import (
@@ -175,6 +186,14 @@ __all__ = [
     "MatrizSimbiosis",
     "crear_sistema_sabio",
     "validacion_rapida",
+    # BSD Curve Simulator (no SageMath dependency)
+    "generate_bsd_dataset",
+    "generate_curve_label",
+    "filter_by_rank",
+    "get_sha_statistics",
+    "validate_bsd_consistency",
+    "export_to_csv",
+    "export_to_latex",
     # Spectral finiteness (SageMath required)
     "SpectralFinitenessProver",
     "prove_finiteness_for_curve",
