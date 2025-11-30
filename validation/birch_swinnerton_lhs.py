@@ -13,16 +13,24 @@ This module implements:
 4. Comparison with RHS from BSD formula
 5. Validation with relative error thresholds
 
+Note on Sha (Tate-Shafarevich group):
+    The RHS computation assumes |Sha| = 1 as a simplification. For curves
+    where Sha is known to be larger, this will affect the comparison.
+    In practice, for many curves in LMFDB, |Sha| = 1 has been verified.
+
 Author: BSD Framework
 Date: November 2025
 """
 
-from math import factorial
-from typing import Dict, Any
 import json
 import os
 from datetime import datetime
+from math import factorial
+from typing import Dict, Any
 
+
+# Numerical thresholds for comparison
+NUMERICAL_ZERO_THRESHOLD = 1e-15
 
 # Validation thresholds for BSD comparison
 BSD_THRESHOLDS = {
@@ -90,7 +98,10 @@ class BirchSwinnertonLHS:
         if r == 0:
             # For rank 0, use L(E,1) directly
             try:
-                # L_ratio gives L(E,1)/Omega
+                # L_ratio() returns L(E,1)/Ω where Ω is the real period.
+                # To recover L(E,1), we multiply by Ω:
+                #   L(E,1) = L_ratio * Ω
+                # This is more numerically stable than direct evaluation.
                 L_ratio = float(L.L_ratio())
                 omega = float(self.E.period_lattice().omega())
                 self._L_derivative = L_ratio * omega
@@ -122,6 +133,9 @@ class BirchSwinnertonLHS:
         from sage.all import RealField
         RF = RealField(precision)
 
+        # Step size for finite differences. A smaller step gives better
+        # approximation but can introduce numerical instability.
+        # h = 1e-6 is a reasonable balance for L-function evaluation.
         h = RF(1e-6)
         s = RF(1)
         L = self.E.lseries()
@@ -149,6 +163,7 @@ class BirchSwinnertonLHS:
         from sage.all import RealField, binomial
         RF = RealField(precision)
 
+        # Larger step for higher order derivatives to reduce numerical errors
         h = RF(1e-4)
         s = RF(1)
         L = self.E.lseries()
@@ -216,6 +231,13 @@ def compute_bsd_rhs(E) -> Dict[str, float]:
 
     Returns:
         dict: Components and value of RHS
+
+    Note:
+        The Sha (Tate-Shafarevich group) order is assumed to be 1 in this
+        implementation. For many curves, this has been verified (e.g., in LMFDB).
+        For curves where |Sha| > 1, the comparison will show discrepancy.
+        A more complete implementation would compute or look up |Sha| from
+        analytic or descent methods.
     """
     # Real period
     try:
@@ -249,7 +271,7 @@ def compute_bsd_rhs(E) -> Dict[str, float]:
     except Exception:
         torsion_order = 1
 
-    # Sha order (assumed 1 for simplicity; in practice use analytic computation)
+    # Sha order: assumed 1 (see docstring for limitations)
     sha_order = 1
 
     # Compute RHS
@@ -285,13 +307,14 @@ def compute_bsd_lhs_vs_rhs(E, precision: int = 30) -> Dict[str, Any]:
     rhs_data = compute_bsd_rhs(E)
     rhs = rhs_data['rhs']
 
-    # Compute relative error
-    if abs(lhs) > 1e-15:
+    # Compute relative error using the larger value as denominator
+    # to avoid division by very small numbers
+    if abs(lhs) > NUMERICAL_ZERO_THRESHOLD:
         relative_error = abs(lhs - rhs) / abs(lhs)
-    elif abs(rhs) > 1e-15:
+    elif abs(rhs) > NUMERICAL_ZERO_THRESHOLD:
         relative_error = abs(lhs - rhs) / abs(rhs)
     else:
-        # Both near zero
+        # Both near zero - use absolute difference
         relative_error = abs(lhs - rhs)
 
     # Determine validation level

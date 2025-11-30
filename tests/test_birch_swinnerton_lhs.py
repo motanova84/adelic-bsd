@@ -24,7 +24,8 @@ from validation.birch_swinnerton_lhs import (
     compute_bsd_lhs_vs_rhs,
     determine_validation_level,
     validate_bsd_comparison,
-    BSD_THRESHOLDS
+    BSD_THRESHOLDS,
+    NUMERICAL_ZERO_THRESHOLD
 )
 
 
@@ -317,6 +318,11 @@ class TestBSDThresholds:
         assert BSD_THRESHOLDS['almost_perfect'] == 1e-3
         assert BSD_THRESHOLDS['good'] == 1e-2
         assert BSD_THRESHOLDS['partial'] == 1e-1
+
+    def test_numerical_zero_threshold(self):
+        """Test that numerical zero threshold is defined."""
+        assert NUMERICAL_ZERO_THRESHOLD == 1e-15
+        assert NUMERICAL_ZERO_THRESHOLD > 0
 
 
 def run_all_tests():
