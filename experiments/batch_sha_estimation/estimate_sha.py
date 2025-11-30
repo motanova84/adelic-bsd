@@ -14,7 +14,7 @@ Where:
 - Tors(E) = torsion subgroup
 - ∏c_p = product of Tamagawa numbers at all primes of bad reduction
 
-Author: BSD-10000 → GO · Step 9
+Author: adelic-bsd development team
 Compatible with Python 3.9-3.13
 """
 
@@ -164,11 +164,11 @@ def estimate_sha_from_curve(E, label: Optional[str] = None) -> ShaEstimationResu
         try:
             # This computes the r-th derivative at s=1
             Lr = float(L.derivative(r)(1))
-        except Exception:
+        except (AttributeError, ValueError, TypeError, RuntimeError):
             # Fallback: try computing via leading coefficient
             try:
                 Lr = float(L.dokchitser().taylor_series(1, r + 1).coefficient(r)) * factorial(r)
-            except Exception as e:
+            except (AttributeError, ValueError, TypeError, RuntimeError) as e:
                 return ShaEstimationResult(
                     label=label,
                     rank=r,
@@ -316,9 +316,13 @@ def get_curves_by_rank(
 
     curves_by_rank = {r: [] for r in range(min_rank, max_rank + 1)}
 
+    # Default search limit for performance - use conductor_max if lower
+    # This prevents excessive search times for large conductor_max values
+    SEARCH_LIMIT = 500  # Balance between coverage and performance
+
     try:
         # Iterate through curves in the Cremona database
-        for N in range(11, min(conductor_max + 1, 500)):  # Limit search for performance
+        for N in range(11, min(conductor_max + 1, SEARCH_LIMIT)):
             try:
                 for label in cremona_curves(N):
                     try:
