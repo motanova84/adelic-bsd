@@ -16,6 +16,7 @@ License: MIT
 
 import argparse
 from pathlib import Path
+from typing import Optional
 
 import numpy as np
 import pandas as pd
@@ -24,7 +25,7 @@ import pandas as pd
 def generate_sha_estimates(
     num_curves: int = 5000,
     seed: int = 42,
-    output_path: str | None = None
+    output_path: Optional[str] = None
 ) -> pd.DataFrame:
     """
     Generate simulated elliptic curve data with SHA estimates.
