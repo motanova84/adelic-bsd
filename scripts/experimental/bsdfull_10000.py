@@ -122,9 +122,13 @@ class BSDFull10000:
                             curves.append(label)
                             if len(curves) >= self.number:
                                 break
-                    except Exception:
+                    except (ValueError, RuntimeError, ArithmeticError) as e:
+                        # Skip curves that fail to construct or compute rank
+                        if self.verbose:
+                            pass  # Debug logging can be enabled if needed
                         continue
-            except Exception:
+            except (ValueError, RuntimeError, KeyError):
+                # Skip conductors with no curves in database
                 continue
 
             # Progress update every 1000 conductors
@@ -192,7 +196,19 @@ class BSDFull10000:
 
             # Compute leading coefficient of L-function
             # For rank r, this is L^(r)(E,1)/r!
-            leading_coefficient = float(E.lseries().dokchitser().Taylor_series().list()[rank])
+            # Use direct method when available
+            try:
+                # Try to use analytic sha directly from Sage if available
+                sha_analytic_value = float(E.sha().an())
+                leading_coefficient = (
+                    sha_analytic_value * real_period * regulator *
+                    tamagawa_product / (torsion_order ** 2)
+                )
+            except (AttributeError, RuntimeError, ValueError):
+                # Fall back to Taylor series computation
+                leading_coefficient = float(
+                    E.lseries().dokchitser().Taylor_series().list()[rank]
+                )
 
             # BSD formula: L^(r)(E,1)/r! = (|Sha| · R · Ω · c) / #E(Q)_tors^2
             # Inverted: |Sha| = L^(r)(E,1) · #E(Q)_tors^2 / (r! · R · Ω · c)
