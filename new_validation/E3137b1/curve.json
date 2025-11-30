@@ -1,0 +1,18 @@
+{
+  "label": "3137b1",
+  "cremona_label": "3137b1",
+  "a_invariants": [
+    1,
+    0,
+    1,
+    -12,
+    0
+  ],
+  "conductor": 3137,
+  "rank": 1,
+  "j_invariant": "884736/3137",
+  "discriminant": -3137,
+  "torsion_order": 1,
+  "torsion_structure": [],
+  "timestamp": "2025-11-30T06:48:36.020093"
+}

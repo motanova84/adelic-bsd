@@ -1,0 +1,22 @@
+{
+  "version": "1.0",
+  "type": "BSD_EXPERIMENTAL_QCAL_SEAL",
+  "timestamp": "2025-11-30T06:48:36.019990",
+  "qcal_frequency_hz": 141.7001,
+  "curve_data": {
+    "label": "1483a1",
+    "conductor": 1483,
+    "rank": 2,
+    "j_invariant_hash": "647ae9ab5b90ea7a9ccea5f1746c84c8486e2630c31f139e5ba45be3fde3d868"
+  },
+  "validation": {
+    "sha_estimate": 1.00171,
+    "relative_error_percent": 0.17099999999999999,
+    "status": "\u2713 experimental match"
+  },
+  "verification": {
+    "method": "BSD_spectral_comparison",
+    "framework": "Adelic-BSD"
+  },
+  "signature": "4521511d74831454f7fa9e923decc8ee"
+}
