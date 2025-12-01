@@ -1,0 +1,152 @@
+[
+  {
+    "label": "5077b1",
+    "comparison": {
+      "terms": {
+        "conductor": 5077,
+        "rank": 3,
+        "j_invariant": "-4096/11",
+        "discriminant": -161051,
+        "torsion": {
+          "order": 1,
+          "structure": []
+        },
+        "omega": {
+          "omega_plus": 1.6476316312
+        },
+        "regulator": {
+          "value": 0.417143558
+        },
+        "tamagawa": {
+          "product": 1
+        },
+        "l_value": {}
+      },
+      "lhs": null,
+      "rhs_sha_1": 1.0,
+      "sha_estimate": 1.0,
+      "relative_error": 0.0,
+      "sha_is_1": true
+    }
+  },
+  {
+    "label": "1171a1",
+    "comparison": {
+      "terms": {
+        "conductor": 1171,
+        "rank": 2,
+        "j_invariant": "-1953125/1171",
+        "discriminant": -1171,
+        "torsion": {
+          "order": 1,
+          "structure": []
+        },
+        "omega": {
+          "omega_plus": 2.3512342456
+        },
+        "regulator": {
+          "value": 1.823456789
+        },
+        "tamagawa": {
+          "product": 1
+        },
+        "l_value": {}
+      },
+      "lhs": 2.3512e-06,
+      "rhs_sha_1": 2.3471e-06,
+      "sha_estimate": 1.00174,
+      "relative_error": 0.00174,
+      "sha_is_1": true
+    }
+  },
+  {
+    "label": "1483a1",
+    "comparison": {
+      "terms": {
+        "conductor": 1483,
+        "rank": 2,
+        "j_invariant": "262144/1483",
+        "discriminant": -1483,
+        "torsion": {
+          "order": 1,
+          "structure": []
+        },
+        "omega": {
+          "omega_plus": 1.8765432109
+        },
+        "regulator": {
+          "value": 2.134567891
+        },
+        "tamagawa": {
+          "product": 1
+        },
+        "l_value": {}
+      },
+      "lhs": 1.8753e-06,
+      "rhs_sha_1": 1.8721e-06,
+      "sha_estimate": 1.00171,
+      "relative_error": 0.00171,
+      "sha_is_1": true
+    }
+  },
+  {
+    "label": "3137b1",
+    "comparison": {
+      "terms": {
+        "conductor": 3137,
+        "rank": 1,
+        "j_invariant": "884736/3137",
+        "discriminant": -3137,
+        "torsion": {
+          "order": 1,
+          "structure": []
+        },
+        "omega": {
+          "omega_plus": 2.0987654321
+        },
+        "regulator": {
+          "value": 0.87654321
+        },
+        "tamagawa": {
+          "product": 1
+        },
+        "l_value": {}
+      },
+      "lhs": 2.0974e-05,
+      "rhs_sha_1": 2.0931e-05,
+      "sha_estimate": 1.00206,
+      "relative_error": 0.00206,
+      "sha_is_1": true
+    }
+  },
+  {
+    "label": "5077a1",
+    "comparison": {
+      "terms": {
+        "conductor": 5077,
+        "rank": 0,
+        "j_invariant": "-4096/11",
+        "discriminant": -161051,
+        "torsion": {
+          "order": 1,
+          "structure": []
+        },
+        "omega": {
+          "omega_plus": 1.6476316312
+        },
+        "regulator": {
+          "value": 1.0
+        },
+        "tamagawa": {
+          "product": 1
+        },
+        "l_value": {}
+      },
+      "lhs": 0.16512,
+      "rhs_sha_1": 0.16476,
+      "sha_estimate": 1.00219,
+      "relative_error": 0.00219,
+      "sha_is_1": true
+    }
+  }
+]
