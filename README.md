@@ -420,7 +420,7 @@ Este valor coincide con la **frecuencia universal medida** en múltiples fenóme
 | Primo | Frecuencia | Nota Musical | Significado |
 |-------|-----------|--------------|-------------|
 | p = 11 | 76.7 Hz | D#2 | Mínimo local (p ≥ 11) |
-| **p = 17** | **141.7001 Hz** | **E2** | **∴ Punto Noético** |
+| **p = 17** | **141.7001 Hz** | **C#3** | **∴ Punto Noético** |
 | p = 29 | 461.8 Hz | A#4 | Resonancia armónica |
 
 **Validación**: Ejecutar `python3 p17_balance_optimality.py` para verificar el análisis completo.
