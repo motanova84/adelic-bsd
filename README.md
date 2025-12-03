@@ -425,6 +425,8 @@ Este valor coincide con la **frecuencia universal medida** en múltiples fenóme
 
 **Validación**: Ejecutar `python3 p17_balance_optimality.py` para verificar el análisis completo.
 
+**Documentación completa**: Ver [docs/P17_RESONANCE.md](docs/P17_RESONANCE.md) para análisis detallado.
+
 **Teorema Lean (corregido)**:
 ```lean
 /-- p = 17 no minimiza equilibrium(p), pero produce la única
