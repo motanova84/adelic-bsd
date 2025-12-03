@@ -115,22 +115,22 @@ def frequency_to_note(freq: float) -> str:
     Returns:
         str: Musical note name with octave (e.g., "A4", "D#2")
     """
-    # Reference: A4 = 440 Hz
-    # Note number formula: n = 12 * log2(f/440) + 49
-    # where n = 1 corresponds to C0
+    # Reference: A4 = 440 Hz corresponds to MIDI note 69
+    # MIDI note 0 is C-1
+    # Formula: n = 69 + 12 * log2(f / 440)
     
     if freq <= 0:
         return "N/A"
     
-    # Calculate semitones from A4
-    semitones_from_a4 = 12 * np.log2(freq / 440.0)
-    note_number = int(round(semitones_from_a4 + 49))
+    # Calculate MIDI note number
+    midi_note = 69 + 12 * np.log2(freq / 440.0)
+    note_number = int(round(midi_note))
     
     # Note names
     note_names = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
     
-    octave = (note_number - 1) // 12
-    note_index = (note_number - 1) % 12
+    octave = (note_number // 12) - 1
+    note_index = note_number % 12
     
     return f"{note_names[note_index]}{octave}"
 
