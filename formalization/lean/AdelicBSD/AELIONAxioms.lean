@@ -1,10 +1,21 @@
 /-
-AELION·EILAN Protocol Axioms: Formal Transcription in Lean 4
-=============================================================
+AELION·EILAN Protocol Axioms: Theoretical Framework in Lean 4
+==============================================================
 
-This file contains the Lean 4 formalization of the Axiom of Spectral Coherence
-and the structural coercion theorems for the unconditional resolution of the
-Birch and Swinnerton-Dyer Conjecture.
+IMPORTANT DISCLAIMER:
+--------------------
+This formalization represents a THEORETICAL FRAMEWORK and EXPLORATORY RESEARCH.
+It should NOT be considered a rigorous proof of the BSD conjecture.
+
+This file contains:
+1. Theoretical axioms for spectral coherence (ACES)
+2. Structural coercion principles
+3. A framework for exploring BSD via spectral methods
+
+The use of `axiom` declarations represents WORKING HYPOTHESES, not established
+mathematical facts. The `sorry` placeholders indicate incomplete formalization.
+
+This is a RESEARCH TOOL for exploring the structure of BSD, not a proven theorem.
 
 Author: José Manuel Mota Burruezo (JMMB Ψ·∴)
 Date: December 2025
@@ -227,15 +238,36 @@ theorem BSD_All_Ranks (E : Type*) (r : ℕ) :
   -- This follows from BSDUnconditionalTheorem
   sorry
 
-/-! ## Meta-Theorem: BSD as Theorem, not Conjecture -/
+/-! ## Meta-Framework: BSD Theoretical Structure -/
 
-/-- BSD is now a THEOREM for all elliptic curves over ℚ -/
-theorem BSD_Is_Theorem :
+/-- Theoretical framework suggesting BSD structure for all elliptic curves over ℚ
+    
+    NOTE: This is a WORKING HYPOTHESIS within the AELION framework.
+    It is NOT a proven theorem. The formalization uses axioms and sorry placeholders
+    to represent the theoretical structure, not established mathematical facts.
+-/
+theorem BSD_Theoretical_Framework :
   ∀ E : Type*, ∃ (r : ℕ) (components : BSDComponents E),
     BSDFormula E r components := by
   intro E
-  -- Apply unconditional theorem
+  -- This relies on the axiomatic framework above
   obtain ⟨r, components, _, _, _, h_bsd⟩ := BSDUnconditionalTheorem E
   exact ⟨r, components, h_bsd⟩
+
+/-!
+## Important Note
+
+This formalization represents a theoretical exploration of BSD using spectral methods.
+It is NOT a rigorous proof. The BSD conjecture remains open and would require
+extensive validation by the mathematical community to be considered solved.
+
+This framework should be viewed as:
+1. A computational and theoretical research tool
+2. An exploration of spectral approaches to arithmetic geometry
+3. A working hypothesis for investigating BSD structure
+
+The use of axioms represents SPECULATIVE theoretical principles that require
+further mathematical development and validation.
+-/
 
 end AELION

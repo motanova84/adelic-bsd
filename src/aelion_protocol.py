@@ -1,8 +1,22 @@
 """
-AELION·EILAN Protocol: Unconditional Resolution of BSD Conjecture
-==================================================================
+AELION·EILAN Protocol: Theoretical Framework for BSD Conjecture
+================================================================
 
-This module implements the formal transcription of the unconditional resolution
+IMPORTANT DISCLAIMER:
+--------------------
+This module implements a THEORETICAL FRAMEWORK and COMPUTATIONAL APPROACH to the
+Birch and Swinnerton-Dyer (BSD) Conjecture. This is EXPLORATORY RESEARCH and
+should NOT be considered a rigorous mathematical proof. The BSD conjecture remains
+one of the Millennium Prize Problems and any claimed resolution would require
+extensive peer review and validation by the mathematical community.
+
+This implementation:
+1. Presents a SPECULATIVE framework based on spectral theory
+2. Provides COMPUTATIONAL VALIDATION for specific test cases
+3. Explores THEORETICAL connections between spectral operators and L-functions
+4. Should be viewed as a RESEARCH TOOL, not established mathematical fact
+
+This module implements the formal transcription of a theoretical resolution
 of the Birch and Swinnerton-Dyer (BSD) Conjecture for ALL ranks (r ≥ 0), based
 on the inherent logic of the AELION·EILAN Protocol and the structural coercion
 of the Adelic Spectral Operator M_E(s).
@@ -99,14 +113,17 @@ class SpectralCoherenceAxiom:
         # Get L-function at s
         try:
             L_value = self.E.lseries().dokchitser()(self.s)
-        except:
+        except (ValueError, RuntimeError, AttributeError) as e:
+            # Fallback for cases where dokchitser is not available
             L_value = self.E.lseries().L_ratio() if self.s == 1.0 else 0.0
         
         # Compute analytic rank
         r_an = self.E.analytic_rank()
         
         # Spectral rank from kernel dimension
-        # ord_{s=1} L(E,s) = dim ker M_E(1)
+        # NOTE: This is a theoretical correspondence, not a computational derivation
+        # In the full theory: ord_{s=1} L(E,s) = dim ker M_E(1)
+        # For computational purposes, we use the known analytic rank
         kernel_dim = r_an
         
         # Construct spectral data
@@ -211,7 +228,8 @@ class SpectralCoherenceAxiom:
             'L_value': L_value,
             'c_factor': c_data,
             'kernel_dimension': op_data['kernel_dimension'],
-            'identity_satisfied': True,  # By construction
+            'identity_satisfied': True,  # NOTE: Theoretical framework, not rigorous proof
+            'warning': 'This is a computational validation, not a mathematical proof',
             'timestamp': datetime.now().isoformat()
         }
         
@@ -285,7 +303,8 @@ class RankCoercionAxiom:
             'analytic_rank': r_an,
             'algebraic_rank': r_alg,
             'ranks_match': (r_spec == r_an == r_alg),
-            'coercion_verified': True,
+            'coercion_verified': (r_spec == r_an == r_alg),  # Verified computationally
+            'warning': 'Computational validation using known rank formulas',
             'timestamp': datetime.now().isoformat()
         }
         
@@ -384,7 +403,8 @@ class RegulatorCoercion:
             'arithmetic_regulator': reg_arith,
             'relative_error': float(relative_error),
             'identity_verified': (relative_error < 1e-6),
-            'PT_condition_satisfied': True,
+            'PT_condition_satisfied': (relative_error < 1e-6),  # Based on numerical agreement
+            'warning': 'Numerical validation of regulator identity',
             'timestamp': datetime.now().isoformat()
         }
         
@@ -498,7 +518,8 @@ class PAdicCoercion:
             'tamagawa_product': tam_prod,
             'torsion_order': tors_order,
             'sha_finiteness': sha_bound_from_structure,
-            'sha_is_finite': True,
+            'sha_is_finite': True,  # NOTE: Assumed from theoretical framework
+            'warning': 'Sha finiteness is conjectural; validated computationally for known cases',
             'timestamp': datetime.now().isoformat()
         }
         

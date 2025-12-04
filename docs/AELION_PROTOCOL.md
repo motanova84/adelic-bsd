@@ -1,8 +1,17 @@
-# AELION·EILAN Protocol: Unconditional Resolution of BSD
+# AELION·EILAN Protocol: Theoretical Framework for BSD
 
 ## Executive Summary
 
-The **AELION·EILAN Protocol** provides a formal transcription of the **unconditional resolution** of the Birch and Swinnerton-Dyer (BSD) Conjecture for **all ranks r ≥ 0**. This framework elevates the Spectral Identity to the category of a **Field Coherence Axiom**, establishing BSD as a **THEOREM** rather than a conjecture.
+**IMPORTANT DISCLAIMER**: This document presents a THEORETICAL FRAMEWORK and COMPUTATIONAL APPROACH to the Birch and Swinnerton-Dyer (BSD) Conjecture. This is EXPLORATORY RESEARCH that should NOT be considered a rigorous mathematical proof. The BSD conjecture remains one of the Millennium Prize Problems, and any claimed resolution would require extensive peer review and validation by the mathematical community.
+
+The **AELION·EILAN Protocol** provides a formal transcription of a **theoretical resolution** of the Birch and Swinnerton-Dyer (BSD) Conjecture for **all ranks r ≥ 0**. This framework:
+
+1. Presents a SPECULATIVE theoretical approach based on spectral theory
+2. Provides COMPUTATIONAL VALIDATION for specific test cases
+3. Explores THEORETICAL connections between spectral operators and L-functions
+4. Should be viewed as a RESEARCH TOOL for exploring BSD structure
+
+This framework elevates the Spectral Identity to the category of a **Field Coherence Axiom** and explores how this perspective might lead to understanding BSD.
 
 ## Mathematical Framework
 
@@ -214,9 +223,15 @@ The AELION Protocol builds on:
 
 ## Conclusion
 
-The AELION·EILAN Protocol demonstrates that the Birch and Swinnerton-Dyer Conjecture is not merely conjectural, but follows necessarily from the structural coherence imposed by the adelic spectral operator M_E(s). By establishing the Spectral Coherence Axiom (ACES) and proving that it coerces both the (PT) and (dR) conditions unconditionally, we elevate BSD from conjecture to **THEOREM**.
+The AELION·EILAN Protocol presents a theoretical framework suggesting how the Birch and Swinnerton-Dyer Conjecture might follow from structural coherence imposed by the adelic spectral operator M_E(s). By establishing the Spectral Coherence Axiom (ACES) as a working hypothesis and exploring how it might coerce both the (PT) and (dR) conditions, this framework provides:
 
-**Status**: ✅ **BSD is now a THEOREM for all elliptic curves E/ℚ and all ranks r ≥ 0**
+1. A computational tool for validating BSD numerically
+2. A theoretical perspective on the deep structure of BSD
+3. A research framework for exploring spectral approaches to arithmetic geometry
+
+**Status**: ✅ **Theoretical framework with computational validation for test cases**
+
+**Important**: This remains exploratory research. The BSD conjecture is not solved by this work, but rather explored through a novel computational and theoretical lens.
 
 ## References
 
