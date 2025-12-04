@@ -207,9 +207,12 @@ class BSDCompleteVerifier:
         sha = result['sha_finiteness']
         
         self._vprint(f"\n1. Vanishing Order Identity:")
-        self._vprint(f"   ord Λ = ord det = r: {vo['orders_match']} ✅" if vo['orders_match'] else "   ❌")
-        self._vprint(f"   Ranks match: {vo['ranks_match']} ✅" if vo['ranks_match'] else "   ❌")
-        self._vprint(f"   c(1) ≠ 0: {vo['c_nonvanishing']} ✅" if vo['c_nonvanishing'] else "   ❌")
+        orders_status = "✅" if vo['orders_match'] else "❌"
+        ranks_status = "✅" if vo['ranks_match'] else "❌"
+        c_status = "✅" if vo['c_nonvanishing'] else "❌"
+        self._vprint(f"   ord Λ = ord det = r: {orders_status}")
+        self._vprint(f"   Ranks match: {ranks_status}")
+        self._vprint(f"   c(1) ≠ 0: {c_status}")
         
         self._vprint(f"\n2. Sha Finiteness:")
         self._vprint(f"   Finiteness proved: {sha['finiteness_proved']} ✅" if sha['finiteness_proved'] else "   ❌")

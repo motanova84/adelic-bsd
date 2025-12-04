@@ -259,12 +259,15 @@ class ShaFinitenessProver:
                 
             except ImportError:
                 # Fallback: assume PT for now (would need full implementation)
-                self._vprint(f"      Note: Full PT verification module not available")
+                # WARNING: This is a conservative assumption that may not hold
+                self._vprint(f"      ⚠️  WARNING: Full PT verification module not available")
+                self._vprint(f"      Assuming PT compatibility (requires verification)")
                 self._PT_result = {
                     'compatible': True,
                     'assumed': True,
-                    'method': 'Assumed (rank >= 2)',
-                    'rank': self.rank
+                    'method': 'Assumed (rank >= 2) - REQUIRES VERIFICATION',
+                    'rank': self.rank,
+                    'warning': 'PT compatibility assumed without full verification'
                 }
         
         except Exception as e:
