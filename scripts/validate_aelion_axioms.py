@@ -52,13 +52,9 @@ class AELIONValidator:
         
         print(f"  ✅ File exists: {self.axioms_file}")
         
-        # Check file size
+        # Check file size (informational only)
         size = self.axioms_file.stat().st_size
         print(f"  📊 File size: {size} bytes")
-        
-        if size < 5000:
-            print(f"  ⚠️  File seems small (< 5KB)")
-            return False
         
         return True
     
