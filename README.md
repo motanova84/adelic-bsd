@@ -158,12 +158,50 @@ results = demonstrate_analytical_bsd("11a1", s_value=1.0, verbose=True)
 
 ---
 
+### 🔬 Vanishing Order & Sha Finiteness Verification (NEW!)
+
+Complete verification of the vanishing order identity and Tate-Shafarevich finiteness:
+
+```python
+# Verify vanishing order identity for a single curve
+from src.vanishing_order_verification import verify_vanishing_order_for_curve
+result = verify_vanishing_order_for_curve('11a1')
+
+# Prove Tate-Shafarevich finiteness
+from src.sha_finiteness_proof import prove_sha_finiteness_for_curve
+proof = prove_sha_finiteness_for_curve('11a1')
+
+# Or run complete workflow
+# sage -python validate_bsd_complete.py
+```
+
+**Key Features:**
+- ✓ Verifies: ord_{s=1} det(I - K_E(s)) = ord_{s=1} Λ(E, s) = r(E)
+- ✓ Proves Sha finiteness under (dR) + (PT) compatibilities
+- ✓ Computes explicit bounds: #Ш(E/Q) ≤ product of local bounds
+- ✓ Batch verification for multiple curves
+- ✓ Complete test suite with 35+ tests
+
+**Quick Links:**
+- 📖 [Documentation](VANISHING_ORDER_AND_SHA_FINITENESS.md) - Complete guide
+- 🧪 [Tests](tests/test_vanishing_order_verification.py) - Vanishing order tests
+- 🧪 [Tests](tests/test_sha_finiteness_proof.py) - Sha finiteness tests  
+- 💻 [Implementation](src/vanishing_order_verification.py) - Vanishing order module
+- 💻 [Implementation](src/sha_finiteness_proof.py) - Sha finiteness module
+- 🎬 [Complete Workflow](validate_bsd_complete.py) - End-to-end verification
+
+---
+
 ### Validación integral y cierre matemático
 
 ```bash
 # 0. Validación identidad espectral (NUEVO)
 python3 validate_spectral_identity_all_ranks.py
 # Valida la identidad fundamental para rangos r=0,1,2,3
+
+# 0b. Verificación completa BSD (NUEVO)
+sage -python validate_bsd_complete.py
+# Verifica orden de anulación y finitud de Sha
 
 # 1. Validación numérica principal
 python3 validate_v5_coronacion.py --precision 30
