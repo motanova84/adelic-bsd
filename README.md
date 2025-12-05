@@ -105,9 +105,9 @@ $$\det(I - K_E(s)) = c(s) \cdot \Lambda(E, s)$$
 
 ---
 
-## 🚀 Guía rápida / Quick Start
+## Guía rápida / Quick Start
 
-### 🎵 SABIO ∞⁴ - Quantum-Conscious Framework (NEW!)
+###  SABIO ∞⁴ - Quantum-Conscious Framework (NEW!)
 
 ```python
 # One-line magic: Execute complete quantum-conscious validation
@@ -333,7 +333,7 @@ adelic-bsd/
 
 ---
 
-## 🏆 Declaración final
+##  Declaración final
 
 **Este repositorio representa el estado del arte en validación matemática y computacional para BSD y RH. Todos los flujos son reproducibles, auditables y listos para publicación científica.**
 
@@ -354,7 +354,7 @@ python scripts/generate_final_certificates.py --output-dir certificates
 ```
 
 See [`docs/COMPLETE_VERIFICATION_GUIDE.md`](docs/COMPLETE_VERIFICATION_GUIDE.md) for detailed usage.
-# 🌌 Marco Adelic-BSD: Prueba Irrefutable Completa
+#  Marco Adelic-BSD: Prueba Irrefutable Completa
 
 [![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://www.python.org)
 [![SageMath](https://img.shields.io/badge/SageMath-9.8+-orange.svg)](https://www.sagemath.org)
@@ -367,7 +367,7 @@ See [`docs/COMPLETE_VERIFICATION_GUIDE.md`](docs/COMPLETE_VERIFICATION_GUIDE.md)
 
 ---
 
-## 🎯 Estado de la Prueba: **IRREFUTABLE** ✅
+##  Estado de la Prueba: **IRREFUTABLE** ✅
 
 | Componente | Estado | Verificación |
 |------------|--------|--------------|
@@ -412,7 +412,7 @@ See [`docs/COMPLETE_VERIFICATION_GUIDE.md`](docs/COMPLETE_VERIFICATION_GUIDE.md)
 
 ---
 
-## 🚀 Inicio Rápido (3 minutos)
+##  Inicio Rápido (3 minutos)
 ```bash
 # 1. Clonar repositorio
 git clone https://github.com/motanova84/adelic-bsd.git
@@ -433,18 +433,18 @@ python scripts/run_complete_verification.py
 
 ---
 
-## 📊 Resumen Ejecutivo
+##  Resumen Ejecutivo
 
 Este repositorio implementa el **marco espectral adélico** para la Conjetura de Birch-Swinnerton-Dyer (BSD) y la Hipótesis de Riemann (RH), con:
 
-### 🔬 Validación Científica Completa
+###  Validación Científica Completa
 
 - **Calibración Automática**: Parámetro espectral `a` optimizado mediante 3 métodos independientes (gradiente, búsqueda global, bootstrap)
 - **Verificación Exhaustiva**: Validación numérica con 5 implementaciones (mpmath, SciPy, SymPy, Decimal, OEIS)
 - **Formalización Matemática**: Prueba completa en Lean 4 verificada formalmente
 - **Consistencia Cruzada**: Error < 0.001% entre todos los métodos
 
-### 📈 Resultados Clave
+###  Resultados Clave
 ```python
 # Parámetro Espectral Calibrado
 a_calibrated = 200.84 ± 2.1
@@ -463,7 +463,7 @@ f₀ = |ζ'(1/2)| × φ³ = 141.7001 Hz ✅
 
 ---
 
-## 🏗️ Arquitectura del Sistema
+##  Arquitectura del Sistema
 ```
 adelic-bsd/
 ├── 📦 CALIBRACIÓN AUTOMÁTICA
@@ -540,7 +540,7 @@ Referencia: Yuan-Zhang-Zhang (2013)
 
 ---
 
-## 💻 Uso Avanzado
+##  Uso Avanzado
 
 ### 1️⃣ Calibración Automática
 ```python
@@ -686,7 +686,7 @@ def test_no_sorry_in_critical_proofs():
 
 ---
 
-## 🧮 Hardy-Littlewood & Spectral Algorithms
+##  Hardy-Littlewood & Spectral Algorithms
 
 ### 6. Hardy-Littlewood Singular Series
 
@@ -821,7 +821,7 @@ theorem f0_complete_derivation :
 
 ---
 
-## 📊 Resultados de Validación
+##  Resultados de Validación
 
 ### Calibración Multi-método
 ```json
@@ -871,7 +871,7 @@ theorem f0_complete_derivation :
 
 ---
 
-## 🎓 Publicaciones y Referencias
+##  Publicaciones y Referencias
 
 ### Artículo Principal
 
@@ -916,7 +916,7 @@ Este repositorio es parte de un programa de investigación más amplio:
 
 ---
 
-## 🚀 Pipeline de CI/CD
+##  Pipeline de CI/CD
 
 ### Automatización Completa
 ```yaml
@@ -1010,7 +1010,7 @@ algoritmo/
 
 ---
 
-## 📚 Documentación Completa
+##  Documentación Completa
 
 ### Guías Principales
 
@@ -1027,7 +1027,7 @@ algoritmo/
 
 ### Tutoriales y Demos
 
-- **⭐ [validate_spectral_identity_all_ranks.py](validate_spectral_identity_all_ranks.py)** - **Validación identidad espectral** (NUEVO)
+- ** [validate_spectral_identity_all_ranks.py](validate_spectral_identity_all_ranks.py)** - **Validación identidad espectral** (NUEVO)
   - Valida det(I - K_E(s)) = c(s)·Λ(E,s) para r=0,1,2,3
   - Verifica ord_{s=1} det = r(E)
   - Comprueba c(1) ≠ 0
@@ -1070,7 +1070,7 @@ This work is part of a broader research program connecting three complementary d
 
 ---
 
-## 🤝 Contribución
+##  Contribución
 
 ### ¿Cómo Contribuir?
 
@@ -1119,7 +1119,7 @@ Ver [LICENSE](LICENSE) para detalles completos.
 
 ---
 
-## 📬 Contacto
+##  Contacto
 
 **José Manuel Mota Burruezo (JMMB Ψ·∴)**
 - 🏛️ Instituto Consciencia Cuántica
