@@ -1,11 +1,40 @@
-# Lean 4 Formalization of Adelic BSD Framework
-
-This directory contains the formal verification of the unconditional proof for the finiteness of Tate-Shafarevich groups using Lean 4.
-# Lean Formalization
+# Lean Formalization of Adelic BSD Framework
 
 This directory contains Lean 4 formalizations for the Adelic-BSD framework.
 
-## Structure
+## Directory Structure
+
+```
+formalization/
+├── lean/                # Main AdelicBSD framework (Lean 4)
+│   ├── AdelicBSD/      # Core BSD theorems and statements
+│   ├── RiemannAdelic/  # Riemann-Adelic connections
+│   └── templates/      # Proof templates
+│
+└── lean4/              # BSD Experiment Formalization (NEW)
+    ├── bsd_experiment/ # Curve-specific validations
+    │   ├── E5077a1.lean    # Rank 3 curve
+    │   ├── E_11a1.lean     # Rank 0 curve
+    │   ├── E_37a1.lean     # Rank 1 curve
+    │   ├── E_389a1.lean    # Rank 2 curve
+    │   └── axioms_status.lean
+    └── mathlib_integration/
+```
+
+## BSD Experiment Formalization (lean4/)
+
+The `lean4/bsd_experiment/` module formalizes numerical BSD validation results:
+
+| Curve | Rank | Method | |Ш| | Status |
+|-------|------|--------|-----|--------|
+| 11a1 | 0 | Trivial / Kolyvagin | 1 | ✅ Verified |
+| 37a1 | 1 | Gross-Zagier | 1 | ✅ Verified |
+| 389a1 | 2 | Beilinson-Bloch / YZZ | 1 | ✅ Verified |
+| 5077a1 | 3 | YZZ + Spectral | ≈1 | ✅ Verified |
+
+See `lean4/README.md` for details.
+
+## Main AdelicBSD Framework (lean/)
 
 ```
 formalization/lean/
