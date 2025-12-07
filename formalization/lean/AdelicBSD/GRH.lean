@@ -11,19 +11,20 @@ Date: December 2025
 import Mathlib.NumberTheory.LSeries.Basic
 import Mathlib.Analysis.Complex.Basic
 import AdelicBSD.Constants
+import AdelicBSD.BSDStatement
 
 namespace GRH
 
-open Complex
+open Complex AdelicBSD
 
 /-- Type representing an elliptic curve over ℚ -/
-axiom EllipticCurve : Type
+def EllipticCurve := AdelicBSD.EllipticCurve
 
 /-- The L-function of an elliptic curve -/
 axiom L_function : EllipticCurve → ℂ → ℂ
 
 /-- The Tate-Shafarevich group -/
-axiom TateShafarevich : EllipticCurve → Type
+def TateShafarevich (E : EllipticCurve) : Type := AdelicBSD.TateShafarevich E
 
 /-- Finiteness of Sha assuming GRH -/
 axiom Sha_finiteness_from_GRH (E : EllipticCurve) : 

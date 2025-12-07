@@ -15,16 +15,16 @@ Date: December 2025
 -/
 
 import AdelicBSD.GRH
-import Mathlib.NumberTheory.EllipticCurves
+import Mathlib.AlgebraicGeometry.EllipticCurve
 import AdelicBSD.BSDStatement
 import AdelicBSD.Main
 
 namespace BSD_Complete
 
-open Complex
+open Complex AdelicBSD
 
 /-- Elliptic curve over ℚ -/
-def EllipticCurve := GRH.EllipticCurve
+def EllipticCurve := AdelicBSD.EllipticCurve
 
 /-- L-function of elliptic curve -/
 def L (E : EllipticCurve) (s : ℂ) : ℂ := GRH.L_function E s
@@ -48,7 +48,7 @@ noncomputable def rank_Z (E : EllipticCurve) : ℕ :=
   AdelicBSD.algebraic_rank E
 
 /-- Tate-Shafarevich group -/
-def Sha (E : EllipticCurve) : Type := GRH.TateShafarevich E
+def Sha (E : EllipticCurve) : Type := AdelicBSD.TateShafarevich E
 
 /-- Tamagawa number at prime p -/
 noncomputable def Tamagawa_p (E : EllipticCurve) : ℕ := 
@@ -84,7 +84,7 @@ axiom BSD_full_formula_rank_le_one (E : EllipticCurve)
   (h : rank_Z E ≤ 1) 
   (h_sha_finite : sha_card E < ⊤)
   (h_L_nonzero : L E 1 ≠ 0) :
-  (Tamagawa_p E : ℝ) * Reg E * (disc E : ℝ).natAbs = 
+  (Tamagawa_p E : ℝ) * Reg E * (disc E).natAbs = 
     (sha_card E : ℝ) * ((L E 1).abs / Omega E) ^ 2
 
 /-- Higher rank reduction via GRH and p-adic cohomology -/
@@ -102,12 +102,12 @@ theorem BSD_rank_equivalence (E : EllipticCurve) :
     ord_at_one E = rank_Z E := by
   apply rank_from_spectral_zero_order
   · exact BSD_spectral_identity E
-  · exact GRH.Sha_finiteness_from_GRH E   -- GRH que acabamos de cerrar
+  · exact AdelicBSD.sha_is_finite E   -- Sha finiteness from spectral method
 
 /-- Parte finita de la fórmula cuando rango ≤1 -/
 theorem BSD_finite_part_rank_le_one (E : EllipticCurve) (h : rank_Z E ≤ 1) :
     sha_card E < ⊤ ∧ L E 1 ≠ 0 → 
-    (Tamagawa_p E : ℝ) * Reg E * (disc E : ℝ).natAbs = 
+    (Tamagawa_p E : ℝ) * Reg E * (disc E).natAbs = 
       (sha_card E : ℝ) * ((L E 1).abs / Omega E) ^ 2 := by
   intro ⟨h_sha_finite, h_L_nonzero⟩
   exact BSD_full_formula_rank_le_one E h h_sha_finite h_L_nonzero
