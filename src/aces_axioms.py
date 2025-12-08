@@ -712,7 +712,8 @@ class ShaFinitenessAxiom:
             r = self.E.rank()
             if r > 0:
                 reg = float(self.E.regulator())
-                reg_nonzero = reg > 1e-10
+                # Use a consistent threshold for nonzero regulator; see BSD literature for typical values.
+                reg_nonzero = reg > 1e-2
             else:
                 reg = 1.0
                 reg_nonzero = True
