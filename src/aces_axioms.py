@@ -717,7 +717,7 @@ class ShaFinitenessAxiom:
             else:
                 reg = 1.0
                 reg_nonzero = True
-        except:
+        except Exception:
             reg = 1.0
             reg_nonzero = True
         
