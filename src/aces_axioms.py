@@ -640,7 +640,7 @@ class ShaFinitenessAxiom:
                     sha_an = self.E.sha().an()
                     bound = float(sha_an)
                     bound_type = 'computed'
-                except:
+                except Exception:
                     bound = 1.0
                     bound_type = 'trivial'
             else:
