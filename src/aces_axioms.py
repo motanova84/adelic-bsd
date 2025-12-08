@@ -655,7 +655,7 @@ class ShaFinitenessAxiom:
                     else:
                         bound = 1.0
                         bound_type = 'trivial'
-                except:
+                except Exception:
                     bound = 1.0
                     bound_type = 'trivial'
             
