@@ -25,9 +25,7 @@ Date: December 2025
 """
 
 from sage.all import (
-    EllipticCurve, QQ, ZZ, RR, CC,
-    matrix, identity_matrix, vector,
-    factorial, log, exp, sqrt
+    EllipticCurve, sqrt
 )
 import numpy as np
 from typing import Dict, List, Tuple, Any, Optional
