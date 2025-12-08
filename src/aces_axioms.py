@@ -134,7 +134,9 @@ class SpectralCoherenceAxiom:
                 if self.verbose:
                     print(f"   Using E.regulator() = {self._reg_E:.6e}")
                 return self._reg_E
-            except:
+            except (AttributeError, ValueError, ArithmeticError) as e2:
+                if self.verbose:
+                    print(f"   Warning: Could not compute E.regulator(): {e2}")
                 # Default to 1 for rank 0 or unknown
                 self._reg_E = 1.0
                 return self._reg_E
