@@ -169,6 +169,9 @@ formalization/lean/.lake/
 formalization/lean/lakefile.olean
 formalization/lean/build/
 formalization/lean/lean_packages/
+lean4/.lake/
+lean4/build/
+lean4/lake-packages/
 
 # SageMath integration directory (NOTE: now part of repository structure)
 # sagemath_integration/ - removed from ignore to track SageMath module structure
