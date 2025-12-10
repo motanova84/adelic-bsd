@@ -38,6 +38,7 @@ def pytest_collection_modifyitems(config, items):
     """
     sage_required_modules = [
         'test_advanced_modules',
+        'test_birch_swinnerton_lhs',
         'test_certificate_generation',
         'test_finiteness',
         'test_integration_advanced',
