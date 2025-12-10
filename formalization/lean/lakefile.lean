@@ -12,6 +12,9 @@ lean_lib «RiemannAdelic» where
 
 lean_lib «BSD» where
   -- BSD parity and Selmer formalization library
+lean_lib «RationalStructures» where
+  -- BSD Rational Structures library for dR vs PT comparison
+  srcDir := "rational_structures"
 
 @[default_target]
 lean_exe «adelic_bsd» where
