@@ -13,6 +13,11 @@ from .mass_formal_proof import (
 )
 from .mass_verification import MassBSDVerifier
 from .certificate_generator import BSDCertificateGenerator
+from .sha_empirical_estimator import (
+    ShaEmpiricalEstimator,
+    run_empirical_validation,
+    estimate_sha_dataframe
+)
 
 __all__ = [
     'FormalBSDProver',
@@ -20,5 +25,8 @@ __all__ = [
     'MassFormalProof',
     'batch_prove_bsd',
     'MassBSDVerifier',
-    'BSDCertificateGenerator'
+    'BSDCertificateGenerator',
+    'ShaEmpiricalEstimator',
+    'run_empirical_validation',
+    'estimate_sha_dataframe'
 ]
