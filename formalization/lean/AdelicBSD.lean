@@ -8,3 +8,4 @@ import AdelicBSD.SelmerDesc
 import AdelicBSD.Traces.ModularParam
 import AdelicBSD.BSDStatement
 import AdelicBSD.BirchSwinnertonDyerFinal
+import AdelicBSD.P17Optimality
