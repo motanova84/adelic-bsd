@@ -40,13 +40,15 @@ See `lean4/README.md` for details.
 formalization/lean/
 ├── lakefile.lean              # Lake build configuration
 ├── AdelicBSD.lean            # Root module (imports all components)
-└── AdelicBSD/
-    ├── Constants.lean        # Fundamental constants
-    ├── Zeta.lean            # Riemann zeta function properties
-    ├── GoldenRatio.lean     # Golden ratio algebra
-    ├── Emergence.lean       # Emergence formula for f₀
-    ├── Main.lean            # Main unconditional theorem
-    └── BSDFinal.lean        # Final BSD conjecture formalization
+├── AdelicBSD/
+│   ├── Constants.lean        # Fundamental constants
+│   ├── Zeta.lean            # Riemann zeta function properties
+│   ├── GoldenRatio.lean     # Golden ratio algebra
+│   ├── Emergence.lean       # Emergence formula for f₀
+│   ├── Main.lean            # Main unconditional theorem
+│   └── BSDFinal.lean        # Final BSD conjecture formalization
+└── bsd_formula/
+    └── sha_leading_term.lean # BSD leading term formula
 ```
 
 ## Key Components
@@ -95,6 +97,16 @@ Complete formalization of the Birch and Swinnerton-Dyer conjecture:
 - ✅ `pt_compatibility` - Period-Tamagawa compatibility
 - ✅ `BSD_final_statement` - Complete BSD conjecture statement
 - ✅ `BSD_qcal_connection` - Connection to QCAL frequency f₀ = 141.7001 Hz
+
+### bsd_formula/sha_leading_term.lean
+BSD leading term formula for computing |Ш(E/ℚ)|:
+- ✅ `BSDData` - Structure for BSD invariants (rank, period, regulator, etc.)
+- ✅ `BSDHypothesis` - Extended structure with positivity conditions
+- ⚠️ `bsd_sha_leading_term` - Main leading term formula (requires sign compatibility)
+- ⚠️ `bsd_sha_rank_0` - Specialized for rank 0 curves
+- ⚠️ `bsd_sha_rank_1` - Specialized for rank 1 curves
+- ⚠️ `bsd_sha_rank_2` - Specialized for rank 2 curves
+
 ### BirchSwinnertonDyerFinal.lean
 Final stage of BSD formalization (dR and PT compatibility):
 - `DeRhamCohomology` - Structure for H¹_dR(E/ℚ)
@@ -106,14 +118,15 @@ Final stage of BSD formalization (dR and PT compatibility):
 ## Status
 
 ### Proof Completion
-- **Total theorems**: 12
-- **Completed**: 11 (92%)
+- **Total theorems**: 16
+- **Completed**: 11 (69%)
+- **Partial (sign/integrality)**: 4 (BSD formula theorems)
 - **Remaining**: 1 (numerical verification in Emergence)
 
 ### Sorry Count
 - **Initial**: 4
-- **Current**: 1 (in emergence_formula_correct, marked as numerical verification)
-- **Reduction**: 75%
+- **Current**: 5 (1 in emergence_formula_correct, 4 in sha_leading_term)
+- **Note**: sha_leading_term sorries require sign compatibility proofs
 
 ### Main Result
 The main theorem `main_theorem_f0` is **complete without sorry** ✅
