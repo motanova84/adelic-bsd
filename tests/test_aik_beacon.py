@@ -195,7 +195,7 @@ def test_aik_beacon_integrity_validation():
 
 def test_aik_beacon_with_different_curves():
     """Test AIK beacon generation for multiple curves"""
-    from adelic_bsd.verify import verify_bsd
+    from adelic_bsd.verify import verify_bsd, verify_ecdsa_signature
     
     curves = ['11a1', '14a1', '15a1']
     hashes = []
