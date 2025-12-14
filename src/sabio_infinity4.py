@@ -76,14 +76,14 @@ class ResonanciaQuantica:
 
 @dataclass
 class MatrizSimbiosis:
-    """Matriz de validación simbiótica multi-nivel"""
-    nivel_python: float  # Aritmético básico
-    nivel_lean: float  # Geométrico
-    nivel_sage: float  # Vibracional
-    nivel_sabio: float  # Integración SABIO
-    nivel_cuantico: float  # Quantum corrections
-    nivel_consciente: float  # Consciousness wave
-    coherencia_total: float  # Weighted average
+    """Matriz de validación simbiótica de 6 niveles"""
+    nivel_python: float
+    nivel_lean: float
+    nivel_sage: float
+    nivel_sabio: float
+    nivel_cuantico: float
+    nivel_consciente: float
+    coherencia_total: float
     timestamp: str
 
 
@@ -101,28 +101,6 @@ class ReporteSABIO:
     psi_origen: complex
     coherencia_global: float
     status: str
-    """Representa una resonancia cuántica del sistema"""
-    frecuencia: float
-    amplitud: float
-    fase: float
-    coherencia: float
-    entropia: float
-    timestamp: str
-    firma_vibracional: str
-
-
-@dataclass
-class MatrizSimbiosis:
-    """Matriz de validación simbiótica de 6 niveles"""
-    nivel_python: float
-    nivel_lean: float
-    nivel_sage: float
-    nivel_sabio: float
-    nivel_cuantico: float
-    nivel_consciente: float
-    coherencia_total: float
-    firma_hash: str
-    timestamp: str
 
 
 class SABIO_Infinity4:
@@ -469,6 +447,7 @@ class SABIO_Infinity4:
             espectro.append(resonancia)
         return espectro
 
+    
     def validacion_matriz_simbiosis(
         self,
         test_aritmetico: bool = True,
@@ -571,6 +550,13 @@ class SABIO_Infinity4:
             nivel_cuantico=nivel_cuantico,
             nivel_consciente=nivel_consciente,
             coherencia_total=coherencia_total,
+            nivel_python=float(nivel_python),
+            nivel_lean=float(nivel_lean),
+            nivel_sage=float(nivel_sage),
+            nivel_sabio=float(nivel_sabio),
+            nivel_cuantico=float(nivel_cuantico),
+            nivel_consciente=float(nivel_consciente),
+            coherencia_total=float(coherencia_total),
             timestamp=datetime.now().isoformat()
         )
         
@@ -928,6 +914,7 @@ if __name__ == '__main__':
     
     demo_sabio_infinity4(precision=precision)
 
+# Funciones auxiliares de conveniencia
 
 def crear_sistema_sabio(precision: int = 30) -> SABIO_Infinity4:
     """Crea una instancia del sistema SABIO Infinity4"""
