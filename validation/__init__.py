@@ -1,4 +1,9 @@
 """
+BSD Validation Module
+
+This module provides validation scripts for the Birch and Swinnerton-Dyer
+conjecture computations.
+"""
 Validation Module
 
 Scripts for validating BSD formula components and estimating Sha values.
