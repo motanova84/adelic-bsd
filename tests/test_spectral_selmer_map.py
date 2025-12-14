@@ -1,259 +1,174 @@
 """
 Tests for Spectral Selmer Map
+Tests the spectral Selmer map implementation and related functionality
 Comprehensive tests for the Selmer map implementation
 """
 
 import sys
 import os
-import pytest
-
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
-# Conditionally import sage - these tests will be skipped if sage is not available
-pytest.importorskip("sage.all")
 from sage.all import EllipticCurve
-
-
-def test_spectral_selmer_map_import():
-    """Test that SpectralSelmerMap can be imported"""
-    try:
-        from src.cohomology.spectral_selmer_map import SpectralSelmerMap
-        print("✓ SpectralSelmerMap imported successfully")
-        return True
-    except Exception as e:
-        print(f"✗ Import failed: {e}")
-        return False
 
 
 def test_spectral_selmer_map_initialization():
     """Test SpectralSelmerMap initialization"""
-    try:
-        from src.cohomology.spectral_selmer_map import SpectralSelmerMap
-
-        E = EllipticCurve('11a1')
-        p = 2
-
-        selmer = SpectralSelmerMap(E, p, precision=20)
-
-        assert selmer.E == E
-        assert selmer.p == p
-        assert selmer.precision == 20
-
-        print("✓ SpectralSelmerMap initialized correctly")
-        return True
-    except Exception as e:
-        print(f"✗ Initialization failed: {e}")
-        return False
+    from src.cohomology.spectral_selmer_map import SpectralSelmerMap
+    
+    E = EllipticCurve('11a1')
+    p = 5
+    
+    selmer_map = SpectralSelmerMap(E, p)
+    
+    assert selmer_map.E == E
+    assert selmer_map.p == p
+    assert selmer_map.precision == 20
+    assert selmer_map.reduction_type in ['good', 'multiplicative', 'additive']
+    
+    print("✓ SpectralSelmerMap initialization works")
 
 
-def test_compute_selmer_map():
-    """Test compute_selmer_map convenience function"""
-    try:
-        from src.cohomology.spectral_selmer_map import compute_selmer_map
-
-        E = EllipticCurve('11a1')
-        p = 2
-
-        result = compute_selmer_map(E, p)
-
-        assert result['map_initialized'] is True
-        assert result['prime'] == p
-        assert 'reduction_type' in result
-
-        print("✓ compute_selmer_map works correctly")
-        print(f"  Reduction type: {result['reduction_type']}")
-        return True
-    except Exception as e:
-        print(f"✗ compute_selmer_map failed: {e}")
-        return False
-
-
-def test_verify_selmer_compatibility():
-    """Test verify_selmer_compatibility function"""
-    try:
-        from src.cohomology.spectral_selmer_map import verify_selmer_compatibility
-
-        E = EllipticCurve('37a1')
-        p = 3
-
-        result = verify_selmer_compatibility(E, p)
-
-        assert 'map_well_defined' in result
-        assert result['prime'] == p
-        assert 'reduction_type' in result
-
-        print("✓ verify_selmer_compatibility works")
-        print(f"  Map well-defined: {result['map_well_defined']}")
-        return True
-    except Exception as e:
-        print(f"✗ verify_selmer_compatibility failed: {e}")
-        return False
+def test_phi_global_map():
+    """Test the global spectral Selmer map"""
+    from src.cohomology.spectral_selmer_map import SpectralSelmerMap
+    
+    E = EllipticCurve('11a1')
+    p = 5
+    
+    selmer_map = SpectralSelmerMap(E, p)
+    
+    # Create test vector
+    v = [1, 0, 0, 0]
+    
+    # Apply the map
+    cocycle = selmer_map.phi_global(v)
+    
+    assert 'cocycle' in cocycle
+    assert 'in_h1f' in cocycle
+    assert 'prime' in cocycle
+    assert cocycle['prime'] == p
+    
+    print("✓ phi_global map works")
 
 
-def test_construct_global_selmer_group():
-    """Test construct_global_selmer_group function"""
-    try:
-        from src.cohomology.spectral_selmer_map import construct_global_selmer_group
-
-        E = EllipticCurve('11a1')
-
-        result = construct_global_selmer_group(E)
-
-        assert 'local_maps' in result
-        assert 'primes' in result
-        assert 'curve' in result
-
-        print("✓ construct_global_selmer_group works")
-        print(f"  Primes: {result['primes']}")
-        print(f"  Local maps: {len(result['local_maps'])}")
-        return True
-    except Exception as e:
-        print(f"✗ construct_global_selmer_group failed: {e}")
-        return False
-
-
-def test_selmer_map_different_reduction_types():
-    """Test Selmer map on curves with different reduction types"""
-    try:
-        from src.cohomology.spectral_selmer_map import SpectralSelmerMap
-
-        # Test curves with different properties
-        test_cases = [
-            ('11a1', 2, 'good/bad reduction'),
-            ('37a1', 37, 'multiplicative reduction'),
-            ('389a1', 389, 'additive reduction'),
-        ]
-
-        results = []
-        for label, p, description in test_cases:
-            E = EllipticCurve(label)
-            selmer = SpectralSelmerMap(E, p)
-
-            results.append({
-                'curve': label,
-                'prime': p,
-                'reduction_type': selmer.reduction_type,
-                'description': description
-            })
-
-        print("✓ Selmer map handles different reduction types")
-        for r in results:
-            print(f"  {r['curve']} at p={r['prime']}: {r['reduction_type']}")
-
-        return True
-    except Exception as e:
-        print(f"✗ Different reduction types test failed: {e}")
-        return False
-
-
-def test_p_adic_integration_import():
-    """Test p-adic integration module import"""
-    try:
-        from src.cohomology.p_adic_integration import PAdicIntegration
-        print("✓ PAdicIntegration imported successfully")
-        return True
-    except Exception as e:
-        print(f"✗ PAdicIntegration import failed: {e}")
-        return False
+def test_reduction_type_detection():
+    """Test reduction type detection for different curves"""
+    from src.cohomology.spectral_selmer_map import SpectralSelmerMap
+    
+    # Good reduction at 5
+    E1 = EllipticCurve('11a1')
+    map1 = SpectralSelmerMap(E1, 5)
+    assert map1.reduction_type == 'good'
+    
+    # Bad reduction
+    E2 = EllipticCurve('11a1')
+    map2 = SpectralSelmerMap(E2, 11)
+    assert map2.reduction_type in ['multiplicative', 'additive']
+    
+    print("✓ Reduction type detection works")
 
 
 def test_p_adic_integration():
-    """Test p-adic integration functionality"""
-    try:
-        from src.cohomology.p_adic_integration import PAdicIntegration
-
-        E = EllipticCurve('11a1')
-        p = 2
-
-        integrator = PAdicIntegration(E, p, precision=20)
-
-        assert integrator.E == E
-        assert integrator.p == p
-        assert integrator.prec == 20
-
-        print("✓ PAdicIntegration initialized")
-        print(f"  Reduction type: {integrator.reduction_type}")
-        return True
-    except Exception as e:
-        print(f"✗ PAdicIntegration test failed: {e}")
-        return False
+    """Test p-adic integration module"""
+    from src.cohomology.p_adic_integration import PAdicIntegrator
+    
+    E = EllipticCurve('11a1')
+    p = 5
+    
+    integrator = PAdicIntegrator(E, p)
+    
+    # Test modular symbol integration
+    modular_symbol = {'cusps': (0, 'oo')}
+    integral = integrator.integrate_modular_symbol(modular_symbol, None)
+    
+    assert integral is not None
+    
+    print("✓ p-adic integration works")
 
 
-def test_bloch_kato_conditions_import():
-    """Test Bloch-Kato conditions module import"""
-    try:
-        from src.cohomology.bloch_kato_conditions import BlochKatoConditions
-        print("✓ BlochKatoConditions imported successfully")
-        return True
-    except Exception as e:
-        print(f"✗ BlochKatoConditions import failed: {e}")
-        return False
+def test_bloch_kato_conditions():
+    """Test Bloch-Kato condition verification"""
+    from src.cohomology.bloch_kato_conditions import BlochKatoVerifier
+    
+    E = EllipticCurve('11a1')
+    p = 5
+    
+    verifier = BlochKatoVerifier(E)
+    
+    # Test with a simple cocycle
+    cocycle = {'prime': p, 'reduction_type': 'good'}
+    results = verifier.verify_global_conditions(cocycle, p)
+    
+    assert 'local_conditions' in results
+    assert 'all_satisfied' in results
+    
+    print("✓ Bloch-Kato verification works")
 
 
-def test_bloch_kato_verification():
-    """Test Bloch-Kato conditions verification"""
-    try:
-        from src.cohomology.bloch_kato_conditions import verify_bloch_kato
-
-        E = EllipticCurve('11a1')
-        p = 2
-
-        result = verify_bloch_kato(E, p)
-
-        assert 'curve' in result
-        assert 'verification' in result
-        assert 'certificate_valid' in result
-
-        print("✓ Bloch-Kato verification works")
-        print(f"  Certificate valid: {result['certificate_valid']}")
-        return True
-    except Exception as e:
-        print(f"✗ Bloch-Kato verification failed: {e}")
-        return False
+def test_integration_spectral_to_selmer():
+    """Test integration between spectral vectors and Selmer map"""
+    from src.cohomology.spectral_selmer_map import SpectralSelmerMap
+    from src.cohomology.bloch_kato_conditions import BlochKatoVerifier
+    
+    E = EllipticCurve('37a1')  # Rank 1 curve
+    p = 5
+    
+    # Create Selmer map
+    selmer_map = SpectralSelmerMap(E, p)
+    
+    # Create test spectral vector
+    v = [1, 0]
+    
+    # Apply map
+    cocycle = selmer_map.phi_global(v)
+    
+    # Verify conditions
+    verifier = BlochKatoVerifier(E)
+    is_valid = verifier.verify_selmer_class(cocycle, p)
+    
+    # Should work without errors
+    assert isinstance(is_valid, bool)
+    
+    print("✓ Spectral to Selmer integration works")
 
 
 def run_all_tests():
     """Run all tests"""
-    print("\n" + "="*70)
-    print("SPECTRAL SELMER MAP TESTS")
-    print("="*70 + "\n")
-
+    print("\n" + "="*60)
+    print("TESTING SPECTRAL SELMER MAP MODULE")
+    print("="*60)
+    print()
+    
     tests = [
-        ("Import SpectralSelmerMap", test_spectral_selmer_map_import),
-        ("Initialize SpectralSelmerMap", test_spectral_selmer_map_initialization),
-        ("Compute Selmer map", test_compute_selmer_map),
-        ("Verify Selmer compatibility", test_verify_selmer_compatibility),
-        ("Construct global Selmer group", test_construct_global_selmer_group),
-        ("Different reduction types", test_selmer_map_different_reduction_types),
-        ("Import PAdicIntegration", test_p_adic_integration_import),
-        ("Test p-adic integration", test_p_adic_integration),
-        ("Import BlochKatoConditions", test_bloch_kato_conditions_import),
-        ("Verify Bloch-Kato conditions", test_bloch_kato_verification),
+        test_spectral_selmer_map_initialization,
+        test_phi_global_map,
+        test_reduction_type_detection,
+        test_p_adic_integration,
+        test_bloch_kato_conditions,
+        test_integration_spectral_to_selmer
     ]
-
-    results = []
-    for name, test_func in tests:
-        print(f"\nTest: {name}")
-        print("-" * 70)
-        result = test_func()
-        results.append((name, result))
-
-    # Summary
-    print("\n" + "="*70)
-    print("TEST SUMMARY")
-    print("="*70)
-
-    passed = sum(1 for _, r in results if r)
-    total = len(results)
-
-    for name, result in results:
-        status = "✓ PASS" if result else "✗ FAIL"
-        print(f"{status}: {name}")
-
-    print(f"\nTotal: {passed}/{total} tests passed")
-    print("="*70 + "\n")
-
-    return passed == total
+    
+    passed = 0
+    failed = 0
+    
+    for test in tests:
+        try:
+            test()
+            passed += 1
+        except Exception as e:
+            print(f"✗ {test.__name__} failed: {e}")
+            import traceback
+            traceback.print_exc()
+            failed += 1
+    
+    print()
+    print("="*60)
+    print(f"Tests passed: {passed}/{len(tests)}")
+    if failed > 0:
+        print(f"Tests failed: {failed}")
+    print("="*60)
+    
+    return failed == 0
 
 
 if __name__ == "__main__":

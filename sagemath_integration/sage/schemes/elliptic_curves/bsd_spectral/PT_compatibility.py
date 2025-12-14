@@ -74,14 +74,14 @@ def compute_gross_zagier_height(E):
 
 def compute_yzz_height(E):
     r"""
-    Compute Yuan-Zhang-Zhang height for rank ≥ 2 curves.
+    Compute Yuan-Zhang-Zhang height for rank >= 2 curves.
 
     Generalizes Gross-Zagier to higher ranks using special cycles
     on Shimura curves.
 
     INPUT:
 
-    - ``E`` -- elliptic curve over `\QQ` of rank ≥ 2
+    - ``E`` -- elliptic curve over `\QQ` of rank >= 2
 
     OUTPUT:
 
@@ -128,7 +128,7 @@ def verify_PT_compatibility(E):
     Verify (PT) compatibility for elliptic curve.
 
     Checks that arithmetic heights match spectral heights
-    via Gross-Zagier (rank 1) or Yuan-Zhang-Zhang (rank ≥ 2).
+    via Gross-Zagier (rank 1) or Yuan-Zhang-Zhang (rank >= 2).
 
     INPUT:
 

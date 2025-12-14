@@ -1,0 +1,68 @@
+# Codecov configuration for adelic-bsd repository
+# Documentation: https://docs.codecov.io/docs/codecov-yaml
+
+# Coverage settings
+coverage:
+  precision: 2  # Number of decimal places for coverage percentages
+  round: down   # Round coverage percentages down
+  range: "70...100"  # Coverage range considered acceptable
+  
+  status:
+    project:
+      default:
+        target: auto  # Auto-detect target from previous commits
+        threshold: 0.5%  # Allow 0.5% decrease in coverage
+        informational: false  # Fail if coverage drops below threshold
+    
+    patch:
+      default:
+        target: 80%  # New code should have at least 80% coverage
+        threshold: 0%
+        informational: false
+
+# Comment settings for pull requests
+comment:
+  layout: "header, diff, flags, components, footer"
+  behavior: default  # Post new comment on each push
+  require_changes: false  # Always comment on PRs
+  require_base: false    # Don't require base commit
+  require_head: true     # Require head commit
+
+# Ignore paths (files/directories not to include in coverage)
+ignore:
+  - "tests/**"
+  - "setup.py"
+  - "**/__pycache__/**"
+  - "*.pyc"
+  - "docs/**"
+  - "examples/**"
+  - "scripts/**"
+  - "formalization/**"
+  - "paper/**"
+  - "certificados/**"
+  - "certificates/**"
+  - "proofs/**"
+  - "bsd_spectral/**"
+  - "operador/tests_*.py"
+  - "fix_all_syntax.py"
+  - "setup_*.py"
+  - "validate_*.py"
+  - "verify_*.py"
+  - "verificacion_*.py"
+
+# Flags to categorize different types of tests
+flags:
+  unittests:
+    paths:
+      - src/
+    carryforward: true  # Carry forward previous coverage if missing
+  integration:
+    paths:
+      - src/
+    carryforward: true
+
+# Codecov bot behavior
+codecov:
+  require_ci_to_pass: yes  # Wait for CI to pass before processing
+  notify:
+    wait_for_ci: yes  # Wait for all CI checks

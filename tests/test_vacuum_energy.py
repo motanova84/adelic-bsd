@@ -59,7 +59,7 @@ class TestVacuumEnergy(unittest.TestCase):
 
         # The fractal term should be sin²(1)
         expected_fractal = np.sin(1.0) ** 2
-        self.assertGreater(expected_fractal, 0)  # sin(1) ≠ 0
+        self.assertGreater(expected_fractal, 0)  # sin(1) != 0
 
     def test_vacuum_energy_at_pi_squared(self):
         """Test vacuum energy at R_Ψ = π²."""

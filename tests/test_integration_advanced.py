@@ -149,8 +149,8 @@ def test_cross_module_compatibility():
 
     E = EllipticCurve('11a1')
 
-    # Test 1: Spectral cycles → Selmer map
-    print("\n1. Testing spectral → Selmer compatibility...")
+    # Test 1: Spectral cycles -> Selmer map
+    print("\n1. Testing spectral -> Selmer compatibility...")
     try:
         from src.spectral_cycles import compute_kernel_basis
         from src.cohomology.advanced_spectral_selmer import verify_spectral_to_selmer_compatibility
@@ -162,8 +162,8 @@ def test_cross_module_compatibility():
     except Exception as e:
         print(f"   Note: {e}")
 
-    # Test 2: Spectral cycles → Heights
-    print("\n2. Testing spectral → Heights compatibility...")
+    # Test 2: Spectral cycles -> Heights
+    print("\n2. Testing spectral -> Heights compatibility...")
     try:
         from src.spectral_cycles import compute_kernel_basis
         from src.heights import compute_regulator_comparison
@@ -175,7 +175,7 @@ def test_cross_module_compatibility():
     except Exception as e:
         print(f"   Note: {e}")
 
-    # Test 3: All modules → Formal prover
+    # Test 3: All modules -> Formal prover
     print("\n3. Testing integrated formal prover...")
     try:
         from src.verification import FormalBSDProver

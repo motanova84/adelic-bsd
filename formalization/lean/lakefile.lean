@@ -7,6 +7,16 @@ package «adelic_bsd» where
 lean_lib «AdelicBSD» where
   -- Add library configuration options here
 
+lean_lib «RiemannAdelic» where
+  -- Riemann-Adelic formalization library
+
+lean_lib «bsd_formula» where
+  -- BSD formula leading term library
+  srcDir := "bsd_formula"
+lean_lib «RationalStructures» where
+  -- BSD Rational Structures library for dR vs PT comparison
+  srcDir := "rational_structures"
+
 @[default_target]
 lean_exe «adelic_bsd» where
   root := `Main
