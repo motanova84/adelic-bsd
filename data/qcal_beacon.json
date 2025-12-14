@@ -1,0 +1,61 @@
+{
+  "type": "BSD_LMFDB_10000_VALIDATION",
+  "version": "1.0.0",
+  "hash_algorithm": "SHA3-256",
+  "hash": "43dfbbb7a2f04d85bfed0682ddfcd9b78a4cc13379d7ee9404fbfdfd667609d0",
+  "statistics": {
+    "total_curves": 100,
+    "successful": 100,
+    "success_rate": 1.0,
+    "by_rank": {
+      "0": {
+        "total": 21,
+        "success": 21,
+        "sha_mean": 1.0031814263356766,
+        "sha_median": 1.0103110263230266,
+        "sha_std": 0.035897668398652785,
+        "success_rate": 1.0
+      },
+      "1": {
+        "total": 79,
+        "success": 79,
+        "sha_mean": 1.0034127749828534,
+        "sha_median": 1.0080074565180683,
+        "sha_std": 0.044043101921724566,
+        "success_rate": 1.0
+      }
+    },
+    "status_breakdown": {
+      "validated": 100
+    },
+    "patterns": {
+      "detected": true,
+      "f0": 141.7001,
+      "harmonics": [],
+      "clusters": [
+        {
+          "center": 1,
+          "count": 100,
+          "mean": 1.0033641917669462,
+          "is_perfect_square": 1
+        }
+      ],
+      "anomalies": [],
+      "resonance_score": 1.0,
+      "statistics": {
+        "mean": 1.0033641917669462,
+        "median": 1.008221309068337,
+        "std": 0.04246247446663927,
+        "min": 0.8960663168989652,
+        "max": 1.1143875357567774
+      }
+    },
+    "timestamp": "2025-11-30T07:07:47.703331"
+  },
+  "f0_resonance": 141.7001,
+  "timestamp": "2025-11-30T07:07:47.709050",
+  "signature": {
+    "algorithm": "SHA3-256",
+    "value": "43dfbbb7a2f04d85bfed0682ddfcd9b7"
+  }
+}
