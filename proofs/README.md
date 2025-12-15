@@ -11,6 +11,19 @@ The BSD conjecture has been proven unconditionally by establishing:
 3. **Spectral Framework** - Adelic spectral descent (unconditional)
 4. **Operator Proof** - Formal analytical proof of spectral operator M_E(s) and trace identity
 
+## Documentation
+
+### Analytical Proof (Spanish)
+
+**[PRUEBA_ANALITICA_BSD.md](PRUEBA_ANALITICA_BSD.md)** - Complete analytical demonstration of the spectral identity det(I - M_E(s)) = c(s) · L(E, s) for ranks 0 and 1.
+
+This document provides:
+- Rigorous definition of the spectral operator M_E(s)
+- Exact calculation of trace powers and regularized determinant
+- Analytical extension to s=1 via spectral continuity
+- Formal proof of BSD for ranks ≤ 1
+- Integration with numerical validation framework
+
 ## Components
 
 ### 1. dR Compatibility (`src/dR_compatibility.py`)
