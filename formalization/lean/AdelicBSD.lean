@@ -8,3 +8,6 @@ import AdelicBSD.SelmerDesc
 import AdelicBSD.Traces.ModularParam
 import AdelicBSD.BSDStatement
 import AdelicBSD.BirchSwinnertonDyerFinal
+import AdelicBSD.P17Optimality
+-- BSD formula leading term (sha_leading_term.lean)
+-- import bsd_formula.sha_leading_term  -- Enable when building with lake
