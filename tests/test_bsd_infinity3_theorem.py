@@ -52,9 +52,9 @@ class TestSpectralFrequency(unittest.TestCase):
         # Check phi cubed
         self.assertAlmostEqual(result.phi_cubed, expected_phi ** 3, places=10)
         
-        # Check zeta prime half
-        self.assertGreater(result.zeta_prime_half, 0)
-        self.assertLess(result.zeta_prime_half, 2)  # Known to be ~1.46
+        # Check zeta prime half - |ζ'(1/2)| ≈ 3.9226
+        self.assertGreater(result.zeta_prime_half, 3)
+        self.assertLess(result.zeta_prime_half, 4)
 
 
 class TestFundamentalConstants(unittest.TestCase):
@@ -258,9 +258,9 @@ class TestModuleConstants(unittest.TestCase):
     
     def test_zeta_prime_half_constant(self):
         """Test ZETA_PRIME_HALF_ABS constant."""
-        # |ζ'(1/2)| ≈ 1.460354508
-        self.assertGreater(ZETA_PRIME_HALF_ABS, 1.4)
-        self.assertLess(ZETA_PRIME_HALF_ABS, 1.5)
+        # |ζ'(1/2)| ≈ 3.9226
+        self.assertGreater(ZETA_PRIME_HALF_ABS, 3.9)
+        self.assertLess(ZETA_PRIME_HALF_ABS, 4.0)
 
 
 class TestDemonstration(unittest.TestCase):
