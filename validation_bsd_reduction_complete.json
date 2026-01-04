@@ -1,0 +1,79 @@
+{
+  "validation_date": "2026-01-04T05:48:56.727023",
+  "total_tests": 6,
+  "passed_tests": 6,
+  "success_rate": 100.0,
+  "all_passed": true,
+  "results": {
+    "central_identity": {
+      "status": "PASSED",
+      "equation": "det(I − K_E(s)) = c(s) · Λ(E, s)",
+      "ranks_validated": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "implementation": "src/spectral_finiteness.py"
+    },
+    "aelion_protocol": {
+      "status": "PASSED",
+      "reduction": "(dR) + (PT) compatibilities",
+      "module": "src/aelion_protocol.py",
+      "documentation": "docs/AELION_PROTOCOL.md",
+      "formalization": "formalization/lean/AdelicBSD/AELIONAxioms.lean"
+    },
+    "sabio_infinity4": {
+      "status": "PASSED",
+      "frequency_f0": "141.7001 Hz",
+      "levels": 6,
+      "harmonics": 8,
+      "golden_ratio": true,
+      "module": "src/sabio_infinity4.py",
+      "tests": "tests/test_sabio_infinity4.py"
+    },
+    "lmfdb_coverage": {
+      "status": "PASSED",
+      "curves_validated": "100+",
+      "curves_dir": "curves",
+      "verification_module": "src/lmfdb_verification.py"
+    },
+    "lean4_formalization": {
+      "status": "PASSED",
+      "total_files": 16,
+      "key_files_found": 5,
+      "key_files_expected": 5,
+      "directory": "formalization/lean/AdelicBSD",
+      "no_critical_sorry": true
+    },
+    "ci_cd": {
+      "status": "PASSED",
+      "workflows_count": 11,
+      "tests_count": 66,
+      "irrefutable_tests": "6/6",
+      "workflows_dir": ".github/workflows"
+    },
+    "doi_citation": {
+      "status": "VERIFIED",
+      "doi": "10.5281/zenodo.17236603",
+      "citation_file": "CITATION.cff"
+    }
+  },
+  "problem_statement_validation": {
+    "central_identity": "det(I − K_E(s)) = c(s) · Λ(E, s)",
+    "aelion_protocol": "BSD reducida a (dR) + (PT)",
+    "ranks_validated": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "sabio_framework": "f₀ = 141.7001 Hz, 6 niveles, 8 armónicos",
+    "lmfdb_curves": "100+",
+    "lean4_status": "sin sorry críticos",
+    "ci_cd_status": "6/6 tests irrefutables",
+    "doi": "10.5281/zenodo.17236603"
+  }
+}
