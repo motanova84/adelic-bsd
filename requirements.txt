@@ -4,8 +4,11 @@
 # All versions pinned for reproducibility
 
 # Core mathematical dependencies
-# Note: sage-all is installed separately in SageMath environments
-# sage-all==9.8; python_version < '3.12'  # Use SageMath container instead
+# Note: SageMath installation instructions:
+# - For CI/CD: Use sagemath/sagemath:9.8 Docker container (recommended)
+# - For local development: Install via system package manager or Conda
+# - For pip installation (Python <3.12 only): Uncomment the line below
+# sage-all==9.8  # Uncomment only if installing SageMath via pip
 numpy==1.24.3
 scipy==1.10.1
 sympy==1.12.0
