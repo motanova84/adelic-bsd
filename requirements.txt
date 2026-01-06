@@ -1,31 +1,30 @@
 # Spectral BSD Framework Requirements
 # Compatible with Python 3.9-3.13
-# Last updated: 2025-10-18
+# Last updated: 2026-01-06
+# All versions pinned for reproducibility
 
 # Core mathematical dependencies
-sage-all>=9.8,<10.0; python_version < '3.12'
-numpy>=1.24.3,<3.0.0
-scipy>=1.10.1,<2.0.0
-sympy>=1.12,<2.0.0
-mpmath>=1.3.0,<2.0.0
+# Note: sage-all is installed separately in SageMath environments
+# sage-all==9.8; python_version < '3.12'  # Use SageMath container instead
+numpy==1.24.3
+scipy==1.10.1
+sympy==1.12.0
+mpmath==1.3.0
 
-# Cryptography for AIK beacon signatures
-cryptography>=41.0.0,<44.0.0
+# Cryptography for AIK beacon and QCAL signatures
+cryptography==42.0.4
 
 # Data and visualization
-pandas>=2.0.3,<3.0.0
-matplotlib>=3.7.2,<4.0.0
-tqdm>=4.65.0,<5.0.0
+pandas==2.0.3
+matplotlib==3.7.2
+tqdm==4.65.0
 
 # Development and testing
-pytest>=7.4.0,<9.0.0
-pytest-cov>=4.1.0,<7.0.0
-jupyter>=1.0.0
-ipywidgets>=8.0.7
+pytest==7.4.0
+pytest-cov==4.1.0
+jupyter==1.0.0
+ipywidgets==8.0.7
 
 # Documentation
-sphinx>=7.0.1,<8.0.0
-sphinx-rtd-theme>=1.2.2,<2.0.0
-
-# Cryptography for QCAL Beacon signatures
-cryptography>=42.0.4,<44.0.0
+sphinx==7.0.1
+sphinx-rtd-theme==1.2.2
