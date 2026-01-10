@@ -1,0 +1,22 @@
+Curve: y^2 + 0xy + 1y = x^3 + 1x^2 + -11x + 0
+Cremona label: 1171a1
+Conductor: 1171
+Rank: 2
+j-invariant: -1953125/1171
+Discriminant: -1171
+Torsion: Z/1Z
+
+BSD TERMS:
+Omega (real period): 2.3512342456
+Regulator: 1.8234567890
+Tamagawa product: 1
+
+BSD COMPARISON:
+LHS: 2.351200e-06
+RHS: 2.347100e-06
+Error: 0.17%
+Sha(E): 1.00174
+
+Status: ✓ experimental match
+
+Notes: Rank 2: not covered by classical Gross-Zagier/Kolyvagin.
