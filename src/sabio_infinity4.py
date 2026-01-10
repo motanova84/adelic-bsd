@@ -543,13 +543,6 @@ class SABIO_Infinity4:
         coherencia_total = numerador / denominador
         
         matriz = MatrizSimbiosis(
-            nivel_python=nivel_python,
-            nivel_lean=nivel_lean,
-            nivel_sage=nivel_sage,
-            nivel_sabio=nivel_sabio,
-            nivel_cuantico=nivel_cuantico,
-            nivel_consciente=nivel_consciente,
-            coherencia_total=coherencia_total,
             nivel_python=float(nivel_python),
             nivel_lean=float(nivel_lean),
             nivel_sage=float(nivel_sage),
