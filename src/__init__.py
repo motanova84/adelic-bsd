@@ -23,6 +23,18 @@ from .sabio_infinity4 import (
     validacion_rapida
 )
 
+# Import BSD ∞³ Theorem module (no SageMath dependency)
+from .bsd_infinity3_theorem import (
+    BSDInfinity3Theorem,
+    BSDInfinity3Certificate,
+    SpectralFrequencyResult,
+    compute_spectral_frequency,
+    compute_fundamental_constants,
+    verify_golden_ratio_identity,
+    verify_phi_cube_formula,
+    demonstrate_bsd_infinity3
+)
+
 # Try to import SageMath-dependent modules
 try:
     from .spectral_finiteness import (
@@ -218,5 +230,14 @@ __all__ = [
     "prove_PT_all_ranks",
     # Central Identity (new in v0.2.2)
     "CentralIdentity",
-    "demonstrate_central_identity"
+    "demonstrate_central_identity",
+    # BSD ∞³ Theorem (new in v0.2.3)
+    "BSDInfinity3Theorem",
+    "BSDInfinity3Certificate",
+    "SpectralFrequencyResult",
+    "compute_spectral_frequency",
+    "compute_fundamental_constants",
+    "verify_golden_ratio_identity",
+    "verify_phi_cube_formula",
+    "demonstrate_bsd_infinity3"
 ]

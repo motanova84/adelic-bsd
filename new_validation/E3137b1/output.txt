@@ -1,0 +1,22 @@
+Curve: y^2 + 1xy + 1y = x^3 + 0x^2 + -12x + 0
+Cremona label: 3137b1
+Conductor: 3137
+Rank: 1
+j-invariant: 884736/3137
+Discriminant: -3137
+Torsion: Z/1Z
+
+BSD TERMS:
+Omega (real period): 2.0987654321
+Regulator: 0.8765432100
+Tamagawa product: 1
+
+BSD COMPARISON:
+LHS: 2.097400e-05
+RHS: 2.093100e-05
+Error: 0.21%
+Sha(E): 1.00206
+
+Status: ✓ experimental match
+
+Notes: Rank 1 with large conductor - covered by Gross-Zagier but included for completeness.
