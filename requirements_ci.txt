@@ -1,13 +1,14 @@
 # Dependencias básicas para CI (sin SageMath)
 # Basic dependencies for CI (without SageMath)
 # Compatible with Python 3.9-3.13
-# Last updated: 2025-10-18
+# Last updated: 2026-01-06
+# All versions pinned for reproducibility
 
-numpy>=1.24.3,<3.0.0
-scipy>=1.10.1,<2.0.0
-matplotlib>=3.7.2,<4.0.0
-sympy>=1.12,<2.0.0
-pytest>=7.4.0,<9.0.0
-pytest-cov>=4.1.0,<7.0.0
-flake8>=6.0.0,<8.0.0
-tqdm>=4.65.0,<5.0.0
+numpy==1.24.3
+scipy==1.10.1
+matplotlib==3.7.2
+sympy==1.12.0
+pytest==7.4.0
+pytest-cov==4.1.0
+flake8==6.0.0
+tqdm==4.65.0
