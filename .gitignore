@@ -192,3 +192,8 @@ sabio_infinity4_spectrum_*.png
 example_report.json
 example_report.txt
 example_spectrum.png
+
+# Batch SHA estimation outputs
+experiments/batch_sha_estimation/results/
+sha_estimation_*.csv
+sha_estimation_*.json
