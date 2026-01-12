@@ -74,24 +74,24 @@ class QCALBSDIntegration:
         
         # Get eigenvalues from original operador_H
         R = build_R_matrix(n_basis=n_basis, h=h, L=1.0, Nq=160)
-        lam_H, gammas = spectrum_from_R(R, h)
+        lambda_H, gammas = spectrum_from_R(R, h)
         
         # Compare eigenvalues
         # Both should be close for low modes
-        min_len = min(len(bridge_eigenvalues), len(lam_H))
+        min_len = min(len(bridge_eigenvalues), len(lambda_H))
         
         # Compute relative differences
         differences = []
         for i in range(min_len):
-            if abs(lam_H[i]) > 1e-10:
-                rel_diff = abs(bridge_eigenvalues[i] - lam_H[i]) / abs(lam_H[i])
+            if abs(lambda_H[i]) > 1e-10:
+                rel_diff = abs(bridge_eigenvalues[i] - lambda_H[i]) / abs(lambda_H[i])
                 differences.append(rel_diff)
         
         validation = {
             'available': True,
             'n_compared': min_len,
             'bridge_eigenvalues': bridge_eigenvalues[:min_len].tolist(),
-            'operador_h_eigenvalues': lam_H[:min_len].tolist(),
+            'operador_h_eigenvalues': lambda_H[:min_len].tolist(),
             'relative_differences': differences,
             'max_difference': max(differences) if differences else 0,
             'mean_difference': np.mean(differences) if differences else 0,
