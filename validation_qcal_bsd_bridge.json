@@ -4,7 +4,7 @@
     "author": "Jos\u00e9 Manuel Mota Burruezo (JMMB \u03a8\u00b7\u2234)",
     "frequency": 141.7001,
     "curve": "11a1",
-    "timestamp": "2026-01-12T10:21:49"
+    "timestamp": "2026-01-12T10:25:58"
   },
   "theorem": {
     "title": "BSD-QCAL Bridge Theorem",
@@ -34,7 +34,7 @@
     },
     "validation_matrix": {
       "status": "PARTIAL",
-      "spectral_coherence": 0.9997500312471447,
+      "spectral_coherence": 0.9997500312467993,
       "bsd_coherent": false,
       "frequency_locked": true,
       "critical_frequency_hz": 141.7001,
@@ -43,12 +43,12 @@
       "l_function_analytic": false
     },
     "spectral_summary": {
-      "n_eigenvalues": 10,
-      "coherence": 0.9997500312471447,
+      "n_eigenvalues": 15,
+      "coherence": 0.9997500312467993,
       "zero_modes": 0
     },
     "bsd_summary": {
-      "fredholm_det": 0.07590360522953779,
+      "fredholm_det": 0.02091190531145,
       "l_function": 2.436658911906784,
       "c_nonzero": true
     },
@@ -71,7 +71,12 @@
       0.25000000031751274,
       0.25000000043217013,
       0.2500000005644671,
-      0.25000000071440365
+      0.25000000071440365,
+      0.2500000008819798,
+      0.25000000106719555,
+      0.25000000127005095,
+      0.2500000014905459,
+      0.2500000017286804
     ],
     "frequencies": [
       0.0,
@@ -83,7 +88,12 @@
       1.7818886951703327e-05,
       2.078870144365388e-05,
       2.375851593560444e-05,
-      2.6728330427554993e-05
+      2.6728330427554993e-05,
+      2.9698144919505547e-05,
+      3.26679594114561e-05,
+      3.5637773903406655e-05,
+      3.860758839535721e-05,
+      4.157740288730776e-05
     ],
     "coherence_field": [
       0.999750031247396,
@@ -95,14 +105,19 @@
       0.9997500312470785,
       0.9997500312469639,
       0.9997500312468317,
-      0.9997500312466818
+      0.9997500312466818,
+      0.9997500312465142,
+      0.9997500312463291,
+      0.9997500312461263,
+      0.9997500312459058,
+      0.9997500312456677
     ],
-    "global_coherence": 0.9997500312471447,
-    "n_modes": 10,
+    "global_coherence": 0.9997500312467993,
+    "n_modes": 15,
     "resonance_frequency": 141.7001
   },
   "bsd_data": {
-    "fredholm_determinant": 0.07590360522953779,
+    "fredholm_determinant": 0.02091190531145,
     "l_function_proxy": 2.436658911906784,
     "c_factor": 0.996477639099035,
     "s_value": 1.0,
@@ -114,10 +129,10 @@
     "torsion_proxy": 0,
     "unique_eigenvalues": 1,
     "multiplicities": [
-      10
+      15
     ],
-    "discreteness_ratio": 0.1,
-    "continuous_component": 0.9,
+    "discreteness_ratio": 0.06666666666666667,
+    "continuous_component": 0.9333333333333333,
     "rank_indicator": 1
   }
 }
