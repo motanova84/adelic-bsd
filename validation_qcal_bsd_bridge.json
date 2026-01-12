@@ -1,0 +1,123 @@
+{
+  "metadata": {
+    "title": "QCAL-BSD Bridge Validation Report",
+    "author": "Jos\u00e9 Manuel Mota Burruezo (JMMB \u03a8\u00b7\u2234)",
+    "frequency": 141.7001,
+    "curve": "11a1",
+    "timestamp": "2026-01-12T10:21:49"
+  },
+  "theorem": {
+    "title": "BSD-QCAL Bridge Theorem",
+    "frequency": 141.7001,
+    "curve": "11a1",
+    "correspondences": {
+      "critical_point": {
+        "navier_stokes": "Resonance at f\u2080 = 141.7001 Hz",
+        "bsd": "L-function value L(E, s=1)",
+        "synchronized": true
+      },
+      "stability": {
+        "navier_stokes": "Global regularity (C^\u221e)",
+        "bsd": "Rank r = 1",
+        "validated": true
+      },
+      "invariant": {
+        "navier_stokes": "Tensor \u03a6_ij (Seeley-DeWitt)",
+        "bsd": "Regulator R_E",
+        "equivalent": false
+      },
+      "complexity": {
+        "navier_stokes": "Polynomial (P)",
+        "bsd": "Arithmetic verification",
+        "status": "Reduced"
+      }
+    },
+    "validation_matrix": {
+      "status": "PARTIAL",
+      "spectral_coherence": 0.9997500312471447,
+      "bsd_coherent": false,
+      "frequency_locked": true,
+      "critical_frequency_hz": 141.7001,
+      "rank_estimate": 1,
+      "global_smoothness": true,
+      "l_function_analytic": false
+    },
+    "spectral_summary": {
+      "n_eigenvalues": 10,
+      "coherence": 0.9997500312471447,
+      "zero_modes": 0
+    },
+    "bsd_summary": {
+      "fredholm_det": 0.07590360522953779,
+      "l_function": 2.436658911906784,
+      "c_nonzero": true
+    },
+    "axiom_status": "PARTIAL",
+    "millennia_connected": false,
+    "statement": {
+      "es": "El rango de la curva el\u00edptica es la medida de la libertad del fluido",
+      "en": "The elliptic curve rank measures the freedom of the fluid",
+      "verified": false
+    }
+  },
+  "spectral_data": {
+    "eigenvalues": [
+      0.25,
+      0.2500000000088198,
+      0.25000000003527917,
+      0.25000000007937817,
+      0.2500000001411168,
+      0.25000000022049496,
+      0.25000000031751274,
+      0.25000000043217013,
+      0.2500000005644671,
+      0.25000000071440365
+    ],
+    "frequencies": [
+      0.0,
+      2.969814491950555e-06,
+      5.93962898390111e-06,
+      8.909443475851664e-06,
+      1.187925796780222e-05,
+      1.4849072459752773e-05,
+      1.7818886951703327e-05,
+      2.078870144365388e-05,
+      2.375851593560444e-05,
+      2.6728330427554993e-05
+    ],
+    "coherence_field": [
+      0.999750031247396,
+      0.9997500312473871,
+      0.9997500312473607,
+      0.9997500312473167,
+      0.9997500312472549,
+      0.9997500312471755,
+      0.9997500312470785,
+      0.9997500312469639,
+      0.9997500312468317,
+      0.9997500312466818
+    ],
+    "global_coherence": 0.9997500312471447,
+    "n_modes": 10,
+    "resonance_frequency": 141.7001
+  },
+  "bsd_data": {
+    "fredholm_determinant": 0.07590360522953779,
+    "l_function_proxy": 2.436658911906784,
+    "c_factor": 0.996477639099035,
+    "s_value": 1.0,
+    "product_formula": 2.4280761198264953,
+    "spectral_coherent": false
+  },
+  "coherence_map": {
+    "zero_modes": 0,
+    "torsion_proxy": 0,
+    "unique_eigenvalues": 1,
+    "multiplicities": [
+      10
+    ],
+    "discreteness_ratio": 0.1,
+    "continuous_component": 0.9,
+    "rank_indicator": 1
+  }
+}
