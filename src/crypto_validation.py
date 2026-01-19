@@ -103,7 +103,8 @@ class CryptoValidator:
         # Estimate security level (approximate)
         results['security_level'] = min(field_size // 2, field_size - 20)
         
-        # Determine security rating
+        # Determine security rating (default to 'low')
+        results['security_rating'] = 'low'
         for level, rating in sorted(self.SECURITY_LEVELS.items()):
             if results['security_level'] >= level:
                 results['security_rating'] = rating

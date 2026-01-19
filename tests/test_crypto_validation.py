@@ -230,6 +230,10 @@ class TestValidateEllipticCurveForCrypto:
         """Test validation of curve 11a1"""
         result = validate_elliptic_curve_for_crypto('11a1')
         
+        # Skip if SageMath not available
+        if result['status'] == 'error' and 'SageMath not available' in result.get('message', ''):
+            pytest.skip('SageMath not available')
+        
         assert result['status'] == 'success'
         assert result['curve_label'] == '11a1'
         assert 'validation' in result
@@ -238,6 +242,10 @@ class TestValidateEllipticCurveForCrypto:
     def test_validate_curve_37a1(self):
         """Test validation of curve 37a1"""
         result = validate_elliptic_curve_for_crypto('37a1')
+        
+        # Skip if SageMath not available
+        if result['status'] == 'error' and 'SageMath not available' in result.get('message', ''):
+            pytest.skip('SageMath not available')
         
         assert result['status'] == 'success'
         assert 'validation' in result
