@@ -40,6 +40,16 @@ import json
 from typing import Dict, List, Optional, Any, Tuple
 from datetime import datetime
 import secrets
+import warnings
+
+# Issue warning on module import
+warnings.warn(
+    "postquantum_blockchain is a SIMULATION module for demonstration purposes. "
+    "For production use, integrate with liboqs-python or other NIST-approved "
+    "PQC libraries. See module docstring for details.",
+    category=UserWarning,
+    stacklevel=2
+)
 
 
 class PostQuantumSignature:
