@@ -13,8 +13,23 @@ This module provides:
 - Hash-based signatures as quantum-resistant alternative
 - Integration with elliptic curve framework
 
-Note: This is a simulation/demonstration module. For production use,
-integrate with actual post-quantum cryptography libraries like liboqs-python.
+**IMPORTANT: Production Use Notice**
+This is a SIMULATION/DEMONSTRATION module implementing hash-based signatures
+as a conceptual proof-of-concept for post-quantum cryptography. The signature
+verification provides basic structural validation but is NOT cryptographically
+complete for production use.
+
+For PRODUCTION environments, integrate with actual post-quantum cryptography
+libraries such as:
+- liboqs-python (NIST PQC finalists: Dilithium, Falcon, SPHINCS+)
+- pqcrypto (Rust-based PQC implementations)
+- Other NIST-approved PQC implementations
+
+The current implementation demonstrates:
+- Quantum-resistant hash functions (SHA3-256/512)
+- Blockchain structure with PQ signatures
+- Transaction verification workflow
+- Security levels and key management
 
 Author: Adelic-BSD Framework
 Date: 2026-01
@@ -91,25 +106,50 @@ class PostQuantumSignature:
         """
         Verify a post-quantum signature.
         
+        **SIMULATION NOTE**: This is a basic structural validation for
+        demonstration purposes. In production, this would use actual
+        cryptographic verification from libraries like liboqs-python
+        implementing CRYSTALS-Dilithium, FALCON, or SPHINCS+.
+        
+        Current implementation validates:
+        - Signature format and length
+        - Basic structural integrity
+        
+        Production implementation would validate:
+        - Cryptographic signature using public key
+        - Message integrity against signature
+        - Replay attack prevention
+        
         Args:
             message: Original message
             signature: Signature in hex format
             public_key: Public key in hex format
         
         Returns:
-            True if signature is valid, False otherwise
+            True if signature structure is valid (SIMULATION ONLY)
+            In production: True if cryptographic signature is valid
         """
         try:
-            # Reconstruct expected signature from public key
+            # Basic structural validation (simulation)
             message_hash = hashlib.sha3_256(message.encode()).hexdigest()
             
             # Verify signature structure
             if len(signature) != 128:  # SHA3-512 produces 128 hex chars
                 return False
             
-            # In production, perform actual PQ verification
-            # Here we do basic validation
-            return len(signature) == 128 and len(public_key) == 128
+            # Verify public key structure
+            if len(public_key) != 128:
+                return False
+            
+            # In PRODUCTION with liboqs-python or similar:
+            # 1. Reconstruct message commitment from public key
+            # 2. Verify signature cryptographically
+            # 3. Check signature freshness/nonce
+            # 4. Validate against public key using PQ algorithm
+            
+            # SIMULATION: Basic format validation
+            # Production would use actual PQ cryptographic verification
+            return True
             
         except Exception:
             return False

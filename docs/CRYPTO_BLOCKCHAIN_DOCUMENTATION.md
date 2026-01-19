@@ -4,6 +4,19 @@
 
 This documentation covers the new cryptographic validation and post-quantum blockchain features added to the Adelic-BSD framework.
 
+## ⚠️ Production Use Notice
+
+**Cryptographic Validation Module**: Production-ready for cryptographic operations using industry-standard algorithms (ECDSA, EdDSA) via the `cryptography` library.
+
+**Post-Quantum Blockchain Module**: This is a **SIMULATION/DEMONSTRATION** module. The post-quantum signature verification provides basic structural validation but is **NOT cryptographically complete** for production environments.
+
+For **production use**, integrate with actual post-quantum cryptography libraries:
+- **liboqs-python**: NIST PQC finalists (CRYSTALS-Dilithium, FALCON, SPHINCS+)
+- **pqcrypto**: Rust-based PQC implementations
+- Other NIST-approved PQC implementations
+
+The current implementation demonstrates blockchain structure, workflow, and integration patterns with quantum-resistant hash functions (SHA3-256/512).
+
 ## Modules
 
 ### 1. Cryptographic Validation (`src/crypto_validation.py`)
