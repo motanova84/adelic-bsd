@@ -4,7 +4,7 @@
     "build_time_seconds": 0,
     "warnings": 0,
     "errors": 0,
-    "lean_version": "Lean (version 4.25.2, x86_64-unknown-linux-gnu, commit b86e2e5824bcdbfa0e8d02dd97b4c48792a385d1, Release)",
-    "timestamp_utc": "2025-12-04T22:13:36Z"
+    "lean_version": "Lean (version 4.27.0, x86_64-unknown-linux-gnu, commit db93fe1608548721853390a10cd40580fe7d22ae, Release)",
+    "timestamp_utc": "2026-01-24T20:41:56Z"
   }
 }
