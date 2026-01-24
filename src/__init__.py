@@ -35,6 +35,23 @@ from .bsd_infinity3_theorem import (
     demonstrate_bsd_infinity3
 )
 
+# Import cryptographic validation module (no SageMath dependency)
+from .crypto_validation import (
+    CryptoValidator,
+    EdDSAValidator,
+    validate_elliptic_curve_for_crypto
+)
+
+# Import post-quantum blockchain module (no SageMath dependency)
+from .postquantum_blockchain import (
+    PostQuantumSignature,
+    Transaction,
+    Block,
+    PostQuantumBlockchain,
+    create_secure_transaction,
+    verify_transaction_chain
+)
+
 # Try to import SageMath-dependent modules
 try:
     from .spectral_finiteness import (
@@ -187,6 +204,17 @@ __all__ = [
     "MatrizSimbiosis",
     "crear_sistema_sabio",
     "validacion_rapida",
+    # Cryptographic validation module (new)
+    "CryptoValidator",
+    "EdDSAValidator",
+    "validate_elliptic_curve_for_crypto",
+    # Post-quantum blockchain module (new)
+    "PostQuantumSignature",
+    "Transaction",
+    "Block",
+    "PostQuantumBlockchain",
+    "create_secure_transaction",
+    "verify_transaction_chain",
     # Spectral finiteness (SageMath required)
     "SpectralFinitenessProver",
     "prove_finiteness_for_curve",
