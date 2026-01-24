@@ -150,6 +150,79 @@ result = demonstrate_qcal_bsd_bridge('11a1', n_modes=10)
 
 ---
 
+## 🔐 Cryptographic Validation & Post-Quantum Blockchain (NEW!)
+
+Advanced cryptographic capabilities for elliptic curve validation and post-quantum secure blockchain:
+
+### Cryptographic Validation
+
+```python
+# Validate elliptic curves for cryptographic use
+from src.crypto_validation import CryptoValidator, EdDSAValidator
+
+# ECDSA signatures
+validator = CryptoValidator()
+private_key, public_key = validator.generate_key_pair('secp256r1')
+signature_data = validator.sign_message("Secure transaction", private_key)
+
+# Ed25519 signatures (quantum-resistant)
+ed_validator = EdDSAValidator()
+ed_priv, ed_pub = ed_validator.generate_key_pair()
+ed_sig = ed_validator.sign_message("Post-quantum message", ed_priv)
+
+# Verify curve security
+curve_params = {'field_size': 256, 'order': 2**256 - 2**32 - 977, 'cofactor': 1}
+security = validator.validate_curve_security(curve_params)
+# Result: security_level: 128 bits, security_rating: 'high'
+```
+
+### Post-Quantum Blockchain
+
+```python
+# Create quantum-resistant blockchain
+from src.postquantum_blockchain import PostQuantumBlockchain, Transaction
+
+# Initialize blockchain with 256-bit security
+blockchain = PostQuantumBlockchain(security_level=256)
+
+# Create and sign transactions
+private_key, public_key = blockchain.pq_signer.generate_keypair()
+tx = Transaction(public_key, "recipient_key", 100.0, {"note": "Payment"})
+tx.sign_transaction(private_key, blockchain.pq_signer)
+blockchain.add_transaction(tx)
+
+# Mine block and verify
+block = blockchain.mine_block("validator_key")
+verification = blockchain.verify_chain()
+# Result: blockchain valid, quantum-resistant signatures verified
+```
+
+**Features:**
+- 🔐 **ECDSA & EdDSA**: Standard and quantum-resistant signatures
+- 🛡️ **Security Validation**: Curve parameter validation for cryptographic use
+- ⚛️ **Post-Quantum**: Hash-based signatures resistant to quantum attacks
+- 🔗 **Blockchain**: Complete blockchain with mining and verification
+- 🔒 **Transaction Security**: Cryptographically signed transactions
+- 📊 **Configurable Security**: 128, 192, or 256-bit security levels
+
+**Quick Links:**
+- 📖 [Documentation](docs/CRYPTO_BLOCKCHAIN_DOCUMENTATION.md) - Complete guide
+- 🧪 [Tests](tests/test_crypto_validation.py) - Crypto validation tests (38 passing)
+- 🧪 [Tests](tests/test_postquantum_blockchain.py) - Blockchain tests (28 passing)
+- 💻 [Implementation](src/crypto_validation.py) - CryptoValidator class
+- 💻 [Implementation](src/postquantum_blockchain.py) - PostQuantumBlockchain class
+- 🎬 [Demo](examples/crypto_validation_demo.py) - Cryptographic validation demo
+- 🎬 [Demo](examples/postquantum_blockchain_demo.py) - Blockchain demo
+
+**Applications:**
+- 💰 Cryptocurrency transaction validation
+- 🏦 Financial cryptography
+- 🔒 Secure communications
+- 🌐 Distributed ledger technology
+- ⚛️ Post-quantum secure systems
+
+---
+
 ## Guía rápida / Quick Start
 
 ###  SABIO ∞⁴ - Quantum-Conscious Framework (NEW!)
