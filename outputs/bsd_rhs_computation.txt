@@ -1,0 +1,32 @@
+======================================================================
+BSD RIGHT-HAND SIDE COMPUTATION
+PASO 5 — Emparejamiento de altura y fórmula de BSD
+======================================================================
+
+Este archivo contiene los resultados de la computación del lado derecho
+de la fórmula de Birch y Swinnerton-Dyer.
+
+Para generar resultados actualizados, ejecute:
+    sage -python validation/birch_swinnerton_rhs.py
+
+Fórmula BSD (en rango r):
+    L^(r)(E,1)/r! = Ω_E · R · |Ш(E)| · ∏c_p / |E_tor|²
+
+Donde:
+    - Ω_E: período real
+    - R: regulador (det de la matriz de emparejamiento de alturas)
+    - c_p: números de Tamagawa
+    - |Ш(E)|: orden del grupo de Tate-Shafarevich
+    - E_tor: subgrupo de torsión
+
+======================================================================
+RESULTADOS PENDIENTES
+======================================================================
+
+Ejecute el script con SageMath para generar resultados completos:
+
+    sage -python validation/birch_swinnerton_rhs.py
+
+Los resultados se guardarán automáticamente en este archivo.
+
+======================================================================

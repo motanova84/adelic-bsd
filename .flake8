@@ -21,6 +21,7 @@ per-file-ignores =
     scripts/generate_final_certificates.py:E402,F401
     scripts/run_complete_verification.py:E402
     tests/test_advanced_modules.py:E402
+    tests/test_birch_swinnerton_lhs.py:E402
     tests/test_certificate_generation.py:E402
     tests/test_integration_advanced.py:E402
     tests/test_lmfdb_crosscheck.py:E402
