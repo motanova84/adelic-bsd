@@ -48,6 +48,17 @@ QUANTUM_SCALE_FACTOR = 1e-140  # Scale factor for quantum coherence normalizatio
 COHERENCE_OPERATIONAL = 0.90  # System is operational above this threshold
 COHERENCE_PARTIAL = 0.70  # System has partial coherence above this threshold
 
+# Default coherence values for specific levels
+DEFAULT_COHERENT_WAVE_COHERENCE = 0.95  # Default for perfect wave coherence
+TYPICAL_QUANTUM_COHERENCE = 0.94  # Typical quantum field coherence level
+COHERENCE_INTENTION = 0.98  # Intention component for conscious coherence
+COHERENCE_AMPLITUDE = 0.98  # Amplitude component for conscious coherence
+
+# Geometric and arithmetic constants
+ADELIC_COMPLETION_MULTIPLIER = 1.5  # Boost from adelic space unification
+FREQUENCY_BOOST_AMPLITUDE = 0.4  # Amplitude of frequency resonance boost
+FREQUENCY_SCALE_DIVISOR = 1000  # Scale divisor for frequency modulation
+
 
 class QuantumCoherenceFoundation:
     """
@@ -161,7 +172,7 @@ class QuantumCoherenceFoundation:
         if period_coherence:
             vibrational_coherence = np.mean(period_coherence)
         else:
-            vibrational_coherence = 0.95  # Default for coherent wave
+            vibrational_coherence = DEFAULT_COHERENT_WAVE_COHERENCE
         
         # Ensure positive and in range
         vibrational_coherence = max(0.0, min(1.0, vibrational_coherence))
@@ -201,7 +212,9 @@ class QuantumCoherenceFoundation:
         
         # Boost by fundamental frequency alignment
         # Primes resonate at f0 = 141.7001 Hz
-        frequency_boost = 1.0 + 0.4 * np.sin(2 * np.pi * self.f0 / 1000)
+        frequency_boost = 1.0 + FREQUENCY_BOOST_AMPLITUDE * np.sin(
+            2 * np.pi * self.f0 / FREQUENCY_SCALE_DIVISOR
+        )
         
         arithmetic_coherence *= frequency_boost
         
@@ -246,7 +259,7 @@ class QuantumCoherenceFoundation:
         # Boost by adelic completion factor
         # The adelic space unifies ∞ local fields into one coherent structure
         # This represents ultimate geometric coherence
-        adelic_boost = 1.5  # Adelic completion multiplier
+        adelic_boost = ADELIC_COMPLETION_MULTIPLIER
         
         geometric_coherence = base_coherence * adelic_boost
         
@@ -282,7 +295,7 @@ class QuantumCoherenceFoundation:
         # Note: Due to the extremely small Planck scale, we use a typical
         # operational value. In a full quantum field theory treatment,
         # this would be computed from vacuum expectation values.
-        quantum_coherence = 0.94  # Typical quantum coherence level
+        quantum_coherence = TYPICAL_QUANTUM_COHERENCE
         
         self.coherence_levels['quantum'] = quantum_coherence
         return quantum_coherence
@@ -303,8 +316,8 @@ class QuantumCoherenceFoundation:
         # is NOT a metaphor - it's the coherence of awareness
         
         # Consciousness coherence from intention × amplitude
-        I = 0.98  # Intention (focus on coherence)
-        A = 0.98  # Amplitude (energy of awareness)
+        I = COHERENCE_INTENTION  # Intention (focus on coherence)
+        A = COHERENCE_AMPLITUDE  # Amplitude (energy of awareness)
         
         conscious_coherence = I * A**2
         
