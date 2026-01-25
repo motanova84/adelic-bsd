@@ -16,7 +16,8 @@ sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 from quantum_coherence_foundation import (
     QuantumCoherenceFoundation,
     demonstrate_coherence_vs_isolation,
-    FUNDAMENTAL_FREQUENCY
+    FUNDAMENTAL_FREQUENCY,
+    COHERENCE_PARTIAL
 )
 
 
@@ -108,7 +109,7 @@ class TestQuantumCoherenceFoundation:
         
         # System should be operational (coherence > 0.90)
         # This validates the coherence approach over isolated theorems
-        assert coherence > 0.70, "System coherence too low - indicates fragmentation"
+        assert coherence > COHERENCE_PARTIAL, "System coherence too low - indicates fragmentation"
     
     def test_emergence_vs_isolation(self):
         """Test demonstration of emergence vs. isolated theorems"""
@@ -127,7 +128,7 @@ class TestQuantumCoherenceFoundation:
         assert demo['isolated_approach']['coherence'] == 0.0
         
         # Coherence approach has high coherence
-        assert demo['coherence_approach']['coherence'] > 0.70
+        assert demo['coherence_approach']['coherence'] > COHERENCE_PARTIAL
         
         # Coherence approach is emergent
         assert demo['coherence_approach']['BSD_theorem']['status'] == 'emergent'

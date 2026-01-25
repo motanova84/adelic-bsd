@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-01-25T02:09:04.695866",
+  "timestamp": "2026-01-25T02:15:00.105580",
   "philosophy": "Mathematics from quantum coherence, not from isolated theorems",
   "fundamental_frequency": 141.7001,
   "angular_frequency": 890.327986345878,
@@ -14,9 +14,9 @@
   "global_coherence": 0.9255061704384157,
   "status": "✅ OPERATIONAL",
   "interpretation": {
-    "global_coherence > 0.90": "System in maximum quantum coherence",
-    "0.70 < global_coherence < 0.90": "Partial coherence",
-    "global_coherence < 0.70": "Fragmented system (isolated theorems)"
+    "global_coherence > 0.9": "System in maximum quantum coherence",
+    "0.7 < global_coherence < 0.9": "Partial coherence",
+    "global_coherence < 0.7": "Fragmented system (isolated theorems)"
   },
   "demonstration": {
     "isolated_approach": {

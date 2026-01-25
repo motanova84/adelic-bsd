@@ -24,7 +24,9 @@ sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
 from quantum_coherence_foundation import (
     QuantumCoherenceFoundation,
-    FUNDAMENTAL_FREQUENCY
+    FUNDAMENTAL_FREQUENCY,
+    COHERENCE_OPERATIONAL,
+    COHERENCE_PARTIAL
 )
 
 
@@ -136,11 +138,11 @@ def main():
     print()
     
     # Interpretation
-    if global_coh > 0.90:
+    if global_coh > COHERENCE_OPERATIONAL:
         status_icon = "✅"
         status_text = "OPERATIONAL - Maximum Quantum Coherence"
         interpretation = "System unified through coherence"
-    elif global_coh > 0.70:
+    elif global_coh > COHERENCE_PARTIAL:
         status_icon = "⚠️"
         status_text = "PARTIAL - Some Coherence"
         interpretation = "System partially unified"

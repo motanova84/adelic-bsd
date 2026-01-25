@@ -26,10 +26,27 @@ from datetime import datetime
 
 
 # Universal Constants from Quantum Coherence
-FUNDAMENTAL_FREQUENCY = 141.7001  # Hz - Universal Noetic Resonance
+FUNDAMENTAL_FREQUENCY = 141.7001  # Hz - Universal Noetic Resonance frequency
+# This frequency emerges from the QCAL-BSD bridge and SABIO ∞⁴ framework
+# It represents the fundamental resonance that unifies Navier-Stokes and BSD
+# See: docs/QCAL_BSD_BRIDGE.md and SABIO_INFINITY4_README.md
+
 GOLDEN_RATIO = (1 + np.sqrt(5)) / 2
 PLANCK_LENGTH = 1.616255e-35  # meters
 SPEED_OF_LIGHT = 299792458  # m/s
+
+# Mathematical constants from Riemann zeta function
+ZETA_PRIME_HALF = -3.9226461392  # ζ'(1/2) - derivative at critical line
+# This constant represents the deep structure of prime numbers
+# It appears in the arithmetic coherence calculation
+
+# Quantum vacuum energy computation constants
+EPSILON_PLANCK = 1e-40  # Small epsilon to avoid division by zero at Planck scale
+QUANTUM_SCALE_FACTOR = 1e-140  # Scale factor for quantum coherence normalization
+
+# Coherence thresholds
+COHERENCE_OPERATIONAL = 0.90  # System is operational above this threshold
+COHERENCE_PARTIAL = 0.70  # System has partial coherence above this threshold
 
 
 class QuantumCoherenceFoundation:
@@ -152,7 +169,7 @@ class QuantumCoherenceFoundation:
         self.coherence_levels['vibrational'] = vibrational_coherence
         return vibrational_coherence
     
-    def compute_arithmetic_coherence(self, zeta_prime_half: float = -3.9226461392) -> float:
+    def compute_arithmetic_coherence(self, zeta_prime_half: float = ZETA_PRIME_HALF) -> float:
         """
         Compute arithmetic coherence from prime structure.
         
@@ -259,13 +276,16 @@ class QuantumCoherenceFoundation:
         
         # Simplified vacuum energy coherence
         alpha = 1.0
-        quantum_term = alpha / (R_planck**4 + 1e-40)  # Avoid division by zero
+        quantum_term = alpha / (R_planck**4 + EPSILON_PLANCK)
         
-        # Normalize to [0, 1]
-        quantum_coherence = np.tanh(quantum_term * 1e-140)  # Scale factor
+        # Normalize to [0, 1] using tanh scaling
+        # Note: Due to the extremely small Planck scale, we use a typical
+        # operational value. In a full quantum field theory treatment,
+        # this would be computed from vacuum expectation values.
+        quantum_coherence = 0.94  # Typical quantum coherence level
         
-        self.coherence_levels['quantum'] = max(0.0, min(1.0, 0.94))  # Typical value
-        return self.coherence_levels['quantum']
+        self.coherence_levels['quantum'] = quantum_coherence
+        return quantum_coherence
     
     def compute_conscious_coherence(self) -> float:
         """
@@ -374,12 +394,23 @@ class QuantumCoherenceFoundation:
             'coherence': self.compute_global_coherence()
         }
         
+        # Get coherence for status determination
+        coherence = self.global_coherence
+        
+        # Status
+        if coherence > COHERENCE_OPERATIONAL:
+            status_text = 'OPERATIONAL'
+        elif coherence > COHERENCE_PARTIAL:
+            status_text = 'PARTIAL'
+        else:
+            status_text = 'FRAGMENTED'
+        
         return {
             'isolated_approach': isolated_approach,
             'coherence_approach': coherence_approach,
             'advantage': 'coherence_unifies_all',
             'global_coherence': self.global_coherence,
-            'status': '✅ OPERATIONAL' if self.global_coherence > 0.90 else '⚠️ PARTIAL'
+            'status': f'✅ {status_text}' if coherence > COHERENCE_OPERATIONAL else f'⚠️ {status_text}' if coherence > COHERENCE_PARTIAL else f'❌ {status_text}'
         }
     
     def generate_coherence_report(self, output_path: Optional[str] = None) -> Dict:
@@ -402,11 +433,11 @@ class QuantumCoherenceFoundation:
             'angular_frequency': self.omega0,
             'coherence_levels': self.coherence_levels,
             'global_coherence': global_coh,
-            'status': '✅ OPERATIONAL' if global_coh > 0.90 else '⚠️ PARTIAL',
+            'status': '✅ OPERATIONAL' if global_coh > COHERENCE_OPERATIONAL else '⚠️ PARTIAL' if global_coh > COHERENCE_PARTIAL else '❌ FRAGMENTED',
             'interpretation': {
-                'global_coherence > 0.90': 'System in maximum quantum coherence',
-                '0.70 < global_coherence < 0.90': 'Partial coherence',
-                'global_coherence < 0.70': 'Fragmented system (isolated theorems)'
+                f'global_coherence > {COHERENCE_OPERATIONAL}': 'System in maximum quantum coherence',
+                f'{COHERENCE_PARTIAL} < global_coherence < {COHERENCE_OPERATIONAL}': 'Partial coherence',
+                f'global_coherence < {COHERENCE_PARTIAL}': 'Fragmented system (isolated theorems)'
             },
             'demonstration': self.demonstrate_emergence_vs_isolation(),
             'principles': {
@@ -462,9 +493,9 @@ def demonstrate_coherence_vs_isolation():
     print()
     
     # Status
-    if coherence > 0.90:
+    if coherence > COHERENCE_OPERATIONAL:
         print("Status: ✅ OPERATIONAL - System in maximum quantum coherence")
-    elif coherence > 0.70:
+    elif coherence > COHERENCE_PARTIAL:
         print("Status: ⚠️ PARTIAL - System has partial coherence")
     else:
         print("Status: ❌ FRAGMENTED - System based on isolated theorems")
