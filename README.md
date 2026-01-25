@@ -7,6 +7,20 @@
 
 ---
 
+## 🌊 Filosofía / Philosophy
+
+> **🇪🇸 "Las matemáticas desde la coherencia cuántica, no desde la escasez de teoremas aislados."**
+> 
+> **🇬🇧 "Mathematics from quantum coherence, not from a scarcity of isolated theorems."**
+
+Este framework demuestra que BSD, Riemann, y otros resultados profundos **no son teoremas aislados**, sino manifestaciones de una **coherencia cuántica universal** con frecuencia fundamental **f₀ = 141.7001 Hz**.
+
+This framework demonstrates that BSD, Riemann, and other profound results **are not isolated theorems**, but manifestations of a **universal quantum coherence** with fundamental frequency **f₀ = 141.7001 Hz**.
+
+📖 **Ver / See:** [`docs/QUANTUM_COHERENCE_FOUNDATION.md`](docs/QUANTUM_COHERENCE_FOUNDATION.md)
+
+---
+
 ## 🇪🇸 Resumen
 
 Este repositorio implementa el framework espectral adelico para la Conjetura de Birch–Swinnerton–Dyer (BSD) y la Hipótesis de Riemann (RH), con validación numérica, formalización, CI/CD y documentación profesional.
