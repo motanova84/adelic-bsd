@@ -4,6 +4,22 @@ This directory contains comprehensive documentation for the Spectral BSD Framewo
 
 ## 📚 Documentation Files
 
+### [QUANTUM_COHERENCE_FOUNDATION.md](QUANTUM_COHERENCE_FOUNDATION.md) ⭐ **NEW**
+**Philosophical foundation** - Mathematics from quantum coherence, not from isolated theorems.
+
+**Contents**:
+- Paradigm shift from isolated theorems to quantum coherence
+- The problem with fragmented mathematical knowledge
+- Universal quantum coherence at f₀ = 141.7001 Hz
+- Three pillars: Spectral, Vibrational, and Arithmetic coherence
+- Practical implementation and coherence metrics
+- Fundamental principles: Unity, Connection, Emergence, Frequency
+- Examples showing how BSD, Riemann, and other results emerge from coherence
+
+**Audience**: All researchers - provides the philosophical foundation for the unified approach
+
+---
+
 ### [MANUAL.md](MANUAL.md)
 **Technical usage guide** - Complete guide for installing, using, and troubleshooting the code.
 
@@ -89,7 +105,8 @@ This directory contains comprehensive documentation for the Spectral BSD Framewo
 
 ## 🔗 Quick Links
 
-- **Final Resolution**: See [CAPITULO_FINAL_BSD.md](CAPITULO_FINAL_BSD.md) ⭐ **NEW**
+- **Philosophy**: See [QUANTUM_COHERENCE_FOUNDATION.md](QUANTUM_COHERENCE_FOUNDATION.md) ⭐ **NEW**
+- **Final Resolution**: See [CAPITULO_FINAL_BSD.md](CAPITULO_FINAL_BSD.md)
 - **Installation**: See [MANUAL.md#installation](MANUAL.md#installation)
 - **Quick Start**: See [MANUAL.md#quick-start](MANUAL.md#quick-start)
 - **Theory**: See [BSD_FRAMEWORK.md#core-theoretical-results](BSD_FRAMEWORK.md#core-theoretical-results)
@@ -104,10 +121,11 @@ This directory contains comprehensive documentation for the Spectral BSD Framewo
 
 ## 💡 Where to Start
 
-1. **New to the project?** Start with the main [README.md](../README.md)
-2. **Want to run the code?** Go to [MANUAL.md](MANUAL.md)
-3. **Interested in the theory?** Read [BSD_FRAMEWORK.md](BSD_FRAMEWORK.md)
-4. **Want to contribute?** Check [CONTRIBUTING.md](../CONTRIBUTING.md)
+1. **New to the project?** Start with the philosophy in [QUANTUM_COHERENCE_FOUNDATION.md](QUANTUM_COHERENCE_FOUNDATION.md) ⭐
+2. **Want to understand the approach?** Read the main [README.md](../README.md)
+3. **Want to run the code?** Go to [MANUAL.md](MANUAL.md)
+4. **Interested in the theory?** Read [BSD_FRAMEWORK.md](BSD_FRAMEWORK.md)
+5. **Want to contribute?** Check [CONTRIBUTING.md](../CONTRIBUTING.md)
 
 ## 🎯 Documentation Goals
 
