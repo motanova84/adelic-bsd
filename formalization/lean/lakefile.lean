@@ -17,6 +17,10 @@ lean_lib «RationalStructures» where
   -- BSD Rational Structures library for dR vs PT comparison
   srcDir := "rational_structures"
 
+lean_lib «QCAL» where
+  -- QCAL Unified Theory library
+  srcDir := "QCAL"
+
 @[default_target]
 lean_exe «adelic_bsd» where
   root := `Main
