@@ -417,7 +417,8 @@ def main():
     print()
     
     # Export framework
-    output_path = Path('/tmp/qcal_unified_framework.json')
+    import tempfile
+    output_path = Path(tempfile.gettempdir()) / 'qcal_unified_framework.json'
     framework.export_framework(output_path)
     print(f"Framework exported to: {output_path}")
     print()

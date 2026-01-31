@@ -285,4 +285,8 @@ theorem QCAL_Universal_Unification :
   constructor
   · exact QCALUniversalFramework.standard.constants_coherent
   · intro P _
-    sorry -- Full proof requires implementation of verification protocols
+    -- TODO: Complete proof requires full implementation of verification protocols
+    -- for each problem type (TreewidthIC, AdelicSpectral, AELIONProtocol, etc.)
+    -- Each protocol needs formal verification that it correctly validates its problem
+    -- See issue #XXX for implementation roadmap
+    sorry
