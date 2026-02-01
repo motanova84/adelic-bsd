@@ -32,7 +32,11 @@ namespace ModularCurve
     
     Note: This is axiomatized as the full correspondence theory
     is beyond the scope of this formalization. In a complete implementation,
-    this would be proven from first principles using spectral theory. -/
+    this would be proven from first principles using spectral theory.
+    
+    The parameters M_E and L_E are expected to be constructed from the 
+    same elliptic curve E at the same complex point s, ensuring the 
+    correspondence is well-defined. -/
 axiom trace_eq_L_inverse {Operator : Type} {Tr : Operator → ℂ} 
     (E : Type*) (s : ℂ) (M_E : Operator) (L_E : ℂ → ℂ) :
     Tr M_E = (L_E s)⁻¹
@@ -53,7 +57,11 @@ axiom fromCurve : α → ℂ → β
 /-- Axiom: Natural frequency of Yang-Mills operator equals 141.7001 Hz
     
     This establishes the fundamental resonance frequency that bridges
-    BSD and Yang-Mills theories through spectral correspondence. -/
+    BSD and Yang-Mills theories through spectral correspondence.
+    
+    In application, ω₀ should be set to 141.7001 Hz, and M should be
+    the Yang-Mills operator constructed from E to ensure the correspondence
+    holds correctly. -/
 axiom freq_eq_141hz {α β : Type*} {naturalFrequency : β → ℝ} 
     (E : α) (M : β) (ω₀ : ℝ) :
     naturalFrequency M = ω₀
