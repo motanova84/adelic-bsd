@@ -41,8 +41,11 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install numpy scipy mpmath pytest pytest-cov
-        # Install sage-all only for Python < 3.12
-        if [[ "${{ matrix.python-version }}" < "3.12" ]]; then
+        # Install sage-all only for Python < 3.12 using numeric version comparison
+        v="${{ matrix.python-version }}"
+        major="${v%%.*}"
+        minor="${v#*.}"
+        if (( major < 3 )) || (( major == 3 && minor < 12 )); then
           pip install sage-all || echo "sage-all installation skipped"
         fi
     
