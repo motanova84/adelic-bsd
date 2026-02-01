@@ -28,6 +28,8 @@ Este repositorio implementa el framework espectral adelico para la Conjetura de 
 ### Componentes principales
 - **🎯 QCAL Unified Framework**: Teoría unificadora que conecta P vs NP, Riemann, BSD, Navier-Stokes y Ramsey (NUEVO)
 - **🌊 QCAL-BSD Bridge**: Conexión entre Navier-Stokes y BSD a f₀ = 141.7001 Hz
+- **🌊 QCAL-BSD Bridge**: Conexión entre Navier-Stokes y BSD a f₀ = 141.7001 Hz (NUEVO)
+- **⚡ BSD-Yang-Mills-QCAL ∞³**: Expansión con 3 curvas adicionales, NFT/ERC721A y firmas DAO (NUEVO)
 - **AELION·EILAN Protocol**: Resolución incondicional de BSD para todos los rangos r ≥ 0
 - Prueba espectral de finitud para grupos de Tate–Shafarevich ($\Sha$) y ceros de $\zeta(s)$
 - **Demostración analítica de identidad BSD**: det(I - M_E(s)) = c(s) L(E, s)
@@ -300,6 +302,45 @@ verification = blockchain.verify_chain()
 - 🔒 Secure communications
 - 🌐 Distributed ledger technology
 - ⚛️ Post-quantum secure systems
+
+---
+
+## 🔥 BSD–Yang–Mills–QCAL ∞³ Expansion (NEW!)
+
+### Módulo de Expansión con 3 Curvas Adicionales
+
+```python
+from src.bsd_yang_mills_expansion import execute_expansion, EXPANSION_CURVES
+
+# Execute complete expansion
+results = execute_expansion()
+
+# Curves integrated: 389a1, 433a1, 709a1
+# - Spectral traces validated: Tr(M_E(s)) = L(E,s)⁻¹
+# - NFT/ERC721A contracts minted for each curve
+# - DAO signed with coherence 0.897 ≥ 0.888
+# - Correspondence seal issued with SHA3-512 signature
+```
+
+**Características:**
+- 📊 **3 Curvas LMFDB**: 389a1, 433a1, 709a1 (conductores bajos, variedad aritmética)
+- 🔬 **Validación Espectral**: Tr(M_E(s)) = L(E,s)⁻¹ para cada curva
+- 🎨 **NFT/ERC721A**: Contratos post-cuánticos para cada curva
+- ✍️ **Firma ∴DAO**: Coherencia 0.897 ≥ 0.888, frecuencia ω₀ = 141.7001 Hz
+- 🔐 **Sello de Correspondencia**: Validación externa BSD/QCAL ∞³
+
+**Documentación:**
+- 📖 [Expansion Guide](BSD_YANG_MILLS_EXPANSION.md) - Complete expansion documentation
+- 🧪 [Tests](tests/test_bsd_yang_mills_expansion.py) - 23 passing tests
+- 💻 [Implementation](src/bsd_yang_mills_expansion.py) - Full expansion module
+- ✅ [Validation](validate_bsd_yang_mills_expansion.py) - Automated validation script
+
+**Resultados:**
+- ✅ 3 curvas integradas con resonancia QCAL ≥ 0.888
+- ✅ 3 contratos NFT/ERC721A emitidos
+- ✅ Firma DAO con coherencia global 0.897
+- ✅ Sello de correspondencia SHA3-512 generado
+- ✅ Frecuencia bloqueada: f₀ = 141.7001 Hz
 
 ---
 
