@@ -1,7 +1,7 @@
 {
   "title": "BSD/QCAL \u221e\u00b3 Correspondence Seal",
   "version": "1.0",
-  "timestamp": "2026-02-01T19:36:51.821077",
+  "timestamp": "2026-02-01T19:39:26.952080",
   "seal_hash": "a8707d3653ff58b34ea107eff6be564ab270a6c88b1a4415490eb75f80332e2d7f1139c7e7eb05e0e71d783c4e2cb6fbe21776c79690785b94865a07501f4f1b",
   "frequency_hz": 141.7001,
   "expansion_summary": {
@@ -70,5 +70,5 @@
     "lmfdb_sourced": true,
     "frequency_locked": true
   },
-  "signature": "0f98dc2d238df9fb0beed48cac5914094b6deb2502ba8de6dc3e0965596ef9aae49a78ef314d7750aae8daadb6cad4afccda497492adb12c31359d6194970981"
+  "signature": "f186c5a88f329b59b93bdb1be789e3ac3539099e59b550b1fe730a3ae1a86f4b3b7f291f039f1927ca2bbc1019b135360d5d9fe656e3b959f35a299e247d5c17"
 }
