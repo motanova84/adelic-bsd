@@ -1,0 +1,12 @@
+{
+  "label": "433a1",
+  "conductor": 433,
+  "rank": 1,
+  "j_invariant": "-884736/433",
+  "discriminant": -433,
+  "variety": "prime_discriminant",
+  "qcal_resonance": 0.912,
+  "torsion_order": 1,
+  "regulator": 0.705934182148,
+  "omega_plus": 2.13035598096
+}
