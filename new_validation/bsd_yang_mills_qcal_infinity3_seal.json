@@ -1,0 +1,74 @@
+{
+  "title": "BSD/QCAL \u221e\u00b3 Correspondence Seal",
+  "version": "1.0",
+  "timestamp": "2026-02-01T19:36:51.821077",
+  "seal_hash": "a8707d3653ff58b34ea107eff6be564ab270a6c88b1a4415490eb75f80332e2d7f1139c7e7eb05e0e71d783c4e2cb6fbe21776c79690785b94865a07501f4f1b",
+  "frequency_hz": 141.7001,
+  "expansion_summary": {
+    "curves_added": 3,
+    "all_traces_validated": false,
+    "nfts_minted": 3,
+    "dao_signed": true
+  },
+  "validation_summary": {
+    "curves": [
+      {
+        "label": "389a1",
+        "conductor": 389,
+        "rank": 2,
+        "qcal_resonance": 0.891
+      },
+      {
+        "label": "433a1",
+        "conductor": 433,
+        "rank": 1,
+        "qcal_resonance": 0.912
+      },
+      {
+        "label": "709a1",
+        "conductor": 709,
+        "rank": 1,
+        "qcal_resonance": 0.888
+      }
+    ],
+    "trace_validations": [
+      {
+        "curve_label": "389a1",
+        "spectral_trace": 19.99500062492614,
+        "l_function_inverse": 73.46778675677557,
+        "relative_error": 0.7278398940868857,
+        "validated": false,
+        "tolerance": 0.1,
+        "status": "MISMATCH"
+      },
+      {
+        "curve_label": "433a1",
+        "spectral_trace": 19.99500062492614,
+        "l_function_inverse": 13.83654172060896,
+        "relative_error": 0.44508657066703367,
+        "validated": false,
+        "tolerance": 0.1,
+        "status": "MISMATCH"
+      },
+      {
+        "curve_label": "709a1",
+        "spectral_trace": 19.99500062492614,
+        "l_function_inverse": 14.548404264857172,
+        "relative_error": 0.3743775785242408,
+        "validated": false,
+        "tolerance": 0.1,
+        "status": "MISMATCH"
+      }
+    ],
+    "nft_count": 3,
+    "dao_coherence": 0.8969999999999999,
+    "dao_signed": true
+  },
+  "attestation": {
+    "quantum_resistant": true,
+    "external_verifiable": true,
+    "lmfdb_sourced": true,
+    "frequency_locked": true
+  },
+  "signature": "0f98dc2d238df9fb0beed48cac5914094b6deb2502ba8de6dc3e0965596ef9aae49a78ef314d7750aae8daadb6cad4afccda497492adb12c31359d6194970981"
+}
