@@ -61,12 +61,11 @@ open Complex Real QCAL
 
 namespace BSDYangMills
 
-/-- Elliptic curve over ℚ (axiomatized) -/
-axiom EllipticCurve : Type
-axiom EllipticCurve.ℚ : Type
+/-- Elliptic curve over a field K -/
+axiom EllipticCurve : Type → Type
 
 /-- L-series of an elliptic curve -/
-axiom LSeries : EllipticCurve.ℚ → ℂ → ℂ
+axiom LSeries : EllipticCurve ℚ → ℂ → ℂ
 
 /-- Yang-Mills operator type -/
 axiom Operator : Type
@@ -81,11 +80,11 @@ axiom Tr : Operator → ℂ
 -/
 
 /-- L-function of elliptic curve E at complex point s -/
-def L_E (E : EllipticCurve.ℚ) (s : ℂ) : ℂ :=
+def L_E (E : EllipticCurve ℚ) (s : ℂ) : ℂ :=
   LSeries E s
 
 /-- Yang-Mills operator M_E constructed from elliptic curve E -/
-noncomputable def M_E (E : EllipticCurve.ℚ) (s : ℂ) : Operator :=
+noncomputable def M_E (E : EllipticCurve ℚ) (s : ℂ) : Operator :=
   QCAL.YangMills.Operator.fromCurve E s
 
 /-!
@@ -98,7 +97,7 @@ noncomputable def M_E (E : EllipticCurve.ℚ) (s : ℂ) : Operator :=
 -/
 
 /-- Main theorem: Trace of Yang-Mills operator equals inverse L-function -/
-theorem trace_eq_L_inverse (E : EllipticCurve.ℚ) (s : ℂ) :
+theorem trace_eq_L_inverse (E : EllipticCurve ℚ) (s : ℂ) :
     Tr (M_E E s) = (L_E E s)⁻¹ := by
   -- This follows from the BSD-Yang-Mills correspondence axiom
   apply QCAL.BSD.ModularCurve.trace_eq_L_inverse E s
@@ -113,7 +112,7 @@ theorem trace_eq_L_inverse (E : EllipticCurve.ℚ) (s : ℂ) :
 def ω₀ : ℝ := 141.7001
 
 /-- Example: Natural frequency of Yang-Mills operator equals fundamental frequency -/
-example (E : EllipticCurve.ℚ) :
+example (E : EllipticCurve ℚ) :
     QCAL.Frequency.naturalFrequency (M_E E 1) = ω₀ := by
   apply QCAL.YangMills.Operator.freq_eq_141hz
 
