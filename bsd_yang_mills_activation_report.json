@@ -3,7 +3,7 @@
     "title": "BSD-Yang-Mills-QCAL System Activation Report",
     "author": "Jos\u00e9 Manuel Mota Burruezo (JMMB \u03a8\u00b7\u2234)",
     "frequency": 141.7001,
-    "timestamp": "2026-02-01T19:38:12"
+    "timestamp": "2026-02-01T19:40:46"
   },
   "system": {
     "curve_id": "11a1",
@@ -28,7 +28,7 @@
       "global_smoothness": true,
       "l_function_analytic": false
     },
-    "timestamp": "2026-02-01T19:38:12"
+    "timestamp": "2026-02-01T19:40:46"
   },
   "theorem": {
     "title": "BSD-Yang-Mills-QCAL Correspondence Theorem",

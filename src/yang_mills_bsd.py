@@ -27,6 +27,7 @@ from typing import Dict, List, Tuple, Optional, Callable
 import json
 from pathlib import Path
 from dataclasses import dataclass
+from datetime import datetime
 
 # Import existing BSD framework components
 try:
@@ -252,8 +253,10 @@ class YangMillsOperator:
             'gauge_group': self.gauge_group,
             'n_eigenvalues': len(self.eigenvalues) if self.eigenvalues is not None else 0,
             'eigenvalues': self.eigenvalues.tolist() if self.eigenvalues is not None else [],
+            # Note: trace_cache keys are tuples (s, k) but converted to strings for JSON serialization
+            # This is one-way serialization - keys cannot be converted back to tuples
             'trace_cache': {
-                f"{k}": complex(v) for k, v in self.trace_cache.items()
+                f"s={k[0]}_k={k[1]}": complex(v) for k, v in self.trace_cache.items()
             }
         }
 
@@ -395,7 +398,7 @@ class BSD_YangMills_System:
             'system_active': self.system_active,
             'operator_eigenvalues': len(self.operator.eigenvalues),
             'qcal_validation': qcal_validation,
-            'timestamp': str(np.datetime64('now'))
+            'timestamp': datetime.now().isoformat()
         }
         
         return report
@@ -465,7 +468,7 @@ class BSD_YangMills_System:
                 'title': 'BSD-Yang-Mills-QCAL System Activation Report',
                 'author': 'José Manuel Mota Burruezo (JMMB Ψ·∴)',
                 'frequency': QCAL_FREQUENCY,
-                'timestamp': str(np.datetime64('now'))
+                'timestamp': datetime.now().isoformat()
             },
             'system': {
                 'curve_id': self.curve_id,

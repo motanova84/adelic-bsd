@@ -171,8 +171,8 @@ class TestBSDYangMillsSystem:
         assert 'en' in theorem['statement']
         assert 'es' in theorem['statement']
         
-    def test_report_export(self, tmp_path):
-        """Test report export functionality"""
+    def test_export_report_creates_valid_json(self, tmp_path):
+        """Test that export_report creates valid JSON file"""
         system = BSD_YangMills_System("11a1")
         
         output_path = tmp_path / "test_report.json"
