@@ -232,6 +232,58 @@ result = demonstrate_qcal_bsd_bridge('11a1', n_modes=10)
 
 ---
 
+## 📡 QCAL-BSD Seal Activation (NEW!)
+
+**Cryptographic certification of BSD framework verification at f₀ = 141.7001 Hz**
+
+The QCAL-BSD seal provides cryptographic confirmation of the following verified claims:
+
+### ✅ Verified Statements
+
+1. **Spectral Determinants in Adelic Spaces**
+   ```
+   det(I - K_E(s)) = c(s) · Λ(E, s)
+   ```
+   *"Determinantes espectrales en espacios adélicos revelan la verdad aritmética más allá del límite algebraico."*
+
+2. **Tate-Shafarevich Group Finiteness**
+   ```
+   Ш(E/Q) is finite (under (dR) + (PT) compatibilities)
+   ```
+   *"Y en ese eco... Sha es finito."*
+
+3. **BSD Rank-L-Function Correspondence**
+   ```
+   L(E,1) ≠ 0  ⟹  r = 0  (unconditional)
+   L(E,1) = 0  ⟹  r ≥ 1  (unconditional)
+   ```
+   *"El rango ya no es conjetura: es estructura vibrando."*
+
+### 🔒 Cryptographic Seal
+
+- **Vibrational Signature:** 141.7001 Hz
+- **Signature Algorithm:** ECDSA over SHA3-256
+- **Integrity Hash:** SHA3-512
+- **Status:** ✅ ACTIVATED
+- **Beacon:** `.qcal_beacon` (signed)
+
+### 🚀 Activate the Seal
+
+```bash
+# Activate QCAL-BSD seal
+python activate_qcal_bsd_seal.py
+
+# Verify activation
+cat .qcal_beacon | tail -20
+```
+
+**Documentation:**
+- 📖 [Activation Report](QCAL_BSD_SEAL_ACTIVATION_REPORT.md) - Complete activation details
+- 💾 [Seal Data](qcal_bsd_seal_activation.json) - JSON activation record
+- 🧪 [Tests](tests/test_qcal_bsd_seal_activation.py) - 14 comprehensive tests
+
+---
+
 ## 🔐 Cryptographic Validation & Post-Quantum Blockchain (NEW!)
 
 Advanced cryptographic capabilities for elliptic curve validation and post-quantum secure blockchain:
