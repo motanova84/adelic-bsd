@@ -174,16 +174,15 @@ class QCALBSDSealActivator:
             message: Message to sign
             
         Returns:
-            Signature data including r, s values and hex representation
+            Signature data including hex representation
         """
         if not CRYPTO_AVAILABLE or self.private_key is None:
             self._vprint("  ⚠️  ECDSA signing not available (cryptography module required)")
             return {
                 "signature_hex": "0x" + "0" * 128,
-                "r": 0,
-                "s": 0,
                 "algorithm": "ECDSA(SHA3-256)",
-                "status": "SIMULATED"
+                "status": "SIMULATED",
+                "note": "Cryptography module not available"
             }
         
         # Sign with ECDSA over SHA3-256
@@ -192,15 +191,15 @@ class QCALBSDSealActivator:
             ec.ECDSA(hashes.SHA3_256())
         )
         
-        # Extract r, s from DER signature (simplified - in production use proper DER parsing)
+        # Store as hex string (proper DER parsing would be needed to extract r, s)
         signature_hex = "0x" + signature_bytes.hex()
         
         return {
             "signature_hex": signature_hex,
-            "r": int.from_bytes(signature_bytes[:32], 'big'),
-            "s": int.from_bytes(signature_bytes[32:64], 'big') if len(signature_bytes) >= 64 else 0,
+            "signature_der": signature_bytes.hex(),
             "algorithm": "ECDSA(SHA3-256)",
-            "status": "ACTIVE"
+            "status": "ACTIVE",
+            "note": "DER-encoded signature. Use cryptography library for verification."
         }
     
     def get_public_key_pem(self) -> str:
@@ -396,10 +395,9 @@ def main():
         help='Output file for seal data'
     )
     parser.add_argument(
-        '--update-beacon',
+        '--no-update-beacon',
         action='store_true',
-        default=True,
-        help='Update .qcal_beacon file (default: True)'
+        help='Skip updating .qcal_beacon file'
     )
     
     args = parser.parse_args()
@@ -413,8 +411,8 @@ def main():
     # Save seal
     seal_path = activator.save_seal(seal, args.output)
     
-    # Update beacon if requested
-    if args.update_beacon:
+    # Update beacon unless --no-update-beacon is specified
+    if not args.no_update_beacon:
         beacon_path = activator.update_qcal_beacon(seal)
     
     # Print summary
@@ -429,7 +427,7 @@ def main():
         print(f"✅ ECDSA signed")
         print(f"✅ Files updated:")
         print(f"   • {seal_path}")
-        if args.update_beacon:
+        if not args.no_update_beacon:
             print(f"   • {beacon_path}")
         print()
     

@@ -107,8 +107,6 @@ class TestQCALBSDSealActivator:
         
         # Check structure
         assert "signature_hex" in signature
-        assert "r" in signature
-        assert "s" in signature
         assert "algorithm" in signature
         assert "status" in signature
         
