@@ -2,13 +2,16 @@
 """
 QCAL ∞³ Framework Workflow Validator
 
-Validates the complete certification chain for BSD resolution including:
-- Certificate file integrity
-- Spectral resonance calculations
-- Biological synchronization parameters
-- Cryptographic seal verification
+This custom validator differs from standard approaches by validating the unique
+aspects of the QCAL ∞³ framework:
+- Mixed JSON/comment certificate format (not pure JSON)
+- Spectral resonance computations with p=17 prime indexing
+- Biological synchronization parameters (17-year cicada cycle)
+- Multi-problem unification (BSD, Navier-Stokes, P vs NP)
 
-This is a custom validator for the QCAL ∞³ framework.
+Standard validators would fail on the mixed-format certificates and wouldn't
+verify the framework-specific computations like spectral frequency derivation
+from prime-indexed equilibrium functions.
 """
 
 import json
@@ -183,6 +186,7 @@ class QCALFrameworkValidator:
         """Validate biological synchronization parameters"""
         # Magicicada septendecim parameters
         cicada_period = 17  # years
+        # Verify primality for documentation completeness (even though value is constant)
         is_prime = all(cicada_period % i != 0 for i in range(2, cicada_period))
         
         # Check resonance alignment

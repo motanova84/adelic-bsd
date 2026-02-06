@@ -232,12 +232,13 @@
   "cryptographic_seal": {
     "certificate_id": "BSD_Spectral_Certificate_2026-02-06",
     "timestamp": "2026-02-06T00:20:23Z",
-    "sha3_512_hash": "e8f4a2b9c1d7e3f6a5b8c2d9e4f7a1b3c6d8e2f5a9b1c4d7e3f6a2b5c8d1e4f7a3b6c9d2e5f8a1b4c7d3e6f9a2b5c8d1e4f7a3b6c9d2e5f8a1b4c7d3e6f9a2b5",
+    "note": "Placeholder cryptographic values - production deployment requires actual signature generation",
+    "sha3_512_hash": "PLACEHOLDER_e8f4a2b9c1d7e3f6a5b8c2d9e4f7a1b3c6d8e2f5a9b1c4d7e3f6a2b5c8d1e4f7a3b6c9d2e5f8a1b4c7d3e6f9a2b5c8d1e4f7a3b6c9d2e5f8a1b4c7d3e6f9a2b5",
     "ecdsa_signature": {
       "algorithm": "ECDSA(SHA3-256)",
       "curve": "secp256k1",
-      "signature_hex": "0x3046022100a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0022100f0e9d8c7b6a5f4e3d2c1b0a9f8e7d6c5b4a3f2e1d0c9b8a7f6e5d4c3b2a1",
-      "status": "ACTIVE"
+      "signature_hex": "PLACEHOLDER_0x3046022100a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0022100f0e9d8c7b6a5f4e3d2c1b0a9f8e7d6c5b4a3f2e1d0c9b8a7f6e5d4c3b2a1",
+      "status": "TEMPLATE"
     },
     "message_signed": "BSD_Spectral_Certificate|2026-02-06T00:20:23Z|141.7001|p=17|QCAL∞³|Noesis∞³",
     "public_key_pem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEqcal1v2nD9xPBvmJQP2J3QpzKH9m\nL8yCnxB2vK5wD7R3sT1uY4pW6qN8zO5rM2jL9kH3fG1tC4vP7mE8nR2sQw==\n-----END PUBLIC KEY-----\n",

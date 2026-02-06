@@ -8,7 +8,7 @@ This document validates the claims in the BSD resolution within the QCAL ∞³ f
 
 ### Lean 4 Compilation Results
 
-The framework claims "sin sorry" (without sorry statements) in Lean 4. Our verification confirms:
+The framework claims "without sorry statements" in Lean 4. Our verification confirms:
 
 **Module Status:**
 - ✅ `BSDFinal.lean` - Spectral equivalence theorems compiled
@@ -125,11 +125,11 @@ To reproduce all validations:
 # Install environment
 pip install -r requirements.txt
 
-# Validate p=17 spectral resonance
-python validate_p17_optimality.py
+# Run complete QCAL framework validation
+python validate_qcal_infinity3_framework.py
 
-# Verify BSD certificate structure  
-python -c "import json; json.load(open('BSD_Spectral_Certificate.qcal_beacon'))"
+# Validate p=17 spectral resonance specifically
+python validate_p17_optimality.py
 
 # Check beacon integrity
 grep -A 10 "qcal_bsd_seal" .qcal_beacon
