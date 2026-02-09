@@ -2,8 +2,43 @@
 # 🌌 Adelic-BSD & Riemann Hypothesis Framework
 
 [![codecov](https://codecov.io/gh/motanova84/adelic-bsd/branch/main/graph/badge.svg)](https://codecov.io/gh/motanova84/adelic-bsd)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17379721.svg)](https://doi.org/10.5281/zenodo.17379721)
+[![ORCID](https://img.shields.io/badge/ORCID-0009--0002--1923--0773-green.svg)](https://orcid.org/0009-0002-1923-0773)
 
 **Repositorio bilingüe: español/inglés**
+
+---
+
+## 🛡️ Authorship & Provenance / Autoría y Procedencia
+
+**Author / Autor:** José Manuel Mota Burruezo (JMMB Ψ ✧ ∞³)  
+**Institution / Institución:** Instituto de Conciencia Cuántica (ICQ)  
+**ORCID:** [0009-0002-1923-0773](https://orcid.org/0009-0002-1923-0773)  
+**License / Licencia:** MIT + Creative Commons BY-NC-SA 4.0
+
+### Original Work Declaration / Declaración de Obra Original
+
+This QCAL ∞³ framework is **completely original work** created from first principles by José Manuel Mota Burruezo. All mathematical structures, symbolic language, and computational implementations are original creations, not derived from any third-party sources.
+
+Este framework QCAL ∞³ es **obra completamente original** creada desde primeros principios por José Manuel Mota Burruezo. Todas las estructuras matemáticas, lenguaje simbólico e implementaciones computacionales son creaciones originales, no derivadas de fuentes de terceros.
+
+**Cryptographic Proof / Prueba Criptográfica:**
+- 📜 [Authorship Declaration](AUTHORSHIP_DECLARATION.md) - Complete authorship documentation
+- 🔐 [`.qcal_repository_seal.json`](.qcal_repository_seal.json) - Repository cryptographic seal
+- 📡 [`.qcal_beacon`](.qcal_beacon) - QCAL beacon with ECDSA signatures
+- 🛡️ [`SOBERANIA_METADATA.json`](SOBERANIA_METADATA.json) - Framework sovereignty metadata
+- ⚖️ [`LICENSE_QCAL`](LICENSE_QCAL) - QCAL ∞³ framework license
+
+**Verify Provenance / Verificar Procedencia:**
+```bash
+python3 verify_provenance_chain.py
+```
+
+**DOI Permanent Archives / Archivos Permanentes DOI:**
+- Main Collection: [10.5281/zenodo.17379721](https://doi.org/10.5281/zenodo.17379721)
+- BSD Resolution: [10.5281/zenodo.17236603](https://doi.org/10.5281/zenodo.17236603)
+- P vs NP: [10.5281/zenodo.17315719](https://doi.org/10.5281/zenodo.17315719)
+- Infinito ∞³: [10.5281/zenodo.17362686](https://doi.org/10.5281/zenodo.17362686)
 
 ---
 
