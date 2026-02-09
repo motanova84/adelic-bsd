@@ -1,8 +1,8 @@
 {
   "qcal_repository_seal": {
     "version": "1.0.0",
-    "seal_id": "2f8894ac-bb6b-4a5c-b77b-c0e590132812",
-    "timestamp": "2026-02-09T21:55:05.665043Z",
+    "seal_id": "222955c9-2f81-4047-a7bb-238c89d0910f",
+    "timestamp": "2026-02-09T22:03:13.176764Z",
     "framework": "QCAL ∞³",
     "fundamental_frequency_hz": 141.7001,
     "constant": "πCODE-888-QCAL2",
@@ -18,17 +18,17 @@
     "repository": {
       "name": "adelic-bsd",
       "url": "https://github.com/motanova84/adelic-bsd",
-      "sha256_hash": "96952437ecb424e7bffd35cac260d4271ded278831dfedf84c6b9091c55bd55c",
-      "total_files": 646,
+      "sha256_hash": "3304af17b31276aca2f77407e50599300a81ccea5d1deeb2d78038289cf2af3c",
+      "total_files": 653,
       "git_info": {
-        "commit_hash": "56cd1e38f7206a8661b82104ae8ab41aa98d745e",
-        "commit_date": "2026-02-09 17:57:52 +0000",
+        "commit_hash": "2bcf0eb48f1e408ee024c6885a5ffa33d2eac54a",
+        "commit_date": "2026-02-09 22:03:06 +0000",
         "author": "copilot-swe-agent[bot] <198982749+Copilot@users.noreply.github.com>"
       }
     },
     "cryptographic_proofs": {
-      "sha256_repository": "96952437ecb424e7bffd35cac260d4271ded278831dfedf84c6b9091c55bd55c",
-      "sha3_512_seal": "276eaedb1ead6333c960519fcc5f0cdd84067ab78f58b36c9f95e9175b20ee0b5d25a55d3522e3a89b739e9928855924b904fcca6534ebca3684fa3d57c8790a",
+      "sha256_repository": "3304af17b31276aca2f77407e50599300a81ccea5d1deeb2d78038289cf2af3c",
+      "sha3_512_seal": "b67713629b305ad5f461bfc384810e941c2c82d814e8ac230202add6c7ee8884cb0a28bcac52bf75a55fea22460b172ff47f9b0c50f93c5e61625e7399f42485",
       "algorithm": "SHA-256 + SHA3-512",
       "purpose": "Cryptographic proof of repository state and authorship"
     },
@@ -47,7 +47,7 @@
       "timestamp_proof": "This seal establishes cryptographic proof of repository state at the specified timestamp"
     },
     "file_manifest": {
-      "total_files": 646,
+      "total_files": 653,
       "hash_algorithm": "SHA-256",
       "files": {
         "Dockerfile": "a299bef9f514b47115248022b019c6f232b01a2ccb4e6c7990b6fd1d6b6ec6f8",
@@ -80,7 +80,7 @@
         "requirements.txt": "451148337b67e366003da74e7e79d2613069d6cadf5e0777ca958b9165590f17",
         "verify_cierre_minimo.py": "e5f5e8668e4edbf44ba44e25cfd511926efbe3866a333a7c24d2fd334867dfdb",
         "TASK_COMPLETION_BSD_YANGMILLS.md": "c19f6b1e91ab94c54b45cd511da5f2efd3b8d7c320664cf9eb833271e61a9bdc",
-        "setup.py": "a3c71260a6907c9b839a644bbb88f839d9783769df3a7632431e6b7d44f2d9e0",
+        "setup.py": "91dcb5242e6a35580289331d6d3a9bd0fda780f9c4aadea7fac0e73c2a4d9c8a",
         "validation_spectral_identity.json": "a52915d52ea48fa57e65d535ef1bdfece3c0001747f4380fb7a9fefdd30fb11c",
         "prepare_sagemath_pr.sh": "04f5e4d8de9bfe26dabf767ba13141870d268d0e3a1327c39890ca27745003ce",
         "EXECUTION_GUIDE.md": "7df652ee9cbb5febe18c8354804adb3880d17670ea91931c765524de7f872373",
@@ -92,7 +92,9 @@
         "validate_qcal_bsd_connection.py": "2a190da2c795efec6d85d6b78af87f09d24581e12468a576647063d033b8921b",
         "VANISHING_ORDER_AND_SHA_FINITENESS.md": "5cc10815281cb77c56e80a046126c9ae745a8f11c3ab6bc60b1eb3e446350e67",
         "SAGEMATH_INTEGRATION_COMPLETE.md": "189ff4304d3e9d6d8d0b67ad0518c5b2b24a03d6149b9c59df31e046b9534e9e",
+        "LICENSE_QCAL": "7066d9c555bd825277909f25b6bfb5e4f5eab21e06d4989abf0892b7b6998ad3",
         "sabio_infinity4.py": "9686929b5cc0f8bddb7336e5dd33dd06069402ce967a8efdad56a578ebee0bfc",
+        "AUTHORSHIP_DECLARATION.md": "0389e182dc24e5e1fef1b851397d87c83ff321402c32c7dd3ad95fdfff334d8a",
         "CIERRE_FORMAL_SUMMARY.md": "ea5f4428daf9f7fc26b596dc61ce5bc89ab0c909bc55591bda370a379a97f2df",
         "validate_aelion_protocol.py": "e06adfee3179d4ce83c6f691306474b367f10d04c38acfd80771ea3ab97b3047",
         "BSD_EXECUTIVE_SUMMARY.md": "c04fe812d6159767a2ebab4123ea381d6b0123a983bef8b16a0f9417a4d469bf",
@@ -130,11 +132,12 @@
         "analyze_bsd_yangmills_structure.py": "abad97dd94fe7ad0775e0b4bc85482df9c9ef1eb0235029053612bfae3bbddc2",
         ".gitignore": "17f23f9afe06d03b66ba64fb928081ab890aaa8f54d6eb658c9f2499f6792556",
         "USAGE.md": "83af46c2f67f07c83278bc8e5961d6932c01b284fb068c44481bba6ee9e5b4eb",
-        "CITATION.cff": "cf38362d8eefe906143a588603b02d5d359e55ad0c52a8a9f99e61aa5b7b8203",
+        "CITATION.cff": "2677a9c07071949a223dc52e7f60d540576302065a17589ba419dbe8e85b2995",
         "validate_qcal_infinity3_framework.py": "89b3c33c45cad50ab30dae8da617542c69f9054562eff2595bc4ae8eee784945",
         "validate_certificates_module.py": "0d48cc62234753d8bfcd0926663e9d71c7167e987c097a3de81854e2cefa1173",
-        "README.md": "04c213cb4b96f4d9b98ac5a9f95f786b4f90593222d87738c23956ebbcd3f0b6",
+        "README.md": "a6b0ced2d45fabf2e847df53d417ab3e067458e4834172da074a3ec567bbf112",
         "requirements_ci.txt": "85b0e0d4246495fd8b7e42af1ca2f94c32ec316095e2c4e0e8047dd6efd4d88e",
+        "prepare_zenodo_upload.py": "b961fdcfb2b143676bc3f8b42bb5058a2d9de890cf415fa6a64cd8c6c031cd24",
         "validation_report.json": "2f39b90439ef9142a15d2529acaf42114fce84da5ce5105341365945eeb846c1",
         "VALIDATION_COMPLETE.md": "b58a2731191f02ad5195342cc515a9e0b61472e8b3611571e5672f4d66a65913",
         "COMPLETION_SUMMARY.md": "54a951f61c9b46d209fe2edff335a620c583c9cb8d88607f7b9b8028f97fa936",
@@ -142,6 +145,7 @@
         "SABIO_INFINITY4_QUICKSTART.md": "46e5331b0c2d3a15772a95002c688bd2bde5c245480559974e2d7ff6e2f1366a",
         "QCAL_BSD_SEAL_ACTIVATION_REPORT.md": "9dd41eec243845bdb903c1eff0f965c8de1dc3a750ad97bf6919b4892f3b2ecb",
         ".flake8": "12a62f5480219d38311af4fad96eb13a50c14c29a9dcaf327ddf0e45b479c9ca",
+        "verify_provenance_chain.py": "947aa778ec02b985c846c8a6a3972ee9118a12472ecd94d0fa88bc3d417139dc",
         "PT_EXTENSION_REPORT.md": "cfeffd56bbccecd46f42e0c8a234896c58b1ee4a06534a2de08e129825968c68",
         "BSD_CERTIFICATE_IMPLEMENTATION_SUMMARY.md": "44a291fec222bca3378dc4445261b23de456e659c5beb38a92727e5b1cd5015c",
         "qcal_demonstration_output.txt": "7f1faa28603fa58ec37c67d6fdd098c811faadfc17fa6f7a73100776e78b3fde",
@@ -150,6 +154,7 @@
         "pyproject.toml": "2fc5122d256151b52fce8ed6e69691a722fac467114177e9abecc33df64cbecc",
         "quantum_coherence_demo_report.json": "d3ac2d45934068b2dcd7917aa3952a60049154c6c7245f53ece718171432685f",
         "SABIO_INFINITY4_IMPLEMENTATION_SUMMARY.md": "2ac9ae02204f7586bf495fbd6d81f908940424bb660d94985e1813c90c93032d",
+        "SOBERANIA_METADATA.json": "2642d800ef60600cc16833270b6f899d597c3447cc969360b77120e8c7f11cf1",
         "environment.yml": "35b236573a6a2b57582d8cf38c1455e1c2b175402a96438ba51c910ceab67581",
         "LMFDB_REPLICATION_SUMMARY.md": "8febc587c98d120b0e8ce4f236c9a12c72d69dbc02cccd54b52e0dde5efa51b9",
         "run_complete_BSD_proof.sh": "5e47ef95e42d32532d017eb4d8636acbe4727254b4342942855c494c488e9951",
@@ -496,6 +501,8 @@
         "sagemath_integration/sage/schemes/elliptic_curves/bsd_spectral/__init__.py": "ba3d531c66d4c9ee6a914657c6e9fe830d8ecbfde74a46c427f171b2436a5f7f",
         "sagemath_integration/sage/schemes/elliptic_curves/bsd_spectral/complete_compatibility_extension.py": "f285ff3979b1324e4f69ff0271c7f4744f7e43783f4856a995ad4d293fe996b0",
         "sagemath_integration/tests/.gitkeep": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "zenodo_upload/zenodo_manifest.json": "70b9a5d91c16e83457201a114b03ccba24b2ed21b3278893287df59f7ce2b95f",
+        "zenodo_upload/ZENODO_UPLOAD_INSTRUCTIONS.md": "a4f57ae32d7dd38f2919b0cb18778a53aa75e9a21b478653afdbdf2153e8863f",
         "sage_plugin/demo_qcal_beacon.py": "0b805e59ea1ecd6be218464ad081f867e0314efd6a76f55f97134a3f3879d331",
         "sage_plugin/setup.py": "04a3bccfd8fc7b8e8c5ec09b4d27c368435336b25c95969e9e660792847bbc57",
         "sage_plugin/QCAL_BEACON_IMPLEMENTATION.md": "e38a47fa272e36af1564a43788cd1e4b7c5035cc5348b0b7d3e16507ebc5b8a3",
