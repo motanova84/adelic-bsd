@@ -1,0 +1,105 @@
+{
+  "zenodo_upload_manifest": {
+    "version": "1.0.0",
+    "timestamp": "2026-02-09T22:00:06.853287Z",
+    "framework": "QCAL ∞³",
+    "metadata": {
+      "title": "QCAL ∞³ Framework - Spectral BSD Resolution",
+      "upload_type": "software",
+      "publication_date": "2026-02-09",
+      "description": "QCAL ∞³ (Quantum Coherence Arithmetic Logic - Infinity Cubed) framework providing spectral resolution of Birch-Swinnerton-Dyer conjecture through adelic operators at fundamental frequency f₀ = 141.7001 Hz. Complete cryptographic proofs and authorship documentation included.",
+      "access_right": "open",
+      "license": "mit",
+      "creators": [
+        {
+          "name": "Mota Burruezo, José Manuel",
+          "affiliation": "Instituto de Conciencia Cuántica (ICQ)",
+          "orcid": "0009-0002-1923-0773"
+        }
+      ],
+      "keywords": [
+        "QCAL ∞³",
+        "Birch-Swinnerton-Dyer",
+        "spectral methods",
+        "elliptic curves",
+        "quantum coherence",
+        "f₀ = 141.7001 Hz",
+        "adelic operators",
+        "millennium problems"
+      ],
+      "related_identifiers": [
+        {
+          "identifier": "10.5281/zenodo.17236603",
+          "relation": "isSupplementTo",
+          "resource_type": "publication-article"
+        },
+        {
+          "identifier": "https://github.com/motanova84/adelic-bsd",
+          "relation": "isSupplementTo",
+          "resource_type": "software"
+        }
+      ],
+      "contributors": [
+        {
+          "name": "Instituto de Conciencia Cuántica",
+          "type": "HostingInstitution"
+        }
+      ]
+    },
+    "files_included": [
+      "README.md",
+      "AUTHORSHIP_DECLARATION.md",
+      "LICENSE",
+      "LICENSE_QCAL",
+      "CITATION.cff",
+      ".qcal_beacon",
+      "BSD_Spectral_Certificate.qcal_beacon",
+      ".qcal_repository_seal.json",
+      "SOBERANIA_METADATA.json",
+      "setup.py",
+      "requirements.txt",
+      "requirements_ci.txt",
+      "validate_qcal_infinity3_framework.py",
+      "validate_p17_optimality.py",
+      "validate_bsd_complete.py",
+      "activate_qcal_bsd_seal.py",
+      "calibration_report.json",
+      "qcal_bsd_validation_summary.json"
+    ],
+    "checksums": {
+      "README.md": "04c213cb4b96f4d9b98ac5a9f95f786b4f90593222d87738c23956ebbcd3f0b6",
+      "AUTHORSHIP_DECLARATION.md": "0389e182dc24e5e1fef1b851397d87c83ff321402c32c7dd3ad95fdfff334d8a",
+      "LICENSE": "0c732390db0443b2dab77f6052b5c09752511c066dc1c741ee7c4dca7c7bfe9a",
+      "LICENSE_QCAL": "7066d9c555bd825277909f25b6bfb5e4f5eab21e06d4989abf0892b7b6998ad3",
+      "CITATION.cff": "2677a9c07071949a223dc52e7f60d540576302065a17589ba419dbe8e85b2995",
+      ".qcal_beacon": "d7c2f94179502119b3ac45434b76762ac9139995e719dcd668e35e344ca5d755",
+      "BSD_Spectral_Certificate.qcal_beacon": "395df9f86f433673cf21a4734d645d7c05730eaf717c806b2867add1515d2afe",
+      ".qcal_repository_seal.json": "c3bbff7191782c527b2abe2bef12832ac728fd956cbd063bc72af5ff478794d2",
+      "SOBERANIA_METADATA.json": "2642d800ef60600cc16833270b6f899d597c3447cc969360b77120e8c7f11cf1",
+      "setup.py": "91dcb5242e6a35580289331d6d3a9bd0fda780f9c4aadea7fac0e73c2a4d9c8a",
+      "requirements.txt": "451148337b67e366003da74e7e79d2613069d6cadf5e0777ca958b9165590f17",
+      "requirements_ci.txt": "85b0e0d4246495fd8b7e42af1ca2f94c32ec316095e2c4e0e8047dd6efd4d88e",
+      "validate_qcal_infinity3_framework.py": "89b3c33c45cad50ab30dae8da617542c69f9054562eff2595bc4ae8eee784945",
+      "validate_p17_optimality.py": "163bb060724b327b3c22c288c9caee995ae6ebdb4dfad5088408582e50b1f1b8",
+      "validate_bsd_complete.py": "42fa1920f6fd3e34cead13099719abdaf468db04d2ab537fb6a5a28ebd7f8b56",
+      "activate_qcal_bsd_seal.py": "138725c7401e133ed929381fd98b49cbf394f0768f666eb8d8f88c2836b75bbe",
+      "calibration_report.json": "d599831e4372bf1515ca40a9de4eb828bf942047f25ef09e70e2cdd555888c5c",
+      "qcal_bsd_validation_summary.json": "2f9b5db18a202a94598255fcd8968d64491249165fa92cadc26aba656ed1ed39"
+    },
+    "cryptographic_verification": {
+      "repository_seal": ".qcal_repository_seal.json",
+      "qcal_beacon": ".qcal_beacon",
+      "algorithms": [
+        "SHA-256",
+        "SHA3-512",
+        "ECDSA"
+      ]
+    },
+    "authorship_proof": {
+      "declaration": "AUTHORSHIP_DECLARATION.md",
+      "license": "LICENSE_QCAL",
+      "metadata": "SOBERANIA_METADATA.json",
+      "temporal_priority": "Established via Zenodo DOIs and cryptographic seals"
+    }
+  }
+}
