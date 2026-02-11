@@ -5,6 +5,8 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17379721.svg)](https://doi.org/10.5281/zenodo.17379721)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0002--1923--0773-green.svg)](https://orcid.org/0009-0002-1923-0773)
 
+> **📊 Code Coverage**: This repository uses the [Codecov GitHub App](docs/CODECOV_SETUP.md) for reliable coverage tracking and PR comments.
+
 **Repositorio bilingüe: español/inglés**
 
 ---
@@ -1513,6 +1515,7 @@ This work is part of a broader research program connecting three complementary d
 - **[BSD_FRAMEWORK.md](docs/BSD_FRAMEWORK.md)** - Theoretical foundations with explicit paper references
 - **[USAGE.md](USAGE.md)** - Quick start guide
 - **[CONTRIBUTING.md](CONTRIBUTING.md)** - How to contribute
+- **[CODECOV_SETUP.md](docs/CODECOV_SETUP.md)** - Codecov GitHub App installation and configuration guide (NEW)
 - **[demo_notebook.ipynb](examples/demo_notebook.ipynb)** - Interactive examples
 - **[central_identity_demo.py](examples/central_identity_demo.py)** - Central Identity demonstration (NEW)
 - **[formalization/README.md](formalization/README.md)** - Lean 4 formalization guide (NEW)
