@@ -4,7 +4,7 @@ channels:
   - defaults
 dependencies:
   # Pinned versions for reproducibility
-  # Last updated: 2025-10-18
+  # Last updated: 2026-01-06
   - python=3.10
   - sage=9.8
   - numpy=1.24.3

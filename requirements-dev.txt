@@ -1,25 +1,26 @@
 # Development dependencies
 # Compatible with Python 3.9-3.13
-# Last updated: 2025-10-18
+# Last updated: 2026-01-06
+# All versions pinned for reproducibility
 
 # Include base requirements
 -r requirements_ci.txt
 
 # Linting and formatting
-black>=23.7.0,<25.0.0
-isort>=5.12.0,<6.0.0
-mypy>=1.4.1,<2.0.0
+black==23.7.0
+isort==5.12.0
+mypy==1.4.1
 
 # Testing utilities
-pytest-xdist>=3.3.1,<4.0.0
-pytest-timeout>=2.1.0,<3.0.0
-coverage>=7.2.7,<8.0.0
+pytest-xdist==3.3.1
+pytest-timeout==2.1.0
+coverage==7.2.7
 
 # Documentation
-sphinx>=7.0.1,<8.0.0
-sphinx-rtd-theme>=1.2.2,<2.0.0
-sphinx-autodoc-typehints>=1.23.3,<2.0.0
+sphinx==7.0.1
+sphinx-rtd-theme==1.2.2
+sphinx-autodoc-typehints==1.23.3
 
 # Development tools
-ipython>=8.14.0
-ipdb>=0.13.13
+ipython==8.14.0
+ipdb==0.13.13
