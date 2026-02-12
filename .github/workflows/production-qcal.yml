@@ -22,7 +22,7 @@ jobs:
           cache: 'pip'
 
       - name: Install deps
-        run: pip install -r requirements.txt
+        run: pip install -r requirements_ci.txt
         env:
           # Ensure pip uses workspace for cache to avoid permission issues
           PIP_CACHE_DIR: ${{ github.workspace }}/.pip-cache
