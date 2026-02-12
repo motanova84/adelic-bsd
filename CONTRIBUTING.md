@@ -240,6 +240,7 @@ def test_new_feature():
 - Test with various curve types (good/multiplicative/supercuspidal reduction)
 - Coverage reports are automatically uploaded to Codecov in CI/CD
 - View coverage details at: https://codecov.io/gh/motanova84/adelic-bsd
+- For Codecov setup and configuration, see: [docs/CODECOV_SETUP.md](docs/CODECOV_SETUP.md)
 
 ### LMFDB Cross-Validation
 
