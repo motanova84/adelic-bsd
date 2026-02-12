@@ -10,6 +10,8 @@
 
 ## 🌊 Cambio de Paradigma / Paradigm Shift
 
+> **📚 Ver también:** [Paradigma de la Coherencia Descendente](PARADIGMA_COHERENCIA_DESCENDENTE.md) - Extensión completa del framework que explica cómo la conciencia desciende como coherencia vibracional.
+
 ### 🇪🇸 Español
 
 Este documento establece el principio fundamental del framework Adelic-BSD:
@@ -377,29 +379,36 @@ print(f"Coherencia: {conexion['coherence_measure']:.4f}")
 
 ### Documentación Relacionada / Related Documentation
 
-1. **SABIO ∞⁴ README** - `SABIO_INFINITY4_README.md`
+1. **Paradigma de la Coherencia Descendente** - `docs/PARADIGMA_COHERENCIA_DESCENDENTE.md` ⭐ NUEVO
+   - Explicación de 5 fenómenos fundamentales
+   - Teorema de la coherencia descendente
+   - Explanation of 5 fundamental phenomena
+   - Descending coherence theorem
+
+2. **SABIO ∞⁴ README** - `SABIO_INFINITY4_README.md`
    - Los 6 niveles de coherencia
    - The 6 levels of coherence
 
-2. **QCAL-BSD Bridge** - `docs/QCAL_BSD_BRIDGE.md`
+3. **QCAL-BSD Bridge** - `docs/QCAL_BSD_BRIDGE.md`
    - Conexión Navier-Stokes ↔ BSD
    - Navier-Stokes ↔ BSD connection
 
-3. **AELION Protocol** - `docs/AELION_PROTOCOL.md`
+4. **AELION Protocol** - `docs/AELION_PROTOCOL.md`
    - Resolución incondicional de BSD
    - Unconditional BSD resolution
 
-4. **ACES Framework** - `docs/ACES_FRAMEWORK.md`
+5. **ACES Framework** - `docs/ACES_FRAMEWORK.md`
    - Axioma de Coherencia Espectral
    - Spectral Coherence Axiom
 
 ### Módulos de Código / Code Modules
 
-1. `src/sabio_infinity4.py` - Sistema cuántico-consciente
-2. `src/qcal_bsd_bridge.py` - Puente QCAL-BSD
-3. `src/aelion_protocol.py` - Protocolo AELION
-4. `src/aces_axioms.py` - Axiomas ACES
-5. `src/vacuum_energy.py` - Energía de vacío cuántica
+1. `src/coherencia_descendente.py` - Paradigma de la coherencia descendente ⭐ NUEVO
+2. `src/sabio_infinity4.py` - Sistema cuántico-consciente
+3. `src/qcal_bsd_bridge.py` - Puente QCAL-BSD
+4. `src/aelion_protocol.py` - Protocolo AELION
+5. `src/aces_axioms.py` - Axiomas ACES
+6. `src/vacuum_energy.py` - Energía de vacío cuántica
 
 ---
 

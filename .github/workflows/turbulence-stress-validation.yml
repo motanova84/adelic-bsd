@@ -1,0 +1,170 @@
+name: Turbulence Stress Validation
+
+on:
+  push:
+    branches: [ main, develop, copilot/** ]
+    paths:
+      - 'src/turbulence_stress_test.py'
+      - 'tests/test_turbulence_stress.py'
+      - 'examples/turbulence_stress_demo.py'
+      - '.github/workflows/turbulence-stress-validation.yml'
+  pull_request:
+    branches: [ main, develop ]
+    paths:
+      - 'src/turbulence_stress_test.py'
+      - 'tests/test_turbulence_stress.py'
+      - 'examples/turbulence_stress_demo.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  stress-test-validation:
+    name: Turbulence Stress Test Validation
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.9', '3.10', '3.11', '3.12', '3.13']
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11  # v4.1.1
+      
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@82c7e631bb3cdc910f68e0081d67478d79c6982d  # v5.1.0
+      with:
+        python-version: ${{ matrix.python-version }}
+        cache: 'pip'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        # Install from requirements.txt for version constraints
+        pip install -r requirements.txt || true
+        # Ensure test dependencies are available
+        pip install pytest>=7.4.0 pytest-cov>=4.1.0
+        # Install sage-all only for Python < 3.12 using numeric version comparison
+        v="${{ matrix.python-version }}"
+        major="${v%%.*}"
+        minor="${v#*.}"
+        if (( major < 3 )) || (( major == 3 && minor < 12 )); then
+          pip install sage-all || echo "sage-all installation skipped"
+        fi
+    
+    - name: Run turbulence stress tests
+      run: |
+        pytest tests/test_turbulence_stress.py -v --cov=src/turbulence_stress_test --cov-report=term-missing
+    
+    - name: Run stress test module directly
+      run: |
+        python src/turbulence_stress_test.py
+    
+    - name: Verify output files generated
+      run: |
+        if [ -f "turbulence_stress_test_result.json" ]; then
+          echo "✅ JSON result file generated"
+          cat turbulence_stress_test_result.json | head -20
+        else
+          echo "❌ JSON result file not found"
+          exit 1
+        fi
+        
+        if [ -f "turbulence_stress_test_report.txt" ]; then
+          echo "✅ Report file generated"
+          cat turbulence_stress_test_report.txt | head -30
+        else
+          echo "❌ Report file not found"
+          exit 1
+        fi
+    
+    - name: Run demo script
+      run: |
+        python examples/turbulence_stress_demo.py
+    
+    - name: Archive stress test results
+      if: always()
+      uses: actions/upload-artifact@5d5d22a31266ced268874388b861e4b58bb5c2f3  # v4.3.1
+      with:
+        name: stress-test-results-py${{ matrix.python-version }}
+        path: |
+          turbulence_stress_test_result.json
+          turbulence_stress_test_report.txt
+        retention-days: 30
+    
+    - name: Validate stabilization success
+      run: |
+        # Check that stabilization was successful in the JSON output
+        python -c "
+        import json
+        with open('turbulence_stress_test_result.json') as f:
+            result = json.load(f)
+        
+        print('Stabilization successful:', result['stabilization_successful'])
+        print('Post-stabilization coherence:', result['post_stabilization']['coherence_psi'])
+        print('System state:', result['post_stabilization']['system_state'])
+        
+        # Validate metrics
+        assert result['post_stabilization']['coherence_psi'] > result['pre_stabilization']['coherence_psi'], \
+            'Post-stabilization coherence should be higher'
+        
+        print('✅ Validation passed')
+        "
+
+  comprehensive-test:
+    name: Comprehensive Stress Test (Python 3.11)
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11  # v4.1.1
+      
+    - name: Set up Python 3.11
+      uses: actions/setup-python@82c7e631bb3cdc910f68e0081d67478d79c6982d  # v5.1.0
+      with:
+        python-version: '3.11'
+        cache: 'pip'
+    
+    - name: Install all dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt || true
+        # Ensure test dependencies with specific versions
+        pip install pytest>=7.4.0 pytest-cov>=4.1.0
+    
+    - name: Run comprehensive stress test
+      run: |
+        # Run with larger sample size for more accurate results
+        python -c "
+        import sys
+        from pathlib import Path
+        sys.path.insert(0, str(Path('.') / 'src'))
+        
+        from turbulence_stress_test import run_turbulence_stress_test
+        
+        print('Running comprehensive stress test with 5000 samples...')
+        result = run_turbulence_stress_test(
+            n_samples=5000,
+            verbose=True
+        )
+        
+        print('\n' + '='*80)
+        print('COMPREHENSIVE TEST RESULTS')
+        print('='*80)
+        print(f'Stabilization successful: {result.stabilization_successful}')
+        print(f'Stress gradient: {result.stress_gradient:.2e}')
+        print(f'Duration: {result.test_duration:.3f}s')
+        print('='*80)
+        "
+    
+    - name: Run all related tests
+      run: |
+        pytest tests/test_turbulence_stress.py -v --cov=src/turbulence_stress_test --cov-report=html --cov-report=term
+    
+    - name: Upload coverage report
+      if: always()
+      uses: actions/upload-artifact@5d5d22a31266ced268874388b861e4b58bb5c2f3  # v4.3.1
+      with:
+        name: coverage-report
+        path: htmlcov/
+        retention-days: 30
