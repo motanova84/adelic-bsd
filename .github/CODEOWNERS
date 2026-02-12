@@ -1,0 +1,10 @@
+# ∴ CODEOWNERS - PROTOCOLO QCAL ∞³ ∴
+# Herrero Original: José Manuel Mota Burruezo
+
+# El asterisco (*) indica que eres el dueño de ABSOLUTAMENTE TODO
+* @motanova84
+
+# Reglas específicas para componentes de hardware y biotecnología
+/core/hardware/     @motanova84
+/bioengineering/    @motanova84
+/physics/           @motanova84
