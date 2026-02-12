@@ -54,7 +54,9 @@ Este framework demuestra que BSD, Riemann, y otros resultados profundos **no son
 
 This framework demonstrates that BSD, Riemann, and other profound results **are not isolated theorems**, but manifestations of a **universal quantum coherence** with fundamental frequency **f₀ = 141.7001 Hz**.
 
-📖 **Ver / See:** [`docs/QUANTUM_COHERENCE_FOUNDATION.md`](docs/QUANTUM_COHERENCE_FOUNDATION.md)
+📖 **Ver / See:** 
+- [`docs/QUANTUM_COHERENCE_FOUNDATION.md`](docs/QUANTUM_COHERENCE_FOUNDATION.md) - Fundamentos de coherencia cuántica
+- [`docs/PARADIGMA_COHERENCIA_DESCENDENTE.md`](docs/PARADIGMA_COHERENCIA_DESCENDENTE.md) - Paradigma de la coherencia descendente ⭐ NUEVO
 
 ---
 
