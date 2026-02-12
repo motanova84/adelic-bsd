@@ -29,7 +29,8 @@ of the Riemann zeta function at s = 1/2.
 namespace RiemannZeta
 
 /-- The derivative of the Riemann zeta function at s = 1/2. 
-    Value verified computationally using mpmath with 10000+ digit precision.
+    Verified computationally using mpmath with 10000+ digit precision;
+    32 digits used here for practical formalization.
     Reference: OEIS A059750 -/
 noncomputable def zeta_prime_at_half : ℝ := -3.92264396712893547380763467916
 
