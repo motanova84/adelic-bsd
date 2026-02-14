@@ -1,0 +1,23 @@
+============================================================
+OUTLIER DETECTION REPORT - SHA Estimates Analysis
+============================================================
+
+1. CURVES WITH HIGH |Ш| (> 3σ above mean)
+----------------------------------------
+  115673a1: |Ш| ≈ 1.6000e+01, z-score = 3.08
+
+2. CURVES WITH LOW |Ш| (> 3σ below mean)
+----------------------------------------
+  No outliers detected.
+
+3. CURVES WITH NEAR-ZERO REGULATOR (numerical instability)
+----------------------------------------
+  No issues detected.
+
+4. CURVES WITH NEAR-ZERO L-DERIVATIVE (numerical instability)
+----------------------------------------
+  No issues detected.
+
+============================================================
+TOTAL OUTLIERS DETECTED: 1
+============================================================
