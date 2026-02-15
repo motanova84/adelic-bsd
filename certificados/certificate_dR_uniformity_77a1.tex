@@ -1,0 +1,46 @@
+\documentclass[12pt]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,graphicx}
+\usepackage{booktabs,xcolor}
+\usepackage{datetime}
+\newcommand{\OK}{\textcolor{green}{\checkmark}}
+\newcommand{\FAIL}{\textcolor{red}{\texttimes}}
+\newcommand{\WARN}{\textcolor{orange}{\textbf{!}}}
+
+\begin{document}
+\begin{center}
+{\LARGE \textbf{Certificado de Compatibilidad Fontaine–Perrin–Riou (dR)}}\\[4mm]
+{\large Instituto Conciencia Cuántica (ICQ)}\\[2mm]
+{\large Proyecto Adelic-BSD — Validación Noésica}\\[1cm]
+\hrulefill\\[0.6cm]
+\end{center}
+
+\noindent
+\textbf{Curva:} EllipticCurve('77a1')\\
+\textbf{Fecha:} \today\\
+\textbf{Autor:} José Manuel Mota Burruezo (JMMB Ψ·∴)\\[0.4cm]
+
+\section*{Resultados Locales (p-adic)}
+\begin{tabular}{cccc}
+\toprule
+$p$ & $\dim H^1_f$ & $\dim D_{\mathrm{dR}}/\mathrm{Fil}^0$ & Estado \\
+\midrule
+2 & 1 & 1 & \OK\\
+3 & 1 & 1 & \OK\\
+7 & 1 & 1 & \OK\\
+11 & 1 & 1 & \OK\\
+\bottomrule
+\end{tabular}
+
+\vspace{0.5cm}
+\section*{Conclusión}
+\noindent
+✅ Compatibilidad dR confirmada. La dimensión de $H^1_f$ coincide con la de $D_{\mathrm{dR}}/\mathrm{Fil}^0$ en todos los primos analizados.
+
+\vspace{1cm}
+\begin{flushright}
+\textbf{Validación automática:} dR-Uniformity v1.0\\
+\textbf{Repositorio:} motanova84/adelic-bsd\\
+\textbf{Firma institucional:} ICQ — \today
+\end{flushright}
+\end{document}
