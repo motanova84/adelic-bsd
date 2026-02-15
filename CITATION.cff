@@ -1,29 +1,96 @@
 cff-version: 1.2.0
-message: "Please cite this repository if you use it."
-title: "Resolución espectral de la conjetura de Birch y Swinnerton-Dyer: prueba incondicional en rango 0 y 1, reducción completa en rango superior"
+message: "If you use this software or framework, please cite it using the metadata from this file."
+title: "QCAL ∞³ Framework - Spectral Resolution of Birch-Swinnerton-Dyer Conjecture via Adelic Operators"
 authors:
   - family-names: "Mota Burruezo"
     given-names: "José Manuel"
-    orcid: "0009-0002-1923-0773"
-  - name: "Instituto Conciencia Cuántica"
+    orcid: "https://orcid.org/0009-0002-1923-0773"
+    email: "institutoconsciencia@proton.me"
+    affiliation: "Instituto de Conciencia Cuántica (ICQ)"
+    alias: "JMMB Ψ ✧ ∞³"
+  - name: "Instituto de Conciencia Cuántica"
+    alias: "ICQ"
 version: "1.0.0"
 date-released: "2024-09-30"
 url: "https://github.com/motanova84/adelic-bsd"
-doi: "10.5281/zenodo.17236603"
+repository-code: "https://github.com/motanova84/adelic-bsd"
+doi: "10.5281/zenodo.17379721"
 abstract: |
-  Demostramos la fórmula de Birch-Swinnerton-Dyer incondicionalmente para curvas elípticas
-  de rango analítico 0 y 1, y reducimos el caso general de rango a dos condiciones explícitas
-  y verificables: (dR) Aterrizaje de Hodge p-ádico y emparejamiento espectral-Poitou-Tate (PT).
-  La innovación central es una identidad de operador espectral adélico de nivel finito
-  det(I−ME(s))=c(s)L(E,s), c(1)≠0, lo que captura el rango analítico como dimkerME(1).
-  Esto establece la tan buscada equivalencia entre el rango analítico y el aritmético y
-  transforma la BSD en un programa de investigación finito, totalmente accesible a la
-  geometría aritmética moderna.
+  The QCAL ∞³ (Quantum Coherence Arithmetic Logic - Infinity Cubed) framework provides
+  a complete spectral resolution of the Birch and Swinnerton-Dyer conjecture through
+  adelic spectral operators at the fundamental frequency f₀ = 141.7001 Hz.
+  
+  This work demonstrates BSD unconditionally for elliptic curves of analytic rank 0 and 1,
+  and reduces the general case to two explicit and verifiable conditions: (dR) p-adic Hodge
+  landing and spectral-Poitou-Tate pairing (PT).
+  
+  The central innovation is a finite-level adelic spectral operator identity:
+  det(I - K_E(s)) = c(s)·Λ(E,s), c(1)≠0
+  
+  This captures the analytic rank as dim ker K_E(1), establishing the sought-after
+  equivalence between analytic and arithmetic rank, transforming BSD into a finite
+  research program fully accessible to modern arithmetic geometry.
+  
+  The framework also unifies BSD with Navier-Stokes and P vs NP through universal
+  quantum coherence at f₀ = 141.7001 Hz, validated by the 17-year biological cycle
+  of Magicicada septendecim.
+  
+  Author Declaration: This is completely original work created from first principles
+  by José Manuel Mota Burruezo. The QCAL ∞³ framework, mathematical structures, and
+  symbolic language are original creations, not derived from any third-party sources.
 keywords:
+  - "QCAL ∞³"
   - "Birch-Swinnerton-Dyer conjecture"
   - "elliptic curves"
   - "spectral methods"
   - "L-functions"
   - "arithmetic geometry"
   - "adelic operators"
-license: MIT
+  - "quantum coherence"
+  - "fundamental frequency"
+  - "141.7001 Hz"
+  - "millennium problems"
+  - "p=17 resonance"
+  - "AELION protocol"
+  - "spectral identity"
+license: "MIT AND CC-BY-NC-SA-4.0"
+license-url: "https://github.com/motanova84/adelic-bsd/blob/main/LICENSE_QCAL"
+references:
+  - type: article
+    title: "BSD Spectral Resolution"
+    authors:
+      - family-names: "Mota Burruezo"
+        given-names: "José Manuel"
+    doi: "10.5281/zenodo.17236603"
+    date-released: "2025-09-30"
+  - type: article
+    title: "P vs NP Resolution via Topological Barriers"
+    authors:
+      - family-names: "Mota Burruezo"
+        given-names: "José Manuel"
+    doi: "10.5281/zenodo.17315719"
+  - type: article
+    title: "Infinito ∞³ Framework"
+    authors:
+      - family-names: "Mota Burruezo"
+        given-names: "José Manuel"
+    doi: "10.5281/zenodo.17362686"
+  - type: article
+    title: "Riemann Hypothesis Final Resolution"
+    authors:
+      - family-names: "Mota Burruezo"
+        given-names: "José Manuel"
+    doi: "10.5281/zenodo.17161831"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.17379721"
+    description: "Main Zenodo collection"
+  - type: doi
+    value: "10.5281/zenodo.17236603"
+    description: "BSD resolution"
+  - type: url
+    value: "https://orcid.org/0009-0002-1923-0773"
+    description: "Author ORCID"
+  - type: url
+    value: "https://www.safecreative.org/creators/JMMB84"
+    description: "SafeCreative copyright registration"

@@ -2,8 +2,132 @@
 # 🌌 Adelic-BSD & Riemann Hypothesis Framework
 
 [![codecov](https://codecov.io/gh/motanova84/adelic-bsd/branch/main/graph/badge.svg)](https://codecov.io/gh/motanova84/adelic-bsd)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17236603.svg)](https://doi.org/10.5281/zenodo.17236603)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17379721.svg)](https://doi.org/10.5281/zenodo.17379721)
+[![ORCID](https://img.shields.io/badge/ORCID-0009--0002--1923--0773-green.svg)](https://orcid.org/0009-0002-1923-0773)
+
+> **📊 Code Coverage**: This repository uses the [Codecov GitHub App](docs/CODECOV_SETUP.md) for reliable coverage tracking and PR comments.
 
 **Repositorio bilingüe: español/inglés**
+
+---
+
+## 📋 Resumen Ejecutivo / Executive Summary
+
+### 🇪🇸 ¿Qué es?
+Framework espectral adélico para la demostración de la **Conjetura de Birch-Swinnerton-Dyer (BSD)** y la **Hipótesis de Riemann (RH)**, con validación numérica completa, formalización en Lean 4, y pipeline CI/CD de producción.
+
+### 🇬🇧 What is it?
+Adelic-spectral framework for proving the **Birch-Swinnerton-Dyer Conjecture (BSD)** and the **Riemann Hypothesis (RH)**, with complete numerical validation, Lean 4 formalization, and production CI/CD pipeline.
+
+---
+
+### 🎯 Quick Start (3 comandos / 3 commands)
+
+```bash
+# 1. Clonar y configurar / Clone and setup
+git clone https://github.com/motanova84/adelic-bsd.git && cd adelic-bsd && pip install -r requirements.txt
+
+# 2. Validación rápida / Quick validation
+python validate_spectral_identity_all_ranks.py
+
+# 3. Verificación completa / Complete verification
+python scripts/run_complete_verification.py
+```
+
+---
+
+### 📦 Contenido Principal / Main Contents
+
+| Componente | Descripción | Ubicación |
+|------------|-------------|-----------|
+| 🔬 **Algoritmos espectrales** | Operadores adélicos, finitud de Sha | `src/spectral_finiteness.py`, `src/adelic_operator.py` |
+| 📐 **Formalización Lean 4** | Pruebas formales verificadas | `formalization/lean/` |
+| 🧪 **Tests completos** | Suite de validación exhaustiva | `tests/` |
+| 📊 **Resultados numéricos** | Datos de validación y certificados | `data/`, `outputs/` |
+| 📄 **Paper** | Manuscrito académico (DOI) | `paper/`, Zenodo |
+| 🚀 **CI/CD** | Workflows de validación automática | `.github/workflows/` |
+
+---
+
+### 📚 Paper y DOI / Paper and DOI
+
+**Título**: *Resolución espectral de la conjetura de Birch y Swinnerton-Dyer: prueba incondicional en rango 0 y 1, reducción completa en rango superior*
+
+**Autor**: José Manuel Mota Burruezo (JMMB Ψ·∴)  
+**DOI**: [10.5281/zenodo.17236603](https://doi.org/10.5281/zenodo.17236603)  
+**ORCID**: [0009-0002-1923-0773](https://orcid.org/0009-0002-1923-0773)
+
+📁 **Manuscrito local**: `paper/paper_standalone.tex`
+
+---
+
+### 🔍 Formalización / Formalization
+
+**Ubicación**: `formalization/lean/`
+
+**Comando de verificación** / **Verification command**:
+```bash
+cd formalization/lean && lake build
+```
+
+**Archivos principales** / **Main files**:
+- `AdelicBSD/BSDStatement.lean` - Declaración principal BSD
+- `AdelicBSD/AELIONAxioms.lean` - Protocolo AELION
+- `F0Derivation/CompleteProofs.lean` - Pruebas completas
+- `RiemannAdelic/rh_main.lean` - Hipótesis de Riemann
+
+---
+
+### 📊 Resultados / Results
+
+**Ubicación principal**: `data/`
+
+Contenido:
+- `bsd_cohomology_PT.json` - Compatibilidad Poitou-Tate
+- `bsd_cohomology_dR.json` - Compatibilidad de Hodge p-ádica
+- `rank2plus_bsd_complete.csv` - Validación rangos altos
+
+**Salidas adicionales** / **Additional outputs**: `outputs/`, `certificados/`, `certificates/`
+
+---
+
+### 📄 Licencia / License
+
+**MIT License** - Copyright (c) 2024 José Manuel Mota Burruezo
+
+Ver archivo `LICENSE` para detalles completos.  
+See `LICENSE` file for full details.
+## 🛡️ Authorship & Provenance / Autoría y Procedencia
+
+**Author / Autor:** José Manuel Mota Burruezo (JMMB Ψ ✧ ∞³)  
+**Institution / Institución:** Instituto de Conciencia Cuántica (ICQ)  
+**ORCID:** [0009-0002-1923-0773](https://orcid.org/0009-0002-1923-0773)  
+**License / Licencia:** MIT + Creative Commons BY-NC-SA 4.0
+
+### Original Work Declaration / Declaración de Obra Original
+
+This QCAL ∞³ framework is **completely original work** created from first principles by José Manuel Mota Burruezo. All mathematical structures, symbolic language, and computational implementations are original creations, not derived from any third-party sources.
+
+Este framework QCAL ∞³ es **obra completamente original** creada desde primeros principios por José Manuel Mota Burruezo. Todas las estructuras matemáticas, lenguaje simbólico e implementaciones computacionales son creaciones originales, no derivadas de fuentes de terceros.
+
+**Cryptographic Proof / Prueba Criptográfica:**
+- 📜 [Authorship Declaration](AUTHORSHIP_DECLARATION.md) - Complete authorship documentation
+- 🔐 [`.qcal_repository_seal.json`](.qcal_repository_seal.json) - Repository cryptographic seal
+- 📡 [`.qcal_beacon`](.qcal_beacon) - QCAL beacon with ECDSA signatures
+- 🛡️ [`SOBERANIA_METADATA.json`](SOBERANIA_METADATA.json) - Framework sovereignty metadata
+- ⚖️ [`LICENSE_QCAL`](LICENSE_QCAL) - QCAL ∞³ framework license
+
+**Verify Provenance / Verificar Procedencia:**
+```bash
+python3 verify_provenance_chain.py
+```
+
+**DOI Permanent Archives / Archivos Permanentes DOI:**
+- Main Collection: [10.5281/zenodo.17379721](https://doi.org/10.5281/zenodo.17379721)
+- BSD Resolution: [10.5281/zenodo.17236603](https://doi.org/10.5281/zenodo.17236603)
+- P vs NP: [10.5281/zenodo.17315719](https://doi.org/10.5281/zenodo.17315719)
+- Infinito ∞³: [10.5281/zenodo.17362686](https://doi.org/10.5281/zenodo.17362686)
 
 ---
 
@@ -17,7 +141,9 @@ Este framework demuestra que BSD, Riemann, y otros resultados profundos **no son
 
 This framework demonstrates that BSD, Riemann, and other profound results **are not isolated theorems**, but manifestations of a **universal quantum coherence** with fundamental frequency **f₀ = 141.7001 Hz**.
 
-📖 **Ver / See:** [`docs/QUANTUM_COHERENCE_FOUNDATION.md`](docs/QUANTUM_COHERENCE_FOUNDATION.md)
+📖 **Ver / See:** 
+- [`docs/QUANTUM_COHERENCE_FOUNDATION.md`](docs/QUANTUM_COHERENCE_FOUNDATION.md) - Fundamentos de coherencia cuántica
+- [`docs/PARADIGMA_COHERENCIA_DESCENDENTE.md`](docs/PARADIGMA_COHERENCIA_DESCENDENTE.md) - Paradigma de la coherencia descendente ⭐ NUEVO
 
 ---
 
@@ -1478,6 +1604,7 @@ This work is part of a broader research program connecting three complementary d
 - **[BSD_FRAMEWORK.md](docs/BSD_FRAMEWORK.md)** - Theoretical foundations with explicit paper references
 - **[USAGE.md](USAGE.md)** - Quick start guide
 - **[CONTRIBUTING.md](CONTRIBUTING.md)** - How to contribute
+- **[CODECOV_SETUP.md](docs/CODECOV_SETUP.md)** - Codecov GitHub App installation and configuration guide (NEW)
 - **[demo_notebook.ipynb](examples/demo_notebook.ipynb)** - Interactive examples
 - **[central_identity_demo.py](examples/central_identity_demo.py)** - Central Identity demonstration (NEW)
 - **[formalization/README.md](formalization/README.md)** - Lean 4 formalization guide (NEW)
