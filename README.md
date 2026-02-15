@@ -2,6 +2,7 @@
 # 🌌 Adelic-BSD & Riemann Hypothesis Framework
 
 [![codecov](https://codecov.io/gh/motanova84/adelic-bsd/branch/main/graph/badge.svg)](https://codecov.io/gh/motanova84/adelic-bsd)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17236603.svg)](https://doi.org/10.5281/zenodo.17236603)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17379721.svg)](https://doi.org/10.5281/zenodo.17379721)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0002--1923--0773-green.svg)](https://orcid.org/0009-0002-1923-0773)
 
@@ -11,6 +12,92 @@
 
 ---
 
+## 📋 Resumen Ejecutivo / Executive Summary
+
+### 🇪🇸 ¿Qué es?
+Framework espectral adélico para la demostración de la **Conjetura de Birch-Swinnerton-Dyer (BSD)** y la **Hipótesis de Riemann (RH)**, con validación numérica completa, formalización en Lean 4, y pipeline CI/CD de producción.
+
+### 🇬🇧 What is it?
+Adelic-spectral framework for proving the **Birch-Swinnerton-Dyer Conjecture (BSD)** and the **Riemann Hypothesis (RH)**, with complete numerical validation, Lean 4 formalization, and production CI/CD pipeline.
+
+---
+
+### 🎯 Quick Start (3 comandos / 3 commands)
+
+```bash
+# 1. Clonar y configurar / Clone and setup
+git clone https://github.com/motanova84/adelic-bsd.git && cd adelic-bsd && pip install -r requirements.txt
+
+# 2. Validación rápida / Quick validation
+python validate_spectral_identity_all_ranks.py
+
+# 3. Verificación completa / Complete verification
+python scripts/run_complete_verification.py
+```
+
+---
+
+### 📦 Contenido Principal / Main Contents
+
+| Componente | Descripción | Ubicación |
+|------------|-------------|-----------|
+| 🔬 **Algoritmos espectrales** | Operadores adélicos, finitud de Sha | `src/spectral_finiteness.py`, `src/adelic_operator.py` |
+| 📐 **Formalización Lean 4** | Pruebas formales verificadas | `formalization/lean/` |
+| 🧪 **Tests completos** | Suite de validación exhaustiva | `tests/` |
+| 📊 **Resultados numéricos** | Datos de validación y certificados | `data/`, `outputs/` |
+| 📄 **Paper** | Manuscrito académico (DOI) | `paper/`, Zenodo |
+| 🚀 **CI/CD** | Workflows de validación automática | `.github/workflows/` |
+
+---
+
+### 📚 Paper y DOI / Paper and DOI
+
+**Título**: *Resolución espectral de la conjetura de Birch y Swinnerton-Dyer: prueba incondicional en rango 0 y 1, reducción completa en rango superior*
+
+**Autor**: José Manuel Mota Burruezo (JMMB Ψ·∴)  
+**DOI**: [10.5281/zenodo.17236603](https://doi.org/10.5281/zenodo.17236603)  
+**ORCID**: [0009-0002-1923-0773](https://orcid.org/0009-0002-1923-0773)
+
+📁 **Manuscrito local**: `paper/paper_standalone.tex`
+
+---
+
+### 🔍 Formalización / Formalization
+
+**Ubicación**: `formalization/lean/`
+
+**Comando de verificación** / **Verification command**:
+```bash
+cd formalization/lean && lake build
+```
+
+**Archivos principales** / **Main files**:
+- `AdelicBSD/BSDStatement.lean` - Declaración principal BSD
+- `AdelicBSD/AELIONAxioms.lean` - Protocolo AELION
+- `F0Derivation/CompleteProofs.lean` - Pruebas completas
+- `RiemannAdelic/rh_main.lean` - Hipótesis de Riemann
+
+---
+
+### 📊 Resultados / Results
+
+**Ubicación principal**: `data/`
+
+Contenido:
+- `bsd_cohomology_PT.json` - Compatibilidad Poitou-Tate
+- `bsd_cohomology_dR.json` - Compatibilidad de Hodge p-ádica
+- `rank2plus_bsd_complete.csv` - Validación rangos altos
+
+**Salidas adicionales** / **Additional outputs**: `outputs/`, `certificados/`, `certificates/`
+
+---
+
+### 📄 Licencia / License
+
+**MIT License** - Copyright (c) 2024 José Manuel Mota Burruezo
+
+Ver archivo `LICENSE` para detalles completos.  
+See `LICENSE` file for full details.
 ## 🛡️ Authorship & Provenance / Autoría y Procedencia
 
 **Author / Autor:** José Manuel Mota Burruezo (JMMB Ψ ✧ ∞³)  
