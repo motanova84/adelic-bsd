@@ -1,0 +1,18 @@
+{
+  "label": "5077b1",
+  "cremona_label": "5077b1",
+  "a_invariants": [
+    0,
+    0,
+    1,
+    -7,
+    6
+  ],
+  "conductor": 5077,
+  "rank": 3,
+  "j_invariant": "-4096/11",
+  "discriminant": -161051,
+  "torsion_order": 1,
+  "torsion_structure": [],
+  "timestamp": "2025-11-30T06:51:29.409447"
+}

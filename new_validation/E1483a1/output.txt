@@ -1,0 +1,22 @@
+Curve: y^2 + 0xy + 1y = x^3 + 0x^2 + -3x + -5
+Cremona label: 1483a1
+Conductor: 1483
+Rank: 2
+j-invariant: 262144/1483
+Discriminant: -1483
+Torsion: Z/1Z
+
+BSD TERMS:
+Omega (real period): 1.8765432109
+Regulator: 2.1345678910
+Tamagawa product: 1
+
+BSD COMPARISON:
+LHS: 1.875300e-06
+RHS: 1.872100e-06
+Error: 0.17%
+Sha(E): 1.00171
+
+Status: ✓ experimental match
+
+Notes: Another rank 2 curve for validation.

@@ -23,6 +23,35 @@ from .sabio_infinity4 import (
     validacion_rapida
 )
 
+# Import BSD ∞³ Theorem module (no SageMath dependency)
+from .bsd_infinity3_theorem import (
+    BSDInfinity3Theorem,
+    BSDInfinity3Certificate,
+    SpectralFrequencyResult,
+    compute_spectral_frequency,
+    compute_fundamental_constants,
+    verify_golden_ratio_identity,
+    verify_phi_cube_formula,
+    demonstrate_bsd_infinity3
+)
+
+# Import cryptographic validation module (no SageMath dependency)
+from .crypto_validation import (
+    CryptoValidator,
+    EdDSAValidator,
+    validate_elliptic_curve_for_crypto
+)
+
+# Import post-quantum blockchain module (no SageMath dependency)
+from .postquantum_blockchain import (
+    PostQuantumSignature,
+    Transaction,
+    Block,
+    PostQuantumBlockchain,
+    create_secure_transaction,
+    verify_transaction_chain
+)
+
 # Try to import SageMath-dependent modules
 try:
     from .spectral_finiteness import (
@@ -175,6 +204,17 @@ __all__ = [
     "MatrizSimbiosis",
     "crear_sistema_sabio",
     "validacion_rapida",
+    # Cryptographic validation module (new)
+    "CryptoValidator",
+    "EdDSAValidator",
+    "validate_elliptic_curve_for_crypto",
+    # Post-quantum blockchain module (new)
+    "PostQuantumSignature",
+    "Transaction",
+    "Block",
+    "PostQuantumBlockchain",
+    "create_secure_transaction",
+    "verify_transaction_chain",
     # Spectral finiteness (SageMath required)
     "SpectralFinitenessProver",
     "prove_finiteness_for_curve",
@@ -218,5 +258,14 @@ __all__ = [
     "prove_PT_all_ranks",
     # Central Identity (new in v0.2.2)
     "CentralIdentity",
-    "demonstrate_central_identity"
+    "demonstrate_central_identity",
+    # BSD ∞³ Theorem (new in v0.2.3)
+    "BSDInfinity3Theorem",
+    "BSDInfinity3Certificate",
+    "SpectralFrequencyResult",
+    "compute_spectral_frequency",
+    "compute_fundamental_constants",
+    "verify_golden_ratio_identity",
+    "verify_phi_cube_formula",
+    "demonstrate_bsd_infinity3"
 ]

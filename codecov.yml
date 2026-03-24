@@ -1,5 +1,6 @@
 # Codecov configuration for adelic-bsd repository
 # Documentation: https://docs.codecov.io/docs/codecov-yaml
+# GitHub App: https://docs.codecov.com/docs/github-app-integration
 
 # Coverage settings
 coverage:
@@ -21,12 +22,14 @@ coverage:
         informational: false
 
 # Comment settings for pull requests
+# Optimized for GitHub App integration for reliable PR comments
 comment:
   layout: "header, diff, flags, components, footer"
   behavior: default  # Post new comment on each push
   require_changes: false  # Always comment on PRs
   require_base: false    # Don't require base commit
   require_head: true     # Require head commit
+  show_carryforward_flags: true  # Show flags carried forward from previous commits
 
 # Ignore paths (files/directories not to include in coverage)
 ignore:
@@ -61,8 +64,15 @@ flags:
       - src/
     carryforward: true
 
+# GitHub App Integration Settings
+github_checks:
+  annotations: true  # Enable annotations on PR files
+
 # Codecov bot behavior
 codecov:
   require_ci_to_pass: yes  # Wait for CI to pass before processing
   notify:
     wait_for_ci: yes  # Wait for all CI checks
+  
+# GitHub App provides tokenless authentication and enhanced features
+# See: https://docs.codecov.com/docs/github-app-integration

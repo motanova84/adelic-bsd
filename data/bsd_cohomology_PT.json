@@ -1,0 +1,110 @@
+[
+  {
+    "curve_id": "5077a1",
+    "conductor": 5077,
+    "rank": 3,
+    "prime_ell": 5,
+    "pt_matrix": [
+      [
+        0.7471856353129758,
+        0.0
+      ],
+      [
+        0.0,
+        0.7471856353129758
+      ]
+    ],
+    "comparison": {
+      "curve_id": "5077a1",
+      "dR_trace": 1.4943712706259515,
+      "PT_trace": 1.4943712706259515,
+      "dR_det": 0.5582863736180552,
+      "PT_det": 0.5582863736180552,
+      "trace_compatible": true,
+      "det_compatible": true,
+      "regulator_nondegen": true,
+      "bsd_verifiable": true
+    }
+  },
+  {
+    "curve_id": "5942a1",
+    "conductor": 5942,
+    "rank": 2,
+    "prime_ell": 7,
+    "pt_matrix": [
+      [
+        1.1477093937051226,
+        0.0
+      ],
+      [
+        0.0,
+        1.1477093937051226
+      ]
+    ],
+    "comparison": {
+      "curve_id": "5942a1",
+      "dR_trace": 2.295418787410245,
+      "PT_trace": 2.295418787410245,
+      "dR_det": 1.3172368523989801,
+      "PT_det": 1.3172368523989801,
+      "trace_compatible": true,
+      "det_compatible": true,
+      "regulator_nondegen": true,
+      "bsd_verifiable": true
+    }
+  },
+  {
+    "curve_id": "11131a1",
+    "conductor": 11131,
+    "rank": 2,
+    "prime_ell": 11,
+    "pt_matrix": [
+      [
+        1.6687004628056799,
+        0.0
+      ],
+      [
+        0.0,
+        1.6687004628056799
+      ]
+    ],
+    "comparison": {
+      "curve_id": "11131a1",
+      "dR_trace": 3.3374009256113597,
+      "PT_trace": 3.3374009256113597,
+      "dR_det": 2.78456123456789,
+      "PT_det": 2.78456123456789,
+      "trace_compatible": true,
+      "det_compatible": true,
+      "regulator_nondegen": true,
+      "bsd_verifiable": true
+    }
+  },
+  {
+    "curve_id": "389a1",
+    "conductor": 389,
+    "rank": 2,
+    "prime_ell": 5,
+    "pt_matrix": [
+      [
+        0.3904614935472434,
+        0.0
+      ],
+      [
+        0.0,
+        0.3904614935472434
+      ]
+    ],
+    "comparison": {
+      "curve_id": "389a1",
+      "dR_trace": 0.7809229870944868,
+      "PT_trace": 0.7809229870944868,
+      "dR_det": 0.152460177943144,
+      "PT_det": 0.152460177943144,
+      "trace_compatible": true,
+      "det_compatible": true,
+      "regulator_nondegen": true,
+      "bsd_verifiable": true
+    }
+  }
+]

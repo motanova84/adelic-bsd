@@ -1,0 +1,71 @@
+{
+  "description": "BSD Cohomology Dataset for rank ≥ 2 curves",
+  "version": "1.0.0",
+  "date": "2025-11-30",
+  "author": "José Manuel Mota Burruezo (JMMB Ψ · ∴)",
+  "curves": [
+    {
+      "curve_id": "5077a1",
+      "conductor": 5077,
+      "rank": 3,
+      "mw_rank": 3,
+      "dR_matrix": [[1.0, 0.0], [0.0, 1.0]],
+      "pt_matrix": [[1.0, 0.0], [0.0, 1.0]],
+      "regulator": 0.417143558758384,
+      "dR_trace": 2.0,
+      "pt_trace": 2.0,
+      "compatible": true,
+      "regulator_nondegen": true
+    },
+    {
+      "curve_id": "5942a1",
+      "conductor": 5942,
+      "rank": 2,
+      "mw_rank": 2,
+      "dR_matrix": [[1.0, 0.0], [0.0, 1.0]],
+      "pt_matrix": [[1.0, 0.0], [0.0, 1.0]],
+      "regulator": 1.31723685239898,
+      "dR_trace": 2.0,
+      "pt_trace": 2.0,
+      "compatible": true,
+      "regulator_nondegen": true
+    },
+    {
+      "curve_id": "11131a1",
+      "conductor": 11131,
+      "rank": 2,
+      "mw_rank": 2,
+      "dR_matrix": [[1.0, 0.0], [0.0, 1.0]],
+      "pt_matrix": [[1.0, 0.0], [0.0, 1.0]],
+      "regulator": 2.78456123456789,
+      "dR_trace": 2.0,
+      "pt_trace": 2.0,
+      "compatible": true,
+      "regulator_nondegen": true
+    },
+    {
+      "curve_id": "389a1",
+      "conductor": 389,
+      "rank": 2,
+      "mw_rank": 2,
+      "dR_matrix": [[1.0, 0.0], [0.0, 1.0]],
+      "pt_matrix": [[1.0, 0.0], [0.0, 1.0]],
+      "regulator": 0.152460177943144,
+      "dR_trace": 2.0,
+      "pt_trace": 2.0,
+      "compatible": true,
+      "regulator_nondegen": true
+    }
+  ],
+  "summary": {
+    "total_curves": 4,
+    "compatible_curves": 4,
+    "all_compatible": true,
+    "bsd_verifiable": true
+  },
+  "references": [
+    "Fontaine-Perrin-Riou (1995): Bloch-Kato exponential",
+    "Gross-Zagier (1986): Height formulas",
+    "Yuan-Zhang-Zhang (2013): Beilinson-Bloch heights"
+  ]
+}

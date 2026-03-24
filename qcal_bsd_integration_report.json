@@ -1,0 +1,159 @@
+{
+  "metadata": {
+    "title": "QCAL-BSD Integration Report",
+    "curve": "11a1",
+    "frequency": 141.7001,
+    "timestamp": "2026-01-12T10:25:58"
+  },
+  "bridge_theorem": {
+    "title": "BSD-QCAL Bridge Theorem",
+    "frequency": 141.7001,
+    "curve": "11a1",
+    "correspondences": {
+      "critical_point": {
+        "navier_stokes": "Resonance at f\u2080 = 141.7001 Hz",
+        "bsd": "L-function value L(E, s=1)",
+        "synchronized": true
+      },
+      "stability": {
+        "navier_stokes": "Global regularity (C^\u221e)",
+        "bsd": "Rank r = 1",
+        "validated": true
+      },
+      "invariant": {
+        "navier_stokes": "Tensor \u03a6_ij (Seeley-DeWitt)",
+        "bsd": "Regulator R_E",
+        "equivalent": false
+      },
+      "complexity": {
+        "navier_stokes": "Polynomial (P)",
+        "bsd": "Arithmetic verification",
+        "status": "Reduced"
+      }
+    },
+    "validation_matrix": {
+      "status": "PARTIAL",
+      "spectral_coherence": 0.9997500312471447,
+      "bsd_coherent": false,
+      "frequency_locked": true,
+      "critical_frequency_hz": 141.7001,
+      "rank_estimate": 1,
+      "global_smoothness": true,
+      "l_function_analytic": false
+    },
+    "spectral_summary": {
+      "n_eigenvalues": 10,
+      "coherence": 0.9997500312471447,
+      "zero_modes": 0
+    },
+    "bsd_summary": {
+      "fredholm_det": 0.07590360522953779,
+      "l_function": 2.436658911906784,
+      "c_nonzero": true
+    },
+    "axiom_status": "PARTIAL",
+    "millennia_connected": false,
+    "statement": {
+      "es": "El rango de la curva el\u00edptica es la medida de la libertad del fluido",
+      "en": "The elliptic curve rank measures the freedom of the fluid",
+      "verified": false
+    }
+  },
+  "integrations": {
+    "spectral_finiteness_connection": {
+      "framework": "spectral_finiteness",
+      "curve": "11a1",
+      "connections": {
+        "eigenvalues_to_operator": {
+          "description": "H_\u03a8 eigenvalues map to K_E(s) spectrum",
+          "n_eigenvalues": 10,
+          "coherence": 0.9997500312471447,
+          "status": "connected"
+        },
+        "coherence_to_regulator": {
+          "description": "Coherence measure approximates BSD regulator",
+          "coherence_value": 0.9997500312471447,
+          "regulator_proxy": 4000.5000168112233,
+          "status": "approximated"
+        },
+        "rank_indicator_to_analytical_rank": {
+          "description": "Rank indicator from eigenvalue structure",
+          "rank_indicator": 1,
+          "zero_modes": 0,
+          "status": "estimated"
+        }
+      },
+      "frequency_foundation": 141.7001
+    },
+    "beacon_update": {
+      "qcal_bsd_bridge": {
+        "version": "1.0",
+        "timestamp": "2026-01-12T10:25:58",
+        "curve": "11a1",
+        "frequency_hz": 141.7001,
+        "validation": {
+          "status": "PARTIAL",
+          "millennia_connected": false,
+          "spectral_coherence": 0.9997500312471447,
+          "bsd_coherent": false,
+          "frequency_locked": true
+        },
+        "correspondences": {
+          "critical_point_synchronized": true,
+          "stability_validated": true,
+          "invariant_equivalent": false
+        },
+        "theorem_statement": "El rango de la curva el\u00edptica es la medida de la libertad del fluido"
+      }
+    },
+    "operador_h_validation": {
+      "available": true,
+      "n_compared": 10,
+      "bridge_eigenvalues": [
+        0.25,
+        0.2500000000088198,
+        0.25000000003527917,
+        0.25000000007937817,
+        0.2500000001411168,
+        0.25000000022049496,
+        0.25000000031751274,
+        0.25000000043217013,
+        0.2500000005644671,
+        0.25000000071440365
+      ],
+      "operador_h_eigenvalues": [
+        2.614304184892656,
+        21.52921117566027,
+        59.36206853046634,
+        116.12178896286984,
+        191.83072928773865,
+        286.54318446957296,
+        400.39494510595216,
+        533.7659679272612,
+        688.0666593563778,
+        878.7554105554791
+      ],
+      "relative_differences": [
+        0.9043722603342483,
+        0.988387869951712,
+        0.9957885564599729,
+        0.9978470879383428,
+        0.9986967677125069,
+        0.9991275311584071,
+        0.9993756164922327,
+        0.9995316299362379,
+        0.9996366631093587,
+        0.9997155067295046
+      ],
+      "max_difference": 0.9997155067295046,
+      "mean_difference": 0.9882479489822524,
+      "consistent": false
+    }
+  },
+  "summary": {
+    "operador_h_consistent": false,
+    "spectral_finiteness_connected": true,
+    "beacon_ready": true,
+    "overall_status": "PARTIAL"
+  }
+}

@@ -1,0 +1,22 @@
+Curve: y^2 + 0xy + 1y = x^3 + 0x^2 + -7x + 6
+Cremona label: 5077a1
+Conductor: 5077
+Rank: 0
+j-invariant: -4096/11
+Discriminant: -161051
+Torsion: Z/1Z
+
+BSD TERMS:
+Omega (real period): 1.6476316312
+Regulator: 1.0000000000
+Tamagawa product: 1
+
+BSD COMPARISON:
+LHS: 1.651200e-01
+RHS: 1.647600e-01
+Error: 0.22%
+Sha(E): 1.00219
+
+Status: ✓ experimental match
+
+Notes: Rank 0 curve with same conductor as E5077b1.

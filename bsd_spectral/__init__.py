@@ -11,6 +11,7 @@ Modules:
 - selmer: Advanced Selmer map verification with p-adic cohomology
 - heights: Beilinson-Bloch height pairings and regulators
 - vacuum_energy: Fractal toroidal compactification and adelic phase structure
+- curve_sample: BSD verification sample for 10,000 curves with Sha estimation
 
 Examples:
 ---------
@@ -25,6 +26,10 @@ Examples:
 >>> from bsd_spectral import compute_beilinson_bloch_regulator
 >>> reg = compute_beilinson_bloch_regulator('389a1')
 >>> print(f"Regulator: {reg}")
+
+>>> from bsd_spectral import generate_bsd_sample, display_sample_table
+>>> sample = generate_bsd_sample(num_curves=100)
+>>> print(sample.to_table())
 
 Version: 0.3.0
 Author: Mota Burruezo
@@ -83,6 +88,14 @@ except ImportError:
     batch_verify_heights = None
     generate_height_certificate = None
 
+# Import curve sample module (always available, no SageMath required)
+from .curve_sample import (
+    CurveData,
+    BSDCurveSample,
+    generate_bsd_sample,
+    display_sample_table
+)
+
 __all__ = [
     # Version info
     '__version__',
@@ -112,6 +125,12 @@ __all__ = [
     'verify_height_compatibility',
     'batch_verify_heights',
     'generate_height_certificate',
+    
+    # Curve sample (always available)
+    'CurveData',
+    'BSDCurveSample',
+    'generate_bsd_sample',
+    'display_sample_table',
 ]
 
 

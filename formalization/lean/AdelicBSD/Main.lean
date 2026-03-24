@@ -18,6 +18,7 @@ import AdelicBSD.GoldenRatio
 import AdelicBSD.Emergence
 import AdelicBSD.BSDFinal
 import AdelicBSD.BSDVerificationProgram
+import AdelicBSD.AELIONAxioms
 
 namespace AdelicBSD
 
