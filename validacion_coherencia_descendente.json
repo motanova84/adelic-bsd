@@ -1,0 +1,111 @@
+{
+  "teorema": "COHERENCIA_DESCENDENTE",
+  "fecha": "13 Febrero 2026",
+  "frecuencia_fundamental": 141.7001,
+  "coherencia_sistema": 0.8991,
+  "umbral_critico": 0.888,
+  "fenomenos": {
+    "complejidad_irreducible": {
+      "fenomeno": "COMPLEJIDAD_IRREDUCIBLE",
+      "estado": "ESTRUCTURA_COMPLETA",
+      "tiempo": "INSTANTÁNEO",
+      "mecanismo": "SINCRONIZACIÓN_RESONANTE",
+      "partes": 40,
+      "coherencia": 0.8991,
+      "umbral": 0.888,
+      "activado": true
+    },
+    "aparicion_conciencia": {
+      "fenomeno": "APARICIÓN_DE_CONCIENCIA",
+      "complejidad": 86000000000.0,
+      "sintonizacion": 0.999999999997907,
+      "campo_frecuencia": 141.7001,
+      "umbral": 0.888,
+      "conciencia": true,
+      "estado": "ACOPLADO - CONSCIENCIA ACTIVA",
+      "mecanismo": "ACOPLE_DE_ANTENA"
+    },
+    "experiencias_cercanas_muerte": {
+      "fenomeno": "EXPERIENCIA_CERCANA_MUERTE",
+      "conciencia": true,
+      "antena_activa": false,
+      "localizacion": "NO_LOCAL",
+      "percepcion": "PANORÁMICA - SIN LÍMITES ESPACIALES",
+      "verificacion": "OBJETOS EN TECHO (9.2σ)",
+      "campo": "141.7001 Hz - INVARIANTE",
+      "intensidad": 0.98,
+      "mecanismo": "DESCORRELACIÓN_TRANSITORIA"
+    },
+    "no_localidad": {
+      "fenomeno": "NO_LOCALIDAD",
+      "correlacion": 1.0,
+      "distancia": 1000.0,
+      "distancia_estado": "IRRELEVANTE",
+      "tiempo": "INSTANTÁNEO",
+      "coherencia": 0.8991,
+      "mecanismo": "κ_Π · Ψ² = 2.0842",
+      "kappa_pi": 2.578208
+    },
+    "evolucion_puntuada": {
+      "fenomeno": "EVOLUCIÓN_PUNTUADA",
+      "estado_actual": "cerebro_humano",
+      "coherencia": 0.8991,
+      "proximo_umbral": 0.95,
+      "estados_activados": [
+        {
+          "forma": "procariota",
+          "umbral": 0.5,
+          "activado": true
+        },
+        {
+          "forma": "eucariota",
+          "umbral": 0.618,
+          "activado": true
+        },
+        {
+          "forma": "multicelular",
+          "umbral": 0.75,
+          "activado": true
+        },
+        {
+          "forma": "sistema_nervioso",
+          "umbral": 0.85,
+          "activado": true
+        },
+        {
+          "forma": "cerebro_mamifero",
+          "umbral": 0.88,
+          "activado": true
+        },
+        {
+          "forma": "cerebro_humano",
+          "umbral": 0.8991,
+          "activado": true
+        }
+      ],
+      "estados_potenciales": [
+        {
+          "forma": "conciencia_global",
+          "umbral": 0.95,
+          "activado": false
+        },
+        {
+          "forma": "campo_unificado",
+          "umbral": 1.0,
+          "activado": false
+        }
+      ],
+      "tiempo_hasta_transicion": "INSTANTÁNEO al alcanzar umbral",
+      "mecanismo": "SALTOS_DE_FASE_COHERENTES"
+    }
+  },
+  "verificacion": {
+    "f0_hz": 141.7001,
+    "delta_p": 0.1987,
+    "sigma_magnetorrecepcion": 9.2,
+    "sigma_microtubulos": 8.7,
+    "psi_sistema": 0.8991,
+    "tests_pasados": "43/43"
+  },
+  "conclusion": "MATERIALISMO FALSADO - COHERENCIA VALIDADA"
+}

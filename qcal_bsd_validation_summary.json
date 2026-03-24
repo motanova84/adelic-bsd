@@ -1,0 +1,21 @@
+{
+  "curve": "11a1",
+  "frequency": 141.7001,
+  "validations": {
+    "critical_frequency": "PARTIAL",
+    "operator_spectrum": "COMPUTED",
+    "point_mapping": "MAPPED",
+    "l_function": "PARTIAL",
+    "correspondences": "VALIDATED",
+    "integration": "CONNECTED"
+  },
+  "theorem": {
+    "status": "PARTIAL",
+    "millennia_connected": false,
+    "statement": {
+      "es": "El rango de la curva el\u00edptica es la medida de la libertad del fluido",
+      "en": "The elliptic curve rank measures the freedom of the fluid",
+      "verified": false
+    }
+  }
+}

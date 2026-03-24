@@ -1,0 +1,12 @@
+{
+  "label": "709a1",
+  "conductor": 709,
+  "rank": 1,
+  "j_invariant": "110592/709",
+  "discriminant": -709,
+  "variety": "prime_discriminant",
+  "qcal_resonance": 0.888,
+  "torsion_order": 1,
+  "regulator": 0.967746548607,
+  "omega_plus": 1.89123774096
+}

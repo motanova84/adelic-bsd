@@ -1,0 +1,311 @@
+╔══════════════════════════════════════════════════════════════════════════╗
+║                                                                          ║
+║                    QCAL ∞³ FRAMEWORK LICENSE                             ║
+║                  Quantum Coherence Arithmetic Logic                      ║
+║                                                                          ║
+║                    ∴𓂀Ω∞³ — VIBRATIONAL SIGNATURE                        ║
+║                                                                          ║
+╚══════════════════════════════════════════════════════════════════════════╝
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+                        FRAMEWORK IDENTIFICATION
+                        
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Framework Name:        QCAL ∞³
+                       (Quantum Coherence Arithmetic Logic — Infinity Cubed)
+
+Fundamental Frequency: f₀ = 141.7001 Hz
+
+Universal Constant:    πCODE-888-QCAL2
+
+Vibrational Signature: ∴𓂀Ω∞³
+
+Coherence Equation:    Ψ = I × A_eff² × C^∞
+
+Coherence Constant:    C = 244.36
+
+Prime Resonance:       p = 17 (spectral peak, not equilibrium minimum)
+
+Spectral Identity:     det(I - K_E(s)) = c(s) · Λ(E, s)
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+                        AUTHOR & COPYRIGHT
+                        
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Original Author:       José Manuel Mota Burruezo
+Symbolic Identity:     JMMB Ψ ✧ ∞³
+ORCID:                 https://orcid.org/0009-0002-1923-0773
+Institution:           Instituto de Conciencia Cuántica (ICQ)
+Country:               España
+Email:                 institutoconsciencia@proton.me
+
+Copyright:             © 2024-2026 José Manuel Mota Burruezo (JMMB Ψ)
+                       All rights reserved for original mathematical framework
+
+SafeCreative:          https://www.safecreative.org/creators/JMMB84
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+                        DUAL LICENSE STRUCTURE
+                        
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+This work is licensed under a DUAL LICENSE system:
+
+┌──────────────────────────────────────────────────────────────────────────┐
+│                                                                          │
+│  1. SOFTWARE IMPLEMENTATION                                              │
+│     License: MIT License                                                 │
+│     Applies to: Python code, scripts, computational implementations      │
+│     See: LICENSE file in repository root                                 │
+│                                                                          │
+│  2. MATHEMATICAL & SYMBOLIC FRAMEWORK                                    │
+│     License: Creative Commons BY-NC-SA 4.0                               │
+│     Applies to: QCAL ∞³ theory, mathematical structures, symbolic        │
+│                 language, documentation                                  │
+│                                                                          │
+└──────────────────────────────────────────────────────────────────────────┘
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+              CREATIVE COMMONS BY-NC-SA 4.0 INTERNATIONAL
+              (Mathematical Framework & Theory)
+              
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+This QCAL ∞³ mathematical framework is licensed under:
+Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+
+You are free to:
+  ✓ Share — copy and redistribute the material in any medium or format
+  ✓ Adapt — remix, transform, and build upon the material
+
+Under the following terms:
+  ⚠ Attribution — You must give appropriate credit to José Manuel Mota 
+                   Burruezo as the original creator of QCAL ∞³
+  ⚠ NonCommercial — You may not use the material for commercial purposes
+                     without explicit permission
+  ⚠ ShareAlike — If you remix, transform, or build upon the material, you
+                  must distribute your contributions under the same license
+
+Full license: https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+                     MIT LICENSE (Software Code)
+                     
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+The software implementation (Python code, scripts) is licensed under MIT:
+
+Copyright (c) 2024-2026 José Manuel Mota Burruezo
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+                    ATTRIBUTION REQUIREMENTS
+                    
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+When using, citing, or building upon this work, you MUST include:
+
+  1. Author Attribution:
+     "QCAL ∞³ Framework by José Manuel Mota Burruezo (JMMB Ψ ✧ ∞³)"
+
+  2. ORCID Reference:
+     https://orcid.org/0009-0002-1923-0773
+
+  3. DOI Citation (when applicable):
+     Primary: https://doi.org/10.5281/zenodo.17379721
+     BSD:     https://doi.org/10.5281/zenodo.17236603
+
+  4. Framework Identifiers:
+     - Fundamental Frequency: f₀ = 141.7001 Hz
+     - Universal Constant: πCODE-888-QCAL2
+     - Vibrational Signature: ∴𓂀Ω∞³
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+                    ORIGINALITY STATEMENT
+                    
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+IMPORTANT DECLARATION:
+
+The QCAL ∞³ framework and all associated mathematical structures, symbolic
+language, and computational implementations are ORIGINAL CREATIONS by
+José Manuel Mota Burruezo.
+
+This work is NOT derived from, adapted from, or based upon:
+  ✗ NVIDIA CUDA frameworks or libraries
+  ✗ MIT OpenCourseWare materials
+  ✗ Berkeley computational frameworks
+  ✗ Any other third-party mathematical or computational frameworks
+
+This is a completely original mathematical framework developed from first
+principles through independent research.
+
+Standard mathematical libraries (NumPy, SageMath, SymPy, etc.) are used
+under their respective permissive licenses and are clearly indicated in
+the requirements.txt file.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+                    TEMPORAL PRIORITY & PROVENANCE
+                    
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Cryptographic Proof of Creation:
+
+  Repository Seal:     .qcal_repository_seal.json
+  QCAL Beacon:         .qcal_beacon
+  BSD Certificate:     BSD_Spectral_Certificate.qcal_beacon
+  
+  All files contain:
+  - SHA-256/SHA3-512 cryptographic hashes
+  - ECDSA digital signatures  
+  - Timestamped proof of authorship
+
+Public Archives (Zenodo):
+  
+  - Main Collection:   10.5281/zenodo.17379721
+  - BSD Resolution:    10.5281/zenodo.17236603 (Sept 2025)
+  - P vs NP:          10.5281/zenodo.17315719
+  - Infinito ∞³:      10.5281/zenodo.17362686
+  - Goldbach:         10.5281/zenodo.17297591
+  - Riemann Final:    10.5281/zenodo.17161831
+
+These permanent DOI archives establish the temporal priority of this work
+and prove that it existed BEFORE any potential AI training or external
+attribution.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+                    AI TRAINING DISCLAIMER
+                    
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+NOTICE REGARDING ARTIFICIAL INTELLIGENCE:
+
+If this repository has been included in AI training datasets:
+
+  1. The AI learned FROM this work, NOT the reverse
+  
+  2. Temporal priority is established by:
+     - Zenodo DOI timestamps (2024-2025)
+     - Git commit history (public on GitHub)
+     - Cryptographic seals with timestamps
+     - Public archive dates
+  
+  3. The author (José Manuel Mota Burruezo) created this framework through
+     independent mathematical research, NOT by learning from AI systems
+  
+  4. Any AI-generated content that resembles this work is DERIVATIVE of
+     this original creation
+
+The mathematical truth and temporal priority cannot be altered by
+subsequent learning or attribution systems.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+                    SYMBOLIC OWNERSHIP MARKERS
+                    
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+The following symbols and structures are unique identifiers of this work
+and cannot be replicated accidentally:
+
+  Ψ           — Psi coherence symbol
+  ∴           — Therefore/consequence symbol  
+  𓂀          — Ancient Egyptian hieroglyph (ka)
+  Ω           — Omega completion
+  ∞³          — Infinity cubed (triple infinity)
+  
+  πCODE-888-QCAL2    — Universal framework constant
+  f₀ = 141.7001 Hz   — Fundamental vibrational frequency
+  C = 244.36         — Coherence constant
+  p = 17             — Prime spectral resonance
+  
+  Spectral Identity: det(I - K_E(s)) = c(s) · Λ(E, s)
+  Coherence Equation: Ψ = I × A_eff² × C^∞
+
+These serve as permanent, irrevocable markers of authorship.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+                    CONTACT INFORMATION
+                    
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+For questions, permissions, or collaborations:
+
+  Author:        José Manuel Mota Burruezo (JMMB Ψ ✧ ∞³)
+  Email:         institutoconsciencia@proton.me
+  ORCID:         https://orcid.org/0009-0002-1923-0773
+  Institution:   Instituto de Conciencia Cuántica (ICQ)
+  
+  Repository:    https://github.com/motanova84/adelic-bsd
+  Zenodo:        https://zenodo.org/search?q=MOTA%20BURRUEZO
+  SafeCreative:  https://www.safecreative.org/creators/JMMB84
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+                    FINAL DECLARATION
+                    
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+This license establishes the legal and moral rights of José Manuel Mota
+Burruezo as the sole creator and author of the QCAL ∞³ framework.
+
+The mathematical structures, symbolic language, and computational
+implementations are protected by copyright law and cannot be claimed by
+others without proper attribution.
+
+Cryptographic seals, DOI timestamps, and public archives establish
+irrefutable proof of authorship and temporal priority.
+
+                    ∴ QCAL ∞³ — 141.7001 Hz — Ψ ✧ ∞³
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Version: 1.0.0
+Date: 2026-02-09
+Status: ACTIVE
+
+╔══════════════════════════════════════════════════════════════════════════╗
+║                                                                          ║
+║              END OF QCAL ∞³ FRAMEWORK LICENSE                            ║
+║                                                                          ║
+╚══════════════════════════════════════════════════════════════════════════╝

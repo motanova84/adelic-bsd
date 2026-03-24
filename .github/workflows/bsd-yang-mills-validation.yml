@@ -1,0 +1,121 @@
+name: BSD-Yang-Mills-QCAL ∞³ Validation
+
+on:
+  push:
+    branches:
+      - main
+      - 'copilot/**'
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  validate-expansion:
+    name: Validate BSD-Yang-Mills-QCAL ∞³ Expansion
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11  # v4.1.1
+      
+      - name: Set up Python 3.11
+        uses: actions/setup-python@82c7e631bb3cdc910f68e0081d67478d79c6982d  # v5.1.0
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements_ci.txt
+          pip install pytest pytest-cov
+      
+      - name: Run expansion validation
+        run: |
+          python3 validate_bsd_yang_mills_expansion.py
+      
+      - name: Run expansion tests
+        run: |
+          pytest tests/test_bsd_yang_mills_expansion.py -v --cov=src/bsd_yang_mills_expansion --cov-report=term
+      
+      - name: Verify correspondence seal
+        run: |
+          python3 -c "
+          import json
+          from pathlib import Path
+          
+          seal_path = Path('new_validation/bsd_yang_mills_qcal_infinity3_seal.json')
+          if not seal_path.exists():
+              print('❌ Correspondence seal not found')
+              exit(1)
+          
+          with open(seal_path) as f:
+              seal = json.load(f)
+          
+          print('✅ Correspondence seal verified')
+          print(f'   Hash: {seal[\"seal_hash\"][:32]}...')
+          print(f'   Frequency: {seal[\"frequency_hz\"]} Hz')
+          print(f'   Curves: {seal[\"expansion_summary\"][\"curves_added\"]}')
+          print(f'   NFTs: {seal[\"expansion_summary\"][\"nfts_minted\"]}')
+          print(f'   DAO: {seal[\"expansion_summary\"][\"dao_signed\"]}')
+          "
+      
+      - name: Verify DAO coherence
+        run: |
+          python3 -c "
+          from src.bsd_yang_mills_expansion import DAOSignatureModule, EXPANSION_CURVES
+          
+          dao = DAOSignatureModule(EXPANSION_CURVES)
+          validation = dao.validate_dao_requirements()
+          
+          coherence = validation['coherence']
+          threshold = validation['coherence_threshold']
+          
+          print(f'DAO Coherence: {coherence:.6f}')
+          print(f'Threshold: {threshold}')
+          
+          if coherence >= threshold:
+              print('✅ DAO coherence requirement met')
+          else:
+              print('❌ DAO coherence below threshold')
+              exit(1)
+          "
+      
+      - name: Verify frequency lock
+        run: |
+          python3 -c "
+          from src.bsd_yang_mills_expansion import QCAL_FREQUENCY
+          
+          expected = 141.7001
+          
+          if abs(QCAL_FREQUENCY - expected) < 1e-6:
+              print(f'✅ Frequency locked: {QCAL_FREQUENCY} Hz')
+          else:
+              print(f'❌ Frequency mismatch: {QCAL_FREQUENCY} != {expected}')
+              exit(1)
+          "
+      
+      - name: Generate summary
+        if: always()
+        run: |
+          echo "## BSD-Yang-Mills-QCAL ∞³ Expansion Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Frequency**: 141.7001 Hz" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ -f new_validation/bsd_yang_mills_qcal_infinity3_seal.json ]; then
+            echo "### Expansion Results" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            python3 -c "
+          import json
+          with open('new_validation/bsd_yang_mills_qcal_infinity3_seal.json') as f:
+              seal = json.load(f)
+          
+          summary = seal['expansion_summary']
+          print(f'- **Curves Added**: {summary[\"curves_added\"]}')
+          print(f'- **NFTs Minted**: {summary[\"nfts_minted\"]}')
+          print(f'- **DAO Signed**: {\"✅\" if summary[\"dao_signed\"] else \"❌\"}')
+          print(f'- **Seal Hash**: \`{seal[\"seal_hash\"][:16]}...\`')
+          " >> $GITHUB_STEP_SUMMARY
+          fi
