@@ -237,7 +237,7 @@ pip install -e .
 ```bash
 # Install via conda
 conda env create -f environment.yml
-conda activate algoritmo-spectral
+conda activate bsd-spectral
 
 # Or via pip
 pip install -r requirements.txt

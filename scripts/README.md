@@ -212,7 +212,7 @@ sage -python scripts/generate_all_certificates.py
 Ensure you're in the repository root when running scripts:
 
 ```bash
-cd /path/to/algoritmo
+cd /path/to/adelic-bsd
 sage -python scripts/generate_all_certificates.py
 ```
 
