@@ -53,7 +53,8 @@ class TestUniversalConstants:
         assert 'kappa_pi' in const_dict
         assert 'f0' in const_dict
         assert 'lambda_rh' in const_dict
-        assert len(const_dict) == 8
+        assert 'nodos_constelacion' in const_dict
+        assert len(const_dict) == 9  # Updated for nodos_constelacion
     
     def test_coherence_verification(self):
         """Test coherence verification."""

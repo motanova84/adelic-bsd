@@ -8,6 +8,7 @@ import AdelicBSD.SelmerDesc
 import AdelicBSD.Traces.ModularParam
 import AdelicBSD.BSDStatement
 import AdelicBSD.BirchSwinnertonDyerFinal
+import AdelicBSD.ShaObstruction
 import AdelicBSD.P17Optimality
 import AdelicBSD.QCALBSDBridge  -- NUEVO: Puente QCAL-BSD
 import AdelicBSD.BSD_YangMills_Completion  -- NUEVO: Completación BSD-Yang-Mills

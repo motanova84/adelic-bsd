@@ -35,6 +35,7 @@ def sage_available_fixture():
 def pytest_collection_modifyitems(config, items):
     """
     Automatically mark tests in sage-requiring modules and skip them if sage is not available
+    Also skip tests with sage_required marker when SageMath is not available
     """
     sage_required_modules = [
         'test_advanced_modules',
@@ -60,3 +61,6 @@ def pytest_collection_modifyitems(config, items):
             item.add_marker(mark_sage_required)
             if not sage_available:
                 item.add_marker(skip_sage)
+        # Also skip tests with sage_required marker when SageMath is not available
+        elif item.get_closest_marker("sage_required") and not sage_available:
+            item.add_marker(skip_sage)
