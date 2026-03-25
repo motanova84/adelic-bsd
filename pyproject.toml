@@ -21,8 +21,9 @@ classifiers = [
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
 ]
-keywords = ["elliptic-curves", "bsd-conjecture", "number-theory", "sagemath", "spectral-methods"]
+keywords = ["elliptic-curves", "bsd-conjecture", "number-theory", "sagemath", "spectral-methods", "quantum-coherence", "qcal-framework", "millennium-problems"]
 requires-python = ">=3.9"
 
 dependencies = [
