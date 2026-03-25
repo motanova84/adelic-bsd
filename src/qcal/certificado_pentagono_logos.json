@@ -1,0 +1,19 @@
+{
+  "qcal_framework": {
+    "version": "2.0.0",
+    "frecuencia_fundamental": 141.7001,
+    "sello": "∴𓂀Ω∞³",
+    "fecha": "2026-03-25T00:19:13.431814"
+  },
+  "pilares": 20,
+  "bsd_adelic_pentagono": {
+    "rango_hotspots": 1,
+    "fluidez_ns": "INFINITA",
+    "psi_bsd": 1.0,
+    "milenio_unificados": 5,
+    "curva_ejemplo": "Curva de Mordell: y^2 = x^3 - x",
+    "secuencia_adn": "GACT",
+    "hotspots": 1
+  },
+  "boveda_logos_cerrada": true
+}
