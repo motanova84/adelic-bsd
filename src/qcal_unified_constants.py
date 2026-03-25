@@ -32,6 +32,7 @@ class UniversalConstants:
         delta_bsd: BSD conjecture completion constant (1.0)
         golden_ratio: φ = (1 + √5)/2
         euler_gamma: Euler-Mascheroni constant (≈ 0.5772)
+        nodos_constelacion: Critical constellation nodes for Ramsey emergence (51)
     """
     kappa_pi: float = 2.5773
     f0: float = 141.7001
@@ -41,6 +42,7 @@ class UniversalConstants:
     delta_bsd: float = 1.0
     golden_ratio: float = (1 + np.sqrt(5)) / 2
     euler_gamma: float = 0.5772156649
+    nodos_constelacion: int = 51  # Ramsey Theory: Critical mass for order emergence
     
     def to_dict(self) -> Dict[str, float]:
         """Convert constants to dictionary format."""
@@ -52,7 +54,8 @@ class UniversalConstants:
             'phi_ramsey': self.phi_ramsey,
             'delta_bsd': self.delta_bsd,
             'golden_ratio': self.golden_ratio,
-            'euler_gamma': self.euler_gamma
+            'euler_gamma': self.euler_gamma,
+            'nodos_constelacion': self.nodos_constelacion
         }
     
     def verify_coherence(self) -> Dict[str, bool]:
