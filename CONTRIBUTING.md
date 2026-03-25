@@ -1,4 +1,4 @@
-# Contributing to Algoritmo Espectral
+# Contributing to BSD Spectral Framework
 
 Thank you for your interest in contributing to the Mota Burruezo Spectral BSD Framework!
 
@@ -92,12 +92,12 @@ We welcome suggestions for new features or improvements:
 
 ```bash
 # Clone your fork
-git clone https://github.com/YOUR-USERNAME/algoritmo.git
-cd algoritmo
+git clone https://github.com/YOUR-USERNAME/adelic-bsd.git
+cd adelic-bsd
 
 # Create conda environment (recommended for reproducibility)
 conda env create -f environment.yml
-conda activate algoritmo-spectral
+conda activate bsd-spectral
 
 # Or create a virtual environment with pip
 python -m venv venv

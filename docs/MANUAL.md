@@ -10,17 +10,17 @@
 ### Using Conda (Recommended)
 
 ```bash
-git clone https://github.com/motanova84/algoritmo.git
-cd algoritmo
+git clone https://github.com/motanova84/adelic-bsd.git
+cd adelic-bsd
 conda env create -f environment.yml
-conda activate spectral-bsd
+conda activate bsd-spectral
 ```
 
 ### Using pip
 
 ```bash
-git clone https://github.com/motanova84/algoritmo.git
-cd algoritmo
+git clone https://github.com/motanova84/adelic-bsd.git
+cd adelic-bsd
 pip install -r requirements.txt
 ```
 
@@ -221,7 +221,7 @@ sage --version
 Make sure you're in the repository root:
 
 ```bash
-cd /path/to/algoritmo
+cd /path/to/adelic-bsd
 export PYTHONPATH="${PYTHONPATH}:$(pwd)"
 ```
 
@@ -292,7 +292,7 @@ If you use this code in your research, please cite:
   title        = {Spectral Algorithm for BSD Conjecture},
   year         = 2025,
   publisher    = {GitHub},
-  url          = {https://github.com/motanova84/algoritmo}
+  url          = {https://github.com/motanova84/adelic-bsd}
 }
 ```
 
@@ -306,8 +306,8 @@ José Manuel Mota Burruezo (2025)
 ## Support
 
 For issues, questions, or contributions:
-- **GitHub Issues**: https://github.com/motanova84/algoritmo/issues
-- **Discussions**: https://github.com/motanova84/algoritmo/discussions
+- **GitHub Issues**: https://github.com/motanova84/adelic-bsd/issues
+- **Discussions**: https://github.com/motanova84/adelic-bsd/discussions
 
 ---
 

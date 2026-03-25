@@ -82,7 +82,7 @@ sphinx-rtd-theme>=1.0  ⏭️  Not required for basic tests
 The conda environment is properly configured for full SageMath development:
 
 ```yaml
-name: algoritmo-spectral
+name: bsd-spectral
 python>=3.9         ✅ Currently using Python 3.12.3
 sage>=9.5           ⚠️  Requires separate installation
 ```
@@ -175,8 +175,8 @@ All core framework modules are intact and functional:
 
 1. Install SageMath for full functionality:
    ```bash
-   conda create -n algoritmo-spectral python=3.10
-   conda activate algoritmo-spectral
+   conda create -n bsd-spectral python=3.10
+   conda activate bsd-spectral
    conda install -c conda-forge sage
    pip install -r requirements.txt
    ```

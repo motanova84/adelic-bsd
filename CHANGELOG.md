@@ -202,7 +202,7 @@ All notable changes to this project will be documented in this file.
 ### Repository Structure
 
 ```
-algoritmo/
+adelic-bsd/
 ├── src/                              # Core package
 ├── tests/                            # Comprehensive test suite (4 test files)
 ├── examples/                         # Interactive demos & notebooks
@@ -315,7 +315,7 @@ The structure now fully supports the spectral BSD framework as described in the 
 The repository now has a clean, professional structure:
 
 ```
-algoritmo/
+adelic-bsd/
 ├── .github/
 │   └── workflows/
 │       └── python-package-conda.yml    # CI/CD workflow

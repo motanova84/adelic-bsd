@@ -1343,7 +1343,7 @@ jobs:
         run: pytest tests/ -v
       - name: Generar reporte
         run: python scripts/generate_proof_summary.py
-algoritmo/
+adelic-bsd/
 ├── src/                              # Core package
 │   ├── __init__.py
 │   ├── spectral_finiteness.py        # Main algorithm implementation

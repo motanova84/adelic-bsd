@@ -1,4 +1,4 @@
-name: algoritmo-spectral
+name: bsd-spectral
 channels:
   - conda-forge
   - defaults
