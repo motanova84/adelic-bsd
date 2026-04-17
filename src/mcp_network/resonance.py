@@ -10,12 +10,14 @@ from typing import Any, Callable, Dict, Optional, Tuple
 import pandas as pd
 
 F0_REFERENCE = 141.7001
+NOMINAL_GRID_FREQUENCY_HZ = 50.0
 LATENCY_THRESHOLD_MS = 100.0
 PHASE_THRESHOLD_RAD = 0.25
 LATENCY_WEIGHT = 0.45
 PHASE_WEIGHT = 0.55
 PSI_COHERENT_THRESHOLD = 0.99
 PSI_DRIFTING_THRESHOLD = 0.95
+PSI_SATURATED_THRESHOLD = 0.999
 PHASE_COHERENCE_NORMALIZATION = math.pi / 2.0
 
 NODE_FREQUENCIES: Dict[str, float] = {
@@ -78,7 +80,7 @@ def load_real_grid_sample(
         if "frequency_hz" not in df:
             return fallback
 
-        delta_f = float(df["frequency_hz"].mean() - 50.0)
+        delta_f = float(df["frequency_hz"].mean() - NOMINAL_GRID_FREQUENCY_HZ)
         window_seconds = float(len(df))
         phase_offset = 2.0 * math.pi * delta_f * window_seconds
         return 20.0, phase_offset, True, True
@@ -145,7 +147,7 @@ def check_node_resonance(
             "harmonic_factor": round(freq / F0_REFERENCE, 5),
             "phase_coherence": round(phase_coherence, 4),
             "resonance_class": resonance,
-            "logos_level": "saturated" if psi > 0.999 else "stable",
+            "logos_level": "saturated" if psi > PSI_SATURATED_THRESHOLD else "stable",
             "modo_real": used_real_observer,
         },
         "checks": {
