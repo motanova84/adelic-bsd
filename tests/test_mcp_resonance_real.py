@@ -48,7 +48,7 @@ def test_check_node_resonance_real_mode_with_registered_observer(monkeypatch, re
 
     register_real_observer(
         "interferometro-noesico",
-        lambda: (18.0, 0.001, True, True),
+        lambda: (2.0, 0.001, True, True),
     )
     health = check_node_resonance("interferometro-noesico")
 
