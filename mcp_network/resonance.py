@@ -12,6 +12,16 @@ F0_REFERENCE = 141.7001
 PSI_GATE = 0.95
 PHASE_GATE_RAD = 0.25
 LATENCY_GATE_MS = 80.0
+MS_PER_SECOND = 1000.0
+BIOLOGIA_WINDOW_SECONDS = 60.0
+BASE_LATENCY_BIOLOGIA_MS = 25.0
+BASE_LATENCY_INTERFEROMETRO_MS = 8.0
+DEFAULT_OBSERVER_LATENCY_MS = 22.0
+DEFAULT_OBSERVER_PHASE_OFFSET_RAD = 0.02
+PSI_WEIGHT_PHASE = 0.85
+PSI_WEIGHT_LATENCY = 0.05
+PSI_WEIGHT_SIGNAL = 0.05
+PSI_WEIGHT_ONLINE = 0.05
 
 ObserverResult = Tuple[float, float, bool, bool]
 REAL_OBSERVERS: Dict[str, Callable[[], ObserverResult]] = {}
@@ -34,6 +44,17 @@ def _fixture_path(relative: str) -> Path:
     return _project_root() / relative
 
 
+def calculate_biologia_phase_offset(rr_mean_ms: float) -> float:
+    expected_rr = MS_PER_SECOND / (F0_REFERENCE / 2.0)
+    delta_rr = rr_mean_ms - expected_rr
+    return 2.0 * math.pi * (delta_rr / MS_PER_SECOND) * BIOLOGIA_WINDOW_SECONDS
+
+
+def calculate_interferometro_phase_offset(peak_freq_hz: float) -> float:
+    target = F0_REFERENCE * 2.0
+    return 2.0 * math.pi * (peak_freq_hz - target) / target
+
+
 def load_hrv_eeg_biologia() -> ObserverResult:
     """Observador real para biologia-cuantica-noesica (f₀/2)."""
     path = _fixture_path("tests/data/hrv_eeg_biologia_cuantica.csv")
@@ -42,12 +63,12 @@ def load_hrv_eeg_biologia() -> ObserverResult:
 
     df = pd.read_csv(path)
     rr_mean = float(df["rr_interval_ms"].mean())
-    expected_rr = 1000.0 / (F0_REFERENCE / 2.0)
-    delta_rr = rr_mean - expected_rr
-    phase_offset = 2.0 * math.pi * (delta_rr / 1000.0) * 60.0
+    phase_offset = calculate_biologia_phase_offset(rr_mean)
 
+    # Use population std (ddof=0) because the fixture is the full synthetic window, not a sample.
     rr_std = float(df["rr_interval_ms"].std(ddof=0))
-    latency_ms = 25.0 + rr_std
+    # Add variability to a calibrated base latency to emulate processing jitter in the 1-minute phase window.
+    latency_ms = BASE_LATENCY_BIOLOGIA_MS + rr_std
     return latency_ms, phase_offset, True, True
 
 
@@ -59,12 +80,12 @@ def load_magnetometer_interferometer() -> ObserverResult:
 
     df = pd.read_csv(path)
     peak_freq = float(df["frequency_hz"].mean())
-    target = F0_REFERENCE * 2.0
-    delta_f = peak_freq - target
-    phase_offset = 2.0 * math.pi * delta_f / target
+    phase_offset = calculate_interferometro_phase_offset(peak_freq)
 
+    # Use population std (ddof=0) because the fixture is the full synthetic window, not a sample.
     freq_std = float(df["frequency_hz"].std(ddof=0))
-    latency_ms = 8.0 + freq_std
+    # Add variability to a lower calibrated base latency for the high-sensitivity interferometric channel.
+    latency_ms = BASE_LATENCY_INTERFEROMETRO_MS + freq_std
     return latency_ms, phase_offset, True, True
 
 
@@ -82,7 +103,12 @@ def _score_resonance(latency_ms: float, phase_offset_rad: float, signal_ok: bool
     signal_score = 1.0 if signal_ok else 0.0
     online_score = 1.0 if online else 0.0
 
-    psi = 0.85 * phase_score + 0.05 * latency_score + 0.05 * signal_score + 0.05 * online_score
+    psi = (
+        PSI_WEIGHT_PHASE * phase_score +
+        PSI_WEIGHT_LATENCY * latency_score +
+        PSI_WEIGHT_SIGNAL * signal_score +
+        PSI_WEIGHT_ONLINE * online_score
+    )
     return max(0.0, min(1.0, psi))
 
 
@@ -90,7 +116,12 @@ def check_node_resonance(node: str) -> dict:
     """Check resonance health for a node using real observer data when available."""
     observer = REAL_OBSERVERS.get(node)
     if observer is None:
-        latency_ms, phase_offset_rad, signal_ok, online = (22.0, 0.02, True, False)
+        latency_ms, phase_offset_rad, signal_ok, online = (
+            DEFAULT_OBSERVER_LATENCY_MS,
+            DEFAULT_OBSERVER_PHASE_OFFSET_RAD,
+            True,
+            False,
+        )
         fuente_fisica = "simulado"
         modo_real = False
     else:
