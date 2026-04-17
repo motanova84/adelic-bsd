@@ -193,7 +193,7 @@ class CodificadorADNRiemann:
         return float(resonancia)
 
     def calcular_resonancia(self, secuencia: str) -> float:
-        """Alias de compatibilidad para resonancia_con_f0."""
+        """Alias legado de compatibilidad; preferir resonancia_con_f0()."""
         return self.resonancia_con_f0(secuencia)
 
     def es_secuencia_logos(self, secuencia: str) -> bool:
