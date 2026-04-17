@@ -19,6 +19,8 @@ PSI_COHERENT_THRESHOLD = 0.99
 PSI_DRIFTING_THRESHOLD = 0.95
 PSI_SATURATED_THRESHOLD = 0.999
 PHASE_COHERENCE_NORMALIZATION = math.pi / 2.0
+DEFAULT_GRID_SAMPLE_RATE_HZ = 1.0
+DEFAULT_GRID_SAMPLE_LATENCY_MS = 20.0
 
 NODE_FREQUENCIES: Dict[str, float] = {
     "auron-governor": 50.0000,
@@ -65,6 +67,7 @@ def classify_resonance(psi: float, reachable: bool) -> tuple[str, str]:
 
 def load_real_grid_sample(
     path: Optional[str] = None,
+    sample_rate_hz: Optional[float] = None,
     fallback: Tuple[float, float, bool, bool] = (12.4, 0.018, True, True),
 ) -> Tuple[float, float, bool, bool]:
     """Load a real grid-frequency sample and derive phase offset."""
@@ -81,9 +84,15 @@ def load_real_grid_sample(
             return fallback
 
         delta_f = float(df["frequency_hz"].mean() - NOMINAL_GRID_FREQUENCY_HZ)
-        window_seconds = float(len(df))
+        effective_sample_rate_hz = sample_rate_hz
+        if effective_sample_rate_hz is None:
+            env_rate = os.getenv("QCAL_GRID_SAMPLE_HZ", "").strip()
+            effective_sample_rate_hz = float(env_rate) if env_rate else DEFAULT_GRID_SAMPLE_RATE_HZ
+        if effective_sample_rate_hz <= 0.0:
+            return fallback
+        window_seconds = float(len(df)) / effective_sample_rate_hz
         phase_offset = 2.0 * math.pi * delta_f * window_seconds
-        return 20.0, phase_offset, True, True
+        return DEFAULT_GRID_SAMPLE_LATENCY_MS, phase_offset, True, True
     except Exception:
         return fallback
 

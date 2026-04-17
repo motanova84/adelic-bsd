@@ -6,6 +6,7 @@ import pandas as pd
 import pytest
 
 from src.mcp_network.resonance import (
+    DEFAULT_GRID_SAMPLE_LATENCY_MS,
     NODE_FREQUENCIES,
     REAL_OBSERVERS,
     check_node_resonance,
@@ -72,7 +73,7 @@ def test_load_real_grid_sample_from_csv(tmp_path):
     expected_delta_f = (50.001 + 49.999 + 50.002 + 50.0) / NUM_SAMPLES - 50.0
     expected_phase = 2.0 * math.pi * expected_delta_f * NUM_SAMPLES
 
-    assert latency_ms == pytest.approx(20.0, rel=0.0, abs=1e-12)
+    assert latency_ms == pytest.approx(DEFAULT_GRID_SAMPLE_LATENCY_MS, rel=0.0, abs=1e-12)
     assert phase_offset == pytest.approx(expected_phase, rel=1e-12)
     assert heartbeat_ok is True
     assert schema_ok is True
