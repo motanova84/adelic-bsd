@@ -82,7 +82,7 @@ def _score_resonance(latency_ms: float, phase_offset_rad: float, signal_ok: bool
     signal_score = 1.0 if signal_ok else 0.0
     online_score = 1.0 if online else 0.0
 
-    psi = 0.60 * phase_score + 0.20 * latency_score + 0.10 * signal_score + 0.10 * online_score
+    psi = 0.85 * phase_score + 0.05 * latency_score + 0.05 * signal_score + 0.05 * online_score
     return max(0.0, min(1.0, psi))
 
 

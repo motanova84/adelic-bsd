@@ -3,9 +3,19 @@
 """Servidor MCP de prueba - network.checkResonance (Nivel B)."""
 
 import json
+import sys
 from http.server import BaseHTTPRequestHandler, HTTPServer
+from pathlib import Path
 
-from mcp_network.resonance import check_node_resonance
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+
+
+def _check_node_resonance(node: str) -> dict:
+    if str(PROJECT_ROOT) not in sys.path:
+        sys.path.insert(0, str(PROJECT_ROOT))
+    from mcp_network.resonance import check_node_resonance
+
+    return check_node_resonance(node)
 
 
 class MCPTestHandler(BaseHTTPRequestHandler):
@@ -24,7 +34,7 @@ class MCPTestHandler(BaseHTTPRequestHandler):
             response = {
                 "jsonrpc": "2.0",
                 "id": request.get("id"),
-                "result": check_node_resonance(node),
+                "result": _check_node_resonance(node),
             }
         else:
             response = {
