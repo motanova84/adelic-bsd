@@ -6,6 +6,7 @@ import pandas as pd
 import pytest
 
 from src.mcp_network.resonance import (
+    NODE_FREQUENCIES,
     REAL_OBSERVERS,
     check_node_resonance,
     classify_resonance,
@@ -42,7 +43,7 @@ def test_check_node_resonance_simulated_mode_by_default(monkeypatch):
 
     assert health["qcal"]["modo_real"] is False
     assert health["checks"]["fuente_fisica"] == "simulada"
-    assert health["frequency_hz"] == pytest.approx(50.0, rel=1e-12)
+    assert health["frequency_hz"] == pytest.approx(NODE_FREQUENCIES["auron-governor"], rel=1e-12)
 
 
 def test_check_node_resonance_real_mode_with_registered_observer(monkeypatch, restore_observers):
@@ -57,7 +58,10 @@ def test_check_node_resonance_real_mode_with_registered_observer(monkeypatch, re
     assert health["qcal"]["modo_real"] is True
     assert health["checks"]["fuente_fisica"] == "real"
     assert health["status"] in {"pass", "warn"}
-    assert health["frequency_hz"] == pytest.approx(283.4002, rel=1e-9)
+    assert health["frequency_hz"] == pytest.approx(
+        NODE_FREQUENCIES["interferometro-noesico"],
+        rel=1e-9,
+    )
 
 
 def test_load_real_grid_sample_from_csv(tmp_path):
