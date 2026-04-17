@@ -10,6 +10,13 @@ from typing import Any, Callable, Dict, Optional, Tuple
 import pandas as pd
 
 F0_REFERENCE = 141.7001
+LATENCY_THRESHOLD_MS = 100.0
+PHASE_THRESHOLD_RAD = 0.25
+LATENCY_WEIGHT = 0.45
+PHASE_WEIGHT = 0.55
+PSI_COHERENT_THRESHOLD = 0.99
+PSI_DRIFTING_THRESHOLD = 0.95
+PHASE_COHERENCE_NORMALIZATION = math.pi / 2.0
 
 NODE_FREQUENCIES: Dict[str, float] = {
     "auron-governor": 50.0000,
@@ -37,9 +44,9 @@ def score_psi(
     if not heartbeat_ok or not schema_ok:
         return 0.0
 
-    latency_penalty = min(latency_ms / 100.0, 1.0)
-    phase_penalty = min(abs(phase_offset_rad) / 0.25, 1.0)
-    psi = 1.0 - 0.45 * latency_penalty - 0.55 * phase_penalty
+    latency_penalty = min(latency_ms / LATENCY_THRESHOLD_MS, 1.0)
+    phase_penalty = min(abs(phase_offset_rad) / PHASE_THRESHOLD_RAD, 1.0)
+    psi = 1.0 - LATENCY_WEIGHT * latency_penalty - PHASE_WEIGHT * phase_penalty
     return max(0.0, min(psi, 1.0))
 
 
@@ -47,9 +54,9 @@ def classify_resonance(psi: float, reachable: bool) -> tuple[str, str]:
     """Convert Ψ + reachability to resonance/status labels."""
     if not reachable:
         return "offline", "fail"
-    if psi >= 0.99:
+    if psi >= PSI_COHERENT_THRESHOLD:
         return "coherent", "pass"
-    if psi >= 0.95:
+    if psi >= PSI_DRIFTING_THRESHOLD:
         return "drifting", "warn"
     return "fault", "fail"
 
@@ -120,7 +127,7 @@ def check_node_resonance(
 
     psi = score_psi(lat, phase, hb, sch)
     resonance, status = classify_resonance(psi, reachable=reachable)
-    phase_coherence = max(0.0, 1.0 - abs(phase) / (math.pi / 2.0))
+    phase_coherence = max(0.0, 1.0 - abs(phase) / PHASE_COHERENCE_NORMALIZATION)
 
     return {
         "node": node_name,

@@ -14,6 +14,8 @@ from src.mcp_network.resonance import (
     score_psi,
 )
 
+NUM_SAMPLES = 4
+
 
 @pytest.fixture
 def restore_observers():
@@ -63,8 +65,8 @@ def test_load_real_grid_sample_from_csv(tmp_path):
     pd.DataFrame({"frequency_hz": [50.001, 49.999, 50.002, 50.0]}).to_csv(csv_path, index=False)
 
     latency_ms, phase_offset, heartbeat_ok, schema_ok = load_real_grid_sample(path=str(csv_path))
-    expected_delta_f = (50.001 + 49.999 + 50.002 + 50.0) / 4.0 - 50.0
-    expected_phase = 2.0 * math.pi * expected_delta_f * 4.0
+    expected_delta_f = (50.001 + 49.999 + 50.002 + 50.0) / NUM_SAMPLES - 50.0
+    expected_phase = 2.0 * math.pi * expected_delta_f * NUM_SAMPLES
 
     assert latency_ms == pytest.approx(20.0, rel=0.0, abs=1e-12)
     assert phase_offset == pytest.approx(expected_phase, rel=1e-12)
