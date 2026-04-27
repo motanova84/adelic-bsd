@@ -1,8 +1,15 @@
 # Spectral BSD Framework Requirements
 # Compatible with Python 3.9-3.13
 # Last updated: 2025-10-18
+#
+# NOTE: sage-all is an internal SageMath package and is NOT available on PyPI.
+# It can only be installed via SageMath's own pip: `sage -pip install sage-all`
+# Install SageMath first (see README.md for instructions), then run:
+#   sage -pip install -r requirements.txt
+# For Docker/CI environments without SageMath, use requirements_ci.txt instead.
 
 # Core mathematical dependencies
+# sage-all requires SageMath binary pre-installed (not available via pip)
 sage-all>=9.8,<10.0; python_version < '3.12'
 numpy>=1.24.3,<3.0.0
 scipy>=1.10.1,<2.0.0
