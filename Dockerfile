@@ -1,7 +1,12 @@
 # QCAL Production Docker Image
 # Multi-stage build for optimized image size
+#
+# NOTE: SageMath (sage-all) is NOT available on PyPI and cannot be installed
+# via regular pip. For production containers, Python-only dependencies are
+# installed from requirements_ci.txt. To use SageMath locally, install the
+# system binary first (see README.md) and then run: sage -pip install -r requirements.txt
 
-FROM python:3.11-slim as builder
+FROM python:3.11-slim AS builder
 
 # Set working directory
 WORKDIR /build
@@ -13,11 +18,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy requirements first for better caching
-COPY requirements.txt .
+# Copy CI requirements (excludes sage-all which requires the SageMath binary)
+COPY requirements_ci.txt .
 
 # Install Python dependencies
-RUN pip install --no-cache-dir --user -r requirements.txt
+RUN pip install --no-cache-dir --user -r requirements_ci.txt
 
 # Production stage
 FROM python:3.11-slim
@@ -46,7 +51,7 @@ USER qcal
 
 # Add local Python packages to PATH
 ENV PATH=/home/qcal/.local/bin:$PATH
-ENV PYTHONPATH=/app:$PYTHONPATH
+ENV PYTHONPATH=/app
 
 # Set environment variables for reproducibility
 ENV PYTHONHASHSEED=42

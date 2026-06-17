@@ -54,6 +54,10 @@ jobs:
             echo "⚠️ HF_TOKEN not set, skipping dataset upload"
           fi
 
+      - name: Verify SageMath Installation
+        run: |
+          sage --version || echo "ℹ️  SageMath not installed in CI environment (expected). Full SageMath functionality requires system-level installation — see README.md."
+
       - name: Build Docker image
         run: docker build -t qcal/production:${{ github.run_number }} .
 

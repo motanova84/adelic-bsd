@@ -37,6 +37,52 @@ python scripts/run_complete_verification.py
 
 ---
 
+### 🧮 SageMath Dependency / Dependencia SageMath
+
+SageMath (`sage-all`) is **not available on PyPI** and must be installed as a system binary before running `pip install -r requirements.txt`. The CI/CD pipeline and Docker image use `requirements_ci.txt` (which excludes SageMath) so that automated builds succeed without it.
+
+#### When do you need SageMath?
+- Full elliptic-curve computations (e.g. `verify_dR_uniformity.sage`, `sage_plugin/`)
+- Advanced proofs and certificate generation
+
+#### When is SageMath NOT required?
+- Docker production container (`validate_v5_coronacion.py`)
+- CI validation pipeline (`requirements_ci.txt`)
+- Basic numerical validation
+
+#### Installation / Instalación
+
+**Linux (Debian/Ubuntu):**
+```bash
+sudo apt-get update && sudo apt-get install -y sagemath
+```
+
+**macOS (Homebrew):**
+```bash
+brew install --cask sage
+```
+
+**conda (cross-platform, recommended for development):**
+```bash
+conda create -n bsd-spectral python=3.10
+conda activate bsd-spectral
+conda install -c conda-forge sage
+sage -pip install -r requirements.txt
+```
+
+**Python version compatibility:**
+| Environment | Python | SageMath | Requirements file |
+|-------------|--------|----------|-------------------|
+| Development (full) | 3.9–3.11 | ≥ 9.8 | `requirements.txt` (via `sage -pip`) |
+| CI / Docker | 3.9–3.13 | not required | `requirements_ci.txt` |
+
+> ⚠️ **Note:** `pip install -r requirements.txt` will fail with:
+> `ERROR: Could not find a version that satisfies the requirement sage-all<10.0,>=9.8`
+> because `sage-all` is an internal SageMath package (not on PyPI).
+> Use `requirements_ci.txt` for environments without SageMath.
+
+---
+
 ### 📦 Contenido Principal / Main Contents
 
 | Componente | Descripción | Ubicación |
